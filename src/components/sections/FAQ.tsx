@@ -119,7 +119,7 @@ export function FAQ() {
         alt=""
         className="absolute -top-20 -left-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />
-      <div ref={ref} className="mx-auto max-w-2xl">
+      <div ref={ref} className="mx-auto max-w-6xl">
         <h2
           className={`font-serif text-3xl md:text-4xl text-neutral-900 mb-12 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

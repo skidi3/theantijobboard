@@ -36,7 +36,7 @@ export function Hero() {
 
       {/* Hero content - split layout */}
       <div className="relative z-10 flex-1 flex items-center px-6 py-12 md:px-12 lg:px-20 lg:py-0">
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left side - Text content */}
             <div className="max-w-lg">

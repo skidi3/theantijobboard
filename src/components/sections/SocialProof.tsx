@@ -31,7 +31,7 @@ export function SocialProof() {
         alt=""
         className="absolute -bottom-20 -right-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />
-      <div ref={ref} className="mx-auto max-w-4xl">
+      <div ref={ref} className="mx-auto max-w-6xl">
         <div className="space-y-16">
           {testimonials.map((testimonial, i) => (
             <blockquote

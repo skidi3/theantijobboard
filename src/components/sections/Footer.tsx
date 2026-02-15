@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className="border-t border-neutral-200 bg-white px-6 py-8 md:py-12 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2 hover:opacity-70 transition-opacity cursor-pointer">
             <img

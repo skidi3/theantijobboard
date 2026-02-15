@@ -29,7 +29,7 @@ export function CTA() {
 
       <div
         ref={ref}
-        className={`relative z-10 mx-auto max-w-2xl text-center flex flex-col items-center transition-all duration-1000 ${
+        className={`relative z-10 mx-auto max-w-6xl text-center flex flex-col items-center transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
