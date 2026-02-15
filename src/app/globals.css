@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #171717;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dither noise texture */
+.dither {
+  position: relative;
+}
+
+.dither::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Stronger dither for dark sections */
+.dither-strong::before {
+  opacity: 0.08;
+}
+
+/* Dither gradient overlay - creates halftone-like edge effect */
+.dither-fade {
+  position: relative;
+}
+
+.dither-fade::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(0,0,0,0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0,0,0,0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Stipple dot pattern */
+.stipple {
+  position: relative;
+}
+
+.stipple::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #000 0.5px, transparent 0.5px);
+  background-size: 8px 8px;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Halftone dot pattern for more editorial feel */
+.halftone {
+  position: relative;
+}
+
+.halftone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #000 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dither gradient - fades from stippled to clean */
+.dither-gradient-top {
+  position: relative;
+}
+
+.dither-gradient-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background-image: radial-gradient(circle, #000 0.5px, transparent 0.5px);
+  background-size: 6px 6px;
+  opacity: 0.03;
+  mask-image: linear-gradient(to bottom, black, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Cross-hatch pattern for premium feel */
+.crosshatch {
+  position: relative;
+}
+
+.crosshatch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(45deg, #000 1px, transparent 1px),
+    linear-gradient(-45deg, #000 1px, transparent 1px);
+  background-size: 12px 12px;
+  opacity: 0.008;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Film grain effect */
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+::selection {
+  background: #fb7185;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #fb7185;
+  color: #ffffff;
+}
+
+/* Ticker animation pause on hover */
+.ticker-container:hover .ticker-content {
+  animation-play-state: paused;
+}
+
+/* Infinite scroll ticker */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* Card hover lift effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Section padding consistency */
+.section-padding {
+  @apply px-6 md:px-12 lg:px-20;
+}
+
+.section-padding-y {
+  @apply py-20 md:py-28 lg:py-32;
+}
+
+/* Container max width */
+.container-max {
+  @apply mx-auto max-w-6xl;
+}
+
+/* Text balance for headings */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* Smooth appear animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Scroll-triggered animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth image hover */
+.img-hover {
+  transition: transform 0.5s ease-out, box-shadow 0.5s ease-out;
+}
+
+.img-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Card hover effects */
+.card-lift {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Link hover underline animation */
+.link-hover {
+  position: relative;
+}
+
+.link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease-out;
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}
+
+/* Smooth section transitions */
+section {
+  transition: opacity 0.3s ease-out;
+}
+
+/* Better text rendering */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Focus states */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
