@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
+  // Use Bunny CDN for static assets in production
+  assetPrefix: isProd ? 'https://theantijobboard.b-cdn.net' : undefined,
   images: {
     remotePatterns: [
       {
@@ -22,6 +26,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'asset.brandfetch.io',
+      },
+      {
+        protocol: 'https',
+        hostname: 'theantijobboard.b-cdn.net',
       },
     ],
   },
