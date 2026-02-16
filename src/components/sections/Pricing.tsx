@@ -146,7 +146,7 @@ export function Pricing() {
           {/* The Edge */}
           <div className="relative mt-4">
             <span className="absolute top-0 right-8 -translate-y-1/2 bg-rose-400 text-white text-sm px-4 py-1.5 rounded-full z-10">
-              Most founders pick this
+              Most popular
             </span>
             <div className="bg-neutral-900 text-white rounded-2xl p-6 md:p-8">
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">

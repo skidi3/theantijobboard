@@ -115,37 +115,24 @@ export function Problem() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <div className="max-w-4xl">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 leading-tight mb-8">
-            Remember when job hunting<br />
-            <span className="text-neutral-400">meant sending 10 resumes?</span>
+        <div className="max-w-3xl">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-8">
+            <span className="block">1,247 applicants per role.</span>
+            <span className="block mt-2 text-neutral-400">You're number 1,248.</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <div>
-              <p className="text-lg text-neutral-500 leading-relaxed">
-                Now you're competing with 1,247 people for every LinkedIn "Easy Apply." Your resume sits in an ATS queue behind someone who keyword-stuffed their way to the top.
-              </p>
-              <p className="mt-4 text-lg text-neutral-500 leading-relaxed">
-                Half the jobs you apply to don't even exist anymore. Ghost listings. Roles already filled internally.
-              </p>
-            </div>
-            <div>
-              <p className="text-lg text-neutral-500 leading-relaxed">
-                You spend hours tailoring cover letters that nobody reads. You follow up and hear nothing. You start wondering if you're even qualified for roles you've done for years.
-              </p>
-            </div>
-          </div>
+          <p className="text-lg text-neutral-500 leading-relaxed mb-6">
+            Your resume sits in an ATS queue behind people who keyword-stuffed their way to the top. Half the jobs you apply to are ghost listings. Roles already filled internally.
+          </p>
 
-          <div className="mt-12 pt-8 border-t border-dashed border-neutral-200">
-            <p className="font-serif text-2xl md:text-3xl text-neutral-900 leading-snug mb-4">
-              The game changed.<br />
-              <span className="text-neutral-400">You're still playing the old one.</span>
-            </p>
-            <p className="text-neutral-500 max-w-2xl">
-              The best roles never hit job boards. By the time you see a posting, the hiring manager already has 50 referrals. You're not losing because you're not good enough. You're losing because you showed up late.
-            </p>
-          </div>
+          <p className="text-lg text-neutral-500 leading-relaxed mb-10">
+            You follow up and hear nothing. The game is rigged against you.
+          </p>
+
+          <p className="font-serif text-2xl md:text-3xl text-neutral-900 leading-normal md:leading-relaxed">
+            The best roles never hit job boards.<br />
+            <span className="text-neutral-400">We get them before they do.</span>
+          </p>
         </div>
       </div>
     </section>
