@@ -108,7 +108,7 @@ export function Pricing() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Cancel anytime. 7-day money back.
+          Cancel anytime. No refunds.
         </p>
 
         <div

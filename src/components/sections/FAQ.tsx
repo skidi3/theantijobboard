@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "How do you find these jobs?",
     answer:
-      "We track Crunchbase, SEC filings, VC announcements, and YC batches daily. When we see a company raise funding, we call their HR or founders to verify what roles they're hiring for.",
+      "We track Crunchbase, SEC filings, VC announcements, YC batches daily. When a company raises, we call their HR or founders to verify what roles they're hiring for.",
   },
   {
     question: "Is this just a newsletter?",
@@ -15,14 +15,19 @@ const faqs = [
       "No. Every role we list has been verified by a phone call. We know the hiring manager's name, what they're looking for, and often have a direct intro path.",
   },
   {
-    question: "What if I don't get hired?",
+    question: "Do you offer refunds or guarantees?",
     answer:
-      "Concierge clients get 30 days of recruiting. If we don't land you 3 interviews within 30 days, we extend for free.",
+      "Nope. We give you opportunities with zero competition and save you time. But we can't make you cracked. If you're a fresher applying for senior roles, that's on you. We open doors, you walk through them.",
+  },
+  {
+    question: "Why early stage startups?",
+    answer:
+      "Early equity can make you a millionaire if you negotiate properly. We focus on recently funded startups where your equity actually means something.",
   },
   {
     question: "What industries do you cover?",
     answer:
-      "Tech startups — engineering, design, and product roles. AI/ML, fintech, SaaS, dev tools, consumer tech.",
+      "Tech startups. Engineering, design, product roles. AI/ML, fintech, SaaS, dev tools, consumer tech.",
   },
 ];
 
