@@ -144,9 +144,11 @@ export function Pricing() {
                 Email or Discord delivery
               </li>
             </ul>
-            <Button variant="outline" className="w-full">
-              Get started
-            </Button>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1" target="_blank" rel="noopener noreferrer" className="w-full">
+              <Button variant="outline" className="w-full">
+                Get started
+              </Button>
+            </a>
           </div>
 
           {/* The Edge - Popular */}
@@ -184,9 +186,11 @@ export function Pricing() {
                 Priority access
               </li>
             </ul>
-            <Button variant="white" className="w-full">
-              Get started
-            </Button>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1" target="_blank" rel="noopener noreferrer" className="w-full">
+              <Button variant="white" className="w-full">
+                Get started
+              </Button>
+            </a>
           </div>
 
           {/* The Concierge */}
@@ -221,9 +225,11 @@ export function Pricing() {
                 Weekly check-in call
               </li>
             </ul>
-            <Button variant="outline" className="w-full">
-              Apply
-            </Button>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1" target="_blank" rel="noopener noreferrer" className="w-full">
+              <Button variant="outline" className="w-full">
+                Apply
+              </Button>
+            </a>
           </div>
         </div>
       </div>

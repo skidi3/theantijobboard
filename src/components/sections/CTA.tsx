@@ -8,24 +8,12 @@ export function CTA() {
 
   return (
     <section className="relative px-6 py-24 md:px-12 md:py-32 lg:px-20 overflow-hidden">
-      {/* Background image with dither effect */}
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/void.png')",
-          filter: "contrast(1.1) brightness(0.9)",
-        }}
+        style={{ backgroundImage: "url('/hero-bg.png')" }}
       />
-      {/* Dither overlay using noise pattern */}
-      <div
-        className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-        }}
-      />
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-neutral-900/80" />
+      <div className="absolute inset-0 bg-white/5" />
 
       <div
         ref={ref}
@@ -33,17 +21,19 @@ export function CTA() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
       >
-        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-white leading-tight">
+        <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 leading-tight">
           Stop applying into the void.
         </h2>
-        <p className="mt-6 text-lg text-neutral-400">
+        <p className="mt-6 text-lg text-neutral-500">
           Get the jobs before everyone else.
         </p>
 
         <div className="mt-10">
-          <Button variant="white" size="lg">
-            Join the waitlist
-          </Button>
+          <a href="#pricing">
+            <Button variant="primary" size="lg">
+              Get early access
+            </Button>
+          </a>
         </div>
       </div>
     </section>

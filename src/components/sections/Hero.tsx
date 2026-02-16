@@ -5,37 +5,43 @@ import { ScatteredCards } from "../ScatteredCards";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[auto] lg:min-h-[100svh] bg-white overflow-hidden flex flex-col dither">
+    <section className="relative min-h-[100svh] bg-white overflow-hidden flex flex-col dither">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/hero-bg.png')" }}
+      />
+      <div className="absolute inset-0 bg-white/5" />
       {/* Nav */}
       <nav className="relative z-50 flex items-center justify-between px-6 py-5 md:px-12 lg:px-20">
         <div className="flex items-center gap-2">
           <img src="/logo.png" alt="The Anti Job Board" className="h-8 w-auto" />
-          <span className="font-serif text-lg text-neutral-400">The Anti Job Board</span>
+          <span className="font-serif text-lg text-neutral-900">The Anti Job Board</span>
         </div>
         <div className="flex items-center gap-8">
           <a
             href="#how"
-            className="hidden sm:block text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+            className="hidden sm:block text-sm text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             How it works
           </a>
           <a
             href="#pricing"
-            className="hidden sm:block text-sm text-neutral-500 hover:text-neutral-900 transition-colors"
+            className="hidden sm:block text-sm text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             Pricing
           </a>
           <a
-            href="#"
-            className="text-sm text-neutral-900 hover:underline underline-offset-4"
+            href="#faq"
+            className="text-sm text-neutral-900 hover:text-neutral-600 transition-colors"
           >
-            Sign in
+            FAQ
           </a>
         </div>
       </nav>
 
       {/* Hero content - split layout */}
-      <div className="relative z-10 flex-1 flex items-center px-6 py-12 md:px-12 lg:px-20 lg:py-0">
+      <div className="relative z-10 flex-1 flex items-center px-6 md:px-12 lg:px-20">
         <div className="w-full max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left side - Text content */}
@@ -61,11 +67,13 @@ export function Hero() {
               </p>
 
               <div className="mt-6 sm:mt-8">
-                <Button size="lg">
-                  Join the waitlist
-                </Button>
-                <p className="mt-3 sm:mt-4 text-sm text-neutral-400">
-                  $10/week after trial
+                <a href="#pricing">
+                  <Button size="lg">
+                    Get early access
+                  </Button>
+                </a>
+                <p className="mt-3 sm:mt-4 text-sm text-neutral-700">
+                  Starting at $9/month
                 </p>
               </div>
             </div>

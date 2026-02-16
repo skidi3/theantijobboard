@@ -19,13 +19,8 @@ export function Footer() {
             <a href="#faq" className="hover:text-neutral-900 transition-colors duration-300">
               FAQ
             </a>
-            <a
-              href="#"
-              className="hover:text-neutral-900 transition-colors duration-300"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Twitter
+            <a href="#how" className="hover:text-neutral-900 transition-colors duration-300">
+              How it works
             </a>
           </div>
         </div>
