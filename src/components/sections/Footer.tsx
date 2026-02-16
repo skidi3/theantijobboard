@@ -25,9 +25,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 pt-5 sm:mt-10 sm:pt-6 md:mt-12 md:pt-8 border-t border-neutral-100 flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-neutral-400">
+        <div className="mt-6 pt-5 sm:mt-10 sm:pt-6 md:mt-12 md:pt-8 border-t border-neutral-100 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-xs sm:text-sm text-neutral-400">
           <span>© {new Date().getFullYear()} The Anti Job Board</span>
-          <span className="text-neutral-300">Built for job seekers who refuse to settle.</span>
+          <div className="flex items-center gap-4">
+            <a href="/terms" className="hover:text-neutral-900 transition-colors">Terms</a>
+            <a href="/privacy" className="hover:text-neutral-900 transition-colors">Privacy</a>
+          </div>
         </div>
       </div>
     </footer>

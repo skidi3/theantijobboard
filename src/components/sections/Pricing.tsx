@@ -200,7 +200,7 @@ export function Pricing() {
               <p className="text-sm text-neutral-400 mt-1">Done for you</p>
             </div>
             <div className="mb-6">
-              <span className="font-serif text-4xl text-neutral-900">$99</span>
+              <span className="font-serif text-4xl text-neutral-900">$199</span>
               <span className="text-neutral-400 ml-1">/month</span>
             </div>
             <ul className="space-y-3 text-sm text-neutral-600 mb-8 flex-1">
