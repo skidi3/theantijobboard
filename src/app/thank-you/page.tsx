@@ -1,6 +1,14 @@
-"use client";
-
+import { Metadata } from "next";
 import { Button } from "@/components/Button";
+
+export const metadata: Metadata = {
+  title: "Welcome",
+  description: "Welcome to The Anti Job Board. Your first drop is coming soon.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function ThankYou() {
   return (

@@ -1,3 +1,18 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "Privacy Policy for The Anti Job Board. Learn how we collect, use, and protect your data.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://theantijobboard.com/privacy",
+  },
+};
+
 export default function Privacy() {
   return (
     <main className="min-h-screen bg-white px-6 py-16 md:px-12 lg:px-20">

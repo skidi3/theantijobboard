@@ -1,3 +1,18 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "Terms of Service for The Anti Job Board. Read our terms for using our startup job discovery service.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://theantijobboard.com/terms",
+  },
+};
+
 export default function Terms() {
   return (
     <main className="min-h-screen bg-white px-6 py-16 md:px-12 lg:px-20">

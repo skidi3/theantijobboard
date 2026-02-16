@@ -96,141 +96,112 @@ export function Pricing() {
         className="absolute -bottom-20 -left-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />
       <div ref={ref} className="mx-auto max-w-6xl">
-        <h2
-          className={`font-serif text-3xl md:text-4xl text-neutral-900 mb-4 transition-all duration-700 ${
+        <div
+          className={`mb-16 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          Pricing
-        </h2>
-        <p
-          className={`text-neutral-500 mb-16 transition-all duration-700 delay-100 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
-          Cancel anytime. No refunds.
-        </p>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 leading-tight mb-6">
+            You've sent 200 applications.<br />
+            <span className="text-neutral-400">How many responses?</span>
+          </h2>
+          <p className="text-lg text-neutral-500 max-w-xl">
+            The average job post gets 250 applicants. We send you roles with less than 10. Pick how deep you want to go.
+          </p>
+        </div>
 
         <div
-          className={`grid md:grid-cols-3 gap-6 md:gap-6 items-stretch md:items-end transition-all duration-700 delay-200 ${
+          className={`space-y-8 transition-all duration-700 delay-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
           {/* The List */}
-          <div className="bg-white border border-neutral-200 rounded-2xl p-6 md:p-8 flex flex-col transition-all duration-300 hover:shadow-lg">
-            <div className="mb-6">
-              <h3 className="text-lg text-neutral-900">The List</h3>
-              <p className="text-sm text-neutral-400 mt-1">Passive seekers</p>
+          <div className="bg-white border border-neutral-200 rounded-2xl p-6 md:p-8">
+            <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The List</h3>
+                <p className="text-neutral-500 mb-4 max-w-lg">
+                  Once a week, we send you 10-15 startups that just raised. Funding amount, careers page, founder LinkedIn. You take it from there.
+                </p>
+                <p className="text-sm text-neutral-400">For people casually exploring. Low commitment.</p>
+              </div>
+              <div className="flex items-end gap-6 lg:flex-col lg:items-end lg:gap-4">
+                <div>
+                  <span className="font-serif text-4xl md:text-5xl text-neutral-900">$9</span>
+                  <span className="text-neutral-400">/month</span>
+                </div>
+                <a
+                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
+                >
+                  Get started
+                </a>
+              </div>
             </div>
-            <div className="mb-6">
-              <span className="font-serif text-4xl text-neutral-900">$9</span>
-              <span className="text-neutral-400 ml-1">/month</span>
-            </div>
-            <ul className="space-y-3 text-sm text-neutral-600 mb-8 flex-1">
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                Biweekly drops of 10-15 startups
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                Funding amount & details
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                Careers page + founder LinkedIn
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                Email or Discord delivery
-              </li>
-            </ul>
-            <a href="https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1" target="_blank" rel="noopener noreferrer" className="w-full">
-              <Button variant="outline" className="w-full">
-                Get started
-              </Button>
-            </a>
           </div>
 
-          {/* The Edge - Popular */}
-          <div className="bg-neutral-900 border border-neutral-900 rounded-2xl p-6 md:p-8 text-white flex flex-col relative mt-6 md:mt-0 md:-my-4 md:py-12 shadow-xl order-first md:order-none">
-            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-neutral-900 text-xs font-medium px-3 py-1 rounded-full border border-dashed border-neutral-400 whitespace-nowrap">
-              Most popular
+          {/* The Edge */}
+          <div className="relative mt-4">
+            <span className="absolute top-0 right-8 -translate-y-1/2 bg-rose-400 text-white text-sm px-4 py-1.5 rounded-full z-10">
+              Most founders pick this
             </span>
-            <div className="mb-6">
-              <h3 className="text-lg">The Edge</h3>
-              <p className="text-sm text-neutral-400 mt-1">Active hunters</p>
+            <div className="bg-neutral-900 text-white rounded-2xl p-6 md:p-8">
+            <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-serif text-2xl md:text-3xl mb-3">The Edge</h3>
+                <p className="text-neutral-300 mb-4 max-w-lg">
+                  Twice a week instead of once. Plus warm intro templates, notes on how to approach each founder, and you get roles before List subscribers.
+                </p>
+                <p className="text-sm text-neutral-500">For people actively hunting. Want every advantage.</p>
+              </div>
+              <div className="flex items-end gap-6 lg:flex-col lg:items-end lg:gap-4">
+                <div>
+                  <span className="font-serif text-4xl md:text-5xl">$19</span>
+                  <span className="text-neutral-400">/month</span>
+                </div>
+                <a
+                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white border-b border-white pb-0.5 hover:text-neutral-300 hover:border-neutral-300 transition-colors"
+                >
+                  Get started
+                </a>
+              </div>
             </div>
-            <div className="mb-6">
-              <span className="font-serif text-4xl">$19</span>
-              <span className="text-neutral-400 ml-1">/month</span>
             </div>
-            <ul className="space-y-3 text-sm text-neutral-300 mb-8 flex-1">
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-500 mt-0.5">—</span>
-                Everything in The List
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-500 mt-0.5">—</span>
-                Daily drops, not biweekly
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-500 mt-0.5">—</span>
-                Warm intro templates
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-500 mt-0.5">—</span>
-                Founder approach notes
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-500 mt-0.5">—</span>
-                Priority access
-              </li>
-            </ul>
-            <a href="https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1" target="_blank" rel="noopener noreferrer" className="w-full">
-              <Button variant="white" className="w-full">
-                Get started
-              </Button>
-            </a>
           </div>
 
           {/* The Concierge */}
-          <div className="bg-white border border-neutral-200 rounded-2xl p-6 md:p-8 flex flex-col transition-all duration-300 hover:shadow-lg">
-            <div className="mb-6">
-              <h3 className="text-lg text-neutral-900">The Concierge</h3>
-              <p className="text-sm text-neutral-400 mt-1">Done for you</p>
+          <div className="bg-white border border-neutral-200 rounded-2xl p-6 md:p-8">
+            <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
+              <div className="flex-1">
+                <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The Concierge</h3>
+                <p className="text-neutral-500 mb-4 max-w-lg">
+                  We do everything. Match roles to your stack, write your intros, call founders to pitch you directly. Real recruiters review your resume and portfolio. Weekly check-ins over text.
+                </p>
+                <p className="text-sm text-neutral-400">For people who want it done. No time to waste.</p>
+              </div>
+              <div className="flex items-end gap-6 lg:flex-col lg:items-end lg:gap-4">
+                <div>
+                  <span className="font-serif text-4xl md:text-5xl text-neutral-900">$199</span>
+                  <span className="text-neutral-400">/month</span>
+                </div>
+                <a
+                  href="https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
+                >
+                  Apply
+                </a>
+              </div>
             </div>
-            <div className="mb-6">
-              <span className="font-serif text-4xl text-neutral-900">$199</span>
-              <span className="text-neutral-400 ml-1">/month</span>
-            </div>
-            <ul className="space-y-3 text-sm text-neutral-600 mb-8 flex-1">
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                30 days of personal recruiting
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                Roles matched to your stack
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                We write & send intros for you
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                We call founders to pitch you
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-neutral-300 mt-0.5">—</span>
-                Weekly check-in call
-              </li>
-            </ul>
-            <a href="https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1" target="_blank" rel="noopener noreferrer" className="w-full">
-              <Button variant="outline" className="w-full">
-                Apply
-              </Button>
-            </a>
           </div>
+
+          <p className="text-sm text-neutral-400 text-center pt-4">Cancel anytime. No refunds.</p>
         </div>
       </div>
     </section>

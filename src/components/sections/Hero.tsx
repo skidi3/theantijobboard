@@ -13,27 +13,27 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-white/5" />
       {/* Nav */}
-      <nav className="relative z-50 flex items-center justify-between px-6 py-5 md:px-12 lg:px-20">
-        <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="The Anti Job Board" className="h-8 w-auto" />
-          <span className="font-serif text-lg text-neutral-900">The Anti Job Board</span>
+      <nav className="relative z-50 flex items-center justify-between px-6 py-6 md:px-12 lg:px-20">
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="The Anti Job Board" className="h-10 md:h-12 w-auto" />
+          <span className="font-serif text-xl md:text-2xl text-neutral-900">The Anti Job Board</span>
         </div>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-6 md:gap-10">
           <a
             href="#how"
-            className="hidden sm:block text-sm text-neutral-900 hover:text-neutral-600 transition-colors"
+            className="hidden sm:block text-base text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             How it works
           </a>
           <a
             href="#pricing"
-            className="hidden sm:block text-sm text-neutral-900 hover:text-neutral-600 transition-colors"
+            className="hidden sm:block text-base text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             Pricing
           </a>
           <a
             href="#faq"
-            className="text-sm text-neutral-900 hover:text-neutral-600 transition-colors"
+            className="text-base text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             FAQ
           </a>
