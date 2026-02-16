@@ -45,10 +45,10 @@ export function Hero() {
         <div className="w-full max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left side - Text content */}
-            <div className="max-w-lg">
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-neutral-900 leading-[1.12] tracking-[-0.02em]">
+            <div className="max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
+              <h1 className="font-serif text-5xl sm:text-5xl lg:text-6xl text-neutral-900 leading-[1.08] tracking-[-0.02em] font-medium lg:font-normal">
                 Jobs that don&apos;t exist
-                <span className="block relative w-fit">
+                <span className="block relative w-fit mx-auto lg:mx-0">
                   <span className="relative z-10">on the internet yet.</span>
                   <svg className="absolute -bottom-2 left-0 w-full h-4 z-0" viewBox="0 0 300 10" preserveAspectRatio="none">
                     <path
@@ -62,17 +62,17 @@ export function Hero() {
                 </span>
               </h1>
 
-              <p className="mt-5 text-base sm:text-lg text-neutral-500 leading-relaxed max-w-md">
+              <p className="mt-6 text-xl lg:text-lg text-neutral-600 lg:text-neutral-500 font-medium lg:font-normal leading-relaxed max-w-md mx-auto lg:mx-0">
                 We call founders who just raised, ask who they&apos;re hiring, and send you the roles before they go public.
               </p>
 
-              <div className="mt-6 sm:mt-8">
+              <div className="mt-8">
                 <a href="#pricing">
                   <Button size="lg">
                     Get early access
                   </Button>
                 </a>
-                <p className="mt-3 sm:mt-4 text-sm text-neutral-700">
+                <p className="mt-4 text-lg lg:text-base font-medium lg:font-normal text-neutral-700">
                   Starting at $9/month
                 </p>
               </div>
