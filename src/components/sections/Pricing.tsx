@@ -132,7 +132,7 @@ export function Pricing() {
                   <span className="text-neutral-400">/month</span>
                 </div>
                 <a
-                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1"
+                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
@@ -163,7 +163,7 @@ export function Pricing() {
                   <span className="text-neutral-400">/month</span>
                 </div>
                 <a
-                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1"
+                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white border-b border-white pb-0.5 hover:text-neutral-300 hover:border-neutral-300 transition-colors"
@@ -191,7 +191,7 @@ export function Pricing() {
                   <span className="text-neutral-400">/month</span>
                 </div>
                 <a
-                  href="https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1"
+                  href="https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
