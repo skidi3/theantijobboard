@@ -94,7 +94,7 @@ export const metadata: Metadata = {
       "Find startup jobs before they hit job boards. We call founders at recently funded startups and get you roles with 10 applicants, not 1000.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "The Anti Job Board - Jobs that don't exist on the internet yet",
@@ -106,7 +106,7 @@ export const metadata: Metadata = {
     title: "The Anti Job Board | Find Startup Jobs Before They're Posted",
     description:
       "Find startup jobs before they hit job boards. We call founders at recently funded startups and get you roles with 10 applicants, not 1000.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
     creator: "@theantijobboard",
   },
   robots: {
