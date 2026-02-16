@@ -2,6 +2,7 @@
 
 import { Button } from "../Button";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { cdn } from "@/lib/cdn";
 
 export function Pricing() {
   const { ref, isVisible } = useScrollReveal(0.2);
@@ -91,7 +92,7 @@ export function Pricing() {
 
       {/* Half logo - bottom left */}
       <img
-        src="/logo.png"
+        src={cdn("/logo.webp")}
         alt=""
         className="absolute -bottom-20 -left-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />

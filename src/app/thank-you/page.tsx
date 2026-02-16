@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Button } from "@/components/Button";
+import { cdn } from "@/lib/cdn";
 
 export const metadata: Metadata = {
   title: "Welcome",
@@ -14,7 +15,7 @@ export default function ThankYou() {
   return (
     <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6 py-24">
       <div className="max-w-md text-center">
-        <img src="/logo.png" alt="The Anti Job Board" className="h-12 w-auto mx-auto mb-8" />
+        <img src={cdn("/logo.webp")} alt="The Anti Job Board" className="h-12 w-auto mx-auto mb-8" />
 
         <h1 className="font-serif text-3xl sm:text-4xl text-neutral-900 mb-4">
           You're in.

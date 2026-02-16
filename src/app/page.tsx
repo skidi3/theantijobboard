@@ -32,7 +32,7 @@ const jsonLd = {
       url: "https://theantijobboard.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://theantijobboard.com/logo.png",
+        url: "https://theantijobboard.com/logo.webp",
       },
       sameAs: [],
     },

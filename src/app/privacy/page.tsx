@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { cdn } from "@/lib/cdn";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -18,7 +19,7 @@ export default function Privacy() {
     <main className="min-h-screen bg-white px-6 py-16 md:px-12 lg:px-20">
       <div className="max-w-3xl mx-auto">
         <a href="/" className="inline-flex items-center gap-2 mb-12 hover:opacity-70 transition-opacity">
-          <img src="/logo.png" alt="The Anti Job Board" className="h-8 w-auto" />
+          <img src={cdn("/logo.webp")} alt="The Anti Job Board" className="h-8 w-auto" />
           <span className="font-serif text-lg text-neutral-900">The Anti Job Board</span>
         </a>
 

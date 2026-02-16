@@ -2,6 +2,7 @@
 
 import { Button } from "../Button";
 import { ScatteredCards } from "../ScatteredCards";
+import { cdn } from "@/lib/cdn";
 
 export function Hero() {
   return (
@@ -9,13 +10,13 @@ export function Hero() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-bg.png')" }}
+        style={{ backgroundImage: `url('${cdn('/hero-bg.webp')}')` }}
       />
       <div className="absolute inset-0 bg-white/5" />
       {/* Nav */}
       <nav className="relative z-50 flex items-center justify-between px-6 py-6 md:px-12 lg:px-20">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="The Anti Job Board" className="h-10 md:h-12 w-auto" />
+          <img src={cdn("/logo.webp")} alt="The Anti Job Board" className="h-10 md:h-12 w-auto" />
           <span className="font-serif text-xl md:text-2xl text-neutral-900">The Anti Job Board</span>
         </div>
         <div className="flex items-center gap-6 md:gap-10">
@@ -82,7 +83,7 @@ export function Hero() {
             <div className="relative hidden lg:flex items-center justify-center min-h-[500px]">
               <ScatteredCards />
               <img
-                src="/hero-image.png"
+                src={cdn("/hero-image.webp")}
                 alt="Anti Job Board"
                 className="relative z-10 w-72 h-auto rounded-xl"
               />
@@ -101,32 +102,32 @@ export function Hero() {
                 <span className="font-serif text-xl sm:text-2xl text-neutral-900">47</span>
                 <span className="text-xs sm:text-sm text-neutral-400">roles this week</span>
               </div>
-              <img src="/logo.png" alt="" className="h-4 sm:h-5 w-auto" />
+              <img src={cdn("/logo.webp")} alt="" className="h-4 sm:h-5 w-auto" />
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-serif text-xl sm:text-2xl text-neutral-900">0</span>
                 <span className="text-xs sm:text-sm text-neutral-400">ghost jobs</span>
               </div>
-              <img src="/logo.png" alt="" className="h-4 sm:h-5 w-auto" />
+              <img src={cdn("/logo.webp")} alt="" className="h-4 sm:h-5 w-auto" />
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-serif text-xl sm:text-2xl text-neutral-900">&lt;10</span>
                 <span className="text-xs sm:text-sm text-neutral-400 whitespace-nowrap">applicants</span>
               </div>
-              <img src="/logo.png" alt="" className="h-4 sm:h-5 w-auto" />
+              <img src={cdn("/logo.webp")} alt="" className="h-4 sm:h-5 w-auto" />
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-serif text-xl sm:text-2xl text-neutral-900">312</span>
                 <span className="text-xs sm:text-sm text-neutral-400 whitespace-nowrap">founders called</span>
               </div>
-              <img src="/logo.png" alt="" className="h-4 sm:h-5 w-auto" />
+              <img src={cdn("/logo.webp")} alt="" className="h-4 sm:h-5 w-auto" />
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-serif text-xl sm:text-2xl text-neutral-900">89%</span>
                 <span className="text-xs sm:text-sm text-neutral-400 whitespace-nowrap">response rate</span>
               </div>
-              <img src="/logo.png" alt="" className="h-4 sm:h-5 w-auto" />
+              <img src={cdn("/logo.webp")} alt="" className="h-4 sm:h-5 w-auto" />
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-serif text-xl sm:text-2xl text-neutral-900">24h</span>
                 <span className="text-xs sm:text-sm text-neutral-400 whitespace-nowrap">avg to interview</span>
               </div>
-              <img src="/logo.png" alt="" className="h-4 sm:h-5 w-auto" />
+              <img src={cdn("/logo.webp")} alt="" className="h-4 sm:h-5 w-auto" />
             </div>
           ))}
         </div>

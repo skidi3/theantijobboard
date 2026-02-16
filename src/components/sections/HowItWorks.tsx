@@ -1,6 +1,7 @@
 "use client";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { cdn } from "@/lib/cdn";
 
 export function HowItWorks() {
   const { ref, isVisible } = useScrollReveal(0.2);
@@ -32,7 +33,7 @@ export function HowItWorks() {
     <section id="how" className="relative bg-neutral-50 px-6 py-24 md:px-12 md:py-32 lg:px-20 dither halftone overflow-hidden">
       {/* Half logo - top right */}
       <img
-        src="/logo.png"
+        src={cdn("/logo.webp")}
         alt=""
         className="absolute -top-20 -right-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />

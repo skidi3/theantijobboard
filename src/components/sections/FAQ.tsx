@@ -2,6 +2,7 @@
 
 import { FAQItem } from "../FAQItem";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { cdn } from "@/lib/cdn";
 
 const faqs = [
   {
@@ -120,7 +121,7 @@ export function FAQ() {
 
       {/* Half logo - top left */}
       <img
-        src="/logo.png"
+        src={cdn("/logo.webp")}
         alt=""
         className="absolute -top-20 -left-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />

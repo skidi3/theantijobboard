@@ -2,6 +2,7 @@
 
 import { Button } from "../Button";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { cdn } from "@/lib/cdn";
 
 export function CTA() {
   const { ref, isVisible } = useScrollReveal(0.3);
@@ -11,7 +12,7 @@ export function CTA() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-bg.png')" }}
+        style={{ backgroundImage: `url('${cdn('/hero-bg.webp')}')` }}
       />
       <div className="absolute inset-0 bg-white/5" />
 

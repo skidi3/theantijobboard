@@ -1,6 +1,7 @@
 "use client";
 
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { cdn } from "@/lib/cdn";
 
 const testimonials = [
   {
@@ -27,7 +28,7 @@ export function SocialProof() {
     <section className="relative bg-neutral-50 px-6 py-24 md:px-12 md:py-32 lg:px-20 crosshatch overflow-hidden">
       {/* Half logo - bottom right */}
       <img
-        src="/logo.png"
+        src={cdn("/logo.webp")}
         alt=""
         className="absolute -bottom-20 -right-20 w-40 md:w-64 h-auto pointer-events-none opacity-50 md:opacity-100"
       />
