@@ -1,11 +1,45 @@
 "use client";
 
-import { Button } from "../Button";
+import { useEffect, useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cdn } from "@/lib/cdn";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
+
+const CHECKOUT_URLS = {
+  list: "https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you",
+  edge: "https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you",
+  concierge: "https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you",
+};
 
 export function Pricing() {
   const { ref, isVisible } = useScrollReveal(0.2);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handlePlanClick = (plan: keyof typeof CHECKOUT_URLS) => {
+    if (!user) {
+      // Redirect to signup with return URL
+      window.location.href = `/signup?redirect=${encodeURIComponent(CHECKOUT_URLS[plan])}`;
+      return;
+    }
+    // User is logged in, go directly to checkout
+    window.open(CHECKOUT_URLS[plan], "_blank");
+  };
 
   return (
     <section id="pricing" className="relative px-6 py-24 md:px-12 md:py-32 lg:px-20 stipple overflow-hidden">
@@ -122,7 +156,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The List</h3>
                 <p className="text-neutral-500 mb-4 max-w-lg">
-                  Once a week, we send you 10-15 startups that just raised. Funding amount, careers page, founder LinkedIn. You take it from there.
+                  Once a week, we send you 10-15 startups that just raised. Funding amount, careers page, founder LinkedIn, and hiring signals. You take it from there.
                 </p>
                 <p className="text-sm text-neutral-400">For people casually exploring. Low commitment.</p>
               </div>
@@ -131,14 +165,12 @@ export function Pricing() {
                   <span className="font-serif text-4xl md:text-5xl text-neutral-900">$9</span>
                   <span className="text-neutral-400">/month</span>
                 </div>
-                <a
-                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGp6tILAr3BWvuRCIx?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => handlePlanClick("list")}
                   className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
                 >
                   Get started
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -153,7 +185,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl mb-3">The Edge</h3>
                 <p className="text-neutral-300 mb-4 max-w-lg">
-                  Twice a week instead of once. Plus warm intro templates, notes on how to approach each founder, and you get roles before List subscribers.
+                  Twice a week instead of once. Plus hiring signals, warm intro templates, notes on how to approach each founder, and you get roles before List subscribers.
                 </p>
                 <p className="text-sm text-neutral-500">For people actively hunting. Want every advantage.</p>
               </div>
@@ -162,14 +194,12 @@ export function Pricing() {
                   <span className="font-serif text-4xl md:text-5xl">$19</span>
                   <span className="text-neutral-400">/month</span>
                 </div>
-                <a
-                  href="https://checkout.dodopayments.com/buy/pdt_0NYZGtzTuEp5AZL5BRKqr?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => handlePlanClick("edge")}
                   className="text-white border-b border-white pb-0.5 hover:text-neutral-300 hover:border-neutral-300 transition-colors"
                 >
                   Get started
-                </a>
+                </button>
               </div>
             </div>
             </div>
@@ -181,7 +211,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The Concierge</h3>
                 <p className="text-neutral-500 mb-4 max-w-lg">
-                  We do everything. Match roles to your stack, write your intros, call founders to pitch you directly. Real recruiters review your resume and portfolio. Weekly check-ins over text.
+                  We do everything. We actually call startups to confirm they're hiring. Match roles to your stack, write your intros, pitch you directly to founders. Real recruiters review your resume and portfolio. Weekly check-ins over text.
                 </p>
                 <p className="text-sm text-neutral-400">For people who want it done. No time to waste.</p>
               </div>
@@ -190,14 +220,12 @@ export function Pricing() {
                   <span className="font-serif text-4xl md:text-5xl text-neutral-900">$199</span>
                   <span className="text-neutral-400">/month</span>
                 </div>
-                <a
-                  href="https://checkout.dodopayments.com/buy/pdt_0NYZHBKaapeodleUfpIav?quantity=1&redirect_url=https://www.theantijobboard.com%2Fthank-you"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => handlePlanClick("concierge")}
                   className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
                 >
                   Apply
-                </a>
+                </button>
               </div>
             </div>
           </div>

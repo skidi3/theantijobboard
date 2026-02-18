@@ -1,0 +1,914 @@
+[
+  {
+    "companyName": "Marvell Technology, Inc.",
+    "cik": "0001835632",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000001/0001835632-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/1835632/000183563226000001/primary_doc.xml",
+    "street1": "1000 N. WEST STREET",
+    "city": "WILMINGTON",
+    "state": "DE",
+    "zipCode": "19801",
+    "phoneNumber": "(302) 295-4840",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "industryGroup": "Other Technology",
+    "revenueRange": "Over $100,000,000",
+    "dateOfFirstSale": "2026-02-02",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 2037292093,
+    "totalAmountSold": 2030804418,
+    "totalRemaining": 6487675,
+    "executives": [
+      {
+        "name": "Matthew Murphy",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Sandeep Barathi",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Mark Casper",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Chris Koopmans",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Willem Meintjes",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Sara Andrews",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Tudor Brown",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Brad Buss",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Daniel Durn",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Rebecca House",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Marachel Knight",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Rajiv Ramaswami",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      },
+      {
+        "name": "Richard Wallace",
+        "titles": [
+          "Director"
+        ],
+        "city": "Wilmington",
+        "state": "DE"
+      }
+    ]
+  },
+  {
+    "companyName": "Snowflake Inc.",
+    "cik": "0001640147",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000001/0001640147-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000001/primary_doc.xml",
+    "street1": "106 EAST BABCOCK STREET",
+    "city": "BOZEMAN",
+    "state": "MT",
+    "zipCode": "59715",
+    "phoneNumber": "844-766-9355",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "industryGroup": "Other Technology",
+    "revenueRange": "Over $100,000,000",
+    "dateOfFirstSale": "2026-02-02",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 376098366,
+    "totalAmountSold": 376098366,
+    "totalRemaining": 0,
+    "executives": [
+      {
+        "name": "Sridhar Ramaswamy",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Benoit Dageville",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Brian Robins",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Michael Gannon",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Christian Kleinerman",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Vivek Raghunathan",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Frank Slootman",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Michael Speiser",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Kelly Kramer",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Teresa Briggs",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Mark Garrett",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Jayshree Ullal",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "Mark McLaughlin",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      },
+      {
+        "name": "William Scannell",
+        "titles": [
+          "Director"
+        ],
+        "city": "Bozeman",
+        "state": "MT"
+      }
+    ]
+  },
+  {
+    "companyName": "LEXICON PHARMACEUTICALS, INC.",
+    "cik": "0001062822",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/1062822/000119312526054545/0001193125-26-054545-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/1062822/000119312526054545/primary_doc.xml",
+    "street1": "2445 Technology Forest Blvd., 11th Floor",
+    "city": "The Woodlands",
+    "state": "TX",
+    "zipCode": "77381",
+    "phoneNumber": "281-863-3000",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "industryGroup": "Pharmaceuticals",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2026-02-02",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 59150000,
+    "totalAmountSold": 55668255,
+    "totalRemaining": 3481745,
+    "executives": [
+      {
+        "name": "Raymond Debbane",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Phillipe Amouyal",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Samuel Barker",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Ivan Cheung",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Scott Coiante",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Brian Crum",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Lisa DeFrancesco",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Mike Exton",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Rachel Martens",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Suma Gopinathan",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Craig Granowitz",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Rachel Martens",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Wendy McDermott",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Christopher Sobecki",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Diane Sullivan",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      },
+      {
+        "name": "Judith Swain",
+        "titles": [
+          "Director"
+        ],
+        "city": "The Woodlands",
+        "state": "TX"
+      }
+    ]
+  },
+  {
+    "companyName": "QWERKY AI, Inc.",
+    "cik": "0002111726",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2111726/000211172626000001/0002111726-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2111726/000211172626000001/primary_doc.xml",
+    "street1": "234 WOODMILL CIRCLE",
+    "city": "LEXINGTON",
+    "state": "SC",
+    "zipCode": "29072",
+    "phoneNumber": "650-720-8590",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2024",
+    "industryGroup": "Other Technology",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2026-02-02",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 4999996,
+    "totalAmountSold": 399998,
+    "totalRemaining": 4599998,
+    "executives": [
+      {
+        "name": "Chris Thibault",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Lexington",
+        "state": "SC"
+      },
+      {
+        "name": "Kaitlin McKnight",
+        "titles": [
+          "Director"
+        ],
+        "city": "Lexington",
+        "state": "SC"
+      },
+      {
+        "name": "John Owen",
+        "titles": [
+          "Director"
+        ],
+        "city": "Lexington",
+        "state": "SC"
+      },
+      {
+        "name": "Evan Owen",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Lexington",
+        "state": "SC"
+      }
+    ]
+  },
+  {
+    "companyName": "Refiant Inc.",
+    "cik": "0002107511",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2107511/000210751126000001/0002107511-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2107511/000210751126000001/primary_doc.xml",
+    "street1": "8 THE GREEN",
+    "city": "DOVER",
+    "state": "DE",
+    "zipCode": "19901",
+    "phoneNumber": "8583336870",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Other Technology",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2026-02-09",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 4889998,
+    "totalAmountSold": 4889998,
+    "totalRemaining": 0,
+    "executives": [
+      {
+        "name": "Viroshan Naicker",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Dover",
+        "state": "DE"
+      },
+      {
+        "name": "Mathew Haswell",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Dover",
+        "state": "DE"
+      },
+      {
+        "name": "Siddharth Gutta",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Dover",
+        "state": "DE"
+      }
+    ]
+  },
+  {
+    "companyName": "Shadow Shifts, Inc.",
+    "cik": "0002110054",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2110054/000211005426000001/0002110054-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2110054/000211005426000001/primary_doc.xml",
+    "street1": "5431 PRODUCTION DR",
+    "city": "HUNTINGTON BEACH",
+    "state": "CA",
+    "zipCode": "92649",
+    "phoneNumber": "714-580-7887",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Other Technology",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2025-12-01",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 3000000,
+    "totalAmountSold": 3000000,
+    "totalRemaining": 0,
+    "executives": [
+      {
+        "name": "John Porter III",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Huntington Beach",
+        "state": "CA"
+      }
+    ]
+  },
+  {
+    "companyName": "OKEANOS HOLDINGS, INC.",
+    "cik": "0001818685",
+    "filingDate": "",
+    "isAmendment": true,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/1818685/000181868526000002/0001818685-26-000002-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/1818685/000181868526000002/primary_doc.xml",
+    "street1": "78 SW 7TH ST",
+    "city": "MIAMI",
+    "state": "FL",
+    "zipCode": "33130",
+    "phoneNumber": "000-000-0000",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Manufacturing",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2025-09-30",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 3000000,
+    "totalAmountSold": 1499918,
+    "totalRemaining": 1500082,
+    "executives": [
+      {
+        "name": "Florencio Gomez-Cuetara, IV",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Miami",
+        "state": "FL"
+      },
+      {
+        "name": "Florencio Gomez-Cuetara, III",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Miami",
+        "state": "FL"
+      },
+      {
+        "name": "Larry Wyman",
+        "titles": [
+          "Director"
+        ],
+        "city": "Miami",
+        "state": "FL"
+      },
+      {
+        "name": "Richard Gallagher, Jr.",
+        "titles": [
+          "Director"
+        ],
+        "city": "Miami",
+        "state": "FL"
+      },
+      {
+        "name": "Russel Petrie, M.D.",
+        "titles": [
+          "Director"
+        ],
+        "city": "Miami",
+        "state": "FL"
+      },
+      {
+        "name": "Pedro Suarez",
+        "titles": [
+          "Director"
+        ],
+        "city": "Miami",
+        "state": "FL"
+      }
+    ]
+  },
+  {
+    "companyName": "GameStrong Performance Psychology, Inc.",
+    "cik": "0002111704",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2111704/000211170426000001/0002111704-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2111704/000211170426000001/primary_doc.xml",
+    "street1": "11468 MARKETPLACE DRIVE",
+    "city": "CHAMPLIN",
+    "state": "MN",
+    "zipCode": "55316",
+    "phoneNumber": "1-877-908-7664",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Other Technology",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2026-01-26",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 3000000,
+    "totalAmountSold": 1350000,
+    "totalRemaining": 1650000,
+    "executives": [
+      {
+        "name": "Sean McNattin",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "Champlin",
+        "state": "MN"
+      },
+      {
+        "name": "Jeffrey Giovannelli",
+        "titles": [
+          "Director"
+        ],
+        "city": "Champlin",
+        "state": "MN"
+      },
+      {
+        "name": "Trip Hofer",
+        "titles": [
+          "Director"
+        ],
+        "city": "Champlin",
+        "state": "MN"
+      }
+    ]
+  },
+  {
+    "companyName": "Noorb Inc",
+    "cik": "0002102833",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2102833/000210283326000002/0002102833-26-000002-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2102833/000210283326000002/primary_doc.xml",
+    "street1": "1915 SQUIRE CT",
+    "city": "WYOMISSING",
+    "state": "PA",
+    "zipCode": "19610",
+    "phoneNumber": "6102236094",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Manufacturing",
+    "revenueRange": "No Revenues",
+    "dateOfFirstSale": "2025-10-22",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 2500000,
+    "totalAmountSold": 65000,
+    "totalRemaining": 2435000,
+    "executives": [
+      {
+        "name": "Joshua Avins",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Wyomissing",
+        "state": "PA"
+      }
+    ]
+  },
+  {
+    "companyName": "Enhanced Ultrasound Inc",
+    "cik": "0002071091",
+    "filingDate": "",
+    "isAmendment": true,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2071091/000207109126000001/0002071091-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2071091/000207109126000001/primary_doc.xml",
+    "street1": "631 E COUNTRY PLZ S",
+    "city": "GILBERT",
+    "state": "AZ",
+    "zipCode": "85234",
+    "phoneNumber": "2083170877",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Computers",
+    "revenueRange": "No Revenues",
+    "dateOfFirstSale": "2025-12-16",
+    "minimumInvestment": 20000,
+    "totalOfferingAmount": 2500000,
+    "totalAmountSold": 70000,
+    "totalRemaining": 2430000,
+    "executives": [
+      {
+        "name": "Austin Hayden",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Gilbert",
+        "state": "AZ"
+      }
+    ]
+  },
+  {
+    "companyName": "UpTo Inc./DE",
+    "cik": "0002109958",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2109958/000210995826000001/0002109958-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2109958/000210995826000001/primary_doc.xml",
+    "street1": "8 THE GREEN",
+    "city": "DOVER",
+    "state": "DE",
+    "zipCode": "19901",
+    "phoneNumber": "510-213-8351",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Other Technology",
+    "revenueRange": "$1 - $1,000,000",
+    "dateOfFirstSale": "2025-07-17",
+    "minimumInvestment": 1,
+    "totalOfferingAmount": 500000,
+    "totalAmountSold": 500000,
+    "totalRemaining": 0,
+    "executives": [
+      {
+        "name": "Noa Elan",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "Dover",
+        "state": "DE"
+      }
+    ]
+  },
+  {
+    "companyName": "Surge Battery Metals Inc.",
+    "cik": "0002066838",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2066838/000206683826000001/0002066838-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2066838/000206683826000001/primary_doc.xml",
+    "street1": "300-1455 BELLEVUE AVE",
+    "city": "WEST VANCOUVER",
+    "state": "A1",
+    "zipCode": "V7T 1C3",
+    "phoneNumber": "604-662-8184",
+    "stateOfIncorporation": "BRITISH COLUMBIA, CANADA",
+    "entityType": "Corporation",
+    "industryGroup": "Other",
+    "revenueRange": "Decline to Disclose",
+    "dateOfFirstSale": "2026-02-03",
+    "minimumInvestment": 0,
+    "totalOfferingAmount": 352698,
+    "totalAmountSold": 352698,
+    "totalRemaining": 0,
+    "executives": [
+      {
+        "name": "GREG REIMER",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "GRAHAM HARRIS",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "TU LIEU",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "IAIN SCARR",
+        "titles": [
+          "Director"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "VIJAY MEHTA",
+        "titles": [
+          "Director"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "TED O'CONNOR",
+        "titles": [
+          "Director"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "OWEN TAYLOR",
+        "titles": [
+          "Director"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      },
+      {
+        "name": "BRIAN MORRISON",
+        "titles": [
+          "Executive Officer"
+        ],
+        "city": "WEST VANCOUVER",
+        "state": "A1"
+      }
+    ]
+  },
+  {
+    "companyName": "RETS AI Inc",
+    "cik": "0002104303",
+    "filingDate": "",
+    "isAmendment": false,
+    "secFilingUrl": "https://www.sec.gov/Archives/edgar/data/2104303/000210430326000001/0002104303-26-000001-index.htm",
+    "formDXmlUrl": "https://www.sec.gov/Archives/edgar/data/2104303/000210430326000001/primary_doc.xml",
+    "street1": "50 GUYE PEAK LN",
+    "city": "SNOQUALMIE PASS",
+    "state": "WA",
+    "zipCode": "98068",
+    "phoneNumber": "425-949-2409",
+    "stateOfIncorporation": "DELAWARE",
+    "entityType": "Corporation",
+    "yearOfIncorporation": "2025",
+    "industryGroup": "Other Technology",
+    "revenueRange": "$1 - $1,000,000",
+    "dateOfFirstSale": "2025-08-05",
+    "minimumInvestment": 7500,
+    "totalOfferingAmount": 172500,
+    "totalAmountSold": 172500,
+    "totalRemaining": 0,
+    "executives": [
+      {
+        "name": "LUCAS DAHL",
+        "titles": [
+          "Executive Officer",
+          "Director"
+        ],
+        "city": "SNOQUALMIE PASS",
+        "state": "WA"
+      }
+    ]
+  }
+]
