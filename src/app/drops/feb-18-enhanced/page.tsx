@@ -51,24 +51,24 @@ const startups: Startup[] = [
     investors: "Lightspeed, Sequoia",
     hiringScore: 8,
     hiringReason: "$335M raised in 4 months, scaling fast",
-    whatBuilding: "Not a chip company, an AI lab that designs chips. Their founders led Google's AlphaChip project, which cut chip layout from months to 6 hours using reinforcement learning, and shaped 4+ generations of Google TPUs. Ricursive's vision: a recursive loop where AI designs better chips, better chips power better AI, repeat.",
-    whyMatters: "$335M with no product and only 4 months of existence is essentially unheard of. It happened because the founders have production scale proof of concept with AlphaChip, chip design is a massive TAM ($200-650M per chip design cycle), and Lightspeed and Sequoia are betting on category definition.",
+    whatBuilding: "The chip design industry has a profound bottleneck. Building a single advanced semiconductor takes teams of hundreds of engineers, 12 to 18 months of iterative design work, and $100M to $650M in engineering labour. The finished chip is already outdated by the time it ships. Ricursive's insight: use AI to design the chips that train better AI, then use those better chips to design even smarter AI. A recursive loop. Anna Goldie and Azalia Mirhoseini proved this at Google with AlphaChip, which compressed chip layout from 12+ months to 6 hours using deep reinforcement learning and shipped in five generations of Google TPUs. Ricursive is building a full stack platform handling placement, routing, verification, and architecture search using AI agents that get smarter with every chip they design.",
+    whyMatters: "The semiconductor industry is a $600B+ market that is structurally stuck. Cadence, Synopsys, Siemens EDA have barely changed their software paradigm in 30 years. Human engineers are still the bottleneck. AI cannot advance faster than the hardware it runs on, and hardware cannot advance faster than humans can design it. Ricursive attacks that constraint at its root. If their platform delivers even 10x improvement in design throughput, it makes custom purpose-built chips (for robotics, drugs, climate, medicine) economically viable for companies that could never afford bespoke silicon. Worth noting: AlphaChip attracted controversy, a 2022 peer dispute at Google led to a colleague's dismissal and Nature published a methodology correction. Goldie and Mirhoseini contested vigorously and Google's investigation found in their favour. Knowing this history signals to founders you've done real research.",
     roles: ["LLM Infra Engineer", "EDA Algorithm Engineer", "LLM Modeling & Scaling Researcher", "Founding Security Engineer", "Operations"],
-    rolesNote: "Competition is very low right now. Might hire remotely especially for tech roles if you're cracked enough, or are in the US. They've pulled from DeepMind, Anthropic, Apple, and Cadence. Window for early numbered employees closes in 60-90 days.",
+    rolesNote: "Competition is very low right now. They've pulled from DeepMind, Anthropic, Apple, and Cadence. Window for early numbered employees closes in 60 to 90 days.",
     founder: {
       initials: "AG",
       name: "Anna Goldie",
-      title: "Founder & CEO, ex Google DeepMind",
-      hook: "Best path in: warm intro through Stanford CS, Google Brain/DeepMind, or Anthropic alumni. Even a second degree LinkedIn connection who can forward your name beats 50 cold apps. Anna (@annadgoldie) and Azalia are both on X. Engage with their technical posts for a few weeks before asking about roles. When you do reach out, keep it under 150 words, be specific about what you'd work on, reference AlphaChip or the recursive improvement loop, include one concrete proof point. No flattery, no life story.",
-      avoid: "\"I'd love to join your amazing team\" energy. They're not looking for resume keywords. They want people genuinely obsessed with AI + chip design who can ship and won't need hand holding.",
+      title: "CEO, MIT CS+Linguistics, 15,977 Google Scholar cites",
+      hook: "Anna has an MIT bachelor's in CS and Linguistics. Before chip design, she co-first-authored neural machine translation research (EMNLP 2017) and Constitutional AI at Anthropic. She's also co-author of RAPTOR (ICLR 2024) on recursive retrieval for LLMs. She and Azalia have been professionally synchronised for over a decade, same start date at Google Brain, Anthropic, and back to Google. Jeff Dean nicknamed AlphaChip 'chip circuit training' because they both did circuit training workouts together. For ML/RL researchers: reference the reward signal architecture from the 2021 Nature paper, specifically the proxy objective (wirelength + congestion). For infra engineers: lead with distributed RL training experience, GPU orchestration, simulation environments. Show your GitHub.",
+      avoid: "Do not lead with 'I love what you're building.' Lead with a technical observation. Example: 'I've been following the debate around AlphaChip's pre-training methodology since the CACM paper, curious how Ricursive's architecture handles transfer learning across heterogeneous chip topologies.'",
       image: "https://images.crunchbase.com/image/upload/c_thumb,h_50,w_50,f_auto,g_face,z_0.7,b_white,q_auto:eco,dpr_2/7ee982c5169847c78d18238e4973595a",
     },
     cofounder: {
       name: "Azalia Mirhoseini",
-      title: "Founder, ex Google DeepMind",
+      title: "CTO, ex Google DeepMind",
       image: "https://images.crunchbase.com/image/upload/c_thumb,h_50,w_50,f_auto,g_face,z_0.7,b_white,q_auto:eco,dpr_2/6e575ab801fa48ae981f27a332a2bc99",
     },
-    signal: "10 person team, $4B valuation, hiring is deeply personal here. Anna organized ICLAD 2025 and multiple NeurIPS/ISCA workshops. Showing up at these events and having a real conversation is probably the highest impact thing you can do. Direct applications to ricursive.com/careers actually get read at this stage. Timing is ideal, they just got featured in TechCrunch, flush with Series A cash, actively building out the team.",
+    signal: "First hires came directly from AlphaChip colleagues: Ebrahim Songhori, Hao Chen, Jiwoo Pak. The non-research route in: reach out to these early employees on LinkedIn, engage with their posts (Ebrahim posts about technical work), demonstrate implementation level understanding. Azalia leads hiring for research roles. Her Google Scholar page lists her key interests and co-authors, which is a roadmap to what she values. They reportedly received 'weird emails from Zuckerberg making crazy offers' while building AlphaChip. They turned Meta down to build something they fully owned.",
     featured: true,
     videoId: "Mb2nioDfpJA",
   },
@@ -78,55 +78,58 @@ const startups: Startup[] = [
     website: "monaco.com",
     logo: "https://images.crunchbase.com/image/upload/c_pad,h_160,w_160,f_auto,b_white,q_auto:eco,dpr_2/04fedb3f0ebb400cb7fca2c4b1016d9c",
     videoUrl: "https://cdn.monaco.com/landing/public/pages/home/hero-video.webm",
-    round: "Series A",
-    amount: "$25M",
-    detail: "Founded 2024, Founders Fund led",
+    round: "Seed + Series A",
+    amount: "$35M",
+    detail: "Founders Fund led",
     investors: "Founders Fund, Patrick & John Collison, Garry Tan, Neil Mehta",
     hiringScore: 8,
     hiringReason: "40 employees, scaling fast post Series A",
-    whatBuilding: "All-in-one AI native sales platform replacing the patchwork of CRM + outbound + prospecting tools. The twist: they embed experienced human salespeople into the AI loop to monitor and guide the AI's work. Targets seed and Series A startups that can't afford a full sales team yet.",
-    whyMatters: "Arguably the most stacked founding team in sales tech. Sam was CRO at Brex, then partner at Founders Fund. Brother Brian was MD at Sutter Hill. CTO Malay Desai was VP Eng at Clari. CPO from Apollo/Qualtrics. Peter Thiel's fund led the round. The Collison brothers are angels.",
+    whatBuilding: "Every seed stage startup hits the same wall: they need outbound sales but don't know how, can't afford a seasoned CRO, and existing tools were designed for Salesforce era companies with 50 person teams. Monaco provides the full sales motion (building ranked TAM, running outreach campaigns, scheduling meetings) using AI agents supervised by experienced human salespeople. Not AI pretending to be a rep. Actual senior sales operators watching over AI that executes.",
+    whyMatters: "The $80B+ CRM and sales tech market is being disrupted from both sides: LLMs making outreach cheaper, and founders who don't want to spend $150K/year on Salesforce before having 10 customers. Monaco's wedge is seed to Series A companies, the most underserved segment. The risk: YC has funded hundreds of AI SDR startups. The moat: the human expertise in the loop model is hard to replicate without hiring operators like Sam Blond.",
     roles: ["AI/Agent Engineers", "Full Stack Engineers", "ML Engineers", "Account Executives", "Forward Deployed Sales Executives"],
+    rolesNote: "Sam started as an SDR at EchoSign for Jason Lemkin (now SaaStr). He understands what it's like to cold-call from a list. He's distinctly not a Silicon Valley insider by background.",
     founder: {
-      initials: "BB",
-      name: "Brian Blond",
-      title: "Co-founder & Chairman, ex Sutter Hill Ventures MD",
-      linkedin: "https://www.linkedin.com/in/brianblond/",
-      hook: "Sam (@SamBlond on X) is the public face but Brian runs the board. He's a career sales operator turned VC. If you're an engineer, show you understand why sales tech is broken. If you're in sales, show you get the AI native angle. Lead with specific metrics.",
-      avoid: "Don't pitch yourself as someone who wants to work at an 'AI company' generically. Monaco is a sales company that uses AI. Domain expertise matters as much as tech.",
+      initials: "SB",
+      name: "Sam Blond",
+      title: "CEO, ex Brex CRO, ex Founders Fund Partner",
+      linkedin: "https://www.linkedin.com/in/samblond/",
+      hook: "Sam's X feed is unusually educational. He's published detailed breakdowns of Brex's most successful campaigns including a '75% demo rate, 75% demo to close' campaign when Brex had ~30 employees. He hates external recruiters; best hires came through personal referrals. For AEs: cold email Sam with a specific metric first: 'I closed $1.4M ARR as AE #2 at [company] in 18 months, sourcing 60% of my own pipeline.' For AI engineers: frame work in terms of workflow orchestration and human oversight systems, not just model fine tuning. Monaco's differentiation is the human in the loop.",
+      avoid: "Don't pitch yourself as someone who wants to work at an 'AI company' generically. Monaco is a sales company that uses AI. The ability to 'reach power and know how to target a CEO' is the scarcer skill he values over raw SDR output.",
       image: "https://images.crunchbase.com/image/upload/c_thumb,h_50,w_50,f_auto,g_face,z_0.7,b_white,q_auto:eco,dpr_2/1b4b1c8a22c14105a2f04e80a25b5a29",
     },
     cofounder: {
-      name: "Malay Desai",
-      title: "Co-founder & CTO, ex Clari VP Engineering",
+      name: "Brian Blond",
+      title: "Co-founder, VC at Human Capital, serial CRO",
       image: "https://images.crunchbase.com/image/upload/c_thumb,h_50,w_50,f_auto,g_face,z_0.7,b_white,q_auto:eco,dpr_2/6c93b8e265594c7ca0943adbb740344a",
     },
-    signal: "Been building since 2024, not a brand new company. Office first in SF with WWII era motivational posters and an office gong. Warm intro paths: Founders Fund network, Brex alumni, Sutter Hill portfolio, YC network, Clari/Qualtrics/Apollo alumni.",
+    signal: "Brian is the quieter door in. VC at Human Capital with a huge network, responsible for sales team culture and methodology. Less approached than Sam. CPO Abishek Viswanathan (ex Apollo, ex Qualtrics) is the hiring lens for product/ops roles. He's been on podcasts about PLG. Office has WWII era motivational posters saying 'Save Startups' and a gong that rings every time AI books a meeting. High energy, sales first culture.",
     careersUrl: "",
   },
   {
     name: "Entire",
     tagline: "entire.io · Fully Remote · AI Dev Infrastructure",
     website: "entire.io",
+    logo: "https://avatars.githubusercontent.com/u/33188652?s=200&v=4",
     round: "Seed",
     amount: "$60M",
     detail: "$300M valuation, largest dev tool seed ever",
     investors: "Felicis, Madrona, M12 (Microsoft), Basis Set",
     hiringScore: 8,
     hiringReason: "15 person team doubling to 30, fully remote",
-    whatBuilding: "Git observability layer for AI agents. Their open source CLI (Checkpoints) records the reasoning behind AI generated code: the original prompt, the agent's reasoning steps, decisions made, why it chose specific implementations. Stores sessions on a hidden branch (entire/checkpoints/v1) so your main history stays clean. Supports Claude Code and Gemini CLI at launch. 2.6k GitHub stars already.",
-    whyMatters: "Thomas literally built the thing Entire is disrupting. GitHub CEO for 4 years, oversaw Copilot's rise to 180M developers. Felicis called this the largest seed ever for dev tools. Microsoft's own VC arm invested even though he left Microsoft. Team is ex GitHub and Atlassian. Angels include Garry Tan, Jerry Yang, Olivier Pomel, Gergely Orosz, Theo Browne, Harry Stebbings.",
-    roles: ["Go Engineers (CLI is in Go)", "Distributed Systems Engineers", "Git Internals Engineers", "Developer Experience Engineers", "AI Agent Infrastructure Engineers"],
+    whatBuilding: "AI can write code faster than humans can understand it. A PR might contain 2,000 lines of AI generated code and the reviewer has no idea what prompted it, what constraints the AI was working within, or what alternatives it considered. Entire's first product, Checkpoints, creates a new kind of repository: a Git compatible database that stores not just the code, but the full creation context (prompts, reasoning sessions, decision trees). Their semantic reasoning layer lets humans and AI agents query across this context, not just the code. Thomas Dohmke's phrase: 'We're moving from file browsers to specifications.' Version control for the age of agentic software.",
+    whyMatters: "Thomas ran GitHub from 2021 to 2025. He launched Copilot, grew it to 20 million users, watched it become responsible for a substantial portion of GitHub's revenue. Then he left to build Entire, not as a competitor to GitHub, but as a layer higher in the stack. The person who built the most successful AI coding tool in history thinks the infrastructure beneath it needs to be rebuilt from scratch. Satya Nadella told Thomas personally to 'keep pushing until your last day' and supported his departure amicably. M12 investing signals Microsoft sees this as complementary infrastructure, not a threat.",
+    roles: ["Backend/Infrastructure Engineers", "Developer Experience Engineers", "DevRel", "Developer Focused PMs"],
+    rolesNote: "Reference Entire's three layer architecture: Git compatible database, semantic reasoning layer, UI. The interesting problem is the database layer. It must handle agents emitting far more context than humans ever did. Show your GitHub profile prominently. Thomas actively keeps his own green.",
     founder: {
       initials: "TD",
       name: "Thomas Dohmke",
-      title: "CEO, ex GitHub CEO (2021-2025), sold HockeyApp to Microsoft 2015",
+      title: "CEO, East Berlin-raised, PhD Mechanical Engineering Glasgow",
       linkedin: "https://www.linkedin.com/in/ashtom/",
       image: "https://entire.io/team/thomas.png",
-      hook: "Thomas is on X (@ashtom). He's a developer founder who cares about craft. Best signal: actually use Checkpoints (github.com/entireio/cli), contribute to the repo, file thoughtful issues, or build something on top of it. They're dogfooding their own tools to manage development. Community contribution is the ultimate resume.",
+      hook: "Thomas grew up in East Berlin (pre reunification), got computer access in a school geography lab, bought a Commodore 64. His GitHub handle is @ashtom and he maintains a green contribution graph. He codes regularly, even as CEO. His bio says: 'I'm a LEGO enthusiast, and love turning that GitHub contribution graph more green.' He gave a TED Talk in 2024: 'With AI, anyone can be a coder now.' Reference the Pragmatic Engineer podcast he did in June 2025 (Gergely Orosz's podcast), it's the most detailed technical account of his thinking. He contributed to ml5.js, understands developer adoption intimately from HockeyApp.",
       avoid: "Don't position yourself as an 'AI engineer' who wants to build agents. Entire is explicitly not building agents, they're building infrastructure around agents. They want to scale to 'hundreds of agents' internally, not hundreds of employees.",
     },
-    signal: "Fully remote team. 15 people with $60M means each hire matters enormously. Bar is GitHub/Atlassian level dev tools experience. CLI is MIT licensed, so you can see exactly how they build. Warm intro paths: GitHub alumni, Microsoft/M12 network, Felicis portfolio, Atlassian alumni, developer community figures (Orosz, Theo are investors).",
+    signal: "M12 (Microsoft's VC arm) invested, meaning Entire has implicit distribution into Microsoft's enterprise developer ecosystem. If you have enterprise sales experience with Microsoft accounts, name it. Madrona is Seattle based, so Pacific Northwest developer community is a hiring pipeline. The cleanest non founder door in is through Felicis portfolio network. Fully remote team. 15 people with $60M means each hire matters enormously.",
     careersUrl: "",
   },
   {
@@ -137,26 +140,27 @@ const startups: Startup[] = [
     round: "Series E",
     amount: "$315M",
     detail: "$5.3B valuation, $860M total raised",
-    investors: "General Atlantic, Nvidia, Fidelity, SoftBank, Google",
+    investors: "General Atlantic, Nvidia, Fidelity, Adobe, Google",
     hiringScore: 7,
-    hiringReason: "101-250 employees, mature startup hire",
-    whatBuilding: "Generative AI tools for creating images, videos, and simulations. Users generate and edit videos from text prompts. Gen 4.5 ranks #1 on Video Arena leaderboard. They describe themselves as building 'world simulators', AI that understands physics, motion, and causality. Used by Hollywood, Amazon's House of David Season 2 had 350+ AI shots via Runway.",
-    whyMatters: "First mover in AI video with real traction: 300K+ customers. Unlike pure research labs, Runway has paying users and enterprise API customers. Founded Oct 2018, all three founders met at NYU's Interactive Telecommunications Program. Chilean born Cristóbal is TIME100 AI list.",
-    roles: ["ML Researchers (diffusion, video)", "World Model Researchers", "GPU Infrastructure Engineers", "Enterprise Sales", "Creative Partnerships", "Product Engineers"],
+    hiringReason: "422 employees, mature startup with research credibility + real revenue",
+    whatBuilding: "Runway started in 2018 as three NYU art students who wanted to make AI powered creative tools. Gen 1 allowed visual style transfer. Gen 2 produced video from text. Gen 3 and Gen 4.5 generate HD video with native audio, complex physics, and 'consistent world' logic across scenes. Everything Everywhere All at Once used their tools. So did Madison Beer's music video and House of David (350+ AI shots). The pivot that explains the Series E: they're no longer just a video tool company. They're building 'world models', AI that constructs internal 3D representations of how environments work, including physics, causality, and time. Same architecture has applications in robotics, gaming, medicine, and architecture.",
+    whyMatters: "One of the few AI companies with strong research credibility, a real consumer product, enterprise revenue, and a credible long term thesis. Adobe's investment is notable. They're a potential acquirer and/or distribution partner. The 'full stack' philosophy Cris articulates (from model research to infrastructure to product design to brand) is unusual. Most AI companies do research or product. Runway does both. Expensive and complex, which explains why they keep raising.",
+    roles: ["Computer Vision / World Model Researchers", "Enterprise AEs (gaming/robotics/media)", "Creative/Brand Roles", "Product Engineers"],
+    rolesNote: "422 employees at Series E. This is a scale up hire, not a founding team hire. Equity upside is more moderate. The specific hiring push is robotics and gaming partnerships.",
     founder: {
-      initials: "CB",
-      name: "Cristobal Barrera",
-      title: "Co-founder & CEO",
+      initials: "CV",
+      name: "Cristóbal Valenzuela",
+      title: "CEO, Chilean economist turned media artist, TIME100 AI",
       image: "https://images.crunchbase.com/image/upload/c_thumb,h_170,w_170,f_auto,g_face,z_0.7,b_white,q_auto:eco,dpr_2/816d1507ebcb459e8276f35efcab0ea3",
-      hook: "Cristóbal is on X (@c_valenzuelab). Runway sits at the intersection of art and engineering. If you can show creative taste and technical depth, that's the sweet spot. Show work that combines visual/creative output with ML understanding. He speaks at NeurIPS, SIGGRAPH, and creative industry events.",
-      avoid: "Don't approach Runway as purely an ML shop. They care deeply about creative tools and artist empowerment. Treating video generation as 'just another AI problem' misses the mark.",
+      hook: "Cris is a Chilean immigrant who came to study at NYU's ITP ('an art school for engineers and an engineering school for artists'). He contributed to ml5.js, an open source ML library for artists and creative coders. He worked with Daniel Shiffman (The Coding Train YouTube channel) at ITP. He's written about AI as a 'new kind of camera that creates a new art form.' For CV researchers: frame background in 3D understanding, physics based simulation, or video diffusion. If you've worked on NeRFs or Gaussian splatting, that's directly relevant. For creative/brand roles: show a portfolio. They ran their own AI Film Festival.",
+      avoid: "Don't approach Runway as purely an ML shop. They care deeply about creative tools and artist empowerment. Cris cares about aesthetics. Treating video generation as 'just another AI problem' misses the mark.",
     },
     cofounder: {
       name: "Anastasis Germanidis",
-      title: "Co-founder & CTO",
+      title: "CTO, most technically rigorous of the three founders",
       image: "https://images.crunchbase.com/image/upload/c_thumb,h_50,w_50,f_auto,g_face,z_0.7,b_white,q_auto:eco,dpr_2/skjjl34apuxsdergxhj7",
     },
-    signal: "Runway hosts its own AI Film Festival. Warm intro paths: NYU ITP alumni, Google AI alumni, creative agency world, Hollywood/media connections. This is a mature startup hire with stability, equity upside is more moderate than earlier rounds.",
+    signal: "Anastasis (CTO) is the one posting publicly about world model research. Engaging with his research notes before reaching out is the most effective warm approach. Runway hosts its own AI Film Festival. Warm intro paths: NYU ITP alumni, Google AI alumni, creative agency world, Hollywood/media connections. If you have robotics or gaming enterprise relationships, you're going after an underserved pipeline.",
     careersUrl: "https://runwayml.com/careers",
     videoId: "AwKSrJFvdps",
   },
@@ -164,6 +168,7 @@ const startups: Startup[] = [
     name: "Vega Security",
     tagline: "vega.io · Tel Aviv + NYC · AI Native Cybersecurity",
     website: "vega.io",
+    logo: "https://media.licdn.com/dms/image/v2/D560BAQHazMKkdOBwUw/company-logo_200_200/B56ZlH_q8QI0AI-/0/1757849497789/vega_security_io_logo?e=1773273600&v=beta&t=VWHo8A1c0YtWk9symWQrJdgK3onKy6kZxx8iO4XCWJw",
     videoUrl: "https://cdn.prod.website-files.com/68791f04ead01339340acbbe%2F6967b6d377447e8a045b5031_01_mp4.mp4",
     round: "Series B",
     amount: "$120M",
@@ -171,26 +176,26 @@ const startups: Startup[] = [
     investors: "Accel, Cyberstarts, Redpoint, CRV",
     hiringScore: 8,
     hiringReason: "21 open roles, Fortune 500 contracts, expanding US",
-    whatBuilding: "AI native security operations platform that replaces traditional SIEM. Traditional SIEMs require shipping all security data to one place, expensive and slow at modern volumes. Vega detects threats directly where enterprise data resides: cloud services, data lakes, distributed storage. No data migration needed.",
-    whyMatters: "SIEM is a massive entrenched market (Splunk, IBM QRadar, Microsoft Sentinel). Vega's federated approach is architecturally different enough to be a genuine platform shift. Already landing multi million dollar contracts with Fortune 500, banking, healthcare, and Instacart despite being only 2 years old. Both founders are IDF Unit 8200 veterans.",
-    roles: ["AI Engineer", "Software Engineer (Go/Python/React)", "Security Research Team Lead", "Product Manager", "Regional Sales Managers (US)", "Sales Engineers (US)", "Threat Response Expert"],
-    rolesNote: "13 roles in Tel Aviv (on-site), 8 roles remote US (sales/marketing focus). They need 7+ years enterprise sales experience for US roles, 5+ years backend for engineering.",
+    whatBuilding: "Every major enterprise runs a SIEM (Splunk being dominant, Cisco acquired for $28B in 2024). SIEM requires pulling all security data into a centralised lake before you can analyse it. For a bank with petabytes of logs spread across 40 cloud environments, that centralisation costs tens of millions and takes 18 to 24 months. Vega's architecture inverts this: instead of moving data to where analysis happens, they bring analysis to where data lives, directly in cloud services, data lakes, storage. They call it 'operational silence': instead of more alerts for overwhelmed SOC teams, they surface distilled, investigated threats with context. Shay's phrase: 'We are a platform that investigates the threat in your own environment and distills the truth.'",
+    whyMatters: "SIEM is broken and everyone knows it. Splunk costs explode as companies grow, implementation takes years, false positives drown SOC teams. Three conditions converging: AI exponentially increasing security data volume, regulated industries can't move data, cloud native architectures make centralisation structurally harder. Vega attacks the market at exactly the right technical inflection. Unit 8200 background matters. Shay has classified level understanding of how threats actually behave, which almost no commercial founder has.",
+    roles: ["Security/Detection Engineers", "Enterprise Sales (US expansion)", "Solutions/Sales Engineers", "Backend Engineers (Go/Python)"],
+    rolesNote: "13 roles Tel Aviv (on site), 8 roles US (remote, sales focus). For detection engineers: reference in situ threat detection architecture, query performance over distributed storage at petabyte scale. If you have DuckDB, Iceberg, Delta Lake experience, that's relevant. For US sales: frame around specific regulated industry accounts (banking, healthcare) you've closed.",
     founder: {
       initials: "SS",
       name: "Shay Sandler",
-      title: "CEO & Co-founder",
+      title: "CEO, Open University of Israel, ex Granulate ($650M Intel acquisition)",
       image: "https://cdn.prod.website-files.com/68791f04ead01339340acbbe/68c8eacbf5f00da1414b95a2_cbcd0223efbc31b2efe33e49f55b46f3_shay%20sandler.avif",
       linkedin: "https://www.linkedin.com/in/shay-sandler-305508107/",
-      hook: "Both founders are ex intelligence, ex Granulate. They value substance over flash. If you can articulate why SIEM is broken in a way that shows you've lived the pain (SOC experience, data pipeline experience), that's powerful.",
+      hook: "Shay studied at Open University of Israel, not a prestigious tech university, credentials come entirely from operational experience. He was founding team at Granulate (Intel acquired for $650M in 2022, then shut down in restructuring). That experience, building a $650M company and watching the acquirer close it, shapes his drive to build independently. He wants to build 'a billion dollar company in Israel that remains independent.' His cultural filter: 'I recruit people with hunger in their eyes, those who are not afraid to go all out.' He's at AWS re:Invent, RSA, cloud security conferences. He's socially active in US enterprise tech community despite being Tel Aviv based.",
       avoid: "Don't approach with generic 'I'm interested in cybersecurity'. Vega is replacing one of the most entrenched enterprise tools. Show you understand the specific pain of SIEM at scale.",
     },
     cofounder: {
       name: "Eli Rozen",
-      title: "CTO & Co-founder",
+      title: "CTO, Unit 8200 + Granulate veteran",
       image: "https://cdn.prod.website-files.com/68791f04ead01339340acbbe/68c8eacb39949d0f629a9de0_169b7405ef19c513276671a924cc224e_eli%20rozen.avif",
       linkedin: "https://www.linkedin.com/in/eli-rozen/",
     },
-    signal: "Warm intro paths: IDF 8200 alumni, Cyberstarts portfolio (Gili Raanan's network), Accel portfolio, Intel/Granulate alumni. RSA Conference, Black Hat, BSides are where they show up.",
+    signal: "Eli leads the technical team and is responsible for engineering hires. Less publicly visible than Shay. Cyberstarts investors (Gili Raanan, Lior Simon) are active LinkedIn publishers and deeply networked in Israeli/US cyber ecosystem. Getting intro through them is more effective than cold outreach. Look for Vega employees on LinkedIn who were previously at Palo Alto Networks, CrowdStrike, or Wiz. That's the talent pipeline.",
     careersUrl: "https://www.comeet.com/jobs/vega/C9.009",
   },
   {
@@ -204,85 +209,270 @@ const startups: Startup[] = [
     investors: "Frontier Growth, I2BF Ventures, K5 Global, Somersault",
     hiringScore: 7,
     hiringReason: "200% revenue growth, doubled everything since seed",
-    whatBuilding: "Cloud software for garbage/waste management companies. Route planning, CRM, billing, customer portals, fleet visibility. Basically ServiceTitan for waste management. Recently added Hero Vision (camera feeds from trucks for pickup verification), Hero Chat (AI customer support), Hero Route (automated route optimization). 35M+ pickups facilitated.",
-    whyMatters: "Waste management is a $90B industry running on software that looks like 'the Oregon Trail'. CEO's words. Two main competitors (Routeware and Wastech) merged in 2024, creating a vacuum. Clients include Verizon, Wells Fargo, McDonald's, UPS, PG&E, US Army, Marriott. This is real product market fit in an unsexy space.",
-    roles: ["Full Stack Engineers", "AI/ML Engineers (route optimization, computer vision)", "Account Executives", "Customer Success", "Implementation Specialists"],
+    whatBuilding: "Waste management is a $90B+ industry in the US, and until recently was running on software from the 1990s. Dispatch done on whiteboards. Billing in Excel. Customer complaints tracked in notebooks. Hauler Hero is ServiceTitan for trash, an all in one SaaS platform handling routing, billing, CRM, two way SMS, and now AI powered image verification from truck mounted cameras (Hero Vision), which automatically confirms pickups and flags missed collections or contaminated materials. 35M+ trash pickups processed, serves 120+ haulers across 40 states, counts Verizon, Wells Fargo, McDonald's, PG&E, US Army, and Marriott among indirect clients.",
+    whyMatters: "Every industry 'too boring' for software investment for 30 years is now being digitised, and first movers build massive switching cost moats. Waste haulers don't switch software. Migration cost is enormous. Once a hauler uses Hauler Hero for dispatch, billing, and CRM simultaneously, NRR approaches 120%+. Mark's background is the key signal: he spent nearly four years at ServiceTitan, watched it grow from ~$20M run rate to multi billion dollar valuation. He chose not to build an MVP, citing how ServiceTitan struggled to expand into adjacent categories without acquiring. Hauler Hero was built as a full platform from day one.",
+    roles: ["SMB Account Executives", "Full Stack/Product Engineers", "ML/Computer Vision Engineers", "Customer Success", "Implementation Specialists"],
+    rolesNote: "For AEs: Mark was a top sales rep himself. Be explicit about ACV, deal cycle length, and whether you've sold to operations heavy buyers (field service, logistics, construction). For engineers: Hero Vision (AI image capture from truck cameras) is the newest product. Edge ML, on device inference, or CV pipelines with limited connectivity are relevant.",
     founder: {
       initials: "MH",
       name: "Mark Hoadley",
-      title: "CEO, ex ServiceTitan (top sales exec, closed largest deal in company history), Harvard",
-      hook: "Mark is very active on LinkedIn. He's a former top sales exec who respects people who understand customers and can ship. He's genuinely passionate about helping waste management workers. Show you understand or care about the industry, not just the tech. hello@haulerhero.com for direct contact.",
+      title: "CEO, Harvard math/science, Illinois Math & Science Academy",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQE-fDkMXmR9Yg/profile-displayphoto-scale_200_200/B4EZxIMctzGcAY-/0/1770737753417?e=2147483647&v=beta&t=zG8gkGQ739Hrttqep5w1YdW5LkDY5SS3Ug4tSfc_9wQ",
+      linkedin: "https://www.linkedin.com/in/hoadley/",
+      hook: "Mark graduated from Harvard with a math/science background, attended Illinois Mathematics and Science Academy (selective public boarding school for gifted students). His proudest stat: he generated $10M ARR for ServiceTitan when the company's entire run rate was ~$20M. He found Hauler Hero through his brother in law Ben Sikma, who was doing M&A in waste management and kept finding technologically ancient businesses. His philosophy: 'Egos get checked at the door and the best idea wins.' He describes waste haulers with genuine affection: 'These are people who really are doing backbreaking work and God's work.' Reference ServiceTitan specifically if you've sold against or alongside them.",
       avoid: "Don't position this as a 'stepping stone' to a more glamorous AI company. They want people genuinely excited about an underserved industry.",
     },
     cofounder: {
       name: "Ben Sikma",
       title: "President, ex ESG (Dover), M&A in waste management, Georgetown MBA",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQHbP7q7PJDf3w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1721341953288?e=1773273600&v=beta&t=U2AAyYWzWHoIYoc3EtAzelbBAuUDz07O8PFZaEhJhRA",
     },
-    signal: "Less competitive than unicorns on this list. Series A vertical SaaS in waste management, not a hyped AI lab. If you're good and genuinely interested, you stand out fast. Warm intros: ServiceTitan alumni, I2BF portfolio, K5 Global network, waste industry contacts. WasteExpo is where they show up.",
+    signal: "Ben Sikma handles much of the operational and customer facing side. For customer success or implementation roles, reaching out to Ben directly with field service or logistics software background is more direct than going through Mark. Jobs page is sparse. Roles often go unlisted and are filled through referral. Following their LinkedIn and engaging with product announcements puts you in front before roles are posted. WasteExpo 2025 (May 5 to 8, Las Vegas), if you can attend, it's a direct path to the team in a non competitive context.",
   },
   {
     name: "Fundamental",
     tagline: "fundamental.tech · San Francisco · Enterprise Data AI",
     website: "fundamental.tech",
+    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQHRg4wfLuP9GA/company-logo_200_200/B4DZwuVOUSJcAI-/0/1770303841955/fundamentalhq_logo?e=1773273600&v=beta&t=49wRt4UQLE0FAcQwOT-YqlvL3kvP4-P1iSaQSxptfrA",
     round: "Series A",
     amount: "$255M",
     detail: "$1.4B valuation",
     investors: "Oak HC/FT, Salesforce Ventures, Battery",
     hiringScore: 8,
     hiringReason: "7 figure Fortune 100 contracts at seed stage",
-    whatBuilding: "LLMs handle unstructured data (text, images, video) well. They handle structured data (spreadsheets, databases, transaction records) terribly, they truncate rows, lose precision, hallucinate numbers. Fundamental's NEXUS is a Large Tabular Model built from the ground up for structured data. Not transformer based, fully deterministic, can process billions of rows.",
-    whyMatters: "Founded October 2024, unicorn by February 2026. Revenue already in from Fortune 100 contracts. DeepMind alumni team. AWS partnership creates distribution without a massive sales team. This is the rarest combination: deep tech plus early enterprise revenue plus $255M to scale.",
+    whatBuilding: "LLMs are remarkably good at unstructured data (text, images, audio) and remarkably bad at structured data. Financial analysts asking GPT-4 about their spreadsheets watch it drop rows, invent numbers, and lose precision. Fundamental's NEXUS is a Large Tabular Model built from scratch to work with structured data at enterprise scale. Not transformer based. Fully deterministic. Can process billions of rows without breaking a sweat. Their insight: enterprise value isn't locked in PDFs and emails, it's locked in databases, transaction records, and spreadsheets that comprise 90% of an organisation's data.",
+    whyMatters: "This is the fastest seed to unicorn trajectory in enterprise AI this year. Founded October 2024. Unicorn by February 2026. $255M Series A before most companies have a working prototype. The founding team is ex DeepMind (deep on research), ex Bridgewater (deep on data at scale), ex JPMorgan (deep on enterprise buyers). And they already have seven figure contracts with Fortune 100 companies before the Series A even closed. AWS partnership creates distribution without having to build a 200 person sales team.",
     roles: ["ML Researchers (tabular data)", "ML Engineers", "Enterprise Account Executives", "Solutions Engineers", "Data Scientists", "Product Manager"],
+    rolesNote: "For ML researchers: frame your work in terms of tabular specific architectures like tree ensembles, TabNet, SAINT, FT Transformer. If you've worked on structured prediction problems (fraud, credit, pricing), that's more relevant than NLP or vision work. For AEs: name the enterprise accounts (banks, insurers, healthcare systems) you've closed predictive analytics or data infra into. They need people who can sell into CFOs and CDOs.",
     founder: {
       initials: "JF",
       name: "Jeremy Fraenkel",
-      title: "CEO, Co-founder",
-      hook: "Jeremy is solving an extremely specific problem: LLMs can't reason over tabular data at enterprise scale. Your opening should reflect that you understand the gap. For research roles, reference your work on structured data models, tree based methods, or tabular deep learning. For enterprise roles, reference specific industries you've sold predictive analytics into.",
-      avoid: "Talking about LLMs or generative AI broadly. Nexus is explicitly not an LLM. Conflating them signals you haven't read past the headline.",
+      title: "CEO, UC Berkeley ML, ex Drift cofounder, ex Bridgewater/JPMorgan",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQGAaYfc96TJaw/profile-displayphoto-scale_400_400/B4EZwtXrkIHsAg-/0/1770287711718?e=1773273600&v=beta&t=Il2TUA5n-U3Kfm1JfPYTMm3J8fQI2D5dFKVzOO3YUvE",
+      linkedin: "https://www.linkedin.com/in/jeremyfraenkel/",
+      hook: "Jeremy's undergraduate degree from UC Berkeley was in Machine Learning. He co-founded Drift (the conversational marketing platform that sold to Vista Equity for $1B) before pivoting into enterprise AI research. His career arc moves from finance (JPMorgan, Bridgewater) to consumer (Drift) to enterprise AI (Fundamental), that breadth is unusual. He's published 'Revealing the Hidden Language of Tables' on the Fundamental blog, which is the most technical explanation of their approach. Reference the NEXUS architecture (deterministic, not probabilistic), the difference between their approach and LLM fine tuning for tabular data, or ask about their AWS co sell motion.",
+      avoid: "Don't say 'I want to work on LLMs.' NEXUS is explicitly not an LLM. It's a purpose built architecture for structured data. If you conflate them, you signal you haven't read past the headline. Don't pitch yourself as a generalist ML engineer. They want specificity on tabular methods.",
     },
+    cofounder: {
+      name: "Sam Batchelor",
+      title: "Co-founder, ex DeepMind Research",
+    },
+    signal: "Fundamental's AWS partnership is the distribution hack that lets them punch above their weight. For enterprise sales roles, having existing AWS account relationships or experience with AWS Marketplace co sell is a significant advantage. Salesforce Ventures investing means CRM/data integration with Salesforce ecosystem is on the roadmap. Experience there is relevant. They hired senior talent from Stripe and Databricks. If you have connections into either company, those are warm intro paths.",
     featured: true,
   },
   {
     name: "Modal Labs",
     tagline: "modal.com · San Francisco · AI Inference Infrastructure",
     website: "modal.com",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQHy7exnpF9hzA/company-logo_200_200/B4EZmTj1JVKQAI-/0/1759117267991/modal_labs_logo?e=1773273600&v=beta&t=UQLrsqy7tU3jnCTyuTtIR_GSFv1dUjZcA2Ihp_jB49w",
     round: "Pre-raise",
     amount: "~$2.5B",
     detail: "In talks, current val $1.1B, $50M ARR",
     investors: "General Catalyst (in talks)",
     hiringScore: 8,
     hiringReason: "Valuation 2.3x in 5 months, $50M ARR",
-    whatBuilding: "AI inference infrastructure, the compute layer that runs trained AI models to generate outputs. As AI model usage explodes, inference costs and latency become existential. Modal optimizes both. With $50M ARR and competitor Baseten valued at $5B, Modal at $1.1B looks undervalued heading into this raise.",
-    whyMatters: "Valuation doubling in 5 months on $50M ARR is a very strong signal they're riding genuine demand growth. This raise hasn't closed yet, which means job postings could come 4-8 weeks after announcement. Getting your application in early in that window is the move.",
+    whatBuilding: "Inference infrastructure that removes the friction between writing Python code and running it on cloud GPUs. You write a function, add a decorator, and Modal handles the rest: spinning up containers, provisioning GPUs, managing cold starts, scaling to zero. They're the missing infrastructure layer between 'I trained a model' and 'it's running in production at scale.' Their architecture is technically ambitious. They built their own container runtime, scheduler, and file system from scratch instead of using Kubernetes.",
+    whyMatters: "Valuation more than doubled in 5 months (from $1.1B to $2.5B in talks). $50M ARR with a small team. Competitor Baseten is valued at $5B, meaning Modal is arguably undervalued heading into this raise. The timing matters: this raise hasn't closed yet. That means formal job postings will spike 4 to 8 weeks after announcement. Getting your application in now, before the flood, is the strategic move.",
     roles: ["Infrastructure / Systems Engineers", "GPU / CUDA Optimization Engineers", "Developer Advocates", "Enterprise Sales", "Developer focused PM", "Site Reliability Engineers"],
+    rolesNote: "For infrastructure engineers: they built their own container runtime (not Docker), their own scheduler (not Kubernetes), their own distributed file system. Reference work on similar ground up systems. For GPU engineers: frame work in terms of utilization optimization, cold start latency, batching strategies, quantization. For DevRel: show your technical writing portfolio. Erik values people who can explain complex systems clearly.",
     founder: {
       initials: "EB",
       name: "Erik Bernhardsson",
-      title: "CEO, ex Spotify ML, ex Better.com CTO",
-      hook: "Erik is an engineer's engineer who has built open source tools and written deeply technical blog posts for over a decade. He responds to technical depth and genuine curiosity. Reference a specific inference optimization problem you've tackled, batching, quantization, cold start latency, GPU utilization.",
-      avoid: "Waiting too long. The raise isn't closed yet. This is the best window to reach out before they're inundated with applications post announcement.",
+      title: "CEO, ex Spotify ML (built Luigi), ex Better.com CTO, KTH Sweden",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQH6pzr4eaE_dw/profile-displayphoto-scale_200_200/B4EZlzD3iRIQAY-/0/1758572018374?e=2147483647&v=beta&t=1bV9zQmd0yFdbLnRW84htEDbG0KRKSTNU5bq7KDwZ7Q",
+      linkedin: "https://www.linkedin.com/in/erikbern/",
+      hook: "Erik built Luigi (the open source Python workflow engine used by Spotify, Foursquare, Stripe), which has 18k+ GitHub stars. He ran ML at Spotify (built their recommendation engine) and was CTO at Better.com. He's an engineer's engineer who has published deeply technical blog posts for over a decade (erikbernhardsson.com). He responds to technical depth and genuine curiosity. If you've contributed to Luigi, Airflow, Prefect, or any workflow orchestration tool, lead with that. Reference a specific inference optimization problem you've tackled: batching, quantization, cold start latency, GPU memory management.",
+      avoid: "Waiting too long. The raise isn't closed yet. This is the single best window to reach out before they're inundated with post announcement applications. Don't be generic. Erik has seen thousands of 'I'm passionate about infrastructure' pitches. Show you've read his blog.",
     },
-    signal: "Raise in talks means act now. Outreach before the round closes gets you in front of founders who still have time to talk. After close, hiring velocity ramps but founder access drops.",
+    cofounder: {
+      name: "Akshat Bubna",
+      title: "Cofounder, Systems Engineer",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQEZbKIjJB6I9A/profile-displayphoto-scale_400_400/B4EZl3ChkHKcAg-/0/1758638774967?e=1773273600&v=beta&t=veqYAx4j2gGRXchMBioqL9IOT4ah2XAxG8rlmVRjZvs",
+    },
+    signal: "Raise in active talks with General Catalyst. Outreach now, before the round closes, gets you in front of founders who still have time to talk. After the close, hiring velocity ramps up, but founder accessibility drops significantly. The co founder Akshat Bubna is less publicly visible than Erik and potentially more accessible for engineering roles. Modal is remote friendly but has an SF presence.",
+  },
+  {
+    name: "ElevenLabs",
+    tagline: "elevenlabs.io · Remote (London/NYC hubs) · Voice AI",
+    website: "elevenlabs.io",
+    logo: "https://media.licdn.com/dms/image/v2/C4D0BAQG8vBl8F4QX1w/company-logo_200_200/company-logo_200_200/0/1668126895834/elevenlabsio_logo?e=1773273600&v=beta&t=f3-zwcWV-gSo6VjBUCsvMAPRO-jNnjZwQUPUx9zxIrs",
+    round: "Series D",
+    amount: "$500M",
+    detail: "$11B valuation, $330M+ ARR",
+    investors: "Sequoia (lead), a]6z, ICONIQ, Lightspeed, BOND",
+    hiringScore: 8,
+    hiringReason: "400 employees, tripled valuation in a year, IPO track",
+    whatBuilding: "Voice AI platform that generates human like speech in 32 languages. Started with text to speech, now powering voice agents for customer support, sales, and internal workflows. Enterprise customers include Deutsche Telekom, Revolut, Square, and the Ukrainian Government. Their Eleven v3 Conversational model enables real time voice agents with sub second response times.",
+    whyMatters: "Europe's third largest AI unicorn. Crossed $330M ARR with only 250 employees organized into micro teams of 5 to 10 people. Founders still interview every single hire. They're building toward IPO and already did employee tender offers at $6.6B. This is a mature, profitable AI company with real revenue.",
+    roles: ["Full Stack Engineers (Frontend Leaning)", "ML Research Scientists", "Voice Agent Engineers", "Enterprise Sales", "Technical Recruiters", "Solutions Engineers"],
+    rolesNote: "Remote first but have hubs in London and NYC. Founders interview everyone. Micro team structure means you'll have real ownership.",
+    founder: {
+      initials: "MS",
+      name: "Mati Staniszewski",
+      title: "CEO & Co-founder, ex Palantir",
+      linkedin: "https://www.linkedin.com/in/matiii/",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQG0LNRBscpNzA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1710763388152?e=1773273600&v=beta&t=ZWY5C3pwHE3F-LlEe7PJFLE_gsxJcQHW-zSBmwpyXas",
+      hook: "Mati (@elevaboratory on X) and Piotr still interview every hire. They're Polish founders who started ElevenLabs because American films were badly dubbed in Poland. They care deeply about craft and mission alignment. Reference specific voice AI challenges you've worked on, or show you understand why voice is the next interface.",
+      avoid: "Generic AI enthusiasm. They've heard it all. Show you understand the specific technical or business challenges of voice: latency, expressiveness, multilingual support, enterprise deployment.",
+    },
+    cofounder: {
+      name: "Piotr Dąbkowski",
+      title: "CTO & Cofounder, ex Google ML",
+      image: "https://media.licdn.com/dms/image/v2/C5603AQGl4tBRJF5ZAQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1516930466249?e=1773273600&v=beta&t=th9pPiRQRNtV_Q23SeGf6sBbr0WeBrjXX6VwNG2r8kk",
+    },
+    signal: "Founders interview everyone even at 400 employees. This is rare. The company is profitable, growing fast, and eyeing IPO. Warm intro paths: Palantir alumni, Google ML alumni, Sequoia portfolio, a16z portfolio. They're remote first but London and NYC are where the hubs are.",
+    careersUrl: "https://jobs.ashbyhq.com/elevenlabs/",
+    featured: true,
+  },
+  {
+    name: "PolyAI",
+    tagline: "poly.ai · London + SF · Enterprise Voice Agents",
+    website: "poly.ai",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQGmCIr__8aYiA/company-logo_200_200/company-logo_200_200/0/1697640572943/polyai_logo?e=1773273600&v=beta&t=iTFPWjG3o2Tn0y3jyKQ91zAXm-A9f_sd82skA7RKmok",
+    round: "Series D",
+    amount: "$86M",
+    detail: "$750M valuation, $200M+ total raised",
+    investors: "Georgian, Hedosophia, Khosla Ventures, NVentures (Nvidia), Citi Ventures",
+    hiringScore: 8,
+    hiringReason: "2000+ live deployments, 45 languages, Fortune 500 clients",
+    whatBuilding: "AI voice agents that actually handle real customer service conversations, not just IVR menus. Their agents handle millions of calls for PG&E, UniCredit, healthcare systems, and restaurant groups. One restaurant client saw 10% revenue increase from AI handled reservations. They're going after the $400B call center industry.",
+    whyMatters: "Founded in 2017, so they have 7 years of production voice AI experience. That's an eternity in AI years. Cambridge ML researchers who bet on voice when everyone else was doing chatbots. Nvidia's VC arm invested, which signals serious enterprise AI infrastructure credibility.",
+    roles: ["ML Engineers (Speech/NLU)", "Backend Engineers (Python/Go)", "Solutions Architects", "Enterprise Sales (US expansion)", "Customer Success Managers", "Applied Scientists"],
+    rolesNote: "Dual headquarters in London and SF. Actively expanding US presence. Enterprise sales roles likely need US based.",
+    founder: {
+      initials: "NM",
+      name: "Nikola Mrkšić",
+      title: "CEO & Co-founder, Cambridge ML PhD",
+      linkedin: "https://www.linkedin.com/in/nikola-mrksic/",
+      image: "https://cdn.sanity.io/images/u9ir40pr/production/cea6e4162f8fc0da70bc3a8cd43e6e1be2997c15-856x1124.png",
+      hook: "Nikola is a Cambridge ML PhD who was first technical hire at VocalIQ (acquired by Apple). He knows voice AI from the ground up. Reference specific challenges in conversational AI: turn taking, context retention across long calls, handling accents and background noise, integrating with enterprise systems.",
+      avoid: "Treating voice as 'just another AI modality'. PolyAI has been doing production voice for 7 years. They've seen every failure mode. Show you understand why voice is hard.",
+    },
+    cofounder: {
+      name: "Shawn Wen",
+      title: "CTO & Co-founder",
+      image: "https://cdn.sanity.io/images/u9ir40pr/production/b1fedf4b8a6524d52c02d84d88a590f1d4e7fbc9-450x600.jpg",
+    },
+    signal: "Cambridge ML mafia. Warm intro paths: Cambridge CS alumni, Apple/VocalIQ alumni, Khosla portfolio, Georgian portfolio. They're expanding US aggressively so SF based roles are opening up.",
+    careersUrl: "https://poly.ai/careers",
+  },
+  {
+    name: "Goodfire",
+    tagline: "goodfire.ai · San Francisco · AI Interpretability",
+    website: "goodfire.ai",
+    logo: "https://cdn.prod.website-files.com/67b4608695ee3b31a669d3a9/67ec4958590e172310498188_Clip%20path%20group.svg",
+    round: "Series B",
+    amount: "$150M",
+    detail: "$1.25B valuation, $209M total raised",
+    investors: "B Capital (lead), Juniper, Menlo, Lightspeed, Salesforce Ventures, Eric Schmidt",
+    hiringScore: 8,
+    hiringReason: "Raised $150M less than a year after Series A, scaling research team",
+    whatBuilding: "AI interpretability research lab. They're building tools to understand what's actually happening inside AI models, not just what they output. Their approach lets you design AI systems with specific behaviors rather than hoping training produces what you want. Think of it as debugging tools for neural networks.",
+    whyMatters: "Interpretability is the safety research that actually matters for deployment. Tom McGrath founded DeepMind's interpretability team. Nick Cammarata was core to OpenAI's interpretability work. Eric Schmidt personally invested. This is the team that will define how enterprises trust AI systems.",
+    roles: ["Interpretability Researchers", "ML Engineers", "Research Engineers", "Applied Scientists", "Enterprise Partnership leads"],
+    rolesNote: "Deep research focus. They want people who've published or have serious ML engineering chops. Not a place for AI tourists.",
+    founder: {
+      initials: "EH",
+      name: "Eric Ho",
+      title: "CEO & Cofounder, ex RippleMatch founder, Forbes 30u30",
+      image: "https://media.licdn.com/dms/image/v2/D5603AQEmSpZ4d5KXTw/profile-displayphoto-scale_200_200/B56Zv.BYzMKkAY-/0/1769493336010?e=2147483647&v=beta&t=iDt4ou_DrTltiMTOtY_rlS_ApTxx9JoLNp7bv5iN4kM",
+      linkedin: "https://www.linkedin.com/in/eric-ho-53981862/",
+      hook: "Eric built and sold RippleMatch, so he knows how to scale. But Goodfire is a research company first. Reference specific interpretability work: mechanistic interpretability, feature visualization, circuit analysis. Show you understand why understanding AI matters more than just making it bigger.",
+      avoid: "Positioning yourself as a generalist ML engineer. They want deep expertise in interpretability or adjacent areas. This is a research lab, not a product company.",
+    },
+    cofounder: {
+      name: "Tom McGrath",
+      title: "Chief Scientist, ex DeepMind Interpretability founder",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQEUxh2ihnFk-A/profile-displayphoto-shrink_400_400/B4EZZE3.7EG0Ag-/0/1744912248799?e=1773273600&v=beta&t=E6vDRSis8wtHNXN3yGDGBRLlEJWDjhMsGhEUm9SRsFM",
+      linkedin: "https://www.linkedin.com/in/tom-mcgrath-7337bb151/",
+    },
+    signal: "Research lab with unicorn valuation. Rare combination. Warm intro paths: DeepMind alumni, OpenAI alumni (especially interpretability team), academic ML researchers, South Park Commons network. Tom is on X @banburismus_.",
+    careersUrl: "https://www.goodfire.ai/careers",
+  },
+  {
+    name: "Simile",
+    tagline: "simile.ai · Bay Area + NYC · Human Behavior AI",
+    website: "simile.ai",
+    logo: "https://simile.ai/icon.png",
+    round: "Series A",
+    amount: "$100M",
+    detail: "Stanford spinout, Index Ventures led, Feb 12",
+    investors: "Index Ventures (lead), Bain Capital Ventures, Fei-Fei Li, Andrej Karpathy",
+    hiringScore: 8,
+    hiringReason: "Just emerged from stealth with $100M, building founding team",
+    whatBuilding: "In 2023, Joon Sung Park populated a virtual town with 25 AI agents, each with a biography, daily routine, and ability to remember and reflect. The agents planned a Valentine's Day party, ran for mayor, gossiped, and spread information through emergent social dynamics. The paper won Best Paper at UIST 2023 and got covered by the NYT, The Guardian, Nature, and Science. Simile is the commercial version: a foundation model for human behaviour that represents real individuals based on their actual memories and decision patterns from deep interview data, predicting how they'll respond to products, campaigns, or policies. CVS uses it to decide which products to stock across 9,000+ stores. Wealthfront stress tests how investors will react to market scenarios. The Gallup partnership enables instant, demographically accurate synthetic polling.",
+    whyMatters: "Market research is a $140B industry built on slow, expensive surveys that over represent people who respond to surveys. Simile's agents simulating 1,052 real people matched their actual survey responses with 85% accuracy, comparable to those individuals re taking the same survey two weeks later. Andrej Karpathy (Tesla Autopilot, OpenAI co founder) and Fei Fei Li (ImageNet creator, World Labs co founder) are personal investors. These are not financial bets, they're scientific endorsements.",
+    roles: ["ML Research Scientists (agents/simulation)", "Behavioral Scientists", "Full Stack Engineers", "Enterprise Sales", "Product Managers"],
+    rolesNote: "Research grade bar. Read both the original Generative Agents paper (arXiv 2304.03442) and the 1,000 People follow up (arXiv 2411.10109) before applying. For ML roles: reference agent memory systems, reflection architectures, LLM reasoning. For behavioural science: GSS methodology, Big Five, survey design. For enterprise sales: reference insights teams at CVS, Wealthfront, Gallup, or Suntory.",
+    founder: {
+      initials: "JP",
+      name: "Joon Sung Park",
+      title: "CEO & Cofounder, Stanford PhD, GitHub: joonspk research",
+      image: "https://joonsungpark.s3.amazonaws.com/static/img/collaborators/joonsung_park.jpg",
+      linkedin: "https://www.linkedin.com/in/joon-sung-park/",
+      hook: "Joon's personal site (joonspk.com) has a Kernighan quote in the footer: 'Debugging is twice as hard as writing the code in the first place.' His generative_agents GitHub repo (under joonspk research) has hundreds of thousands of stars and forks. He gave a TED Talk in October 2023 and taught a Stanford CS course on simulating individuals. For research roles, cite both papers and specifically mention the memory retrieval reflection loop architecture. For behavioural science roles, reference GSS or Big Five methodology and how Simile's agents encode personality. For enterprise sales, reference insights teams at CVS, Wealthfront, or Suntory, companies already in the customer base.",
+      avoid: "Treating this as 'just another LLM wrapper.' The November 2024 paper shows 85% accuracy on real human prediction. That's rigorous social science meets ML. Come prepared or don't come. Don't skip the papers.",
+    },
+    cofounder: {
+      name: "Percy Liang",
+      title: "Co-founder, Stanford CS Professor, coined 'foundation model', runs CRFM",
+    },
+    signal: "Percy Liang is one of the most cited NLP researchers alive, co founder of Together.ai, and runs Stanford's Center for Research on Foundation Models (CRFM). Michael Bernstein co authored work on crowd computing and social computing systems. The non founder path in is through Stanford's CS and HCI departments. They're hiring from their own research networks. Engaging with Percy's HELM benchmark work or Holistic Evaluation papers before reaching out to Joon positions you as someone who reads the full research ecosystem, not just the press coverage.",
+    careersUrl: "https://simile.ai/careers",
+  },
+  {
+    name: "Abridge",
+    tagline: "abridge.com · Pittsburgh + Remote · Clinical AI",
+    website: "abridge.com",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQFkOLTK2ftuYg/company-logo_200_200/company-logo_200_200/0/1721328310775/abridgehq_logo?e=1773273600&v=beta&t=BROTlmhlhmgDkisgjsXttrv66XyrFbMQ2BkzgLKPxYI",
+    round: "Series D",
+    amount: "$250M",
+    detail: "$2.75B valuation, Feb 17",
+    investors: "Lightspeed, Redpoint, CVS Health, UPMC, Kaiser Permanente, Mayo Clinic",
+    hiringScore: 8,
+    hiringReason: "Kaiser reports 63% physician adoption, 6.3M+ visits transcribed",
+    whatBuilding: "AI that listens to doctor patient conversations in real time, generates clinically accurate notes in the appropriate format for the specialty, and pushes directly into Epic for physician review. Physicians spend 2 to 3 hours every evening doing 'pajama time', typing up notes after seeing patients. Abridge eliminates that. Their new Contextual Reasoning Engine structures output not just for clinical documentation but for revenue cycle management, reducing billing claim rejections. 28 languages, 50+ medical specialties, deployed across primary care, cardiology, oncology, surgery, and mental health.",
+    whyMatters: "Healthcare AI barriers are enormous: clinical accuracy (errors harm patients), HIPAA compliance, and Epic integration (35%+ of US hospital EHRs). Abridge has all three after 7 years of building. New entrants are 7 years behind. The customer investor overlap is unusual: Kaiser, UPMC, Mayo, and Yale New Haven all have financial stakes in Abridge. They're not just buying the product, they're betting on the company. Johns Hopkins is rolling out to all 6,700 clinicians across 6 hospitals and 40 care centers. That's a reference deployment any health system will recognise.",
+    roles: ["Clinical NLP Engineers", "Speech Recognition Engineers", "Epic Integration Specialists", "Enterprise Health System Sales", "Clinical Implementation Specialists", "ML Research Scientists"],
+    rolesNote: "Clinical background is a genuine differentiator here. Shiv has said doctors, nurses, and providers hold key roles at every level of the company. If you're a clinician interested in tech, this is one of the few startups where your clinical credential is more valuable than your technical one. For Epic integration: if you've worked on Epic app orchard, FHIR APIs, or EHR deployment, that's a rare skill set.",
+    founder: {
+      initials: "SR",
+      name: "Shiv Rao, MD",
+      title: "CEO & Cofounder, practicing cardiologist, TIME 100 Health",
+      image: "https://cdn.prod.website-files.com/6279c9d10eb860662e5ec006/65d678e3b65ef864363a45c9_profile-shiv.webp",
+      linkedin: "https://www.linkedin.com/in/shiv-rao-md/",
+      hook: "Shiv is still on call every Thursday and takes one weekend per month of hospital shifts. Not for optics, to stay grounded in the problem. He was a healthcare VC at UPMC before founding Abridge and funded Carnegie Mellon's ML in Health program. He's on the TIME 100 Health list (2024). For clinical AI engineers, reference their Contextual Reasoning Engine specifically, the architecture that structures notes for both clinical accuracy and revenue cycle management. For clinicians, open with your clinical background and a specific observation about documentation burden from your own practice. For enterprise sales, name specific health system CIOs, CMOs, or CMIOs you've closed.",
+      avoid: "Generic AI enthusiasm without healthcare context. They've heard it all. Show you understand why medical speech recognition is different from consumer ASR (clinical vocabulary, ambient noise, multi speaker), or why Epic integration is a structural moat. Don't pitch 'disrupting healthcare', pitch solving the documentation problem specifically.",
+    },
+    cofounder: {
+      name: "Zack Lipton",
+      title: "Chief Research Officer, Carnegie Mellon ML Professor",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQGChd3NlN7tVA/profile-displayphoto-shrink_400_400/B4EZR2k1BhHAAg-/0/1737156153756?e=1773273600&v=beta&t=28g6_jPkW6b4AUP83baJgw_DHFg8JDigsDXsNCNxNuw",
+    },
+    signal: "Find a clinician who uses Abridge and ask them what they love and hate. Shiv responds deeply to people who've engaged with real clinical users. UPMC, Kaiser, Johns Hopkins, and Mayo are all live. Clinicians at these institutions post about Abridge on LinkedIn and X. Citing one in your outreach signals the research depth Shiv finds credible. Technical candidates should reference Zack Lipton's published work on clinical ML (he's one of the most cited researchers in the field). Pittsburgh is home base, but remote is increasingly supported.",
+    careersUrl: "https://www.abridge.com/careers",
+    featured: true,
   },
 ];
 
 const trends = [
-  { sector: "AI Infrastructure", status: "Hot", text: "Three of eight rounds this week are pure AI infrastructure plays. Ricursive (chip design), Modal (inference), and Fundamental (tabular data). The market is bifurcating: consumer AI is slowing while infrastructure bets are accelerating. If you work in systems, ML infrastructure, or enterprise data, you're in the most in demand skill category of 2026." },
-  { sector: "AI Sales Tech", status: "Heating", text: "Monaco joins a growing pile of AI native CRM challengers. The market is real but crowded. Y Combinator has seeded hundreds of similar plays. Watch Monaco's human in the loop model specifically, it's the most defensible angle in the category right now." },
-  { sector: "Vertical SaaS", status: "Steady", text: "Hauler Hero quietly doubled everything since seed. This is a pattern: legacy industries (waste, logistics, agriculture, field services) are being converted to modern SaaS for the first time, with AI layered on top. Low competition, high switching costs, sticky revenue." },
-  { sector: "World Models", status: "Emerging", text: "Runway's Series E signals that world models, AI that builds internal 3D representations to simulate and plan, are the next major infrastructure category after LLMs. Gaming, robotics, architecture, and medicine will all be impacted." },
-  { sector: "Cybersecurity", status: "Expanding", text: "Vega's raise reflects continued enterprise spending on cloud native security. The angle of threat detection without data centralization is the clearest enterprise wedge. Regulated industries can't move data but still need threat detection." },
+  { sector: "Healthcare AI", status: "Hot", text: "Abridge at $2.75B with Kaiser, UPMC, Mayo, and Johns Hopkins deploying. Healthcare AI barriers are enormous: clinical accuracy, HIPAA, Epic integration. Abridge has all three after 7 years. Clinical background is genuinely valued here, making it one of the few AI verticals where non engineers can break in at high levels." },
+  { sector: "Voice AI", status: "Hot", text: "ElevenLabs at $11B and PolyAI at $750M signal voice is the next major AI interface. ElevenLabs crossed $330M ARR with 250 employees. PolyAI has 2000+ live deployments. Enterprise voice agents are replacing call centers. Speech ML, NLU, real time systems experience is in highest demand." },
+  { sector: "AI Infrastructure", status: "Hot", text: "Four of thirteen rounds this week are pure AI infrastructure plays. Ricursive (chip design), Modal (inference), Fundamental (tabular data), Goodfire (interpretability). Consumer AI is slowing while infrastructure bets are accelerating." },
+  { sector: "AI Interpretability", status: "Emerging", text: "Goodfire's $150M Series B at $1.25B valuation signals interpretability is graduating from research to enterprise. As AI regulation tightens, companies need to understand what their models are doing. DeepMind and OpenAI alumni are leading this space." },
+  { sector: "Human Simulation", status: "New", text: "Simile's $100M raise from Index, with Fei Fei Li and Andrej Karpathy as angels, creates a new category. AI that predicts human behavior with 85% accuracy could replace market research, focus groups, and polling." },
+  { sector: "Vertical SaaS", status: "Steady", text: "Hauler Hero quietly doubled everything since seed. Legacy industries are being converted to modern SaaS for the first time. Low competition, high switching costs, sticky revenue." },
 ];
 
 const compBenchmarks = [
-  { role: "ML / AI Researcher", stage: "Seed", base: "$200-280K", equity: "0.5-1.5%", notes: "Ricursive, Fundamental territory" },
-  { role: "ML / AI Researcher", stage: "Series A", base: "$220-320K", equity: "0.1-0.5%", notes: "Still meaningful upside at $4B valuation" },
-  { role: "Senior Software Engineer", stage: "Seed", base: "$160-220K", equity: "0.2-0.8%", notes: "Entire, early Modal territory" },
-  { role: "Senior Software Engineer", stage: "Series A/B", base: "$170-240K", equity: "0.05-0.2%", notes: "Standard at Vega, Hauler Hero range" },
-  { role: "Enterprise AE", stage: "Series A", base: "$120-160K base", equity: "0.05-0.15%", notes: "OTE typically 2x base" },
-  { role: "Founding AE / First Sales", stage: "Seed", base: "$100-140K base", equity: "0.1-0.4%", notes: "Monaco, early Hauler Hero territory" },
-  { role: "Product Manager", stage: "Series A", base: "$160-210K", equity: "0.05-0.2%", notes: "Runway, Fundamental range" },
-  { role: "GPU / Infra Engineer", stage: "Series A/B", base: "$200-280K", equity: "0.05-0.25%", notes: "Modal Labs, highest demand right now" },
+  { role: "ML / AI Researcher", stage: "Seed", base: "$200K-$280K", equity: "0.5%-1.5%", notes: "Ricursive, Fundamental territory" },
+  { role: "ML / AI Researcher", stage: "Series A", base: "$220K-$320K", equity: "0.1%-0.5%", notes: "Still meaningful upside at $4B valuation" },
+  { role: "Senior SWE", stage: "Seed", base: "$160K-$220K", equity: "0.2%-0.8%", notes: "Entire, early Modal territory" },
+  { role: "Senior SWE", stage: "Series A/B", base: "$170K-$240K", equity: "0.05%-0.2%", notes: "Standard at Vega, Hauler Hero range" },
+  { role: "Enterprise AE", stage: "Series A", base: "$120K-$160K", equity: "0.05%-0.15%", notes: "OTE typically 2x base" },
+  { role: "Founding AE", stage: "Seed", base: "$100K-$140K", equity: "0.1%-0.4%", notes: "Monaco, early Hauler Hero territory" },
+  { role: "Product Manager", stage: "Series A", base: "$160K-$210K", equity: "0.05%-0.2%", notes: "Runway, Fundamental range" },
+  { role: "GPU / Infra Engineer", stage: "Series A/B", base: "$200K-$280K", equity: "0.05%-0.25%", notes: "Modal Labs, highest demand right now" },
 ];
 
 function HiringMeter({ score, reason }: { score: number; reason: string }) {
@@ -314,7 +504,7 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-6">
           <div>
-            <p className="text-xs text-neutral-400 mb-1">{String(index + 1).padStart(2, "0")} of 08</p>
+            <p className="text-xs text-neutral-400 mb-1">{String(index + 1).padStart(2, "0")} of 13</p>
             <h2 className="font-serif text-2xl md:text-3xl text-neutral-900">{startup.name}</h2>
             <p className="text-sm text-neutral-500">{startup.tagline}</p>
           </div>
@@ -403,7 +593,7 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
         </div>
 
         {/* Founder outreach */}
-        <div className="bg-neutral-50 rounded-xl p-4 mb-6">
+        <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-dashed border-neutral-200">
           <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
           <div className="flex flex-wrap gap-4 mb-3">
             <div className="flex items-center gap-3">
@@ -448,7 +638,7 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
         )}
 
         {/* Links */}
-        <div className="flex gap-4 pt-4 border-t border-neutral-100">
+        <div className="flex items-center gap-4 pt-4 border-t border-neutral-100">
           <a
             href={startup.founder.linkedin || `https://linkedin.com/search/results/people/?keywords=${encodeURIComponent(startup.founder.name)}`}
             target="_blank"
@@ -462,7 +652,7 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
               href={startup.careersUrl || `https://${startup.website}/careers`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors text-sm"
+              className="text-neutral-900 underline underline-offset-2 decoration-1 hover:text-neutral-600 transition-colors text-sm"
             >
               Careers
             </a>
@@ -490,23 +680,23 @@ export default function DropPage() {
             <p className="text-xs text-neutral-400">Feb 18, 2026</p>
           </div>
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-2">
-            8 startups that just raised
+            13 startups that just raised
           </h1>
-          <p className="text-neutral-500">$1.1B+ total this week</p>
+          <p className="text-neutral-500">$2.1B+ total this week</p>
         </div>
 
         {/* Stats */}
         <div className="bg-white/95 backdrop-blur rounded-2xl border border-neutral-200 grid grid-cols-3 divide-x divide-neutral-200 mb-8">
           <div className="text-center py-5 px-3">
-            <p className="font-serif text-2xl md:text-3xl text-neutral-900">8</p>
+            <p className="font-serif text-2xl md:text-3xl text-neutral-900">13</p>
             <p className="text-xs text-neutral-400">Startups</p>
           </div>
           <div className="text-center py-5 px-3">
-            <p className="font-serif text-2xl md:text-3xl text-neutral-900">$1.1B+</p>
+            <p className="font-serif text-2xl md:text-3xl text-neutral-900">$2.1B+</p>
             <p className="text-xs text-neutral-400">Total raised</p>
           </div>
           <div className="text-center py-5 px-3">
-            <p className="font-serif text-2xl md:text-3xl text-neutral-900">3</p>
+            <p className="font-serif text-2xl md:text-3xl text-neutral-900">6</p>
             <p className="text-xs text-neutral-400">Unicorn rounds</p>
           </div>
         </div>
@@ -518,7 +708,7 @@ export default function DropPage() {
             <p className="text-xs text-neutral-400 uppercase tracking-wider">This week</p>
           </div>
           <p className="text-neutral-300 leading-relaxed">
-            AI infrastructure dominates. Chip design, inference, and tabular data all raised unicorn rounds. Sales tech heats up. Waste management quietly going enterprise SaaS.
+            Healthcare AI breaks out: Abridge at $2.75B with Kaiser, Mayo, Johns Hopkins deploying. Voice AI explodes: ElevenLabs $11B, PolyAI $750M. Six unicorn rounds total. Human simulation emerges as a category. Clinical and research backgrounds are suddenly in high demand.
           </p>
         </div>
 
@@ -568,24 +758,24 @@ export default function DropPage() {
             <h3 className="font-serif text-xl text-neutral-900">Comp benchmarks</h3>
           </div>
           <p className="text-sm text-neutral-400 mb-6">Use as a floor in negotiation, not a ceiling.</p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto -mx-6 px-6">
+            <table className="w-full text-sm min-w-[640px]">
               <thead>
                 <tr className="border-b border-neutral-200">
-                  <th className="text-left py-3 text-neutral-400 font-normal">Role</th>
-                  <th className="text-left py-3 text-neutral-400 font-normal">Stage</th>
-                  <th className="text-left py-3 text-neutral-400 font-normal">Base</th>
-                  <th className="text-left py-3 text-neutral-400 font-normal">Equity (4yr)</th>
+                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Role</th>
+                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Stage</th>
+                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Base</th>
+                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Equity (4yr)</th>
                   <th className="text-left py-3 text-neutral-400 font-normal">Notes</th>
                 </tr>
               </thead>
               <tbody>
                 {compBenchmarks.map((row, i) => (
-                  <tr key={i} className="border-b border-neutral-100">
-                    <td className="py-3 text-neutral-900">{row.role}</td>
-                    <td className="py-3 text-neutral-500">{row.stage}</td>
-                    <td className="py-3 text-neutral-900">{row.base}</td>
-                    <td className="py-3 text-neutral-900">{row.equity}</td>
+                  <tr key={i} className="border-b border-neutral-100 last:border-0">
+                    <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.role}</td>
+                    <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">{row.stage}</td>
+                    <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.base}</td>
+                    <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.equity}</td>
                     <td className="py-3 text-neutral-500 text-xs">{row.notes}</td>
                   </tr>
                 ))}
