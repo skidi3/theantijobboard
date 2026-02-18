@@ -18,12 +18,40 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     const supabase = createClient();
-    supabase.auth.getSession().then(({ data: { session } }) => {
+
+    // Handle hash fragment from Supabase recovery redirect (contains access_token)
+    const handleRecoveryFlow = async () => {
+      // Check if we have hash params (Supabase sends tokens in hash for recovery)
+      const hashParams = new URLSearchParams(window.location.hash.slice(1));
+      const accessToken = hashParams.get("access_token");
+      const refreshToken = hashParams.get("refresh_token");
+      const type = hashParams.get("type");
+
+      if (accessToken && refreshToken && type === "recovery") {
+        // Set the session from hash tokens
+        const { error } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+
+        if (!error) {
+          // Clear the hash from URL for cleaner UX
+          window.history.replaceState(null, "", window.location.pathname);
+          setIsValidSession(true);
+          setChecking(false);
+          return;
+        }
+      }
+
+      // Fallback: check existing session
+      const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         setIsValidSession(true);
       }
       setChecking(false);
-    });
+    };
+
+    handleRecoveryFlow();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

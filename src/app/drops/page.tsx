@@ -69,15 +69,16 @@ export default function DropsPage() {
         <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden">
           <div className="p-8 md:p-10">
             {/* Header with greeting */}
-            <div className="flex items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 mb-12 md:mb-8">
               <img src={cdn("/logo.webp")} alt="" className="w-10 h-10" />
               <p className="font-serif text-xl text-neutral-900">Welcome back</p>
             </div>
 
             {/* Hero section with scattered cards */}
-            <div className="relative mb-8 flex items-center justify-center min-h-[220px]">
+            <div className="relative mb-12 md:mb-8 flex items-center justify-center min-h-[220px]">
               {/* Scattered startup cards */}
               <div className="absolute inset-0">
+                {/* Desktop cards */}
                 {[
                   { name: "Anthropic", logo: "https://cdn.brandfetch.io/anthropic.com/w/512/h/512/symbol", role: "Senior Engineer", top: "0%", left: "0%", rotate: -6 },
                   { name: "Stripe", logo: "https://cdn.brandfetch.io/stripe.com/w/512/h/512/icon", role: "Product Designer", top: "10%", right: "5%", rotate: 4 },
@@ -86,7 +87,36 @@ export default function DropsPage() {
                 ].map((startup) => (
                   <div
                     key={startup.name}
-                    className="absolute bg-white/95 backdrop-blur-sm shadow-md border border-neutral-200 rounded-xl p-2.5"
+                    className="absolute bg-white/95 backdrop-blur-sm shadow-md border border-neutral-200 rounded-xl p-2.5 hidden md:block"
+                    style={{
+                      top: startup.top,
+                      left: startup.left,
+                      right: startup.right,
+                      bottom: startup.bottom,
+                      transform: `rotate(${startup.rotate}deg)`,
+                    }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-neutral-100 flex items-center justify-center shrink-0 overflow-hidden p-1">
+                        <img src={startup.logo} alt={startup.name} className="w-full h-full object-contain" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-medium text-xs text-neutral-900 truncate">{startup.name}</p>
+                        <p className="text-[10px] text-neutral-500 truncate">{startup.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {/* Mobile cards - with more gap */}
+                {[
+                  { name: "Anthropic", logo: "https://cdn.brandfetch.io/anthropic.com/w/512/h/512/symbol", role: "Senior Engineer", top: "-8%", left: "-8%", rotate: -6 },
+                  { name: "Stripe", logo: "https://cdn.brandfetch.io/stripe.com/w/512/h/512/icon", role: "Product Designer", top: "0%", right: "-8%", rotate: 4 },
+                  { name: "Linear", logo: "https://cdn.brandfetch.io/linear.app/w/512/h/512/symbol", role: "Full Stack", bottom: "-8%", left: "-3%", rotate: 5 },
+                  { name: "OpenAI", logo: "https://cdn.brandfetch.io/openai.com/w/512/h/512/symbol", role: "Research Engineer", bottom: "-3%", right: "-12%", rotate: -4 },
+                ].map((startup) => (
+                  <div
+                    key={`${startup.name}-mobile`}
+                    className="absolute bg-white/95 backdrop-blur-sm shadow-md border border-neutral-200 rounded-xl p-2.5 md:hidden"
                     style={{
                       top: startup.top,
                       left: startup.left,
@@ -112,7 +142,7 @@ export default function DropsPage() {
               <img
                 src={cdn("/hero-image.webp")}
                 alt="Anti Job Board"
-                className="relative z-10 w-32 h-auto rounded-xl shadow-lg"
+                className="relative z-10 w-32 h-auto"
               />
             </div>
 

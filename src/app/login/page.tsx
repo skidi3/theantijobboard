@@ -95,6 +95,14 @@ export default function LoginPage() {
       {/* Left side - Form */}
       <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-20">
         <div className="w-full max-w-sm mx-auto">
+          {/* Mobile back button */}
+          <Link href="/" className="lg:hidden inline-flex items-center gap-2 text-neutral-500 hover:text-neutral-900 transition-colors mb-6">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+          </Link>
+
           <Link href="/" className="inline-block mb-12">
             <img
               src={cdn("/logo.webp")}
