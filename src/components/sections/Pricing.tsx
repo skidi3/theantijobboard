@@ -230,6 +230,38 @@ export function Pricing() {
             </div>
           </div>
 
+          {/* Free Newsletter */}
+          <div className="border-t border-dashed border-neutral-300 pt-8 mt-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <p className="text-neutral-900 font-medium">Not ready to commit?</p>
+                <p className="text-sm text-neutral-500">Free mini drops and resources. No spam.</p>
+              </div>
+              <form
+                className="flex gap-2"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const email = (e.target as HTMLFormElement).email.value;
+                  window.location.href = `/signup?email=${encodeURIComponent(email)}`;
+                }}
+              >
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                  className="px-4 py-2 border border-neutral-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-rose-300 focus:border-transparent w-48 md:w-56"
+                />
+                <button
+                  type="submit"
+                  className="bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors whitespace-nowrap"
+                >
+                  Subscribe free
+                </button>
+              </form>
+            </div>
+          </div>
+
           <p className="text-sm text-neutral-400 text-center pt-4">Cancel anytime. No refunds.</p>
         </div>
       </div>

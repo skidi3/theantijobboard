@@ -7,14 +7,16 @@ import { useSearchParams } from "next/navigation";
 import { cdn } from "@/lib/cdn";
 
 function SignupContent() {
-  const [email, setEmail] = useState("");
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
+  const prefillEmail = searchParams.get("email") || "";
+
+  const [email, setEmail] = useState(prefillEmail);
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();

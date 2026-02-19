@@ -1,6 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { Problem } from "@/components/sections/Problem";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Sources } from "@/components/sections/Sources";
 import { Pricing } from "@/components/sections/Pricing";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { FAQ } from "@/components/sections/FAQ";
@@ -162,6 +163,7 @@ export default function Home() {
         <Hero />
         <Problem />
         <HowItWorks />
+        <Sources />
         <Pricing />
         <SocialProof />
         <FAQ />

@@ -39,7 +39,7 @@ export function Hero() {
                 </span>
               </h1>
 
-              <p className="mt-6 text-lg lg:text-xl text-neutral-600 lg:text-neutral-500 font-medium lg:font-normal leading-relaxed max-w-md mx-auto lg:mx-0">
+              <p className="mt-6 text-lg lg:text-xl text-neutral-600 lg:text-neutral-500 font-medium lg:font-normal leading-relaxed max-w-md mx-auto lg:mx-0 backdrop-blur-[2px]">
                 We call founders who just raised, ask who they&apos;re hiring, and send you the roles before they go public.
               </p>
 
@@ -49,7 +49,7 @@ export function Hero() {
                     Get early access
                   </Button>
                 </a>
-                <p className="mt-4 text-base text-neutral-600">
+                <p className="mt-4 text-base text-neutral-600 backdrop-blur-[2px]">
                   Starting at $9/month
                 </p>
               </div>

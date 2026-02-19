@@ -7,6 +7,25 @@ import { cdn } from "@/lib/cdn";
 
 type Plan = "free" | "list" | "edge" | "concierge";
 
+const premiumDrops = [
+  {
+    id: "drop-001",
+    date: "Feb 18",
+    title: "12 Funded Startups · Scorecards · Playbooks",
+    description: "Recently funded startups with hiring signals, founder contacts, and outreach playbooks.",
+    tag: "Wed",
+    startups: 12,
+  },
+];
+
+const freeDrops = [
+  { slug: "500-people", num: "01", title: "Why you're competing with 500 people" },
+  { slug: "72-hour-window", num: "02", title: "The 72-hour window" },
+  { slug: "50m-no-posts", num: "03", title: "$50M raised, no job posts" },
+  { slug: "resume-black-hole", num: "04", title: "The resume black hole" },
+  { slug: "timing-advantage", num: "05", title: "Funded last week, hiring next week" },
+];
+
 export default function DropsPage() {
   const [plan, setPlan] = useState<Plan>("free");
   const [loading, setLoading] = useState(true);
@@ -42,180 +61,101 @@ export default function DropsPage() {
 
   const isPaid = plan === "list" || plan === "edge" || plan === "concierge";
 
-  const getHeadline = () => {
-    if (isPaid) return "First batch dropping tonight";
-    return "Mini drops coming soon";
-  };
-
-  const getDescription = () => {
-    if (isPaid) return "8 recently funded startups with hiring signals, founder contacts, and outreach playbooks.";
-    return "We're working on mini drops for free users. A few startups each week to get you started.";
-  };
-
-  const getNoticeText = () => {
-    if (isPaid) return { title: "Check back tonight", subtitle: "We'll also send you an email when it's ready" };
-    return { title: "We'll notify you", subtitle: "When mini drops are ready for free users" };
-  };
-
-  const notice = getNoticeText();
-
   return (
     <div
       className="min-h-screen p-6 lg:p-10 bg-cover bg-center bg-fixed"
       style={{ backgroundImage: `url(${cdn("/hero-bg.webp")})` }}
     >
       <div className="max-w-2xl mx-auto">
-        {/* Main Card */}
-        <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden">
-          <div className="p-8 md:p-10">
-            {/* Header with greeting */}
-            <div className="flex items-center gap-3 mb-12 md:mb-8">
-              <img src={cdn("/logo.webp")} alt="" className="w-10 h-10" />
-              <p className="font-serif text-xl text-neutral-900">Welcome back</p>
-            </div>
+        {/* Header */}
+        <div className="flex items-center gap-3 mb-8">
+          <img src={cdn("/logo.webp")} alt="" className="w-10 h-10" />
+          <p className="font-serif text-xl text-white">Your Drops</p>
+        </div>
 
-            {/* Hero section with scattered cards */}
-            <div className="relative mb-12 md:mb-8 flex items-center justify-center min-h-[220px]">
-              {/* Scattered startup cards */}
-              <div className="absolute inset-0">
-                {/* Desktop cards */}
-                {[
-                  { name: "Anthropic", logo: "https://cdn.brandfetch.io/anthropic.com/w/512/h/512/symbol", role: "Senior Engineer", top: "0%", left: "0%", rotate: -6 },
-                  { name: "Stripe", logo: "https://cdn.brandfetch.io/stripe.com/w/512/h/512/icon", role: "Product Designer", top: "10%", right: "5%", rotate: 4 },
-                  { name: "Linear", logo: "https://cdn.brandfetch.io/linear.app/w/512/h/512/symbol", role: "Full Stack", bottom: "0%", left: "10%", rotate: 5 },
-                  { name: "OpenAI", logo: "https://cdn.brandfetch.io/openai.com/w/512/h/512/symbol", role: "Research Engineer", bottom: "5%", right: "0%", rotate: -4 },
-                ].map((startup) => (
-                  <div
-                    key={startup.name}
-                    className="absolute bg-white/95 backdrop-blur-sm shadow-md border border-neutral-200 rounded-xl p-2.5 hidden md:block"
-                    style={{
-                      top: startup.top,
-                      left: startup.left,
-                      right: startup.right,
-                      bottom: startup.bottom,
-                      transform: `rotate(${startup.rotate}deg)`,
-                    }}
-                  >
+        {/* Premium Drops */}
+        <div className="mb-8">
+          <p className="text-xs text-white/60 uppercase tracking-wider mb-4 px-1">Latest Drops</p>
+          <div className="grid gap-4">
+            {premiumDrops.map((drop) => (
+              <Link
+                key={drop.id}
+                href={`/drops/${drop.id}`}
+                className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-neutral-300 transition-colors"
+              >
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-lg bg-neutral-100 flex items-center justify-center shrink-0 overflow-hidden p-1">
-                        <img src={startup.logo} alt={startup.name} className="w-full h-full object-contain" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-medium text-xs text-neutral-900 truncate">{startup.name}</p>
-                        <p className="text-[10px] text-neutral-500 truncate">{startup.role}</p>
-                      </div>
+                      <span className="text-xs font-medium text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">{drop.tag}</span>
+                      <span className="text-xs text-neutral-400">{drop.date}</span>
                     </div>
+                    {isPaid ? (
+                      <svg className="w-5 h-5 text-neutral-300 group-hover:text-neutral-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    ) : (
+                      <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    )}
                   </div>
-                ))}
-                {/* Mobile cards - with more gap */}
-                {[
-                  { name: "Anthropic", logo: "https://cdn.brandfetch.io/anthropic.com/w/512/h/512/symbol", role: "Senior Engineer", top: "-8%", left: "-8%", rotate: -6 },
-                  { name: "Stripe", logo: "https://cdn.brandfetch.io/stripe.com/w/512/h/512/icon", role: "Product Designer", top: "0%", right: "-8%", rotate: 4 },
-                  { name: "Linear", logo: "https://cdn.brandfetch.io/linear.app/w/512/h/512/symbol", role: "Full Stack", bottom: "-8%", left: "-3%", rotate: 5 },
-                  { name: "OpenAI", logo: "https://cdn.brandfetch.io/openai.com/w/512/h/512/symbol", role: "Research Engineer", bottom: "-3%", right: "-12%", rotate: -4 },
-                ].map((startup) => (
-                  <div
-                    key={`${startup.name}-mobile`}
-                    className="absolute bg-white/95 backdrop-blur-sm shadow-md border border-neutral-200 rounded-xl p-2.5 md:hidden"
-                    style={{
-                      top: startup.top,
-                      left: startup.left,
-                      right: startup.right,
-                      bottom: startup.bottom,
-                      transform: `rotate(${startup.rotate}deg)`,
-                    }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-lg bg-neutral-100 flex items-center justify-center shrink-0 overflow-hidden p-1">
-                        <img src={startup.logo} alt={startup.name} className="w-full h-full object-contain" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-medium text-xs text-neutral-900 truncate">{startup.name}</p>
-                        <p className="text-[10px] text-neutral-500 truncate">{startup.role}</p>
-                      </div>
-                    </div>
+                  <h3 className="font-serif text-xl text-neutral-900 mb-2">{drop.title}</h3>
+                  <p className="text-sm text-neutral-500 mb-4">{drop.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-neutral-500 bg-neutral-50 px-2.5 py-1 rounded-full">
+                      <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {drop.startups} startups
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-xs text-neutral-500 bg-neutral-50 px-2.5 py-1 rounded-full">
+                      <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Hiring signals
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 text-xs text-neutral-500 bg-neutral-50 px-2.5 py-1 rounded-full">
+                      <svg className="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      Founder contacts
+                    </span>
                   </div>
-                ))}
-              </div>
-
-              {/* Center hero image */}
-              <img
-                src={cdn("/hero-image.webp")}
-                alt="Anti Job Board"
-                className="relative z-10 w-32 h-auto"
-              />
-            </div>
-
-            <div className="text-center mb-6">
-              <p className="text-xs font-medium text-rose-500 uppercase tracking-wider mb-2">Coming Soon</p>
-              <h2 className="font-serif text-3xl md:text-4xl text-neutral-900 mb-3">
-                {getHeadline()}
-              </h2>
-              <p className="text-neutral-500 leading-relaxed max-w-md mx-auto">
-                {getDescription()}
-              </p>
-            </div>
-
-            {isPaid && (
-              <div className="flex flex-wrap justify-center gap-3 mb-8">
-                <span className="inline-flex items-center gap-2 bg-neutral-100 text-neutral-600 px-4 py-2 rounded-full text-sm">
-                  <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Hiring signals
-                </span>
-                <span className="inline-flex items-center gap-2 bg-neutral-100 text-neutral-600 px-4 py-2 rounded-full text-sm">
-                  <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Founder contacts
-                </span>
-                <span className="inline-flex items-center gap-2 bg-neutral-100 text-neutral-600 px-4 py-2 rounded-full text-sm">
-                  <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  Outreach playbooks
-                </span>
-              </div>
-            )}
-
-            <div className={`rounded-xl p-5 border ${isPaid ? "bg-rose-50 border-rose-200" : "bg-neutral-100 border-neutral-200"}`}>
-              <div className="flex items-center gap-4">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 ${isPaid ? "bg-rose-100" : "bg-neutral-200"}`}>
-                  <svg className={`w-6 h-6 ${isPaid ? "text-rose-500" : "text-neutral-500"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
                 </div>
-                <div>
-                  <p className="text-base font-medium text-neutral-900">{notice.title}</p>
-                  <p className="text-sm text-neutral-500">{notice.subtitle}</p>
-                </div>
-              </div>
-            </div>
+                {!isPaid && (
+                  <div className="bg-neutral-50 border-t border-neutral-200 px-6 py-3 flex items-center justify-between">
+                    <p className="text-sm text-neutral-500">Upgrade to access this drop</p>
+                    <span className="text-sm font-medium text-rose-500">View Plans →</span>
+                  </div>
+                )}
+              </Link>
+            ))}
+          </div>
+        </div>
 
-            {/* Upgrade CTA for free users */}
-            {!isPaid && (
-              <div className="border-t border-neutral-100 mt-8 pt-6 text-center">
-                <p className="text-sm text-neutral-500 mb-4">
-                  Want full access now? Upgrade to get complete drops with all startups.
-                </p>
-                <Link
-                  href="/#pricing"
-                  className="inline-flex items-center gap-2 bg-neutral-900 text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-neutral-800 transition-colors"
-                >
-                  View Plans
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </Link>
-              </div>
-            )}
+        {/* Free Resources */}
+        <div className="mb-8">
+          <p className="text-xs text-white/60 uppercase tracking-wider mb-4 px-1">Free Resources</p>
+          <div className="grid gap-3">
+            {freeDrops.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/drops/${item.slug}`}
+                className="bg-white border border-neutral-200 rounded-xl p-5 flex items-center gap-4 hover:border-neutral-300 transition-colors group"
+              >
+                <span className="font-serif text-2xl text-neutral-200 group-hover:text-neutral-300 transition-colors">{item.num}</span>
+                <p className="text-neutral-900 flex-1">{item.title}</p>
+                <svg className="w-4 h-4 text-neutral-300 group-hover:text-neutral-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            ))}
           </div>
         </div>
 
         {/* Concierge Extra */}
         {plan === "concierge" && (
-          <div className="mt-6 bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-2xl p-6 text-white">
+          <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-2xl p-6 text-white">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

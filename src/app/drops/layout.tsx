@@ -13,9 +13,18 @@ interface UserData {
   plan: Plan;
 }
 
-// Mock drops data - in production this would come from database
-const drops: { id: string; date: string; title: string; type: string }[] = [
-  // { id: "feb-18-enhanced", date: "Feb 18", title: "8 Startups · Scorecards · Playbooks", type: "wednesday" },
+// Premium drops (paid content)
+const premiumDrops = [
+  { id: "drop-001", date: "Feb 18", title: "12 Startups · Scorecards · Playbooks", type: "wednesday" as "wednesday" | "sunday" },
+];
+
+// Free resource drops (available to everyone)
+const freeDrops = [
+  { id: "500-people", title: "Why you're competing with 500 people" },
+  { id: "72-hour-window", title: "The 72-hour window" },
+  { id: "50m-no-posts", title: "$50M raised, no job posts" },
+  { id: "resume-black-hole", title: "The resume black hole" },
+  { id: "timing-advantage", title: "Funded last week, hiring next week" },
 ];
 
 const planDetails: Record<Plan, { name: string; color: string; benefits: string[] }> = {
@@ -45,8 +54,7 @@ function getNextDropDay(plan: Plan): string {
   if (plan === "free") return "Upgrade for access";
   if (plan === "concierge") return "Personalized";
 
-  // For now, just show "Tonight" since first batch is dropping tonight
-  return "Tonight";
+  return "Wed & Sun";
 }
 
 export default function DropsLayout({ children }: { children: React.ReactNode }) {
@@ -168,19 +176,21 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
               </div>
             </div>
 
-            {/* Next Drop */}
+            {/* Drops on */}
             <div className="bg-neutral-50 rounded-xl p-3 border border-dashed border-neutral-200">
-              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-1">Next Drop</p>
+              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-1">Drops on</p>
               <p className="text-sm font-medium text-neutral-900">{nextDrop}</p>
             </div>
           </div>
 
           {/* Navigation */}
           <nav className="flex-1 p-4 overflow-y-auto">
+            {/* Premium Drops */}
             <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 px-2">Drops</p>
             <div className="space-y-1">
-              {drops.map((drop) => {
+              {premiumDrops.map((drop) => {
                 const isActive = pathname === `/drops/${drop.id}`;
+                const isPaid = user.plan === "list" || user.plan === "edge" || user.plan === "concierge";
                 return (
                   <Link
                     key={drop.id}
@@ -193,15 +203,44 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
                     }`}
                   >
                     <span className="flex items-center justify-between">
-                      <span>{drop.date}</span>
-                      {drop.type === "sunday" && (
-                        <span className="text-[10px] uppercase tracking-wider text-neutral-400">Sun</span>
-                      )}
-                      {drop.type === "wednesday" && (
-                        <span className="text-[10px] uppercase tracking-wider text-neutral-400">Wed</span>
-                      )}
+                      <span className="font-medium">{drop.date}</span>
+                      <span className="flex items-center gap-1.5">
+                        {!isPaid && (
+                          <svg className="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                        )}
+                        {drop.type === "sunday" && (
+                          <span className="text-[10px] uppercase tracking-wider text-neutral-400">Sun</span>
+                        )}
+                        {drop.type === "wednesday" && (
+                          <span className="text-[10px] uppercase tracking-wider text-neutral-400">Wed</span>
+                        )}
+                      </span>
                     </span>
                     <span className="text-xs text-neutral-400 mt-0.5 block truncate">{drop.title}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Free Resources */}
+            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 mt-6 px-2">Free Resources</p>
+            <div className="space-y-1">
+              {freeDrops.map((drop) => {
+                const isActive = pathname === `/drops/${drop.id}`;
+                return (
+                  <Link
+                    key={drop.id}
+                    href={`/drops/${drop.id}`}
+                    onClick={() => setSidebarOpen(false)}
+                    className={`block px-3 py-2.5 rounded-xl text-sm transition-colors ${
+                      isActive
+                        ? "bg-rose-50 text-rose-600 font-medium"
+                        : "text-neutral-600 hover:bg-neutral-50"
+                    }`}
+                  >
+                    <span className="text-xs block truncate">{drop.title}</span>
                   </Link>
                 );
               })}
