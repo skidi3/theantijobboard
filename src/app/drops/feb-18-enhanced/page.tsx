@@ -1,6 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 import { cdn } from "@/lib/cdn";
+import Link from "next/link";
+
+type Plan = "free" | "list" | "edge" | "concierge";
 
 interface Startup {
   name: string;
@@ -420,43 +425,10 @@ const startups: Startup[] = [
     signal: "Percy Liang is one of the most cited NLP researchers alive, co founder of Together.ai, and runs Stanford's Center for Research on Foundation Models (CRFM). Michael Bernstein co authored work on crowd computing and social computing systems. The non founder path in is through Stanford's CS and HCI departments. They're hiring from their own research networks. Engaging with Percy's HELM benchmark work or Holistic Evaluation papers before reaching out to Joon positions you as someone who reads the full research ecosystem, not just the press coverage.",
     careersUrl: "https://simile.ai/careers",
   },
-  {
-    name: "Abridge",
-    tagline: "abridge.com · Pittsburgh + Remote · Clinical AI",
-    website: "abridge.com",
-    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQFkOLTK2ftuYg/company-logo_200_200/company-logo_200_200/0/1721328310775/abridgehq_logo?e=1773273600&v=beta&t=BROTlmhlhmgDkisgjsXttrv66XyrFbMQ2BkzgLKPxYI",
-    round: "Series D",
-    amount: "$250M",
-    detail: "$2.75B valuation, Feb 17",
-    investors: "Lightspeed, Redpoint, CVS Health, UPMC, Kaiser Permanente, Mayo Clinic",
-    hiringScore: 8,
-    hiringReason: "Kaiser reports 63% physician adoption, 6.3M+ visits transcribed",
-    whatBuilding: "AI that listens to doctor patient conversations in real time, generates clinically accurate notes in the appropriate format for the specialty, and pushes directly into Epic for physician review. Physicians spend 2 to 3 hours every evening doing 'pajama time', typing up notes after seeing patients. Abridge eliminates that. Their new Contextual Reasoning Engine structures output not just for clinical documentation but for revenue cycle management, reducing billing claim rejections. 28 languages, 50+ medical specialties, deployed across primary care, cardiology, oncology, surgery, and mental health.",
-    whyMatters: "Healthcare AI barriers are enormous: clinical accuracy (errors harm patients), HIPAA compliance, and Epic integration (35%+ of US hospital EHRs). Abridge has all three after 7 years of building. New entrants are 7 years behind. The customer investor overlap is unusual: Kaiser, UPMC, Mayo, and Yale New Haven all have financial stakes in Abridge. They're not just buying the product, they're betting on the company. Johns Hopkins is rolling out to all 6,700 clinicians across 6 hospitals and 40 care centers. That's a reference deployment any health system will recognise.",
-    roles: ["Clinical NLP Engineers", "Speech Recognition Engineers", "Epic Integration Specialists", "Enterprise Health System Sales", "Clinical Implementation Specialists", "ML Research Scientists"],
-    rolesNote: "Clinical background is a genuine differentiator here. Shiv has said doctors, nurses, and providers hold key roles at every level of the company. If you're a clinician interested in tech, this is one of the few startups where your clinical credential is more valuable than your technical one. For Epic integration: if you've worked on Epic app orchard, FHIR APIs, or EHR deployment, that's a rare skill set.",
-    founder: {
-      initials: "SR",
-      name: "Shiv Rao, MD",
-      title: "CEO & Cofounder, practicing cardiologist, TIME 100 Health",
-      image: "https://cdn.prod.website-files.com/6279c9d10eb860662e5ec006/65d678e3b65ef864363a45c9_profile-shiv.webp",
-      linkedin: "https://www.linkedin.com/in/shiv-rao-md/",
-      hook: "Shiv is still on call every Thursday and takes one weekend per month of hospital shifts. Not for optics, to stay grounded in the problem. He was a healthcare VC at UPMC before founding Abridge and funded Carnegie Mellon's ML in Health program. He's on the TIME 100 Health list (2024). For clinical AI engineers, reference their Contextual Reasoning Engine specifically, the architecture that structures notes for both clinical accuracy and revenue cycle management. For clinicians, open with your clinical background and a specific observation about documentation burden from your own practice. For enterprise sales, name specific health system CIOs, CMOs, or CMIOs you've closed.",
-      avoid: "Generic AI enthusiasm without healthcare context. They've heard it all. Show you understand why medical speech recognition is different from consumer ASR (clinical vocabulary, ambient noise, multi speaker), or why Epic integration is a structural moat. Don't pitch 'disrupting healthcare', pitch solving the documentation problem specifically.",
-    },
-    cofounder: {
-      name: "Zack Lipton",
-      title: "Chief Research Officer, Carnegie Mellon ML Professor",
-      image: "https://media.licdn.com/dms/image/v2/D4E03AQGChd3NlN7tVA/profile-displayphoto-shrink_400_400/B4EZR2k1BhHAAg-/0/1737156153756?e=1773273600&v=beta&t=28g6_jPkW6b4AUP83baJgw_DHFg8JDigsDXsNCNxNuw",
-    },
-    signal: "Find a clinician who uses Abridge and ask them what they love and hate. Shiv responds deeply to people who've engaged with real clinical users. UPMC, Kaiser, Johns Hopkins, and Mayo are all live. Clinicians at these institutions post about Abridge on LinkedIn and X. Citing one in your outreach signals the research depth Shiv finds credible. Technical candidates should reference Zack Lipton's published work on clinical ML (he's one of the most cited researchers in the field). Pittsburgh is home base, but remote is increasingly supported.",
-    careersUrl: "https://www.abridge.com/careers",
-    featured: true,
-  },
 ];
 
 const trends = [
-  { sector: "Healthcare AI", status: "Hot", text: "Abridge at $2.75B with Kaiser, UPMC, Mayo, and Johns Hopkins deploying. Healthcare AI barriers are enormous: clinical accuracy, HIPAA, Epic integration. Abridge has all three after 7 years. Clinical background is genuinely valued here, making it one of the few AI verticals where non engineers can break in at high levels." },
+  { sector: "Healthcare AI", status: "Hot", text: "Clinical documentation AI reaching inflection point. Major health systems deploying at scale. Healthcare AI barriers are enormous: clinical accuracy, HIPAA, Epic integration. Companies with all three are 7 years ahead of new entrants. Clinical background is genuinely valued here, making it one of the few AI verticals where non engineers can break in at high levels." },
   { sector: "Voice AI", status: "Hot", text: "ElevenLabs at $11B and PolyAI at $750M signal voice is the next major AI interface. ElevenLabs crossed $330M ARR with 250 employees. PolyAI has 2000+ live deployments. Enterprise voice agents are replacing call centers. Speech ML, NLU, real time systems experience is in highest demand." },
   { sector: "AI Infrastructure", status: "Hot", text: "Four of thirteen rounds this week are pure AI infrastructure plays. Ricursive (chip design), Modal (inference), Fundamental (tabular data), Goodfire (interpretability). Consumer AI is slowing while infrastructure bets are accelerating." },
   { sector: "AI Interpretability", status: "Emerging", text: "Goodfire's $150M Series B at $1.25B valuation signals interpretability is graduating from research to enterprise. As AI regulation tightens, companies need to understand what their models are doing. DeepMind and OpenAI alumni are leading this space." },
@@ -497,14 +469,174 @@ function HiringMeter({ score, reason }: { score: number; reason: string }) {
   );
 }
 
-function StartupCard({ startup, index }: { startup: Startup; index: number }) {
+// Blurred content placeholder component
+function BlurredContent({ children, message, ctaText, ctaHref }: { children: React.ReactNode; message: string; ctaText: string; ctaHref: string }) {
   return (
-    <div className={`rounded-2xl overflow-hidden ${startup.featured ? "bg-gradient-to-br from-rose-50 via-pink-50 to-fuchsia-50 border-2 border-rose-200" : "bg-white border border-neutral-200"}`}>
+    <div className="relative">
+      <div className="select-none pointer-events-none" style={{ filter: "blur(8px)" }} aria-hidden="true">
+        {children}
+      </div>
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white/80 rounded-xl">
+        <p className="text-neutral-600 text-center mb-3 px-4">{message}</p>
+        <Link
+          href={ctaHref}
+          className="inline-block bg-neutral-900 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors"
+        >
+          {ctaText}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// Placeholder text for blurred sections (can't be revealed via inspect element)
+const PLACEHOLDER_TEXT = "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur";
+
+function StartupCard({ startup, index, plan }: { startup: Startup; index: number; plan: Plan }) {
+  const canSeeOutreach = plan === "edge" || plan === "concierge";
+  const canSeeContent = plan !== "free";
+
+  // For free users, show blurred card - hide real content completely
+  if (!canSeeContent) {
+    return (
+      <div className="rounded-2xl overflow-hidden bg-white border border-neutral-200">
+        {startup.featured && (
+          <div className="bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-400 px-6 py-3 flex items-center justify-center gap-2">
+            <span className="text-white text-sm font-medium">Big Round</span>
+            <img src={cdn("/logo.webp")} alt="" className="w-4 h-4" />
+          </div>
+        )}
+        <div className="p-6 md:p-8">
+          {/* Header - only show index, blur everything else */}
+          <div className="relative">
+            <div className="flex items-start justify-between gap-4 mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <div>
+                <p className="text-xs text-neutral-400 mb-1">{String(index + 1).padStart(2, "0")} of 12</p>
+                <h2 className="font-serif text-2xl md:text-3xl text-neutral-900">Startup Name Here</h2>
+                <p className="text-sm text-neutral-500">domain.com · San Francisco · AI Category</p>
+              </div>
+              <div className="shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center overflow-hidden">
+                <span className="text-lg font-serif text-rose-600">S</span>
+              </div>
+            </div>
+
+            {/* Funding */}
+            <div className="flex flex-wrap items-center gap-3 mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <span className="bg-neutral-900 text-white px-3 py-1 rounded-full text-sm font-medium">
+                $XXM Series A
+              </span>
+              <span className="text-sm text-neutral-500">$XB valuation</span>
+            </div>
+
+            {/* Details grid */}
+            <div className="grid md:grid-cols-2 gap-4 py-4 border-y border-neutral-100 mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <div>
+                <p className="text-xs text-neutral-400 uppercase tracking-wider mb-1">Investors</p>
+                <p className="text-neutral-900">Top VC Firm, Another Fund</p>
+              </div>
+              <div>
+                <p className="text-xs text-neutral-400 uppercase tracking-wider mb-1">Hiring likelihood</p>
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-0.5">
+                    {[...Array(8)].map((_, i) => (
+                      <div key={i} className={`w-2 h-4 rounded-sm ${i < 6 ? "bg-rose-400" : "bg-neutral-200"}`} />
+                    ))}
+                  </div>
+                  <span className="text-sm text-neutral-600">6/8</span>
+                </div>
+              </div>
+            </div>
+
+            {/* What they're building */}
+            <div className="mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">What they're building</p>
+              <p className="text-neutral-600 leading-relaxed">This company is building cutting edge technology in the AI space that has the potential to reshape how enterprises operate. They have raised significant funding from top tier investors including Sequoia, a]16z, and Founders Fund. The founding team includes ex-Google, ex-Meta, and ex-OpenAI engineers who previously built core infrastructure at scale. Their product addresses a $50B+ market opportunity and they're scaling their team rapidly to capture early market share before competitors catch up.</p>
+            </div>
+
+            {/* Why it matters */}
+            <div className="mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">Why this matters</p>
+              <p className="text-neutral-600 leading-relaxed">The market opportunity here is substantial and timing is perfect. Regulatory tailwinds are accelerating adoption while incumbents are too slow to adapt. This team has strong backgrounds from top companies and their technical approach is differentiated by a proprietary architecture that delivers 10x performance improvements. Early customers include Fortune 500 companies and they've achieved product market fit faster than comparable companies at this stage.</p>
+            </div>
+
+            {/* Roles */}
+            <div className="mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">Likely roles opening</p>
+              <div className="flex flex-wrap gap-2">
+                <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Senior Engineer</span>
+                <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Product Manager</span>
+                <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">ML Engineer</span>
+                <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Infrastructure</span>
+                <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Enterprise AE</span>
+              </div>
+              <p className="text-sm text-neutral-500 mt-3">Competition is relatively low right now. They've pulled from DeepMind, Anthropic, and top YC companies. Window for early employees closes soon.</p>
+            </div>
+
+            {/* Founder outreach */}
+            <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-dashed border-neutral-200 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
+              <div className="flex flex-wrap gap-4 mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
+                    <span className="text-neutral-900 font-semibold text-sm">AB</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-neutral-900">Founder Name</p>
+                    <p className="text-xs text-neutral-500">CEO, ex Google DeepMind, Stanford PhD</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
+                    <span className="text-neutral-900 font-semibold text-sm">CD</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-neutral-900">Cofounder Name</p>
+                    <p className="text-xs text-neutral-500">CTO, ex Meta AI Research</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-neutral-600 leading-relaxed mb-3">This founder responds best to technical depth. Reference their recent paper on distributed systems or their talk at NeurIPS. They value implementation experience over credentials. Show your GitHub and lead with specific architectural questions about their approach.</p>
+              <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> Generic messages about loving their product. Don't lead with your resume. They get hundreds of those. Lead with a specific technical insight about their space that shows you've done real research.</p>
+            </div>
+
+            {/* Signal */}
+            <div className="flex items-start gap-3 mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <img src={cdn("/logo.webp")} alt="" className="w-4 h-4 mt-0.5" />
+              <p className="text-sm text-neutral-600">First hires came directly from the founders' previous teams. The non-research route in: reach out to early employees on LinkedIn, engage with their posts, demonstrate implementation level understanding. They turned down acquisition offers to build something they fully own.</p>
+            </div>
+
+            {/* Overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="text-center px-6 bg-white/95 rounded-xl py-5 shadow-sm border border-neutral-100">
+                <p className="text-neutral-900 font-medium mb-1">Paid drop</p>
+                <p className="text-neutral-500 text-sm mb-3">Subscribe to view, or wait for free mini drops</p>
+                <Link
+                  href="/#pricing"
+                  className="inline-block bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors"
+                >
+                  View Plans
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-2xl overflow-hidden bg-white border border-neutral-200">
+      {startup.featured && (
+        <div className="bg-gradient-to-r from-rose-400 via-pink-400 to-fuchsia-400 px-6 py-3 flex items-center justify-center gap-2">
+          <span className="text-white text-sm font-medium">Big Round</span>
+          <img src={cdn("/logo.webp")} alt="" className="w-4 h-4" />
+        </div>
+      )}
       <div className="p-6 md:p-8">
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-6">
           <div>
-            <p className="text-xs text-neutral-400 mb-1">{String(index + 1).padStart(2, "0")} of 13</p>
+            <p className="text-xs text-neutral-400 mb-1">{String(index + 1).padStart(2, "0")} of 12</p>
             <h2 className="font-serif text-2xl md:text-3xl text-neutral-900">{startup.name}</h2>
             <p className="text-sm text-neutral-500">{startup.tagline}</p>
           </div>
@@ -592,45 +724,88 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
           )}
         </div>
 
-        {/* Founder outreach */}
-        <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-dashed border-neutral-200">
-          <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
-          <div className="flex flex-wrap gap-4 mb-3">
-            <div className="flex items-center gap-3">
-              {startup.founder.image ? (
-                <img src={startup.founder.image} alt={startup.founder.name} className="w-10 h-10 rounded-full object-cover" />
-              ) : (
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                  <span className="text-neutral-900 font-semibold text-sm">{startup.founder.initials}</span>
-                </div>
-              )}
-              <div>
-                <p className="font-medium text-neutral-900">{startup.founder.name}</p>
-                <p className="text-xs text-neutral-500">{startup.founder.title}</p>
-              </div>
-            </div>
-            {startup.cofounder && (
+        {/* Founder outreach - only for edge/concierge */}
+        {canSeeOutreach ? (
+          <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-dashed border-neutral-200">
+            <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
+            <div className="flex flex-wrap gap-4 mb-3">
               <div className="flex items-center gap-3">
-                {startup.cofounder.image ? (
-                  <img src={startup.cofounder.image} alt={startup.cofounder.name} className="w-10 h-10 rounded-full object-cover" />
+                {startup.founder.image ? (
+                  <img src={startup.founder.image} alt={startup.founder.name} className="w-10 h-10 rounded-full object-cover" />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                    <span className="text-neutral-900 font-semibold text-sm">{startup.cofounder.name.split(" ").map(n => n[0]).join("")}</span>
+                    <span className="text-neutral-900 font-semibold text-sm">{startup.founder.initials}</span>
                   </div>
                 )}
                 <div>
-                  <p className="font-medium text-neutral-900">{startup.cofounder.name}</p>
-                  <p className="text-xs text-neutral-500">{startup.cofounder.title}</p>
+                  <p className="font-medium text-neutral-900">{startup.founder.name}</p>
+                  <p className="text-xs text-neutral-500">{startup.founder.title}</p>
                 </div>
               </div>
-            )}
+              {startup.cofounder && (
+                <div className="flex items-center gap-3">
+                  {startup.cofounder.image ? (
+                    <img src={startup.cofounder.image} alt={startup.cofounder.name} className="w-10 h-10 rounded-full object-cover" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
+                      <span className="text-neutral-900 font-semibold text-sm">{startup.cofounder.name.split(" ").map(n => n[0]).join("")}</span>
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-medium text-neutral-900">{startup.cofounder.name}</p>
+                    <p className="text-xs text-neutral-500">{startup.cofounder.title}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+            <p className="text-sm text-neutral-600 leading-relaxed mb-3">{startup.founder.hook}</p>
+            <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> {startup.founder.avoid}</p>
           </div>
-          <p className="text-sm text-neutral-600 leading-relaxed mb-3">{startup.founder.hook}</p>
-          <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> {startup.founder.avoid}</p>
-        </div>
+        ) : (
+          <div className="relative rounded-xl overflow-hidden mb-6">
+            <div className="bg-neutral-50 rounded-xl p-4 border border-dashed border-neutral-200 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
+              <div className="flex flex-wrap gap-4 mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
+                    <span className="text-neutral-900 font-semibold text-sm">XX</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-neutral-900">Firstname Lastname</p>
+                    <p className="text-xs text-neutral-500">CEO, ex Google DeepMind, MIT PhD</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
+                    <span className="text-neutral-900 font-semibold text-sm">YY</span>
+                  </div>
+                  <div>
+                    <p className="font-medium text-neutral-900">Cofounder Name</p>
+                    <p className="text-xs text-neutral-500">CTO, ex Anthropic, Stanford CS</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-neutral-600 leading-relaxed mb-3">This founder has a unique background in machine learning and previously led a core infrastructure team at a major AI lab. Best approach is to reference their recent NeurIPS paper or their talk at the AI conference last month. They respond well to technical depth and specific questions about their architecture. For ML/RL researchers: reference the reward signal architecture. For infra engineers: lead with distributed RL training experience, GPU orchestration. Show your GitHub prominently.</p>
+              <p className="text-sm text-neutral-500 mb-3"><span className="font-medium">Avoid:</span> Generic messages about loving their product. Don't lead with credentials alone. Lead with a specific technical observation that shows you understand their problem space deeply.</p>
+              <p className="text-sm text-neutral-600">The quieter door in: reach out to early employees on LinkedIn first. Engage with their technical posts. The CTO is the hiring lens for engineering roles. They've been on podcasts about their technical approach which is the most detailed account of their thinking.</p>
+            </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              <div className="text-center px-6 bg-white/95 rounded-xl py-4 shadow-sm border border-neutral-100">
+                <p className="text-neutral-900 font-medium mb-1">Edge plan feature</p>
+                <p className="text-neutral-500 text-sm mb-3">Outreach playbooks and founder contacts</p>
+                <a
+                  href="mailto:hello@theantijobboard.com?subject=Upgrade to Edge"
+                  className="inline-block bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors"
+                >
+                  Contact to Upgrade
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
 
-        {/* Signal */}
-        {startup.signal && (
+        {/* Signal - only for edge/concierge */}
+        {startup.signal && canSeeOutreach && (
           <div className="flex items-start gap-3 mb-6">
             <img src={cdn("/logo.webp")} alt="" className="w-4 h-4 mt-0.5" />
             <p className="text-sm text-neutral-600">{startup.signal}</p>
@@ -639,14 +814,20 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
 
         {/* Links */}
         <div className="flex items-center gap-4 pt-4 border-t border-neutral-100">
-          <a
-            href={startup.founder.linkedin || `https://linkedin.com/search/results/people/?keywords=${encodeURIComponent(startup.founder.name)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
-          >
-            {startup.founder.linkedin ? "LinkedIn" : "Find on LinkedIn"}
-          </a>
+          {canSeeOutreach ? (
+            <a
+              href={startup.founder.linkedin || `https://linkedin.com/search/results/people/?keywords=${encodeURIComponent(startup.founder.name)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
+            >
+              {startup.founder.linkedin ? "LinkedIn" : "Find on LinkedIn"}
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 bg-neutral-200 text-neutral-400 px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed">
+              LinkedIn (Edge only)
+            </span>
+          )}
           {startup.careersUrl !== "" && (
             <a
               href={startup.careersUrl || `https://${startup.website}/careers`}
@@ -664,6 +845,38 @@ function StartupCard({ startup, index }: { startup: Startup; index: number }) {
 }
 
 export default function DropPage() {
+  const [plan, setPlan] = useState<Plan>("free");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    const getUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        const { data } = await supabase
+          .from("users")
+          .select("plan")
+          .eq("id", session.user.id)
+          .single();
+        if (data) {
+          setPlan(data.plan as Plan);
+        }
+      }
+      setLoading(false);
+    };
+
+    getUser();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundImage: `url(${cdn("/hero-bg.webp")})` }}>
+        <div className="w-8 h-8 border-2 border-neutral-200 border-t-neutral-900 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <main
       className="min-h-screen bg-cover bg-center bg-fixed"
@@ -677,10 +890,15 @@ export default function DropPage() {
               <img src={cdn("/logo.webp")} alt="" className="w-8 h-8" />
               <span className="font-serif text-lg text-neutral-900">The Anti Job Board</span>
             </div>
-            <p className="text-xs text-neutral-400">Feb 18, 2026</p>
+            <div className="flex items-center gap-3">
+              {plan !== "free" && (
+                <span className="text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full capitalize">{plan}</span>
+              )}
+              <p className="text-xs text-neutral-400">Feb 18, 2026</p>
+            </div>
           </div>
           <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-2">
-            13 startups that just raised
+            12 startups that just raised
           </h1>
           <p className="text-neutral-500">$2.1B+ total this week</p>
         </div>
@@ -688,7 +906,7 @@ export default function DropPage() {
         {/* Stats */}
         <div className="bg-white/95 backdrop-blur rounded-2xl border border-neutral-200 grid grid-cols-3 divide-x divide-neutral-200 mb-8">
           <div className="text-center py-5 px-3">
-            <p className="font-serif text-2xl md:text-3xl text-neutral-900">13</p>
+            <p className="font-serif text-2xl md:text-3xl text-neutral-900">12</p>
             <p className="text-xs text-neutral-400">Startups</p>
           </div>
           <div className="text-center py-5 px-3">
@@ -696,7 +914,7 @@ export default function DropPage() {
             <p className="text-xs text-neutral-400">Total raised</p>
           </div>
           <div className="text-center py-5 px-3">
-            <p className="font-serif text-2xl md:text-3xl text-neutral-900">6</p>
+            <p className="font-serif text-2xl md:text-3xl text-neutral-900">5</p>
             <p className="text-xs text-neutral-400">Unicorn rounds</p>
           </div>
         </div>
@@ -708,7 +926,7 @@ export default function DropPage() {
             <p className="text-xs text-neutral-400 uppercase tracking-wider">This week</p>
           </div>
           <p className="text-neutral-300 leading-relaxed">
-            Healthcare AI breaks out: Abridge at $2.75B with Kaiser, Mayo, Johns Hopkins deploying. Voice AI explodes: ElevenLabs $11B, PolyAI $750M. Six unicorn rounds total. Human simulation emerges as a category. Clinical and research backgrounds are suddenly in high demand.
+Voice AI explodes: ElevenLabs $11B, PolyAI $750M. AI infrastructure dominates with Ricursive at $4B valuation. Five unicorn rounds total. Human simulation emerges as a category with Simile. Research and ML infrastructure backgrounds are in highest demand.
           </p>
         </div>
 
@@ -721,67 +939,209 @@ export default function DropPage() {
         {/* Startups */}
         <div className="space-y-6 mb-12">
           {startups.map((startup, index) => (
-            <StartupCard key={startup.name} startup={startup} index={index} />
+            <StartupCard key={startup.name} startup={startup} index={index} plan={plan} />
           ))}
         </div>
 
         {/* Sector trends */}
-        <div className="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 mb-8">
+        <div className="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 mb-8 relative overflow-hidden">
           <div className="flex items-center gap-3 mb-6">
             <img src={cdn("/logo.webp")} alt="" className="w-5 h-5" />
             <h3 className="font-serif text-xl text-neutral-900">Sector trends</h3>
           </div>
-          <div className="space-y-6">
-            {trends.map((trend) => (
-              <div key={trend.sector} className="border-b border-neutral-100 pb-6 last:border-0 last:pb-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <p className="font-medium text-neutral-900">{trend.sector}</p>
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${
-                    trend.status === "Hot" ? "bg-rose-100 text-rose-600" :
-                    trend.status === "Heating" ? "bg-rose-50 text-rose-500" :
-                    trend.status === "Emerging" ? "bg-neutral-100 text-neutral-600" :
-                    "bg-neutral-100 text-neutral-500"
-                  }`}>
-                    {trend.status}
-                  </span>
+          {(plan === "edge" || plan === "concierge") ? (
+            <div className="space-y-6">
+              {trends.map((trend) => (
+                <div key={trend.sector} className="border-b border-neutral-100 pb-6 last:border-0 last:pb-0">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">{trend.sector}</p>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${
+                      trend.status === "Hot" ? "bg-rose-100 text-rose-600" :
+                      trend.status === "Heating" ? "bg-rose-50 text-rose-500" :
+                      trend.status === "Emerging" ? "bg-neutral-100 text-neutral-600" :
+                      "bg-neutral-100 text-neutral-500"
+                    }`}>
+                      {trend.status}
+                    </span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">{trend.text}</p>
                 </div>
-                <p className="text-sm text-neutral-600 leading-relaxed">{trend.text}</p>
+              ))}
+            </div>
+          ) : (
+            <div className="relative">
+              <div className="space-y-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+                <div className="border-b border-neutral-100 pb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">Voice AI & Conversational</p>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-rose-100 text-rose-600">Hot</span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">Two unicorn rounds this week alone. Enterprise adoption accelerating as accuracy crosses human parity thresholds. Call center disruption entering mainstream with 40% cost reduction claims validated by early adopters. Expect aggressive hiring in voice engineering and ML ops roles.</p>
+                </div>
+                <div className="border-b border-neutral-100 pb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">Healthcare AI</p>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-rose-100 text-rose-600">Hot</span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">Clinical documentation AI reaching inflection point. Major health systems deploying at scale. Regulatory tailwinds with FDA clearing more AI diagnostic tools than ever. The talent gap is real: clinical ML engineers command premium compensation.</p>
+                </div>
+                <div className="border-b border-neutral-100 pb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">Developer Infrastructure</p>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-rose-50 text-rose-500">Heating</span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">AI coding tools driving demand for new infrastructure paradigms. Context and versioning becoming critical. Companies rebuilding their entire dev stack around AI-first workflows. Infrastructure engineers with AI experience are the bottleneck.</p>
+                </div>
+                <div className="border-b border-neutral-100 pb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">Cybersecurity</p>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-rose-50 text-rose-500">Heating</span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">AI-native security emerging as a category. Traditional SIEM being disrupted by companies bringing analysis to data rather than centralizing. Detection engineers and threat researchers in high demand.</p>
+                </div>
+                <div className="pb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">Robotics & Embodied AI</p>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-600">Emerging</span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">World models and simulation becoming core to robotics development. Gaming and media companies pivoting research to physical AI. Cross-functional roles combining CV, RL, and mechanical engineering.</p>
+                </div>
               </div>
-            ))}
-          </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center px-6 bg-white/95 rounded-xl py-4 shadow-sm border border-neutral-100">
+                  <p className="text-neutral-900 font-medium mb-1">Edge plan feature</p>
+                  <p className="text-neutral-500 text-sm mb-3">Sector trends and market analysis</p>
+                  <a
+                    href="mailto:hello@theantijobboard.com?subject=Upgrade to Edge"
+                    className="inline-block bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors"
+                  >
+                    Contact to Upgrade
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Comp benchmarks */}
-        <div className="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 mb-8">
+        <div className="bg-white/95 backdrop-blur rounded-2xl p-6 md:p-8 mb-8 relative overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <img src={cdn("/logo.webp")} alt="" className="w-5 h-5" />
             <h3 className="font-serif text-xl text-neutral-900">Comp benchmarks</h3>
           </div>
           <p className="text-sm text-neutral-400 mb-6">Use as a floor in negotiation, not a ceiling.</p>
-          <div className="overflow-x-auto -mx-6 px-6">
-            <table className="w-full text-sm min-w-[640px]">
-              <thead>
-                <tr className="border-b border-neutral-200">
-                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Role</th>
-                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Stage</th>
-                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Base</th>
-                  <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Equity (4yr)</th>
-                  <th className="text-left py-3 text-neutral-400 font-normal">Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {compBenchmarks.map((row, i) => (
-                  <tr key={i} className="border-b border-neutral-100 last:border-0">
-                    <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.role}</td>
-                    <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">{row.stage}</td>
-                    <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.base}</td>
-                    <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.equity}</td>
-                    <td className="py-3 text-neutral-500 text-xs">{row.notes}</td>
+          {(plan === "edge" || plan === "concierge") ? (
+            <div className="overflow-x-auto -mx-6 px-6">
+              <table className="w-full text-sm min-w-[640px]">
+                <thead>
+                  <tr className="border-b border-neutral-200">
+                    <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Role</th>
+                    <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Stage</th>
+                    <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Base</th>
+                    <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Equity (4yr)</th>
+                    <th className="text-left py-3 text-neutral-400 font-normal">Notes</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {compBenchmarks.map((row, i) => (
+                    <tr key={i} className="border-b border-neutral-100 last:border-0">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.role}</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">{row.stage}</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.base}</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">{row.equity}</td>
+                      <td className="py-3 text-neutral-500 text-xs">{row.notes}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="relative">
+              <div className="overflow-x-auto -mx-6 px-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
+                <table className="w-full text-sm min-w-[640px]">
+                  <thead>
+                    <tr className="border-b border-neutral-200">
+                      <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Role</th>
+                      <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Stage</th>
+                      <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Base</th>
+                      <th className="text-left py-3 pr-6 text-neutral-400 font-normal whitespace-nowrap">Equity (4yr)</th>
+                      <th className="text-left py-3 text-neutral-400 font-normal">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">ML / AI Researcher</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Seed</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$200K-$280K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.5%-1.5%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Ricursive, Fundamental territory</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">ML / AI Researcher</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Series A</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$220K-$320K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.1%-0.5%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Still meaningful upside at $4B valuation</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Senior SWE</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Seed</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$160K-$220K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.2%-0.8%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Entire, early Modal territory</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Senior SWE</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Series A/B</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$170K-$240K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.05%-0.2%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Standard at Vega, Hauler Hero range</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Enterprise AE</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Series A</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$120K-$160K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.05%-0.15%</td>
+                      <td className="py-3 text-neutral-500 text-xs">OTE typically 2x base</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Founding AE</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Seed</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$100K-$140K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.1%-0.4%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Monaco, early Hauler Hero territory</td>
+                    </tr>
+                    <tr className="border-b border-neutral-100">
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Product Manager</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Series A</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$160K-$210K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.05%-0.2%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Runway, Fundamental range</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">GPU / Infra Engineer</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Series A/B</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$200K-$280K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.05%-0.25%</td>
+                      <td className="py-3 text-neutral-500 text-xs">Modal Labs, highest demand right now</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center px-6 bg-white/95 rounded-xl py-4 shadow-sm border border-neutral-100">
+                  <p className="text-neutral-900 font-medium mb-1">Edge plan feature</p>
+                  <p className="text-neutral-500 text-sm mb-3">Compensation benchmarks by role and stage</p>
+                  <a
+                    href="mailto:hello@theantijobboard.com?subject=Upgrade to Edge"
+                    className="inline-block bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-neutral-800 transition-colors"
+                  >
+                    Contact to Upgrade
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* How we calculate */}
