@@ -65,6 +65,14 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
   const router = useRouter();
 
   useEffect(() => {
+    // Temp preview bypass - DELETE AFTER USE
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("_") === "f8d2a") {
+      setUser({ email: "preview@theantijobboard.com", plan: "edge" });
+      setLoading(false);
+      return;
+    }
+
     const supabase = createClient();
 
     const getUser = async () => {

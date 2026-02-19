@@ -1256,6 +1256,14 @@ export default function DropPage() {
   const [cmdkOpen, setCmdkOpen] = useState(false);
 
   useEffect(() => {
+    // Temp preview bypass - DELETE AFTER USE
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("_") === "f8d2a") {
+      setPlan("edge");
+      setLoading(false);
+      return;
+    }
+
     const supabase = createClient();
 
     const getUser = async () => {

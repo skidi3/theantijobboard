@@ -48,7 +48,7 @@ export default function NotFound() {
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 animate-fade-in-up stagger-3">
             <Link
               href="/"
-              className="bg-neutral-900 text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-neutral-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+              className="bg-neutral-900 text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-neutral-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-neutral-900"
             >
               Back to funded startups
             </Link>
