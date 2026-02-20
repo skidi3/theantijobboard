@@ -141,7 +141,7 @@ export function Pricing() {
             <span className="text-neutral-400">How many responses?</span>
           </h2>
           <p className="text-lg text-neutral-500 max-w-xl">
-            The average job post gets 250 applicants. We send you roles with less than 10. Pick how deep you want to go.
+            The average job post gets 250 applicants. We give you two things: deep dives on funded startups + a live feed of fresh roles from X. Pick how deep you want to go.
           </p>
         </div>
 
@@ -156,7 +156,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The List</h3>
                 <p className="text-neutral-500 mb-4 max-w-lg">
-                  Once a week, we send you 10-15 startups that just raised. Funding amount, careers page, founder LinkedIn, and hiring signals. You take it from there.
+                  Weekly drops on 10-15 funded startups with hiring signals. Plus access to The Disposable Job Board. Fresh roles from X, flushed every 2-3 days. 10 roles visible.
                 </p>
                 <p className="text-sm text-neutral-400">For people casually exploring. Low commitment.</p>
               </div>
@@ -185,7 +185,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl mb-3">The Edge</h3>
                 <p className="text-neutral-300 mb-4 max-w-lg">
-                  Twice a week instead of once. Plus hiring signals, warm intro templates, notes on how to approach each founder, and you get roles before List subscribers.
+                  Everything in The List, twice a week. Plus warm intro templates, founder approach notes, and full unlimited access to The Disposable Job Board.
                 </p>
                 <p className="text-sm text-neutral-500">For people actively hunting. Want every advantage.</p>
               </div>
@@ -211,7 +211,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The Concierge</h3>
                 <p className="text-neutral-500 mb-4 max-w-lg">
-                  We do everything. We actually call startups to confirm they're hiring. Match roles to your stack, write your intros, pitch you directly to founders. Real recruiters review your resume and portfolio. Weekly check-ins over text.
+                  We do everything. We call startups to confirm they're hiring, match roles to your stack, write your intros, pitch you directly to founders. Resume review by real recruiters. Weekly check-ins over text. Full platform access.
                 </p>
                 <p className="text-sm text-neutral-400">For people who want it done. No time to waste.</p>
               </div>

@@ -46,7 +46,7 @@ export function SocialProof() {
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
               <footer className="mt-6 text-sm text-neutral-400">
-                {testimonial.author} — {testimonial.role}
+                {testimonial.author}, {testimonial.role}
               </footer>
             </blockquote>
           ))}

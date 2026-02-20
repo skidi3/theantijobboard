@@ -13,9 +13,14 @@ interface UserData {
   plan: Plan;
 }
 
-// Premium drops (paid content)
-const premiumDrops = [
+// Premium drops (paid content) - deep dives on funded startups
+const fundedDrops = [
   { id: "drop-001", date: "Feb 18", title: "12 Startups · Scorecards · Playbooks", type: "wednesday" as "wednesday" | "sunday" },
+];
+
+// Live feed - refreshes weekly
+const liveFeed = [
+  { id: "7-day-list", title: "The Disposable Job Board", subtitle: "25 roles · Refreshes every 2-3 days" },
 ];
 
 // Free resource drops (available to everyone)
@@ -193,10 +198,10 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
 
           {/* Navigation */}
           <nav className="flex-1 p-4 overflow-y-auto">
-            {/* Premium Drops */}
-            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 px-2">Drops</p>
+            {/* Funded Drops - deep dives */}
+            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 px-2">Funded Drops</p>
             <div className="space-y-1">
-              {premiumDrops.map((drop) => {
+              {fundedDrops.map((drop) => {
                 const isActive = pathname === `/drops/${drop.id}`;
                 const isPaid = user.plan === "list" || user.plan === "edge" || user.plan === "concierge";
                 return (
@@ -215,7 +220,7 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
                       <span className="flex items-center gap-1.5">
                         {!isPaid && (
                           <svg className="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                         )}
                         {drop.type === "sunday" && (
@@ -227,6 +232,40 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
                       </span>
                     </span>
                     <span className="text-xs text-neutral-400 mt-0.5 block truncate">{drop.title}</span>
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Live Feed */}
+            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 mt-6 px-2">Live Feed</p>
+            <div className="space-y-1">
+              {liveFeed.map((item) => {
+                const isActive = pathname === `/drops/${item.id}`;
+                const isPaid = user.plan === "list" || user.plan === "edge" || user.plan === "concierge";
+                return (
+                  <Link
+                    key={item.id}
+                    href={`/drops/${item.id}`}
+                    onClick={() => setSidebarOpen(false)}
+                    className={`block px-3 py-2.5 rounded-xl text-sm transition-colors ${
+                      isActive
+                        ? "bg-rose-50 text-rose-600 font-medium"
+                        : "text-neutral-600 hover:bg-neutral-50"
+                    }`}
+                  >
+                    <span className="flex items-center justify-between">
+                      <span className="font-medium">{item.title}</span>
+                      {!isPaid && (
+                        <svg className="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      )}
+                    </span>
+                    <span className="text-xs text-neutral-400 mt-0.5 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                      {item.subtitle}
+                    </span>
                   </Link>
                 );
               })}
