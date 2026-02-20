@@ -20,7 +20,7 @@ const fundedDrops = [
 
 // Live feed - refreshes weekly
 const liveFeed = [
-  { id: "7-day-list", title: "The Disposable Job Board", subtitle: "25 roles · Refreshes every 2-3 days" },
+  { id: "7-day-list", title: "The Disposable Job Board", subtitle: "Refreshes every 2-3 days" },
 ];
 
 // Free resource drops (available to everyone)

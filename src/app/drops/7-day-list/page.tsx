@@ -11,51 +11,57 @@ interface HiringStartup {
   name: string;
   category: "Engineering" | "Design" | "Marketing";
   roles: string[];
-  xPostLink: string;
+  link: string;
 }
 
 // Data refreshes every 2-3 days - last updated: Feb 20, 2026
 const startups: HiringStartup[] = [
   // New roles (Feb 20)
-  { name: "Stealth Healthtech (AI Care Coordination)", category: "Engineering", roles: ["Full-Stack Engineer (Founding)", "ML Engineer (Founding)"], xPostLink: "https://x.com/nazzari/status/2024551493869981873" },
-  { name: "Stealth (Social Media Leads)", category: "Engineering", roles: ["Founding Engineer"], xPostLink: "https://x.com/nazzari/status/2024551493869981873" },
-  { name: "Stealth Consumer App (Tamagotchi)", category: "Engineering", roles: ["iOS Engineer"], xPostLink: "https://x.com/nazzari/status/2024551493869981873" },
-  { name: "BelonixHQ", category: "Engineering", roles: ["Frontend Engineer", "Backend Engineer"], xPostLink: "https://x.com/alexabelonix/status/2024546064003371480" },
-  { name: "Pre-launch Startup", category: "Engineering", roles: ["Senior Frontend Engineer"], xPostLink: "https://x.com/amosuibk/status/2024175260719870410" },
-  { name: "Unnamed Startup", category: "Engineering", roles: ["Lead Front End Engineer", "Senior Full Stack Engineer (web3)"], xPostLink: "https://x.com/tommartell/status/2024621133170118809" },
-  { name: "Startup in Port Harcourt", category: "Marketing", roles: ["Digital Marketer", "Product Designer", "Mobile Developer"], xPostLink: "https://x.com/BarnabasBe4043/status/2024367929962209667" },
-  { name: "Dmazing Studio", category: "Design", roles: ["Product Design Intern"], xPostLink: "https://x.com/kiawisherman/status/2024067900672237884" },
-  { name: "FujiCommerce", category: "Design", roles: ["Graphic Designer Intern"], xPostLink: "https://x.com/UseFujiCommerce/status/2023059532155691136" },
-  { name: "Idylabs", category: "Design", roles: ["Product Designer"], xPostLink: "https://x.com/Ifekam_Ebunu/status/2022596974520815826" },
-  { name: "Sewna", category: "Design", roles: ["UX Designer"], xPostLink: "https://x.com/i_sudeepa/status/2022555275606327491" },
-  { name: "Legal AI Startup", category: "Engineering", roles: ["Full Stack Engineer"], xPostLink: "https://x.com/theantijobboard/status/2022215264469930319" },
-  { name: "VeriBite", category: "Marketing", roles: ["Short-Form Video Editor"], xPostLink: "https://x.com/GorillaGator_/status/2023629504246108461" },
-  { name: "Eusate", category: "Marketing", roles: ["Marketing Lead"], xPostLink: "https://x.com/eusate_ai/status/2023359616307147231" },
-  { name: "Unnamed Startup Project", category: "Marketing", roles: ["Social Media Manager Intern", "Animator"], xPostLink: "https://x.com/zmmagic0/status/2023988891674452122" },
-  { name: "Appistryy", category: "Marketing", roles: ["Business Development Intern"], xPostLink: "https://x.com/appistryy/status/2022744843466998022" },
-  { name: "AI Web Scraping Startup", category: "Engineering", roles: ["Engineering Roles", "Marketing Roles"], xPostLink: "https://x.com/theantijobboard/status/2024472977941897492" },
+  { name: "Raindrop AI", category: "Engineering", roles: ["Founding ML Engineer (SF)", "Product Engineer (SF)", "Backend / Infra Engineer (SF)", "Developer Experience (SF)"], link: "https://www.raindrop.ai/careers" },
+  { name: "Sarvam AI", category: "Engineering", roles: ["AI Researcher – Autonomous Agents", "Software Engineer – Backend", "ML Engineer – Computer Vision & VLM", "Frontend Engineer, API Platform", "Backend AI Engineer", "Backend Engineer - API Team", "Senior Frontend Engineer", "Principal Security Engineer", "ML Engineer", "Backend Engineer - Samvaad", "Frontend Engineer Intern", "ML Engineer – Studio", "Business Development Rep", "Senior Account Executive", "GTM - Reasoning AI", "Partnerships Lead (GSIs)", "Account Executive – Enterprise", "Product Marketing Manager"], link: "https://careers.kula.ai/sarvam-ai" },
+  { name: "SuperLiving", category: "Engineering", roles: ["AI Engineer (Bengaluru)"], link: "https://superliving.app/careers/" },
+  { name: "Wavelength", category: "Engineering", roles: ["Cold DM founder for roles"], link: "https://www.heywavelength.com/" },
+  { name: "Plexe AI", category: "Engineering", roles: ["Forward Deployed Engineer (Remote India)"], link: "https://www.linkedin.com/jobs/view/4370997460/" },
+  { name: "Mygate", category: "Engineering", roles: ["SDE-1 Backend (Java, Spring Boot)"], link: "https://binary.so/Ni2ZZm1" },
+  { name: "Stealth Healthtech (AI Care Coordination)", category: "Engineering", roles: ["Full-Stack Engineer (Founding)", "ML Engineer (Founding)"], link: "https://x.com/nazzari/status/2024551493869981873" },
+  { name: "Stealth (Social Media Leads)", category: "Engineering", roles: ["Founding Engineer"], link: "https://x.com/nazzari/status/2024551493869981873" },
+  { name: "Stealth Consumer App (Tamagotchi)", category: "Engineering", roles: ["iOS Engineer"], link: "https://x.com/nazzari/status/2024551493869981873" },
+  { name: "BelonixHQ", category: "Engineering", roles: ["Frontend Engineer", "Backend Engineer"], link: "https://x.com/alexabelonix/status/2024546064003371480" },
+  { name: "Pre-launch Startup", category: "Engineering", roles: ["Senior Frontend Engineer"], link: "https://x.com/amosuibk/status/2024175260719870410" },
+  { name: "Unnamed Startup", category: "Engineering", roles: ["Lead Front End Engineer", "Senior Full Stack Engineer (web3)"], link: "https://x.com/tommartell/status/2024621133170118809" },
+  { name: "Startup in Port Harcourt", category: "Marketing", roles: ["Digital Marketer", "Product Designer", "Mobile Developer"], link: "https://x.com/BarnabasBe4043/status/2024367929962209667" },
+  { name: "Dmazing Studio", category: "Design", roles: ["Product Design Intern"], link: "https://x.com/kiawisherman/status/2024067900672237884" },
+  { name: "FujiCommerce", category: "Design", roles: ["Graphic Designer Intern"], link: "https://x.com/UseFujiCommerce/status/2023059532155691136" },
+  { name: "Idylabs", category: "Design", roles: ["Product Designer"], link: "https://x.com/Ifekam_Ebunu/status/2022596974520815826" },
+  { name: "Sewna", category: "Design", roles: ["UX Designer"], link: "https://x.com/i_sudeepa/status/2022555275606327491" },
+  { name: "Legal AI Startup", category: "Engineering", roles: ["Full Stack Engineer"], link: "https://x.com/theantijobboard/status/2022215264469930319" },
+  { name: "VeriBite", category: "Marketing", roles: ["Short-Form Video Editor"], link: "https://x.com/GorillaGator_/status/2023629504246108461" },
+  { name: "Eusate", category: "Marketing", roles: ["Marketing Lead"], link: "https://x.com/eusate_ai/status/2023359616307147231" },
+  { name: "Unnamed Startup Project", category: "Marketing", roles: ["Social Media Manager Intern", "Animator"], link: "https://x.com/zmmagic0/status/2023988891674452122" },
+  { name: "Appistryy", category: "Marketing", roles: ["Business Development Intern"], link: "https://x.com/appistryy/status/2022744843466998022" },
+  { name: "AI Web Scraping Startup", category: "Engineering", roles: ["Engineering Roles", "Marketing Roles"], link: "https://x.com/theantijobboard/status/2024472977941897492" },
   // Previous roles (Feb 19)
-  { name: "Fast-Growing Tech Startup", category: "Engineering", roles: ["Backend Software Engineer (Node.js)", "Full Stack Software Engineer (Laravel + Vue.js)"], xPostLink: "https://x.com/Technavie/status/2024248503229436123" },
-  { name: "Healthverity", category: "Engineering", roles: ["Forward Deployed Engineer (SW Engineer IV+)"], xPostLink: "https://x.com/WellfoundHQ/status/2024144482778636604" },
-  { name: "Very Cool Startup", category: "Engineering", roles: ["Founding Engineer"], xPostLink: "https://x.com/ViktorPlacifai/status/2024120979312574768" },
-  { name: "Simple (Crypto Wallet)", category: "Engineering", roles: ["DevOps Engineer"], xPostLink: "https://x.com/crypto_vazima/status/2024095167293128965" },
-  { name: "Dubai-Based FinTech Startup", category: "Engineering", roles: ["Data Engineer"], xPostLink: "https://x.com/crypto_vazima/status/2023771013062791495" },
-  { name: "Aquis Search (for Dubai Startup)", category: "Engineering", roles: ["Data Engineer"], xPostLink: "https://x.com/crypto_vazima/status/2023755463008153818" },
-  { name: "Tao.app (Bittensor Ecosystem)", category: "Engineering", roles: ["Senior Front-End/Full-Stack Developer", "Senior Python Developer"], xPostLink: "https://x.com/crypto_vazima/status/2022254384910913965" },
-  { name: "Pradeep's Startup", category: "Engineering", roles: ["Full Stack Developer (Frontend Heavy)"], xPostLink: "https://x.com/exvillager/status/2021831187329962424" },
-  { name: "Juspay", category: "Engineering", roles: ["Software Development Engineer (Backend)"], xPostLink: "https://x.com/StartupJobsIN/status/2022858878946558286" },
-  { name: "ET Money", category: "Engineering", roles: ["Software Engineer I"], xPostLink: "https://x.com/StartupJobsIN/status/2022174355669803479" },
-  { name: "Venture-Backed Crypto Startup", category: "Engineering", roles: ["Staff Fullstack Engineer"], xPostLink: "https://x.com/melkxy/status/2022676348993667114" },
-  { name: "Fleetx", category: "Engineering", roles: ["Backend Engineers"], xPostLink: "https://x.com/StartupJobsIN/status/2024147542309789991" },
-  { name: "Stream", category: "Engineering", roles: ["Backend Team Lead (Go)"], xPostLink: "https://x.com/aihackerjobs/status/2023775146042126557" },
-  { name: "Seed-Stage LLM Infrastructure Startup", category: "Engineering", roles: ["Senior Rust Backend Engineer"], xPostLink: "https://x.com/rustjobs_dev/status/2023291846185644332" },
-  { name: "CSA", category: "Engineering", roles: ["Python Developer", "Systems Administrator"], xPostLink: "https://x.com/TechStartupJobs/status/2023351827618525449" },
-  { name: "AI Company", category: "Design", roles: ["Visual Designer"], xPostLink: "https://x.com/RockyRoark/status/2022154560949698891" },
-  { name: "Terminal X (AI Fintech)", category: "Marketing", roles: ["Marketing/Content Role"], xPostLink: "https://x.com/Terminalx_ai/status/2024266336831230074" },
-  { name: "Knot", category: "Marketing", roles: ["Performance Marketing Lead"], xPostLink: "https://x.com/StartupJobsIN/status/2023730842120679514" },
-  { name: "UnlearnAI", category: "Marketing", roles: ["Director of Product Marketing"], xPostLink: "https://x.com/WellfoundHQ/status/2023418342871023628" },
-  { name: "TenseAI", category: "Marketing", roles: ["HR & Marketing Interns"], xPostLink: "https://x.com/MrDeependraa/status/2023284024370946529" },
-  { name: "Global Company", category: "Marketing", roles: ["Marketing Generalist (Growth & Content)"], xPostLink: "https://x.com/the_careerblog/status/2022145363705233465" },
+  { name: "Fast-Growing Tech Startup", category: "Engineering", roles: ["Backend Software Engineer (Node.js)", "Full Stack Software Engineer (Laravel + Vue.js)"], link: "https://x.com/Technavie/status/2024248503229436123" },
+  { name: "Healthverity", category: "Engineering", roles: ["Forward Deployed Engineer (SW Engineer IV+)"], link: "https://x.com/WellfoundHQ/status/2024144482778636604" },
+  { name: "Very Cool Startup", category: "Engineering", roles: ["Founding Engineer"], link: "https://x.com/ViktorPlacifai/status/2024120979312574768" },
+  { name: "Simple (Crypto Wallet)", category: "Engineering", roles: ["DevOps Engineer"], link: "https://x.com/crypto_vazima/status/2024095167293128965" },
+  { name: "Dubai-Based FinTech Startup", category: "Engineering", roles: ["Data Engineer"], link: "https://x.com/crypto_vazima/status/2023771013062791495" },
+  { name: "Aquis Search (for Dubai Startup)", category: "Engineering", roles: ["Data Engineer"], link: "https://x.com/crypto_vazima/status/2023755463008153818" },
+  { name: "Tao.app (Bittensor Ecosystem)", category: "Engineering", roles: ["Senior Front-End/Full-Stack Developer", "Senior Python Developer"], link: "https://x.com/crypto_vazima/status/2022254384910913965" },
+  { name: "Pradeep's Startup", category: "Engineering", roles: ["Full Stack Developer (Frontend Heavy)"], link: "https://x.com/exvillager/status/2021831187329962424" },
+  { name: "Juspay", category: "Engineering", roles: ["Software Development Engineer (Backend)"], link: "https://x.com/StartupJobsIN/status/2022858878946558286" },
+  { name: "ET Money", category: "Engineering", roles: ["Software Engineer I"], link: "https://x.com/StartupJobsIN/status/2022174355669803479" },
+  { name: "Venture-Backed Crypto Startup", category: "Engineering", roles: ["Staff Fullstack Engineer"], link: "https://x.com/melkxy/status/2022676348993667114" },
+  { name: "Fleetx", category: "Engineering", roles: ["Backend Engineers"], link: "https://x.com/StartupJobsIN/status/2024147542309789991" },
+  { name: "Stream", category: "Engineering", roles: ["Backend Team Lead (Go)"], link: "https://x.com/aihackerjobs/status/2023775146042126557" },
+  { name: "Seed-Stage LLM Infrastructure Startup", category: "Engineering", roles: ["Senior Rust Backend Engineer"], link: "https://x.com/rustjobs_dev/status/2023291846185644332" },
+  { name: "CSA", category: "Engineering", roles: ["Python Developer", "Systems Administrator"], link: "https://x.com/TechStartupJobs/status/2023351827618525449" },
+  { name: "AI Company", category: "Design", roles: ["Visual Designer"], link: "https://x.com/RockyRoark/status/2022154560949698891" },
+  { name: "Terminal X (AI Fintech)", category: "Marketing", roles: ["Marketing/Content Role"], link: "https://x.com/Terminalx_ai/status/2024266336831230074" },
+  { name: "Knot", category: "Marketing", roles: ["Performance Marketing Lead"], link: "https://x.com/StartupJobsIN/status/2023730842120679514" },
+  { name: "UnlearnAI", category: "Marketing", roles: ["Director of Product Marketing"], link: "https://x.com/WellfoundHQ/status/2023418342871023628" },
+  { name: "TenseAI", category: "Marketing", roles: ["HR & Marketing Interns"], link: "https://x.com/MrDeependraa/status/2023284024370946529" },
+  { name: "Global Company", category: "Marketing", roles: ["Marketing Generalist (Growth & Content)"], link: "https://x.com/the_careerblog/status/2022145363705233465" },
 ];
 
 const categoryColors: Record<string, string> = {
@@ -290,23 +296,25 @@ export default function SevenDayListPage() {
                     </div>
                   </div>
                   <a
-                    href={startup.xPostLink}
+                    href={startup.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="shrink-0 flex items-center gap-2 px-3 py-2 rounded-xl bg-neutral-900 text-white text-sm font-medium hover:bg-neutral-800 transition-colors"
                   >
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
                     </svg>
-                    View post
+                    View
                   </a>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex gap-2 overflow-x-auto pb-1 -mb-1 scrollbar-hide">
                   {startup.roles.map((role) => (
                     <span
                       key={role}
-                      className="text-sm bg-neutral-100 text-neutral-700 px-3 py-1.5 rounded-lg"
+                      className="text-sm bg-neutral-100 text-neutral-700 px-3 py-1.5 rounded-lg whitespace-nowrap shrink-0"
                     >
                       {role}
                     </span>
