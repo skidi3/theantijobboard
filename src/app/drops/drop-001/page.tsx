@@ -466,11 +466,11 @@ function HiringMeter({ score, reason }: { score: number; reason: string }) {
             <div
               key={i}
               className="w-1.5 h-5 rounded-sm"
-              style={{ backgroundColor: i < score ? "#22c55e" : "#e5e5e5" }}
+              style={{ backgroundColor: i < score ? "#f43f5e" : "#e5e5e5" }}
             />
           ))}
         </div>
-        <span className="text-sm font-medium text-green-600">
+        <span className="text-sm font-medium text-rose-600">
           {score >= 7 ? "Very High" : score >= 5 ? "High" : "Medium"}
         </span>
       </div>
@@ -1319,7 +1319,18 @@ export default function DropPage() {
       className="min-h-screen bg-cover bg-center bg-fixed"
       style={{ backgroundImage: `url(${cdn("/hero-bg.webp")})` }}
     >
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8 lg:py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 lg:py-12">
+        {/* Back Button */}
+        <Link
+          href="/drops"
+          className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-6 transition-colors"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span className="text-sm">Back to drops</span>
+        </Link>
+
         {/* Header */}
         <div className="bg-white/95 backdrop-blur rounded-2xl p-5 sm:p-8 md:p-10 mb-8">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-5 sm:mb-6">

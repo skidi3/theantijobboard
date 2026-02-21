@@ -11,7 +11,7 @@ export default function FiftyMillionNoPostsPage() {
       className="min-h-screen p-6 lg:p-10 bg-cover bg-center bg-fixed"
       style={{ backgroundImage: `url(${cdn("/hero-bg.webp")})` }}
     >
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl border border-neutral-200 overflow-hidden">
           {/* Header */}
           <div className="p-8 md:p-10 border-b border-dashed border-neutral-200">

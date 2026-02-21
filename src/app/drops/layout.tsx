@@ -20,7 +20,7 @@ const fundedDrops = [
 
 // Live feed - refreshes weekly
 const liveFeed = [
-  { id: "7-day-list", title: "The Disposable Job Board", subtitle: "Refreshes every 2-3 days" },
+  { id: "jobs", title: "The Disposable Job Board", subtitle: "Refreshes every 2-3 days" },
 ];
 
 // Free resource drops (available to everyone)
@@ -173,29 +173,6 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
             </Link>
           </div>
 
-          {/* User Info */}
-          <div className="p-6 border-b border-neutral-100">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                <span className="text-neutral-900 font-semibold text-sm">
-                  {user.email.charAt(0).toUpperCase()}
-                </span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-neutral-900 truncate">{user.email}</p>
-                <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${plan.color}`}>
-                  {plan.name}
-                </span>
-              </div>
-            </div>
-
-            {/* Drops on */}
-            <div className="bg-neutral-50 rounded-xl p-3 border border-dashed border-neutral-200">
-              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-1">Drops on</p>
-              <p className="text-sm font-medium text-neutral-900">{nextDrop}</p>
-            </div>
-          </div>
-
           {/* Navigation */}
           <nav className="flex-1 p-4 overflow-y-auto">
             {/* Funded Drops - deep dives */}
@@ -263,7 +240,7 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
                       )}
                     </span>
                     <span className="text-xs text-neutral-400 mt-0.5 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse" />
                       {item.subtitle}
                     </span>
                   </Link>
@@ -299,7 +276,7 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
               <div className="space-y-2 px-2">
                 {plan.benefits.map((benefit, i) => (
                   <div key={i} className="flex items-center gap-2 text-sm text-neutral-600">
-                    <svg className="w-4 h-4 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     {benefit}
@@ -309,22 +286,40 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
             </div>
           </nav>
 
-          {/* Bottom Actions */}
-          <div className="p-4 border-t border-neutral-100 space-y-2">
-            {user.plan !== "concierge" && (
-              <Link
-                href="/#pricing"
-                className="block w-full text-center bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
+          {/* User Info + Bottom Actions */}
+          <div className="p-4 border-t border-neutral-100 space-y-4">
+            {/* User Info */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
+                <span className="text-neutral-900 font-semibold text-sm">
+                  {user.email.charAt(0).toUpperCase()}
+                </span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-neutral-900 truncate">{user.email}</p>
+                <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${plan.color}`}>
+                  {plan.name}
+                </span>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="space-y-2">
+              {user.plan !== "concierge" && (
+                <Link
+                  href="/#pricing"
+                  className="block w-full text-center bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
+                >
+                  Upgrade Plan
+                </Link>
+              )}
+              <button
+                onClick={handleLogout}
+                className="w-full text-center text-neutral-500 hover:text-neutral-700 px-4 py-2 text-sm transition-colors"
               >
-                Upgrade Plan
-              </Link>
-            )}
-            <button
-              onClick={handleLogout}
-              className="w-full text-center text-neutral-500 hover:text-neutral-700 px-4 py-2 text-sm transition-colors"
-            >
-              Sign out
-            </button>
+                Sign out
+              </button>
+            </div>
           </div>
         </div>
       </aside>
