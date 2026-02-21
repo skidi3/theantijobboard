@@ -23,7 +23,7 @@ export function DotDistortion({
   const mouseRef = useRef({ x: 0, y: 0 });
   const targetMouseRef = useRef({ x: 0, y: 0 });
   const isHoveringRef = useRef(false);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -134,7 +134,7 @@ export function DotDistortion({
     draw();
 
     return () => {
-      if (animationRef.current) {
+      if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current);
       }
     };
