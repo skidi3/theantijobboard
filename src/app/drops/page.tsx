@@ -77,7 +77,7 @@ export default function DropsPage() {
           </div>
           <h2 className="relative z-10 font-serif text-3xl sm:text-4xl text-neutral-900 mb-3">The Disposable Job Board</h2>
           <p className="relative z-10 text-neutral-500 mb-6 max-w-2xl">
-            Live job listings sourced from X, Reddit, Discord, and YC boards. No ghost jobs, no noise—just quality roles refreshed every few days.
+            Live job listings sourced from X, Reddit, Discord, and YC boards. No ghost jobs, no noise. Just quality roles refreshed every few days.
           </p>
           <div className="relative z-10 flex flex-wrap gap-3 mb-6">
             <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Social Feed</span>
