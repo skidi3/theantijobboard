@@ -218,7 +218,7 @@ export function ManageSubscriptionModal({
           ) : step === "confirm" ? (
             <div className="space-y-5">
               <p className="text-neutral-500">
-                You'll lose access to premium drops immediately. Type <span className="font-medium text-neutral-900">CANCEL</span> to confirm.
+                You'll keep access until your current billing period ends. Type <span className="font-medium text-neutral-900">CANCEL</span> to confirm.
               </p>
 
               <input

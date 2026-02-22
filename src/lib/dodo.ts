@@ -121,7 +121,7 @@ export async function cancelSubscription(subscriptionId: string): Promise<void> 
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        status: "cancelled",
+        cancel_at_next_billing_date: true,
       }),
     }
   );

@@ -35,7 +35,10 @@ const jsonLd = {
         "@type": "ImageObject",
         url: "https://theantijobboard.com/logo.webp",
       },
-      sameAs: [],
+      sameAs: [
+          "https://x.com/theantijobboard",
+          "https://www.linkedin.com/company/the-anti-job-board/"
+        ],
     },
     {
       "@type": "WebPage",
