@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { cdn } from "@/lib/cdn";
+import { ManageSubscriptionModal } from "@/components/ManageSubscriptionModal";
 
 type Plan = "free" | "list" | "edge" | "concierge";
 
@@ -66,18 +67,11 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
   const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showManageModal, setShowManageModal] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    // Temp preview bypass - DELETE AFTER USE
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("_") === "f8d2a") {
-      setUser({ email: "preview@theantijobboard.com", plan: "edge" });
-      setLoading(false);
-      return;
-    }
-
     const supabase = createClient();
 
     const getUser = async () => {
@@ -114,6 +108,11 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
     const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/");
+  };
+
+  const handleSubscriptionCancelled = () => {
+    // Refresh the page to update user plan
+    window.location.reload();
   };
 
   if (loading) {
@@ -297,9 +296,19 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-neutral-900 truncate">{user.email}</p>
-                <span className={`inline-block mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${plan.color}`}>
-                  {plan.name}
-                </span>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${plan.color}`}>
+                    {plan.name}
+                  </span>
+                  {user.plan !== "free" && (
+                    <button
+                      onClick={() => setShowManageModal(true)}
+                      className="text-[10px] text-neutral-400 hover:text-neutral-600 transition-colors"
+                    >
+                      Manage
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -328,6 +337,14 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
       <main className="lg:ml-72 min-h-screen pt-16 lg:pt-0">
         {children}
       </main>
+
+      {/* Manage Subscription Modal */}
+      <ManageSubscriptionModal
+        isOpen={showManageModal}
+        onClose={() => setShowManageModal(false)}
+        userPlan={user.plan}
+        onCancelled={handleSubscriptionCancelled}
+      />
     </div>
   );
 }

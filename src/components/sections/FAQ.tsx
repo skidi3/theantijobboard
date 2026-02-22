@@ -6,14 +6,14 @@ import { cdn } from "@/lib/cdn";
 
 const faqs = [
   {
-    question: "How do you find these jobs?",
+    question: "How do you find these startups?",
     answer:
-      "We track Crunchbase, SEC filings, VC announcements, YC batches daily. When a company raises, we call their HR or founders to verify what roles they're hiring for.",
+      "We track Crunchbase, SEC filings, VC announcements, and YC batches daily. When a company raises, we research their hiring signals, team size, and growth trajectory.",
   },
   {
     question: "Is this just a newsletter?",
     answer:
-      "No. Every role we list has been verified by a phone call. We know the hiring manager's name, what they're looking for, and often have a direct intro path.",
+      "No. You get weekly deep dives on funded startups with hiring signals and founder contacts. Plus The Disposable Job Board - live roles from X, Reddit, Discord, and YC boards, refreshed every 48 hours.",
   },
   {
     question: "Do you offer refunds or guarantees?",

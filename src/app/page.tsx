@@ -117,10 +117,10 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "How do you find these jobs?",
+          name: "How do you find these startups?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "We track Crunchbase, SEC filings, VC announcements, YC batches daily. When a company raises, we call their HR or founders to verify what roles they're hiring for.",
+            text: "We track Crunchbase, SEC filings, VC announcements, and YC batches daily. When a company raises, we research their hiring signals, team size, and growth trajectory.",
           },
         },
         {
@@ -128,7 +128,7 @@ const jsonLd = {
           name: "Is this just a newsletter?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "No. Every role we list has been verified by a phone call. We know the hiring manager's name, what they're looking for, and often have a direct intro path.",
+            text: "No. You get weekly deep dives on funded startups with hiring signals and founder contacts. Plus The Disposable Job Board - live roles from X, Reddit, Discord, and YC boards, refreshed every 48 hours.",
           },
         },
         {

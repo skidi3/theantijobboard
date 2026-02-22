@@ -43,10 +43,12 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith(path)
   );
 
-  // Temp preview bypass - DELETE AFTER USE
-  const isPreview = request.nextUrl.searchParams.get("_") === "f8d2a";
+  // Preview bypass only for drop-001
+  const isDrop001Preview =
+    request.nextUrl.pathname === "/drops/drop-001" &&
+    request.nextUrl.searchParams.get("_") === "f8d2a";
 
-  if (isProtectedPath && !user && !isPreview) {
+  if (isProtectedPath && !user && !isDrop001Preview) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("redirect", request.nextUrl.pathname);

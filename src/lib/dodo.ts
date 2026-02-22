@@ -104,4 +104,32 @@ export async function listActiveSubscriptions(): Promise<DodoSubscription[]> {
   return allSubscriptions;
 }
 
+export async function getSubscriptionByEmail(email: string): Promise<DodoSubscription | null> {
+  const subscriptions = await listActiveSubscriptions();
+  return subscriptions.find(sub => sub.customer.email.toLowerCase() === email.toLowerCase()) || null;
+}
+
+export async function cancelSubscription(subscriptionId: string): Promise<void> {
+  const { apiKey, apiUrl } = getDodoConfig();
+
+  const response = await fetch(
+    `${apiUrl}/subscriptions/${subscriptionId}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status: "cancelled",
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Failed to cancel subscription: ${response.status} - ${error}`);
+  }
+}
+
 export type { DodoCustomer, DodoSubscription };
