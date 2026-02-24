@@ -39,17 +39,24 @@ export function Hero() {
                 </span>
               </h1>
 
-              <p className="mt-6 text-lg lg:text-xl text-neutral-600 lg:text-neutral-500 font-medium lg:font-normal leading-relaxed max-w-md mx-auto lg:mx-0 backdrop-blur-[2px]">
+              <p className="mt-6 text-lg lg:text-xl text-neutral-800 lg:text-neutral-700 font-medium lg:font-normal leading-relaxed max-w-md mx-auto lg:mx-0 backdrop-blur-[2px]">
                 We track funded startups and fresh job posts from X. You get roles with 10 applicants, not 1000.
               </p>
 
               <div className="mt-8">
-                <a href="#pricing">
-                  <Button size="lg">
+                <div className="flex flex-col lg:flex-row items-center lg:items-center gap-3">
+                  <a href="#pricing" className="inline-flex items-center justify-center h-[48px] px-7 bg-neutral-900 text-white font-medium text-base rounded-xl hover:bg-neutral-800 transition-all shadow-sm">
                     Get early access
-                  </Button>
-                </a>
-                <p className="mt-4 text-base text-neutral-600 backdrop-blur-[2px]">
+                  </a>
+                  <a href="https://peerlist.io/tannishtha/project/the-anti-job-board" target="_blank" rel="noreferrer" className="inline-flex items-center">
+                    <img
+                      src="https://peerlist.io/api/v1/projects/embed/PRJHP6L66DKNMGQGA2QO8ANJO8ERDN?showUpvote=true&theme=light"
+                      alt="The Anti Job Board on Peerlist"
+                      className="h-[48px] w-auto"
+                    />
+                  </a>
+                </div>
+                <p className="mt-4 text-base text-neutral-800 backdrop-blur-[2px]">
                   Starting at $9/month
                 </p>
               </div>
