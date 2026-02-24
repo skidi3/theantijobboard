@@ -156,7 +156,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The List</h3>
                 <p className="text-neutral-500 mb-4 max-w-lg">
-                  Weekly drops on 10-15 funded startups with hiring signals. Plus access to The Disposable Job Board. Fresh roles from X, flushed every 2-3 days. 10 roles visible.
+                  Near daily drops on 3 niche startups that just raised. All startups, hiring signals, founder profiles. Plus access to The Disposable Job Board with 10 roles visible.
                 </p>
                 <p className="text-sm text-neutral-400">For people casually exploring. Low commitment.</p>
               </div>
@@ -185,7 +185,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl mb-3">The Edge</h3>
                 <p className="text-neutral-300 mb-4 max-w-lg">
-                  Everything in The List, twice a week. Plus warm intro templates, founder approach notes, and full unlimited access to The Disposable Job Board.
+                  Everything in The List. Plus cold DM approaches, founder intel, the full playbook. Full unlimited access to The Disposable Job Board.
                 </p>
                 <p className="text-sm text-neutral-500">For people actively hunting. Want every advantage.</p>
               </div>
