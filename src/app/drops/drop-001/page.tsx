@@ -503,8 +503,9 @@ function BlurredContent({ children, message, ctaText, ctaHref }: { children: Rea
 const PLACEHOLDER_TEXT = "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur";
 
 function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; index: number; plan: Plan; onFocus?: () => void }) {
-  const canSeeOutreach = plan === "edge" || plan === "concierge";
-  const canSeeContent = plan !== "free";
+  const isFirstStartup = index === 0;
+  const canSeeOutreach = plan === "edge" || plan === "concierge" || isFirstStartup;
+  const canSeeContent = plan !== "free" || isFirstStartup;
 
   // For free users, show blurred card - hide real content completely
   if (!canSeeContent) {
@@ -848,7 +849,8 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
 }
 
 function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; index: number; plan: Plan; onClose: () => void }) {
-  const canSeeOutreach = plan === "edge" || plan === "concierge";
+  const isFirstStartup = index === 0;
+  const canSeeOutreach = plan === "edge" || plan === "concierge" || isFirstStartup;
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -1117,7 +1119,7 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
   );
 }
 
-function CommandK({ onClose, onSelect }: { onClose: () => void; onSelect: (index: number) => void }) {
+function CommandK({ onClose, onSelect, plan }: { onClose: () => void; onSelect: (index: number) => void; plan: Plan }) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -1133,7 +1135,11 @@ function CommandK({ onClose, onSelect }: { onClose: () => void; onSelect: (index
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  const filtered = startups
+  // free users only see first startup, paid users see all
+  const visibleCount = plan === "free" ? 1 : startups.length;
+  const visibleStartups = startups.slice(0, visibleCount);
+
+  const filtered = visibleStartups
     .map((s, i) => ({ ...s, originalIndex: i }))
     .filter(s =>
       s.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -1659,7 +1665,7 @@ Voice AI explodes: ElevenLabs $11B, PolyAI $750M. AI infrastructure dominates wi
       </AnimatePresence>
       <AnimatePresence>
         {cmdkOpen && (
-          <CommandK onClose={() => setCmdkOpen(false)} onSelect={scrollToStartup} />
+          <CommandK onClose={() => setCmdkOpen(false)} onSelect={scrollToStartup} plan={plan} />
         )}
       </AnimatePresence>
       <ScrollToTop />

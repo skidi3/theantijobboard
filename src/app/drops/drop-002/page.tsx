@@ -819,7 +819,7 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
   );
 }
 
-function CommandK({ onClose, onSelect }: { onClose: () => void; onSelect: (index: number) => void }) {
+function CommandK({ onClose, onSelect, plan }: { onClose: () => void; onSelect: (index: number) => void; plan: Plan }) {
   const [query, setQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -835,7 +835,11 @@ function CommandK({ onClose, onSelect }: { onClose: () => void; onSelect: (index
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  const filtered = startups
+  // free users only see first startup, paid users see all
+  const visibleCount = plan === "free" ? 1 : startups.length;
+  const visibleStartups = startups.slice(0, visibleCount);
+
+  const filtered = visibleStartups
     .map((s, i) => ({ ...s, originalIndex: i }))
     .filter(s =>
       s.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -1280,7 +1284,7 @@ export default function DropPage() {
       </AnimatePresence>
       <AnimatePresence>
         {cmdkOpen && (
-          <CommandK onClose={() => setCmdkOpen(false)} onSelect={scrollToStartup} />
+          <CommandK onClose={() => setCmdkOpen(false)} onSelect={scrollToStartup} plan={plan} />
         )}
       </AnimatePresence>
       <ScrollToTop />
