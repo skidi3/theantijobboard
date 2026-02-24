@@ -82,11 +82,28 @@ export async function POST(request: NextRequest) {
         break;
 
       case "payment.failed":
-        console.log("Payment failed:", payload.data.payment_id);
+        console.log("Payment failed:", payload.data.payment_id, "for:", payload.data.customer?.email);
+        break;
+
+      case "subscription.renewed":
+        // Monthly renewal succeeded - ensure plan is synced
+        await handleSubscriptionRenewed(payload);
+        break;
+
+      case "subscription.on_hold":
+        // Payment failed, subscription on hold - downgrade user
+        console.log("Subscription on hold (payment failed) for:", payload.data.customer?.email);
+        await handleSubscriptionOnHold(payload);
         break;
 
       case "subscription.cancelled":
+        // User requested cancellation - they still have access until period ends
+        console.log("Subscription cancellation requested for:", payload.data.customer?.email);
+        console.log("Access continues until billing period ends");
+        break;
+
       case "subscription.expired":
+        // Subscription actually ended - now downgrade to free
         await handleSubscriptionEnded(payload);
         break;
 
@@ -108,13 +125,14 @@ async function handlePaymentSucceeded(payload: DodoWebhookPayload) {
   const customerEmail = payload.data.customer?.email;
   const customerId = payload.data.customer?.customer_id;
   const productId = payload.data.product_id;
+  const subscriptionId = payload.data.subscription_id;
 
   if (!customerEmail) {
     console.error("No customer email in payment webhook");
     return;
   }
 
-  console.log("Processing successful payment for:", customerEmail);
+  console.log("Processing successful payment for:", customerEmail, "subscription:", subscriptionId);
 
   // Determine plan from product ID
   const plan = productId ? PRODUCT_TO_PLAN[productId] : undefined;
@@ -126,12 +144,13 @@ async function handlePaymentSucceeded(payload: DodoWebhookPayload) {
         customerEmail,
         plan,
         customerId,
-        true // Send password reset email if new user
+        true, // Send password reset email if new user
+        subscriptionId // Store subscription ID
       );
       console.log(
         created
-          ? `Created account for ${customerEmail} with plan: ${plan}`
-          : `Updated ${customerEmail} to plan: ${plan}`
+          ? `Created account for ${customerEmail} with plan: ${plan}, subscription: ${subscriptionId}`
+          : `Updated ${customerEmail} to plan: ${plan}, subscription: ${subscriptionId}`
       );
     } catch (error) {
       console.error("Failed to create/update user:", error);
@@ -152,13 +171,14 @@ async function handleSubscriptionActive(payload: DodoWebhookPayload) {
   const customerEmail = payload.data.customer?.email;
   const customerId = payload.data.customer?.customer_id;
   const productId = payload.data.product_id;
+  const subscriptionId = payload.data.subscription_id;
 
   if (!customerEmail) {
     console.error("No customer email in subscription webhook");
     return;
   }
 
-  console.log("New subscription activated for:", customerEmail);
+  console.log("New subscription activated for:", customerEmail, "subscription_id:", subscriptionId);
 
   // Determine plan from product ID
   const plan = productId ? PRODUCT_TO_PLAN[productId] : undefined;
@@ -170,12 +190,13 @@ async function handleSubscriptionActive(payload: DodoWebhookPayload) {
         customerEmail,
         plan,
         customerId,
-        true // Send password reset email if new user
+        true, // Send password reset email if new user
+        subscriptionId // Store subscription ID for future plan changes
       );
       console.log(
         created
-          ? `Created account for ${customerEmail} with plan: ${plan}`
-          : `Updated ${customerEmail} to plan: ${plan}`
+          ? `Created account for ${customerEmail} with plan: ${plan}, subscription: ${subscriptionId}`
+          : `Updated ${customerEmail} to plan: ${plan}, subscription: ${subscriptionId}`
       );
     } catch (error) {
       console.error("Failed to create/update user:", error);
@@ -207,5 +228,49 @@ async function handleSubscriptionEnded(payload: DodoWebhookPayload) {
     console.log(`Downgraded ${customerEmail} to free plan`);
   } catch (error) {
     console.error("Failed to downgrade user plan:", error);
+  }
+}
+
+async function handleSubscriptionRenewed(payload: DodoWebhookPayload) {
+  const customerEmail = payload.data.customer?.email;
+  const productId = payload.data.product_id;
+  const subscriptionId = payload.data.subscription_id;
+
+  if (!customerEmail) {
+    console.error("No customer email in subscription renewed webhook");
+    return;
+  }
+
+  console.log("Subscription renewed for:", customerEmail);
+
+  // Sync plan from product ID (in case it was changed externally)
+  const plan = productId ? PRODUCT_TO_PLAN[productId] : undefined;
+
+  if (plan) {
+    try {
+      await updateUserPlan(customerEmail, plan, undefined, subscriptionId);
+      console.log(`Synced ${customerEmail} plan to: ${plan}`);
+    } catch (error) {
+      console.error("Failed to sync user plan on renewal:", error);
+    }
+  }
+}
+
+async function handleSubscriptionOnHold(payload: DodoWebhookPayload) {
+  const customerEmail = payload.data.customer?.email;
+
+  if (!customerEmail) {
+    console.error("No customer email in subscription on_hold webhook");
+    return;
+  }
+
+  console.log("Subscription on hold (payment failed) for:", customerEmail);
+
+  // Downgrade to free since payment failed
+  try {
+    await updateUserPlan(customerEmail, "free");
+    console.log(`Downgraded ${customerEmail} to free (payment failed)`);
+  } catch (error) {
+    console.error("Failed to downgrade user on payment failure:", error);
   }
 }

@@ -72,7 +72,8 @@ export async function POST(request: NextRequest) {
           email,
           plan,
           customerId,
-          true // Send password reset email for new users
+          true, // Send password reset email for new users
+          sub.subscription_id // Store subscription ID
         );
 
         if (created) {

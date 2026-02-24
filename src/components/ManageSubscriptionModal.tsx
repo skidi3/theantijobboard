@@ -18,6 +18,7 @@ interface ManageSubscriptionModalProps {
   onClose: () => void;
   userPlan: Plan;
   onCancelled: () => void;
+  onUpgraded?: () => void;
 }
 
 const planNames: Record<Plan, string> = {
@@ -34,7 +35,14 @@ const planPrices: Record<Plan, string> = {
   concierge: "$199",
 };
 
-type Step = "info" | "reason" | "confirm" | "cancelled";
+const planPricesNum: Record<Plan, number> = {
+  free: 0,
+  list: 9,
+  edge: 19,
+  concierge: 199,
+};
+
+type Step = "info" | "reason" | "confirm" | "cancelled" | "upgrade" | "upgradeConfirm" | "upgraded";
 
 const cancelReasons = [
   "Too expensive",
@@ -49,6 +57,7 @@ export function ManageSubscriptionModal({
   onClose,
   userPlan,
   onCancelled,
+  onUpgraded,
 }: ManageSubscriptionModalProps) {
   const [subscription, setSubscription] = useState<Subscription | null>(null);
   const [loading, setLoading] = useState(true);
@@ -57,6 +66,18 @@ export function ManageSubscriptionModal({
   const [confirmText, setConfirmText] = useState("");
   const [cancelling, setCancelling] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedUpgradePlan, setSelectedUpgradePlan] = useState<Plan | null>(null);
+  const [upgradePreview, setUpgradePreview] = useState<{
+    priceDifference: number;
+    newPrice: number;
+    hasSubscription: boolean;
+  } | null>(null);
+  const [upgrading, setUpgrading] = useState(false);
+
+  // Get available upgrade plans
+  const availableUpgrades = (["list", "edge", "concierge"] as Plan[]).filter(
+    (plan) => planPricesNum[plan] > planPricesNum[userPlan]
+  );
 
   useEffect(() => {
     if (isOpen) {
@@ -65,6 +86,8 @@ export function ManageSubscriptionModal({
       setSelectedReason("");
       setConfirmText("");
       setError(null);
+      setSelectedUpgradePlan(null);
+      setUpgradePreview(null);
     }
   }, [isOpen]);
 
@@ -98,6 +121,50 @@ export function ManageSubscriptionModal({
     }
   };
 
+  const handleSelectUpgradePlan = async (plan: Plan) => {
+    setSelectedUpgradePlan(plan);
+    setError(null);
+    try {
+      const res = await fetch("/api/subscription", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ newPlan: plan, preview: true }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to preview");
+      }
+      setUpgradePreview({
+        priceDifference: data.priceDifference,
+        newPrice: data.newPrice,
+        hasSubscription: data.hasSubscription,
+      });
+      setStep("upgradeConfirm");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to calculate upgrade price. Please try again.");
+    }
+  };
+
+  const handleUpgrade = async () => {
+    if (!selectedUpgradePlan) return;
+    setUpgrading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/subscription", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ newPlan: selectedUpgradePlan }),
+      });
+      if (!res.ok) throw new Error("Failed to upgrade");
+      setStep("upgraded");
+      onUpgraded?.();
+    } catch {
+      setError("Failed to upgrade subscription. Please try again or contact support.");
+    } finally {
+      setUpgrading(false);
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       month: "long",
@@ -119,7 +186,7 @@ export function ManageSubscriptionModal({
         <div className="px-6 pt-6 pb-4 border-b border-dashed border-neutral-200">
           <div className="flex items-center justify-between">
             <h2 className="font-serif text-2xl text-neutral-900">
-              {step === "cancelled" ? "Done" : "Manage subscription"}
+              {step === "cancelled" || step === "upgraded" ? "Done" : step === "upgrade" || step === "upgradeConfirm" ? "Upgrade plan" : "Manage subscription"}
             </h2>
             <button
               onClick={onClose}
@@ -159,8 +226,18 @@ export function ManageSubscriptionModal({
                 </div>
               )}
 
+              {/* Upgrade Button */}
+              {availableUpgrades.length > 0 && userPlan !== "free" && (
+                <button
+                  onClick={() => setStep("upgrade")}
+                  className="w-full px-4 py-3 bg-neutral-900 text-white rounded-xl text-sm font-medium hover:bg-neutral-800 transition-colors"
+                >
+                  Upgrade plan
+                </button>
+              )}
+
               {/* Cancel Link */}
-              {userPlan !== "free" && subscription && (
+              {userPlan !== "free" && (
                 <div className="pt-4 border-t border-dashed border-neutral-200">
                   <button
                     onClick={() => setStep("reason")}
@@ -265,6 +342,117 @@ export function ManageSubscriptionModal({
                 className="w-full px-4 py-3 bg-neutral-900 text-white rounded-xl text-sm font-medium hover:bg-neutral-800 transition-colors"
               >
                 Close
+              </button>
+            </div>
+          ) : step === "upgrade" ? (
+            <div className="space-y-5">
+              <p className="text-neutral-500">
+                Choose a plan to upgrade. You'll only pay the prorated difference for the remaining time in your billing cycle.
+              </p>
+
+              <div className="space-y-3">
+                {availableUpgrades.map((plan) => (
+                  <button
+                    key={plan}
+                    onClick={() => handleSelectUpgradePlan(plan)}
+                    className="w-full text-left px-4 py-4 rounded-xl border border-neutral-200 bg-neutral-50 hover:border-neutral-300 hover:bg-white transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-medium text-neutral-900">{planNames[plan]}</p>
+                        <p className="text-sm text-neutral-500">
+                          {plan === "edge" && "Outreach playbooks + unlimited job board"}
+                          {plan === "concierge" && "We do everything for you"}
+                        </p>
+                      </div>
+                      <p className="font-serif text-xl text-neutral-900">{planPrices[plan]}<span className="text-sm text-neutral-400 font-sans">/mo</span></p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {error && (
+                <div className="p-4 bg-rose-50 border border-dashed border-rose-200 rounded-xl text-rose-600 text-sm">
+                  {error}
+                </div>
+              )}
+
+              <button
+                onClick={() => setStep("info")}
+                className="w-full px-4 py-3 border border-neutral-200 rounded-xl text-sm text-neutral-600 hover:bg-neutral-50 transition-colors"
+              >
+                Back
+              </button>
+            </div>
+          ) : step === "upgradeConfirm" ? (
+            <div className="space-y-5">
+              <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-neutral-500">Upgrading to</p>
+                  <p className="font-medium text-neutral-900">{selectedUpgradePlan && planNames[selectedUpgradePlan]}</p>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-neutral-500">New monthly rate</p>
+                  <p className="text-neutral-900">${upgradePreview?.newPrice}/mo</p>
+                </div>
+                <div className="border-t border-dashed border-neutral-200 pt-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-neutral-900">Due now</p>
+                      <p className="text-xs text-neutral-500">Price difference charged immediately</p>
+                    </div>
+                    <p className="font-serif text-2xl text-neutral-900">${upgradePreview?.priceDifference}</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm text-neutral-500">
+                You'll be charged the price difference immediately. Your next billing will be at the new rate.
+              </p>
+
+              {error && (
+                <div className="p-4 bg-rose-50 border border-dashed border-rose-200 rounded-xl text-rose-600 text-sm">
+                  {error}
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setStep("upgrade");
+                    setSelectedUpgradePlan(null);
+                    setUpgradePreview(null);
+                  }}
+                  className="flex-1 px-4 py-3 border border-neutral-200 rounded-xl text-sm text-neutral-600 hover:bg-neutral-50 transition-colors"
+                >
+                  Back
+                </button>
+                <button
+                  onClick={handleUpgrade}
+                  disabled={upgrading}
+                  className="flex-1 px-4 py-3 bg-neutral-900 text-white rounded-xl text-sm font-medium hover:bg-neutral-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {upgrading ? "Processing..." : `Pay $${upgradePreview?.priceDifference}`}
+                </button>
+              </div>
+            </div>
+          ) : step === "upgraded" ? (
+            <div className="space-y-5">
+              <div className="flex items-center justify-center py-4">
+                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              </div>
+              <p className="text-neutral-500 text-center">
+                You've been upgraded to <span className="font-medium text-neutral-900">{selectedUpgradePlan && planNames[selectedUpgradePlan]}</span>. Refresh the page to access your new features.
+              </p>
+              <button
+                onClick={() => window.location.reload()}
+                className="w-full px-4 py-3 bg-neutral-900 text-white rounded-xl text-sm font-medium hover:bg-neutral-800 transition-colors"
+              >
+                Refresh page
               </button>
             </div>
           ) : null}

@@ -20,7 +20,12 @@ export function createAdminClient() {
 
 export type Plan = "free" | "list" | "edge" | "concierge";
 
-export async function updateUserPlan(email: string, plan: Plan, dodoCustomerId?: string) {
+export async function updateUserPlan(
+  email: string,
+  plan: Plan,
+  dodoCustomerId?: string,
+  dodoSubscriptionId?: string
+) {
   const supabase = createAdminClient();
 
   const { data, error } = await supabase
@@ -28,6 +33,7 @@ export async function updateUserPlan(email: string, plan: Plan, dodoCustomerId?:
     .update({
       plan,
       ...(dodoCustomerId && { dodo_customer_id: dodoCustomerId }),
+      ...(dodoSubscriptionId && { dodo_subscription_id: dodoSubscriptionId }),
     })
     .eq("email", email)
     .select()
@@ -35,6 +41,32 @@ export async function updateUserPlan(email: string, plan: Plan, dodoCustomerId?:
 
   if (error) {
     console.error("Failed to update user plan:", error);
+    throw error;
+  }
+
+  return data;
+}
+
+// Update subscription ID for existing users by email
+export async function updateUserSubscriptionId(
+  email: string,
+  dodoCustomerId: string,
+  dodoSubscriptionId: string
+) {
+  const supabase = createAdminClient();
+
+  const { data, error } = await supabase
+    .from("users")
+    .update({
+      dodo_customer_id: dodoCustomerId,
+      dodo_subscription_id: dodoSubscriptionId,
+    })
+    .eq("email", email)
+    .select()
+    .single();
+
+  if (error && error.code !== "PGRST116") {
+    console.error("Failed to update subscription ID:", error);
     throw error;
   }
 
@@ -65,7 +97,8 @@ export async function createOrUpdatePaidUser(
   email: string,
   plan: Plan,
   dodoCustomerId?: string,
-  sendPasswordReset: boolean = true
+  sendPasswordReset: boolean = true,
+  dodoSubscriptionId?: string
 ): Promise<{ created: boolean; userId: string }> {
   const supabase = createAdminClient();
 
@@ -82,6 +115,7 @@ export async function createOrUpdatePaidUser(
       .update({
         plan,
         ...(dodoCustomerId && { dodo_customer_id: dodoCustomerId }),
+        ...(dodoSubscriptionId && { dodo_subscription_id: dodoSubscriptionId }),
       })
       .eq("id", existingUser.id);
 
@@ -111,6 +145,7 @@ export async function createOrUpdatePaidUser(
     .update({
       plan,
       ...(dodoCustomerId && { dodo_customer_id: dodoCustomerId }),
+      ...(dodoSubscriptionId && { dodo_subscription_id: dodoSubscriptionId }),
     })
     .eq("id", newUser.user.id);
 

@@ -315,12 +315,21 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
             {/* Actions */}
             <div className="space-y-2">
               {user.plan !== "concierge" && (
-                <Link
-                  href="/#pricing"
-                  className="block w-full text-center bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
-                >
-                  Upgrade Plan
-                </Link>
+                user.plan === "free" ? (
+                  <Link
+                    href="/#pricing"
+                    className="block w-full text-center bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
+                  >
+                    Upgrade Plan
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => setShowManageModal(true)}
+                    className="w-full text-center bg-gradient-to-r from-rose-400 to-rose-500 text-white px-4 py-2.5 rounded-xl text-sm font-medium hover:from-rose-500 hover:to-rose-600 transition-colors"
+                  >
+                    Upgrade Plan
+                  </button>
+                )
               )}
               <button
                 onClick={handleLogout}
