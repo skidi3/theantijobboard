@@ -16,6 +16,8 @@ interface UserData {
 
 // Premium drops (paid content) - deep dives on funded startups
 const fundedDrops = [
+  { id: "drop-003", date: "Feb 25", title: "3 Startups · Scorecards · Playbooks", type: "wednesday" as "wednesday" | "sunday" },
+  { id: "drop-002", date: "Feb 24", title: "3 Startups · $16M+ Raised · Scorecards", type: "sunday" as "wednesday" | "sunday" },
   { id: "drop-001", date: "Feb 18", title: "12 Startups · Scorecards · Playbooks", type: "wednesday" as "wednesday" | "sunday" },
 ];
 

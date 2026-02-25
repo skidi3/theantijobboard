@@ -48,119 +48,125 @@ interface Startup {
 
 const startups: Startup[] = [
   {
-    name: "Navigara",
-    tagline: "navigara.com · Prague (dev team) / San Francisco (founder) · AI DevOps Analytics",
-    website: "navigara.com",
-    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQFeXU4MEBj_tA/company-logo_200_200/B4DZs2sE9qKwAI-/0/1766149084439/navigara_com_logo?e=1773273600&v=beta&t=JazvXyh8dEv9IGEiutbVfuZzHRbD5tjG3gA7K_Nrhf0",
-    videoUrl: "https://wzviogddcenyhltpgxwp.supabase.co/storage/v1/object/public/video/navi-intro.mp4",
-    round: "Seed",
-    amount: "$2.5M",
-    detail: "~8 people, $1M ARR pre-launch",
-    investors: "Inovo VC (Poland), Rockaway Ventures, QQ Capital",
+    name: "alfred",
+    tagline: "alfredpay.io · Mexico City / Miami · Stablecoin-Powered Payments",
+    website: "alfredpay.io",
+    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQH-xhH7efGVSQ/company-logo_200_200/B4EZsOvgL2HMAM-/0/1765478892623/alfred_latam_logo?e=1773878400&v=beta&t=uKv38EjHIIDbPIYkaacacyqYtdiuRZBnZQJPH6UVcEk",
+    round: "Series A",
+    amount: "$15M",
+    detail: "~65 team, 4M+ transactions, 2.5M+ users, Circle Payments Network partner",
+    investors: "F-Prime Capital (lead), Brevan Howard Digital, White Star Capital",
     hiringScore: 8,
-    hiringReason: "$1M ARR before public launch, 8-person team with capital to scale aggressively",
-    whatBuilding: "Navigara builds autonomous AI agents that measure the real ROI of developer tools and AI adoption inside engineering teams. It pulls raw data from GitHub, GitLab, Jira, and Linear and converts it into clear, management-level productivity indicators. Think of it as the Bloomberg Terminal for engineering performance. No more vibes-based decisions about whether Copilot is worth the $200k/year spend. They hit $1M ARR before officially launching the product publicly which is rare at this stage.",
-    whyMatters: "Companies are spending millions on AI tooling - Copilot, Cursor, Codeium - with almost no accountability metrics. Navigara is first-mover in turning that spend into a measurable number. For a job seeker, this means the TAM is huge, the product sells itself, and they need people to capitalise on that momentum right now, before they have the infrastructure to hire 'properly.' Fresh $2.5M seed with an 8-person team and $1M ARR means they have the unit economics to hire aggressively. Their product just launched publicly off the back of this round - commercial build-out starts now. Inovo VC (through its dedicated 'Head of Talent') is known for pushing portfolio companies to hire fast post-raise, particularly on GTM. Jirka Bachel himself has publicly described the round as enabling 'product expansion and further growth.'",
-    roles: ["AI / ML Engineer", "Product Marketing Manager", "BDR / SDR"],
-    rolesNote: "Navigara has posted Senior Backend and Frontend Engineer roles on their careers page at navigara.com/careers. However, due to the lack of overwhelming press, chances are you'll be facing far less competition. The roles below are what they haven't posted yet, which is where the real arbitrage is.",
+    hiringReason: "Series A explicitly earmarked for geographic expansion and team scaling across Brazil, Dominican Republic, and Asia-LatAm corridor",
+    whatBuilding: "Alfred is a stablecoin-powered payments API connecting local banking rails, real-time payment systems, and digital assets across Latin America (Mexico, Brazil, Colombia, Argentina, and growing). Originally a consumer wallet, they pivoted to B2B infrastructure: one API for fintechs, marketplaces, and multinationals to move money across borders at real-time settlement speed. They process 4 million-plus transactions, serve 2.5 million-plus users, and are now targeting the Asia-LatAm trade corridor as their next opportunity, a market with $600 billion in annual volume. They are integrated into the Circle Payments Network and the Global Dollar (USDG) on Solana.",
+    whyMatters: "Stablecoins are crossing over from crypto-native to mainstream financial infrastructure. Alfred is betting (and winning) that the future of cross-border B2B payments runs on this rail. With Brevan Howard Digital, one of the world's largest macro hedge funds, on the cap table alongside F-Prime (Fidelity's venture arm), this isn't a startup moonshot anymore - it's a financial infrastructure play with serious institutional conviction behind it. The Asia-LatAm corridor alone is a $600 billion market. That means compliance, engineering, and BD hiring at scale is coming fast.",
+    roles: ["Backend / Payments Infrastructure Engineer", "Business Development (Asia-LatAm Corridor)", "Compliance / RegTech Lead"],
+    rolesNote: "No Ashby, no Workday, no Greenhouse portal as of today. The window is open now.",
     founder: {
-      initials: "JB",
-      name: "Jirka Bachel",
-      title: "Founder & CEO, Czech Technical University, SCRIPTease podcast host",
-      linkedin: "https://www.linkedin.com/in/jirka-bachel/",
-      image: "https://media.licdn.com/dms/image/v2/D4E03AQF3fYSf6oCblg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1677789563747?e=1773273600&v=beta&t=WZFhBlllUn_WBk3U8js6yhMsIX_UMIHIr9ao8FO7Uas",
-      hook: "Jirka is a serial founder based between Prague and San Francisco. He studied at Czech Technical University and has co-founded multiple ventures before Navigara. He describes himself as capable of solving frontend, backend, DevOps, product, marketing, and business problems - he's deeply technical and will respect technical depth in whoever reaches out. He hosts SCRIPTease, a well-regarded Czech tech podcast, which is a genuine icebreaker if you've listened to an episode. He self-funded everything before this raise, which makes him acutely value-conscious and impatient with people who don't ship. His co-founder is Peter Malina (Co-Founder & CTPO). For AI/ML Engineers: The product is built on agents that connect to developer tooling APIs - GitHub, Jira, Linear - and surface meaningful signals. They need someone who can extend those agents and make them smarter. Core skills: Python, LangChain or similar agent frameworks, GitHub/GitLab APIs, data pipelines (dbt or Airflow), experience with developer productivity metrics or DevOps tooling. For proof of work, build a mini demo - a script that pulls GitHub commit data and outputs a simple productivity or cycle time dashboard. Push it to GitHub. Bonus: write a short blog post titled something like 'AI agent-based monitoring for engineering teams' and link both in your email. Your cold email angle: 'Jirka - I saw the seed announcement. I've been building in the developer analytics space and I know the hard part isn't the dashboard, it's the data pipeline that makes the signals trustworthy. I built [link to demo] last week. Would love to show you how I'm thinking about the agentic layer. Worth 15 mins?' For Product Marketing: B2B SaaS at this stage lives or dies by positioning. Navigara needs someone who can translate a deeply technical product into language that makes a VP of Engineering say 'I need this.' Core skills: B2B SaaS positioning, developer-audience marketing, content-led GTM, SEO, technical copywriting, Notion/Webflow. For proof of work, write a 400-word competitive positioning breakdown of Navigara vs. LinearB vs. Jellyfish from a buyer's perspective and post it on LinkedIn or a personal blog. This shows you understand their landscape and can write at the same time. Your cold email angle: 'Jirka - I just published a positioning breakdown comparing Navigara vs LinearB vs Jellyfish from a buyer's POV. The short version: Navigara wins on simplicity, loses on brand awareness. That gap is very fillable. I'd love to be the person who closes it. [Link]' For BDR/SDR: They have $1M ARR but an 8-person team - someone is closing deals, but not at scale. A dedicated outbound person is almost certainly the next hire. Core skills: outbound prospecting, Apollo/Clay/Outreach, cold email sequencing, LinkedIn Sales Navigator, basic understanding of engineering team structures and DevOps budgets, CRM hygiene (HubSpot). For proof of work, research 10 real companies that likely have heavy AI tooling spend but no measurement framework, build a mock outbound list with personalised first lines, and paste three examples into your cold email. Show you can do the job before you have the job. Your cold email angle: 'Hi Jirka - I identified 10 mid-market SaaS companies with 50-200 engineers, heavy AI tooling budgets, and zero measurement in place. These are your ideal buyers and none of them have heard of Navigara yet. I'd love to be the person changing that. Can I share the list on a quick call?'",
-      avoid: "Don't lead with 'I love what you're building.' Lead with proof of work that demonstrates you understand their specific problem space.",
+      initials: "DY",
+      name: "Diego Yanez",
+      title: "Founder & CEO, UC Berkeley, Berkeley Blockchain Xcelerator",
+      linkedin: "https://www.linkedin.com/in/diego-yanez-878861127",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQE1DYHWPSHD6w/profile-displayphoto-scale_400_400/B4EZrwpnRzKgAk-/0/1764974033318?e=1773878400&v=beta&t=GiyFrgw9XmIblKq-yEfL5A3GuiJ1XrHRfNGX0utpokY",
+      hook: "Diego studied at UC Berkeley and started his career as a KPMG contractor before pivoting hard into fintech entrepreneurship. He was part of the Berkeley Blockchain Xcelerator. He bootstrapped alfred from zero to profitability before taking institutional capital - a rare signal of commercial discipline that you should reference. He is deeply mission-driven around the idea that stablecoins are the equaliser for people in countries with volatile currencies. He's active on LinkedIn and openly documents his building journey, so engage with his posts before cold messaging - he responds to people who are already in the conversation. His co-founder is Matias Plano as CTO and Ronald Johnson as CFO. Diego is plugged into the Berkeley alumni network, the Circle ecosystem, and the Miami tech scene. He is also connected to The Hype Network and community-driven platforms in San Francisco and Miami, and faith is an authentic part of his public identity. For Backend/Payments Infrastructure Engineers: The product is built on stablecoin rails - Solana, Circle's CCTP, Stellar - and connects to dozens of local payment networks across LatAm. This is highly specialised work. Core skills: Node.js or Python, REST and GraphQL APIs, Solana SDK is a major differentiator, PostgreSQL, AWS, real-time settlement systems, stablecoin on/off-ramp architecture. For proof of work, build a demo integration with Circle's CCTP (Cross-Chain Transfer Protocol) or write a short technical blog post on 'Building with Stablecoin APIs in LatAm' then include both a GitHub link and the writing in your email. Your cold email angle: 'Diego, I saw the Series A and Circle Payments Network announcement. I built a small demo integrating Circle's API with a simulated LatAm off-ramp [link]. I have [X] years in payments infrastructure and I want to be part of the engineering team scaling alfred into Asia. Can I show you what I built?' For Business Development (Asia-LatAm Corridor): They've explicitly stated the Asia-LatAm corridor is next. Nobody is working that corridor yet internally and is a greenfield BD hire. Core skills: cross-border BD, stablecoin and fintech domain knowledge, bilingual in English plus Mandarin, Japanese, or Korean is a significant differentiator, partnership development, enterprise fintech sales cycles, trade finance knowledge. For proof of work, research the corridor and identify 10 fintechs or payment companies in Southeast Asia that are currently processing LatAm volume and would benefit from alfred's API. Present a short partnership pitch angle for each. Your cold email angle: 'Diego - the Asia-LatAm corridor thesis is the most underappreciated play in global fintech right now. I mapped 10 SE Asian payment companies that are losing volume trying to settle into LatAm. These are warm targets for alfred. I have [background in Asia-Pacific payments or trade finance]. Want to see the list?' For Compliance/RegTech Lead: Expanding into Brazil, Dominican Republic, and Asia simultaneously means navigating four or five different regulatory environments at once. This hire becomes urgent immediately. Core skills: AML and KYC frameworks, stablecoin regulation including MiCA, FinCEN, and Banxico, FATF travel rule, multi-jurisdiction compliance, VASP licensing, legal entity structuring. For proof of work, write a 600-word breakdown of the current stablecoin regulatory landscape across Mexico, Brazil, Colombia, and Argentina. Post it on LinkedIn or a personal site. Your cold email angle: 'Diego - with the Series A and expansion into Brazil and DR, your compliance footprint is about to get complex fast. I wrote a breakdown of the regulatory landscape across your current and target markets [link]. I've worked in [multi-jurisdiction stablecoin or crypto compliance] and I want to help alfred build a compliance function that enables growth rather than slows it.'",
+      avoid: "Don't lead with generic interest. Diego respects people who show up with proof of work that demonstrates domain understanding. Reference his bootstrapping discipline and the Circle ecosystem specifically.",
     },
     cofounder: {
-      name: "Peter Malina",
-      title: "Co-Founder & CTPO",
-      linkedin: "https://www.linkedin.com/in/petomalina/",
-      image: "https://media.licdn.com/dms/image/v2/C4D03AQGYrzkz4J-c-A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1611216097070?e=1773273600&v=beta&t=Pz5AbjkCySZi4gV_461V8UzlEy9b3iXakWoGuTDL9Ok",
+      name: "Matias Plano",
+      title: "CTO",
+      linkedin: "https://www.linkedin.com/in/matiasplano/",
+      image: "https://media.licdn.com/dms/image/v2/D4D03AQHvktF2ea4FrQ/profile-displayphoto-scale_400_400/B4DZta8SSVJUAg-/0/1766757319568?e=1773878400&v=beta&t=XBFIa89FUzDsZvNqaahWjmYgLmxUAea3H_FOQ9NAY4s",
     },
-    signal: "Best approach: LinkedIn DM first referencing the seed announcement and including a link to your proof of work. Follow up by email within 3 days. Contact: info@navigara.com. Founder direct: jirka.bachel@navigara.com. Co-founder: linkedin.com/in/peter-malina-navigara",
-    careersUrl: "https://navigara.com/careers",
-  },
-  {
-    name: "Lerian",
-    tagline: "lerian.studio · São Paulo, Brazil · Open-Source Core Banking",
-    website: "lerian.studio",
-    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQGBNd1hO9lf6Q/company-logo_200_200/B4DZXIfYJIG8AI-/0/1742825424726?e=1773273600&v=beta&t=VC69MHfbxMYMawkkB26LaS2Cgz3wmr4Rs5LcjbpYZ_I",
-    heroImage: "https://raw.githubusercontent.com/LerianStudio/midaz/main/image/README/midaz-banner.png",
-    round: "Seed",
-    amount: "$5.7M",
-    detail: "11-50 team, Kevin Efrusy (Accel, backed Facebook) on cap table",
-    investors: "MAYA Capital (lead), Norte Ventures, Supera Capital, Crivo Ventures, Blustone, Kevin Efrusy",
-    hiringScore: 8,
-    hiringReason: "Press release explicitly states capital for sales, customer success, and marketing buildout",
-    whatBuilding: "Lerian builds Midaz - an open-source, API-first, cloud-native core banking ledger. Think of it as the Linux of core banking: any fintech or financial institution can plug it in, customise it, and own their infrastructure without being locked into legacy vendors like Temenos or Mambu. Key modules include double-entry accounting, reconciliation, orchestration, onboarding, and reporting. It's developer-first and goes to market via open-source community adoption as much as direct enterprise sales.",
-    whyMatters: "Every fintech in Brazil eventually gets trapped by legacy core banking vendors. Lerian is building the escape hatch. The founder built Dock, LatAm's first Banking-as-a-Service unicorn at a $1.5B valuation, so he has the Rolodex, the credibility, and the insight to pull this off. Kevin Efrusy, the Accel partner on the cap table, is the same investor who backed Facebook at Series A. This isn't a hobby project. And the company explicitly stated that this seed will fund commercial and customer success team buildout, which is your signal. The press release was explicit: 'The new capital will be directed primarily towards technology investment, with a particular focus on applying artificial intelligence to the platform. Lerian also plans to build out sales and customer success capabilities and step up marketing as it seeks to consolidate its footprint in Brazil while improving international positioning.'",
-    roles: ["Backend / Go Engineer", "Developer Relations / Developer Advocate", "Head of Marketing / Growth"],
-    rolesNote: "The codebase is open-source on GitHub which is your single biggest advantage. For engineers: contribute to Midaz on GitHub before you send any email. Even one meaningful PR - a bug fix, a documentation improvement, a test - puts you in their system as a name they've seen before you introduce yourself.",
-    founder: {
-      initials: "FA",
-      name: "Fred Amaral",
-      title: "Founder & CEO, ex Dock ($1.5B unicorn), ex BTG Pactual",
-      linkedin: "https://www.linkedin.com/in/fredcamaral/",
-      image: "https://media.licdn.com/dms/image/v2/D4D03AQG0hzd8wzqfUA/profile-displayphoto-scale_400_400/B4DZe7PjuxGsAg-/0/1751193110457?e=1773273600&v=beta&t=oZDUYnIhSlXJwW2HtMkoZkchBVc-DQRPHqJz2K_SibI",
-      hook: "Fred is arguably the most credentialed fintech infrastructure founder in Brazil. He started coding at age 8, sold his first software at 13, and switched from Computer Science to Economics at USP when he saw the IPO wave of Vale and Petrobras. He spent nearly a decade at BTG Pactual doing M&A, ECM, and DCM deals before moving to Uber and Movile in business development. In 2018 he co-founded Dock - the first full BaaS platform in LatAm - which reached unicorn status at $1.5B in March 2022. He describes his management style as high trust, targeted intervention, and obstacle removal. He believes in raising the minimum needed to validate a thesis, so he respects scrappiness and hates vanity. The Lerian team includes Mary, co-founder of Bankly and ex-Mambu/Stone, and Jeff, who led Pix architecture at Dock. If you can reference Pix or BaaS infrastructure in Brazil credibly, do it. For Backend/Go Engineers: Midaz is built in Go. Full stop. If you want to work here, Go is not optional. Core skills: Go (Golang) is critical, REST APIs, microservices, Docker/Kubernetes, PostgreSQL, event-driven architecture, double-entry accounting concepts are a plus. For proof of work, contribute to Midaz on GitHub before you send any email. Your cold email angle: 'Fred - I spent last weekend going through the Midaz codebase and opened PR #[X] that [brief description]. I have 4 years of Go experience and I've built reconciliation systems at [company]. I want to be the engineer who helps Lerian scale Midaz to 100 clients. Can we talk?' For Developer Relations: Open-source companies live on community. Lerian has a product that needs to be adopted by developers before it can be sold to banks, and they have no one doing that work yet. Core skills: technical writing, public speaking, Go or Python, open-source community management, GitHub and Discord, producing tutorials and blog posts, fintech domain knowledge a bonus. For proof of work, write a technical tutorial titled 'How to build a simple ledger with Lerian Midaz in 30 minutes' and post it on dev.to, Medium, or Substack. Your cold email angle: 'Fred - developers reaching Midaz's GitHub repo right now have to do too much work to understand the value. I wrote a step-by-step integration tutorial [link] that fills that gap. I want to build Lerian's dev community from the ground up and turn open-source interest into paying customers.' For Head of Marketing: The round explicitly mentions marketing initiatives. A founder with a unicorn exit doesn't need to be taught what good marketing looks like - they need someone who can execute immediately. Core skills: B2B SaaS marketing, content strategy, developer-audience positioning, SEO, LinkedIn and Twitter growth, email marketing via HubSpot, demand generation. Portuguese fluency is strongly preferred. For proof of work, do a quick audit of Lerian's current digital presence - website, LinkedIn, GitHub, Twitter - and write a one-page marketing gap analysis. Your cold email angle: 'Fred - I did a quick audit of Lerian's digital presence. Three gaps that I think are costing you inbound leads from fintechs who'd be perfect customers: [gap 1], [gap 2], [gap 3]. I've driven developer-first growth at [company] and I'd love to bring that to Lerian.'",
-      avoid: "Don't approach without proof of work. For engineers, open a GitHub PR first and then email. For GTM and marketing, send the gap analysis directly to fred@lerian.studio. Founders love a person who shows up with a plan rather than a CV.",
-    },
-    signal: "Contact: fred@lerian.studio. LinkedIn: linkedin.com/in/fredcamaral. Best approach: for engineers, open a GitHub PR first and then email. For GTM and marketing, send the gap analysis directly to fred@lerian.studio.",
+    signal: "Best approach: engage with Diego's LinkedIn posts first - he posts frequently about the LatAm payments opportunity. DM referencing the post you engaged with, then follow up with a direct email. For technical roles, reach CTO Matias Plano directly. Contact: linkedin.com/in/diego-yanez-878861127. Company: linkedin.com/company/alfred-pay. Website: alfredpay.io",
     careersUrl: "",
     featured: true,
+    heroImage: "https://media.licdn.com/dms/image/v2/D563DAQESjd5AHe-hNA/image-scale_191_1128/B56ZsOFfEGJMAg-/0/1765467878187/alfred_latam_cover?e=1772640000&v=beta&t=JHAkHAWAY0eU8iakDyn_zFA7_ZPJ1DCFU_WjE9BOo_A",
   },
   {
-    name: "EFEX",
-    tagline: "efexpay.com · Mexico City (with Palo Alto ties) · Cross-Border Treasury",
-    website: "efexpay.com",
-    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQH6RqigzVHX0g/company-logo_200_200/company-logo_200_200/0/1730906630450/efexpay_logo?e=1773273600&v=beta&t=oecaBMx6wSK8wc7u1WNZ5abvwYgmwOkUg1fRRQ8FmYI",
-    heroImage: "/sources/efex.png",
+    name: "BottleCap AI",
+    tagline: "bottlecapai.com · Prague, Czech Republic · Efficiency-Focused LLMs",
+    website: "bottlecapai.com",
+    logo: "https://media.licdn.com/dms/image/v2/D4D0BAQFXe4pw-CVDTg/company-logo_200_200/B4DZVgpL5XHkAU-/0/1741083164611/bottlecap_ai_logo?e=1773878400&v=beta&t=Y3wbfqGMpzd41qnCYrnkZzuO0a2gkcpB5dY7-YamEAo",
     round: "Seed",
-    amount: "$8M",
-    detail: "~20-40 team, 6x revenue growth 2025, $1B+ payment volume, Mike Kennedy (Zelle founder) as advisor",
-    investors: "PayPal Ventures & Floodgate (co-leads), Contour Venture Partners, Nido Ventures",
-    hiringScore: 8,
-    hiringReason: "Round announced 3 days ago, 6x revenue growth, PayPal Ventures + Floodgate push fast scaling",
-    whatBuilding: "EFEX is the treasury operating system for mid-market companies doing cross-border business in the Americas. It provides multi-currency accounts, instant FX without the $50-per-transaction bank fees, bulk payment automation, forward hedging, invoicing, and full reconciliation - all in one platform. They processed over $1 billion in payment volume in 2025 and grew revenue 6x. Now they're layering AI into treasury workflows so finance teams can manage international cash flows with less manual intervention.",
-    whyMatters: "The US-Mexico trade corridor is one of the world's most active. Mexican nearshoring is booming as companies diversify supply chains away from Asia. Mid-market companies caught in between - too big for consumer tools, too small for JPMorgan's attention - have nowhere to go. EFEX is building that middle layer. With PayPal Ventures as a strategic backer and Zelle's founder as an advisor, this is infrastructure-level conviction. Six times revenue growth in 2025 means the hiring wave is not a question of if, it's when, and that when is now. This round was announced three days ago. Both lead investors are highly activation-oriented: PayPal Ventures invests for product leverage and will push for engineering hires fast; Floodgate backs what it calls 'thunder lizards' and applies direct pressure on founders to scale teams post-raise.",
-    roles: ["AI / ML Engineer", "Growth / GTM Lead (US-Mexico Corridor)", "Full-Stack Software Engineer"],
-    rolesNote: "This round was announced three days ago - window is open now.",
+    amount: "$7.5M",
+    detail: "~10 team, Word2Vec inventor as CSO, Beat Saber founder as CEO",
+    investors: "20VC (lead), Rockaway Ventures, plus angels: Canva co-founder Cliff Obrecht, Lovable founder Anton Osika, ElevenLabs co-founder, Hugging Face, Supercell CEO, Synthesia, Datadog founders, Xavier Niel",
+    hiringScore: 7,
+    hiringReason: "10-person team with $7.5M and app studio buildout means hiring across research and product fast",
+    whatBuilding: "BottleCap AI is building architecture-first, efficiency-focused foundational large language models and then immediately turning that research into commercial applications. Their first model is called CAP1, which already powers their first consumer app, Pulse, a community news aggregator on iOS. The stated goal is to improve LLM efficiency by 100x compared to current industry models. Rather than scaling compute endlessly like OpenAI or Google, they are moving beyond the transformer architecture entirely to find new approaches that reason better per unit of compute. They're also setting up an app development studio to commercialise the research, meaning B2B AI tools built on their own models are coming.",
+    whyMatters: "The name BottleCap is a deliberate joke about European tech being a tethered bottle cap compared to SpaceX rockets. The team is not joking about anything else. Tomas Mikolov invented Word2Vec, one of the most cited papers in the history of AI and literally co-invented the concept that made modern language models possible. Jaroslav Beck sold Beat Saber to Meta for a reported $40M+ in 2019. These are not first-time founders experimenting with a trend. The angel investor list reads like an AI founder hall of fame. Every single person on that cap table is a builder, not just a cheque writer. For a job seeker: getting in here early is like getting into ElevenLabs or Lovable before anyone knew what they were.",
+    roles: ["Developer Relations / Community", "Product / App Developer (B2B focus)", "Growth / GTM (first commercial hire)"],
+    rolesNote: "They have posted NLP Researcher, Machine Learning Engineer, and Product Engineer on their website at bottlecapai.com/#join-us. Those roles are live and visible, which means you're no longer first, but you're still early. The roles below are what they haven't posted yet - where the real arbitrage is.",
     founder: {
-      initials: "DZ",
-      name: "Dimitri Zaninovich",
-      title: "CEO, Stanford, Harvard Kennedy School MPA, Colombian-born",
-      linkedin: "https://www.linkedin.com/in/dimitri-zaninovich/",
-      image: "https://media.licdn.com/dms/image/v2/C4E03AQFSqTfwgjlMlg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1632352652590?e=1773273600&v=beta&t=nEy5dFKrvKfa1Cu08eOCjJ6FADcXVbX3ZSzCzH5bM7A",
-      hook: "Both founders met at Stanford University. Dimitri Zaninovich is the CEO, is Colombian-born, and has an MPA from Harvard Kennedy School. He's spoken at the FinTech México Festival 2026 and has deep policy and regulatory credibility. He's not just a startup operator, he's a policy thinker. Santiago Bustamante Villa is the CTO and a Latitud Fellow. He's passionate about Latin American education and simultaneously runs DREAM, a college admissions startup with over 40 employees, meaning he is exceptional at building and running teams in parallel and will respect high-output candidates. Both founders are socially mission-driven - education and financial inclusion appear repeatedly in their public writing, and they explicitly talk about 'erasing borders for customers.' Tap into that language. Referencing the Latitud ecosystem, the Stanford network, or Y Combinator adjacent communities will resonate. For AI/ML Engineers: The product roadmap is explicitly AI-first now. They need someone who can build the intelligence layer on top of their existing treasury data. Core skills: Python, LLM integration via OpenAI or Anthropic APIs, financial data processing, Airflow or Prefect for pipelines, FX and treasury domain knowledge is a real differentiator, REST API development. For proof of work, build a mock 'AI treasury assistant' - a simple LLM-powered tool that ingests fake multi-currency transaction data and answers questions like 'what's my USD exposure this week?' Post the GitHub link. This maps directly to what they're building and proves you're not theorising. Your cold email angle: 'Dimitri/Santiago - I saw the round announcement this morning. I've spent the last two days building a demo AI layer on top of mock multi-currency transaction data [GitHub link]. It's rough but it shows the architecture I'd bring to EFEX. I have [X] years of ML engineering and a background in financial data pipelines. Worth 20 minutes?' For Growth/GTM Lead: 6x revenue growth is great; now they need someone to engineer the next 6x. Core skills: B2B SaaS growth, deep knowledge of the US-Mexico market, Spanish fluency is required, outbound sales, partnership development with fintechs or SMB platforms, HubSpot or Salesforce, data-driven growth experiments. For proof of work, map EFEX's ideal customer profile - mid-market importers and exporters on the US-Mexico corridor - and identify where they actually hang out: trade associations, LinkedIn groups, industry expos. Present this as a one-page GTM targeting map with 50 real company names. Your cold email angle: 'Dimitri/Santiago - I've been following EFEX since the Forbes Mexico piece. I put together a targeting map of 50 mid-market US companies importing from Mexico who have no idea you exist yet. This is your next growth lever. I've driven GTM in this exact corridor at [company] and I want to bring that to EFEX. Doc attached.' For Full-Stack Engineers: 6x revenue growth with a small team means the product is being stretched. Core skills: React or Next.js, Node.js or Python, REST APIs, PostgreSQL, payment API integrations via Stripe or Plaid or open banking standards, knowledge of FX or treasury systems is a real differentiator. For proof of work, review their public-facing product at efexpay.com and build a small feature mockup - a payment status tracker UI or an FX rate comparison widget. Your cold email angle: 'Dimitri/Santiago - I've been a heavy user of cross-border payment tools and there's one UX gap in this space I've been obsessing over: [specific thing]. I built a quick mockup [link] showing how I'd solve it. I'm a full-stack engineer with [X] years and I want to work on the platform that makes cross-border treasury feel like domestic banking.'",
-      avoid: "Don't pitch yourself generically. Reference the US-Mexico corridor thesis specifically. Lead with a demo or targeting map, not a resume.",
+      initials: "JB",
+      name: "Jaroslav Beck",
+      title: "CEO, Beat Saber founder (sold to Meta), SAE Institute UK",
+      linkedin: "https://www.linkedin.com/in/jaroslavbeck",
+      image: "https://cdn.prod.website-files.com/67c05701457c09244f3e1c58/67c09d5f6c5cb9bd5afac042_Foto.avif",
+      hook: "Jaroslav Beck is a repeat entrepreneur with a genuine hit under his belt - Beat Saber is one of the best-selling VR games ever made and was acquired by Meta in 2019. He studied at SAE Institute UK and has also co-founded CANS, a startup focused on reducing sugar overconsumption. He is Czech, based in Prague, and is deeply plugged into the Czech and European startup ecosystem - he was also briefly associated with Rockaway Ventures. He posts actively on LinkedIn in both English and Czech, and his tone is direct, self-deprecating, and builder-first. He is not a hype person. Tomas Mikolov is one of the most cited AI researchers alive. He invented Word2Vec at Google, then went to Meta, then to CIIRC (the Czech Institute of Informatics, Robotics and Cybernetics), and now BottleCap. David Herel is the third co-founder, an AI researcher at CIIRC, and describes himself as the co-inventor of 'thinking tokens' - the technique that is the foundation of the current 'thinking mode' in models like o1 and Claude. For Developer Relations/Community: BottleCap is positioning itself as an open, research-forward lab. Building a developer community around their models and their efficiency research is the organic distribution strategy that money can't easily buy. Core skills: technical writing, open-source community building, Python, ability to produce tutorials and explainers on LLM architecture topics, public speaking or conference presence, X and LinkedIn native. For proof of work, write a technical explainer post on one of BottleCap's published efficiency concepts - thinking tokens, or their training cost reduction approach - and publish it on a personal blog or dev.to. Your cold email angle: 'Jaroslav - I wrote an explainer on BottleCap's approach to training efficiency [link] and it's getting traction with the ML Twitter crowd. I want to build THE community that turns that interest into developers building on your models. That's the distribution flywheel the app studio needs from day one.' For Product/App Developer (B2B focus): The app studio is being set up now. Pulse is the first consumer app - Beck has said future apps will be B2B. They need someone who can take a research output and turn it into a product a business would actually pay for. Core skills: React Native or iOS development (Swift), product thinking, ability to work directly with researchers, experience shipping B2B SaaS or mobile products, some understanding of LLM APIs. For proof of work, download Pulse, write a detailed product critique - what works, what's missing, what the obvious B2B adjacency is - and include a rough mockup of what you'd build next. Your cold email angle: 'Jaroslav - I downloaded Pulse the day it launched and I've been thinking about the B2B version ever since. I wrote up a product critique and a rough concept for the first enterprise use case [link]. I have [X] years shipping mobile and SaaS products and I want to be the person who builds the app studio alongside you.' For Growth/GTM (first commercial hire): The research is funded. The products are being built. At some point in the next 90 days, someone needs to start thinking about how these B2B apps get to customers. Core skills: B2B SaaS GTM, developer or AI-native audience marketing, ability to write and think clearly about technical products, experience with content-led growth, some understanding of the AI tooling market. For proof of work, write a distribution strategy for Pulse's B2B version - where do the buyers live, how do you reach them, what's the pricing model - and make it sharp enough that it could be a real internal doc. Your cold email angle: 'Jaroslav - you've built the best research team in Europe and you're about to have products that enterprise buyers will want. The gap right now is someone who knows how to reach those buyers before your competitors figure out what you're building. I put together a rough distribution plan for the B2B use case [link]. I'd love to be that person.'",
+      avoid: "Don't approach with generic AI hype. Reference the company name joke (bottle cap vs SpaceX rockets) - it'll land. If you've played Beat Saber, mention it. Tomas Mikolov's Word2Vec paper has over 50,000 citations - reference it if relevant to your role.",
     },
     cofounder: {
-      name: "Santiago Bustamante Villa",
-      title: "CTO, Latitud Fellow, runs DREAM (40+ employees)",
-      linkedin: "https://www.linkedin.com/in/santiago-bustamante-villa/",
-      image: "https://media.licdn.com/dms/image/v2/C4E03AQFe3aLdi5rPrw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1619416804319?e=1773273600&v=beta&t=4I6TIDChSz2iGRn9FiUw-3ENOB8CCTurf9WA4ek8B4A",
+      name: "Tomas Mikolov",
+      title: "CSO, Word2Vec inventor, ex-Google, ex-Meta, CIIRC",
+      linkedin: "https://www.linkedin.com/in/tomas-mikolov/",
+      image: "https://cdn.prod.website-files.com/67c05701457c09244f3e1c58/67c09d5f6c5cb9bd5afac049_image.avif",
     },
-    signal: "Contact: Dimitri linkedin.com/in/dimitri-zaninovich. Santiago linkedin.com/in/santiago-bustamante-villa-4a08a91a7. Company: linkedin.com/company/efexpay. Best approach: LinkedIn DM to the relevant founder - Dimitri for technical and product roles, Santiago for GTM and growth. Both are active posters, so engage with their recent content before sending a cold message.",
+    signal: "Contact: hey@bottlecapai.com (public on website). Jaroslav LinkedIn: linkedin.com/in/jaroslavbeck. David LinkedIn: linkedin.com/in/davidherel. X: x.com/bottlecapai. Best approach: email hey@bottlecapai.com with your proof of work attached. For research roles, address Tomas directly by name even if sending to the general address. For product and GTM roles, address Jaroslav. Keep it short, lead with the thing you built, and skip the cover letter format entirely.",
+    careersUrl: "https://bottlecapai.com/#join-us",
+    videoUrl: "https://www.youtube.com/watch?v=cA8-XJeoZAQ",
+  },
+  {
+    name: "Snap Compliance",
+    tagline: "snap-compliance.com · Costa Rica / Chile / Miami · RegTech SaaS",
+    website: "snap-compliance.com",
+    logo: "https://media.licdn.com/dms/image/v2/C4E0BAQHKHy47QKMHcA/company-logo_200_200/company-logo_200_200/0/1658791432108/snapcompliance_logo?e=1773878400&v=beta&t=8SuO4ve9J2FrFdODpLpgj_KeAR22wGmZ9KittA49Rto",
+    round: "Seed",
+    amount: "$2M",
+    detail: "~30 team, 8-country coverage, Dow Jones partnership, FORTALEZA GRC just launched",
+    investors: "Undisclosed (announced via press release), VC4A Venture Showcase LatAm participant",
+    hiringScore: 7,
+    hiringReason: "Press release explicitly states capital for team strengthening, AI development acceleration, and market consolidation",
+    whatBuilding: "Snap Compliance is a RegTech SaaS platform that helps companies across Latin America manage anti-money laundering monitoring, operational risk, and regulatory compliance - all from one centralised platform. Think of it as the compliance operating system for mid-size financial institutions and corporates in markets where regulatory frameworks are tightening fast. Their newest product suite, FORTALEZA GRC, launched alongside this funding round and has three pillars: a centralised tech platform, a compliance training academy, and a document management library. They have also shipped Risk Copilot, an AI tool that automates risk identification and mitigation plan generation, and a Compliance Agent that manages multi-country regulatory requirements. They have active clients across eight countries including Costa Rica, Chile, Colombia, Panama, and the Dominican Republic and have a partnership with Dow Jones for sanctions screening.",
+    whyMatters: "Regulatory pressure in Latin America is intensifying sharply. In Chile alone, the new Personal Data Protection Law carries fines of up to $1.48M or 4% of annual revenue, almost identical to GDPR in structure and scale. Most companies in the region are still managing compliance with spreadsheets. Snap Compliance is the category-defining software that replaces that manual chaos. The Dow Jones partnership is a credibility signal - Dow Jones does not co-brand with unproven players. For a job seeker, this is a rare case of a company solving a genuinely unavoidable enterprise problem with a clear wedge into the fastest-growing LatAm markets, fresh capital, and zero hiring infrastructure in place.",
+    roles: ["AI / ML Engineer", "Full-Stack / Product Engineer", "Sales / Account Executive (Colombia or Mexico)", "Growth / Content Marketing"],
+    rolesNote: "The press release is explicit: 'This capital will allow us to strengthen our team, accelerate the development of new AI-based technological capabilities, and consolidate our presence in validated markets.'",
+    founder: {
+      initials: "AS",
+      name: "Alex Siles Loaiza",
+      title: "CEO & Co-Founder, MSc, ex-Asociación Bancaria Costarricense, now Miami-based",
+      linkedin: "https://www.linkedin.com/in/alex-siles-loaiza",
+      image: "https://media.licdn.com/dms/image/v2/D4E03AQEZNtUMD3jtbg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1725158699422?e=1773878400&v=beta&t=LrweoBykJN9UbAuI_JgaUBa0N5dZDXheraP5sPI4t_A",
+      hook: "Alex Siles Loaiza holds an MSc and has a deep background in financial compliance, AML, and risk management from the Costa Rican banking sector. He was associated with the Asociación Bancaria Costarricense before founding Snap Compliance in 2019. He is now based in Miami, which signals that US investor relations and future US market access are on his radar. He is an active speaker at compliance industry events across LatAm - the World Compliance Association, Caricaco Summit, Expocomer in Panama - meaning he is well-networked in the compliance professional community. His full leadership team is complete: Edgar Núñez Núñez as COO, William Ulloa Araya as CPO, and Kimberly Moreira Chaves as CCO. Gabriela Herra Arroyo is the CTO and Co-Founder and is the technical decision-maker - reach her for engineering roles. She participated in the VC4A Venture Showcase LatAm Women Founder Edition. For AI/ML Engineers: Risk Copilot and the Compliance Agent are their AI bets. Both need to process unstructured regulatory documents - laws, internal policies, sanctions lists - and output actionable risk analysis. Core skills: Python, LangChain or LlamaIndex, RAG pipeline design, document processing (PDF extraction and structuring), LLM fine-tuning on domain-specific regulatory data, Spanish language NLP is a very strong differentiator, REST API development. For proof of work, build a demo that ingests a public regulatory document - the Chilean Personal Data Protection Law is openly available - runs it through an LLM pipeline, and outputs a structured risk summary. Push it to GitHub. Your cold email angle: 'Gabriela - I saw the FORTALEZA GRC launch and the seed announcement. I built a demo that applies a RAG pipeline to the Chilean data protection law and outputs a structured compliance checklist [link]. I have [X] years in ML engineering and I want to be part of the team that makes Risk Copilot the default compliance AI for LatAm.' For Full-Stack/Product Engineers: FORTALEZA GRC is a new product suite with three distinct modules. Core skills: React or Vue.js, Node.js or Python, REST APIs, PostgreSQL, SaaS multi-tenancy architecture, Spanish fluency strongly preferred. For proof of work, do a UX review of their public-facing product demo and write a 300-word product critique with one specific feature recommendation. Your cold email angle: 'Gabriela - I went through the Snap Compliance demo and I had one specific idea about how the risk matrix module could surface remediation timelines more clearly. I wrote it up [attached]. I'm a full-stack engineer with [X] years and I want to help build FORTALEZA into the compliance standard across LatAm.' For Sales/AE (Colombia or Mexico): They have validated Chile and Costa Rica. The next expansion markets are Colombia and Mexico. Core skills: B2B SaaS sales, knowledge of financial compliance, Spanish fluency required, ability to navigate procurement at banks and insurance companies, HubSpot or Salesforce. For proof of work, map the regulatory compliance landscape in Colombia - what laws are tightening, which sectors face the most exposure, who the top 20 procurement decision-makers at Colombian banks are. Your cold email angle: 'Alex - Colombia is your next big market and I've been selling compliance software there for [X] years. I mapped the top 20 procurement contacts at Colombian financial institutions who are actively looking for what Snap Compliance does [attached]. I want to be the person who closes that market for you.' For Growth/Content Marketing: Their compliance training academy is a content engine waiting to happen. Core skills: B2B SaaS content marketing, Spanish content creation, SEO, LinkedIn-native writing, email marketing. For proof of work, write a 500-word Spanish-language blog post titled 'Lo que la nueva Ley de Protección de Datos en Chile significa para tu empresa en 2026' and publish it. Your cold email angle: 'Alex - la academia de FORTALEZA GRC es una palanca de crecimiento enorme si se ejecuta bien. Escribí un artículo [link] que ya está atrayendo búsquedas sobre la nueva ley chilena. Quiero construir la estrategia de contenido que convierta esa audiencia en clientes.'",
+      avoid: "Don't approach without proof of work. For engineering and product roles, reach Gabriela directly on LinkedIn - she is the technical co-founder. For sales and GTM roles, reach Alex. Write in Spanish if you can - this company operates entirely in Spanish-first markets.",
+    },
+    cofounder: {
+      name: "Gabriela Herra Arroyo",
+      title: "CTO & Co-Founder, VC4A Venture Showcase LatAm Women Founder Edition",
+      linkedin: "https://www.linkedin.com/in/gabriela-herra-arroyo",
+      image: "https://media.licdn.com/dms/image/v2/C4E03AQG1uDhtV9jhVQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1605974704868?e=1773878400&v=beta&t=iLPFubaceykowBo6SFusJCJ1dR1ir9eZJ_Z7P0ruSN8",
+    },
+    signal: "Contact: sales@snap-compliance.com (public on Crunchbase). CEO Alex: linkedin.com/in/alex-siles-loaiza. X: x.com/alexsilesloaiza. CTO Gabriela: linkedin.com/in/gabriela-herra-arroyo. Company: linkedin.com/company/snapcompliance. The company has been building for six years without institutional capital before this round - they are operators who know their market deeply. Their 2030 goal of impacting 100,000 companies is stated on every piece of public communication - tap into that mission.",
     careersUrl: "",
   },
 ];
 
 const trends = [
-  { sector: "Developer Productivity Analytics", status: "Emerging", text: "Navigara hit $1M ARR before public launch proving demand for measuring AI tooling ROI. As companies spend more on Copilot, Cursor, and other dev tools, measurement becomes a board-level concern. DevOps analytics backgrounds are in demand." },
-  { sector: "Open-Source Banking", status: "Emerging", text: "Lerian's Midaz is betting that core banking goes the way of Linux - open-source foundations with commercial services on top. Kevin Efrusy (backed Facebook Series A) on the cap table signals serious conviction. Developer relations and open-source community building skills are critical." },
-  { sector: "Cross-Border Treasury", status: "Hot", text: "EFEX grew revenue 6x in 2025 processing $1B+ in payment volume. The US-Mexico corridor is booming with nearshoring. PayPal Ventures and Zelle founder Mike Kennedy backing signals infrastructure-level conviction. Spanish fluency + fintech experience is the differentiator." },
+  { sector: "Stablecoin Payments Infrastructure", status: "Hot", text: "Alfred's $15M Series A with F-Prime and Brevan Howard Digital signals institutional conviction that stablecoins are becoming mainstream B2B payment rails. The Asia-LatAm corridor ($600B annual volume) is greenfield. Solana SDK and Circle API experience are now premium skills." },
+  { sector: "Efficiency-First AI Research", status: "Emerging", text: "BottleCap AI is betting that the future isn't scaling compute infinitely - it's reasoning better per unit of compute. With Word2Vec inventor Tomas Mikolov as CSO and Beat Saber founder as CEO, this is a serious architecture play. Getting in early here is like joining ElevenLabs pre-hype." },
+  { sector: "LatAm RegTech", status: "Heating", text: "Regulatory pressure in Latin America is intensifying fast - Chile's new data protection law mirrors GDPR with 4% revenue fines. Snap Compliance is the category-defining platform replacing spreadsheet chaos. Spanish-language compliance expertise is suddenly valuable." },
 ];
 
 const compBenchmarks = [
-  { role: "AI / ML Engineer", stage: "Seed", base: "$140K-$200K", equity: "0.3%-1.0%", notes: "Navigara territory - agent frameworks, data pipelines" },
-  { role: "Backend Engineer (Go)", stage: "Seed", base: "$150K-$220K", equity: "0.2%-0.8%", notes: "Lerian Midaz - Go required, open-source contribution as proof of work" },
-  { role: "Growth / GTM Lead", stage: "Seed", base: "$120K-$160K", equity: "0.2%-0.5%", notes: "EFEX - US-Mexico corridor expertise, Spanish required" },
-  { role: "Full-Stack Engineer", stage: "Seed", base: "$150K-$200K", equity: "0.2%-0.6%", notes: "EFEX - React/Next.js, payments APIs, FX systems" },
-  { role: "DevRel / Developer Advocate", stage: "Seed", base: "$130K-$180K", equity: "0.15%-0.4%", notes: "Lerian - content creation, Go/Python, open-source community" },
-  { role: "Product Marketing", stage: "Seed", base: "$120K-$160K", equity: "0.15%-0.4%", notes: "Navigara - B2B dev tools positioning, technical copywriting" },
-  { role: "BDR / SDR", stage: "Seed", base: "$80K-$120K", equity: "0.1%-0.3%", notes: "Navigara - outbound prospecting, DevOps buyer understanding" },
-  { role: "Head of Marketing", stage: "Seed", base: "$140K-$180K", equity: "0.2%-0.5%", notes: "Lerian - Portuguese fluency preferred, developer-first GTM" },
+  { role: "Payments Infrastructure Engineer", stage: "Series A", base: "$150K-$220K", equity: "0.15%-0.5%", notes: "alfred - Solana SDK, Circle APIs, real-time settlement" },
+  { role: "Business Development (Cross-Border)", stage: "Series A", base: "$130K-$180K", equity: "0.1%-0.3%", notes: "alfred - Asia-LatAm corridor, bilingual required" },
+  { role: "Compliance / RegTech Lead", stage: "Series A", base: "$140K-$200K", equity: "0.1%-0.4%", notes: "alfred - Multi-jurisdiction, stablecoin regulation" },
+  { role: "Developer Relations", stage: "Seed", base: "$130K-$180K", equity: "0.15%-0.4%", notes: "BottleCap AI - Technical writing, ML community building" },
+  { role: "Product / App Developer", stage: "Seed", base: "$140K-$190K", equity: "0.2%-0.6%", notes: "BottleCap AI - React Native/Swift, B2B SaaS" },
+  { role: "GTM / Growth Lead", stage: "Seed", base: "$120K-$160K", equity: "0.2%-0.5%", notes: "BottleCap AI - First commercial hire, AI-native audience" },
+  { role: "AI / ML Engineer", stage: "Seed", base: "$130K-$180K", equity: "0.2%-0.5%", notes: "Snap Compliance - RAG pipelines, Spanish NLP" },
+  { role: "Full-Stack Engineer", stage: "Seed", base: "$120K-$170K", equity: "0.15%-0.4%", notes: "Snap Compliance - React/Vue, Spanish fluency preferred" },
+  { role: "Sales / AE (LatAm)", stage: "Seed", base: "$100K-$140K", equity: "0.1%-0.3%", notes: "Snap Compliance - Colombia/Mexico expansion, Spanish required" },
 ];
 
 function FormattedHook({ text }: { text: string }) {
@@ -196,7 +202,7 @@ function FormattedHook({ text }: { text: string }) {
                   <p className="text-sm text-neutral-600 leading-relaxed">{content.slice(0, content.indexOf('Your cold email angle:'))}</p>
                   <div className="bg-white rounded-lg p-3 border border-neutral-200">
                     <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
-                    <p className="text-sm text-neutral-700 italic">"{emailMatch[2].replace(/^['"]|['"]$/g, '')}"</p>
+                    <p className="text-sm text-neutral-700 italic">&quot;{emailMatch[2].replace(/^['"]|['"]$/g, '')}&quot;</p>
                   </div>
                 </>
               ) : (
@@ -239,7 +245,7 @@ function HiringMeter({ score, reason }: { score: number; reason: string }) {
 function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; index: number; plan: Plan; onFocus?: () => void }) {
   const isFirstStartup = index === 0;
   const canSeeOutreach = plan === "edge" || plan === "concierge" || isFirstStartup;
-  const canSeeContent = plan !== "free" || isFirstStartup;
+  const canSeeContent = plan !== "free";
 
   if (!canSeeContent) {
     return (
@@ -289,7 +295,7 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
             </div>
 
             <div className="mb-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
-              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">What they're building</p>
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">What they&apos;re building</p>
               <p className="text-neutral-600 leading-relaxed">This company is building cutting edge technology that has the potential to reshape how enterprises operate. They have raised significant funding from top tier investors. The founding team includes experienced operators who previously built successful companies.</p>
             </div>
 
@@ -430,7 +436,7 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
         )}
 
         <div className="mb-6">
-          <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">What they're building</p>
+          <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">What they&apos;re building</p>
           <p className="text-neutral-600 leading-relaxed">{startup.whatBuilding}</p>
         </div>
 
@@ -521,19 +527,19 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
                   <p className="text-sm text-neutral-600 leading-relaxed">The CTO previously built infrastructure at a major tech company and values developers who understand distributed systems. Reference specific technical challenges in their open-source work.</p>
                   <div className="bg-white rounded-lg p-3 border border-neutral-200 mt-2">
                     <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
-                    <p className="text-sm text-neutral-700 italic">"I noticed your approach to handling X in your GitHub repo. I solved a similar challenge at my previous role by..."</p>
+                    <p className="text-sm text-neutral-700 italic">&quot;I noticed your approach to handling X in your GitHub repo. I solved a similar challenge at my previous role by...&quot;</p>
                   </div>
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-neutral-800 mb-1">For Product/Design:</p>
-                  <p className="text-sm text-neutral-600 leading-relaxed">The CEO responds well to people who demonstrate understanding of their target market. Show you've done research on their users and have specific ideas for improvements.</p>
+                  <p className="text-sm text-neutral-600 leading-relaxed">The CEO responds well to people who demonstrate understanding of their target market. Show you&apos;ve done research on their users and have specific ideas for improvements.</p>
                   <div className="bg-white rounded-lg p-3 border border-neutral-200 mt-2">
                     <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
-                    <p className="text-sm text-neutral-700 italic">"After speaking with 5 companies in your target segment, I noticed a pattern that aligns with your product vision..."</p>
+                    <p className="text-sm text-neutral-700 italic">&quot;After speaking with 5 companies in your target segment, I noticed a pattern that aligns with your product vision...&quot;</p>
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> Generic messages about loving their product. Don't mention funding news directly. Skip the "I'd love to pick your brain" approach.</p>
+              <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> Generic messages about loving their product. Don&apos;t mention funding news directly. Skip the &quot;I&apos;d love to pick your brain&quot; approach.</p>
             </div>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <div className="text-center px-6 bg-white/95 rounded-xl py-4 shadow-sm border border-neutral-100">
@@ -631,7 +637,7 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
           )}
 
           <motion.div {...stagger(1)}>
-            <p className="text-xs text-neutral-400 mb-2">{String(index + 1).padStart(2, "0")} of 5</p>
+            <p className="text-xs text-neutral-400 mb-2">{String(index + 1).padStart(2, "0")} of 3</p>
             <div className="flex items-start justify-between gap-4 mb-2">
               <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-neutral-900 leading-tight">{startup.name}</h1>
               {startup.logo && (
@@ -670,7 +676,7 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
           />
 
           <motion.div {...stagger(5)} className="mb-10">
-            <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">What they're building</p>
+            <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">What they&apos;re building</p>
             <p className="text-neutral-700 leading-[1.8] text-[16px]">{startup.whatBuilding}</p>
           </motion.div>
 
@@ -758,19 +764,19 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
                       <p className="text-sm text-neutral-600 leading-relaxed">The CTO previously built infrastructure at a major tech company and values developers who understand distributed systems. Reference specific technical challenges in their open-source work.</p>
                       <div className="bg-white rounded-lg p-3 border border-neutral-200 mt-2">
                         <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
-                        <p className="text-sm text-neutral-700 italic">"I noticed your approach to handling X in your GitHub repo. I solved a similar challenge at my previous role by..."</p>
+                        <p className="text-sm text-neutral-700 italic">&quot;I noticed your approach to handling X in your GitHub repo. I solved a similar challenge at my previous role by...&quot;</p>
                       </div>
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-neutral-800 mb-1">For Product/Design:</p>
-                      <p className="text-sm text-neutral-600 leading-relaxed">The CEO responds well to people who demonstrate understanding of their target market. Show you've done research on their users and have specific ideas for improvements.</p>
+                      <p className="text-sm text-neutral-600 leading-relaxed">The CEO responds well to people who demonstrate understanding of their target market. Show you&apos;ve done research on their users and have specific ideas for improvements.</p>
                       <div className="bg-white rounded-lg p-3 border border-neutral-200 mt-2">
                         <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
-                        <p className="text-sm text-neutral-700 italic">"After speaking with 5 companies in your target segment, I noticed a pattern that aligns with your product vision..."</p>
+                        <p className="text-sm text-neutral-700 italic">&quot;After speaking with 5 companies in your target segment, I noticed a pattern that aligns with your product vision...&quot;</p>
                       </div>
                     </div>
                   </div>
-                  <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> Generic messages about loving their product. Don't mention funding news directly. Skip the "I'd love to pick your brain" approach.</p>
+                  <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> Generic messages about loving their product. Don&apos;t mention funding news directly. Skip the &quot;I&apos;d love to pick your brain&quot; approach.</p>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center px-6 bg-white/95 rounded-xl py-4 shadow-sm border border-neutral-100">
@@ -835,9 +841,8 @@ function CommandK({ onClose, onSelect, plan }: { onClose: () => void; onSelect: 
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
 
-  // free users only see first startup, paid users see all
-  const visibleCount = plan === "free" ? 1 : startups.length;
-  const visibleStartups = startups.slice(0, visibleCount);
+  // free users see nothing, paid users see all
+  const visibleStartups = plan === "free" ? [] : startups;
 
   const filtered = visibleStartups
     .map((s, i) => ({ ...s, originalIndex: i }))
@@ -1039,13 +1044,13 @@ export default function DropPage() {
               {plan !== "free" && (
                 <span className="text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full capitalize">{plan}</span>
               )}
-              <p className="text-xs text-neutral-400">Feb 24, 2026</p>
+              <p className="text-xs text-neutral-400">Feb 25, 2026</p>
             </div>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-neutral-900 mb-1.5 sm:mb-2">
             3 startups that just raised
           </h1>
-          <p className="text-sm sm:text-base text-neutral-500 mb-3 sm:mb-4">$16M+ total this week · LatAm + DevOps focus</p>
+          <p className="text-sm sm:text-base text-neutral-500 mb-3 sm:mb-4">$24.5M total this week · Stablecoins + AI + RegTech</p>
           <button
             onClick={() => setCmdkOpen(true)}
             className="flex items-center gap-2.5 sm:gap-3 w-full px-3.5 sm:px-4 py-2.5 rounded-xl border border-neutral-200 bg-neutral-50 hover:bg-neutral-100 hover:border-neutral-300 transition-all duration-200 text-left group"
@@ -1064,12 +1069,12 @@ export default function DropPage() {
             <p className="text-[10px] sm:text-xs text-neutral-400">Startups</p>
           </div>
           <div className="text-center py-4 sm:py-5 px-2 sm:px-3">
-            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-neutral-900">$16M+</p>
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-neutral-900">$24.5M</p>
             <p className="text-[10px] sm:text-xs text-neutral-400">Total raised</p>
           </div>
           <div className="text-center py-4 sm:py-5 px-2 sm:px-3">
-            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-neutral-900">3</p>
-            <p className="text-[10px] sm:text-xs text-neutral-400">Seed rounds</p>
+            <p className="font-serif text-xl sm:text-2xl md:text-3xl text-neutral-900">1 A, 2 Seed</p>
+            <p className="text-[10px] sm:text-xs text-neutral-400">Round mix</p>
           </div>
         </div>
 
@@ -1079,13 +1084,13 @@ export default function DropPage() {
             <p className="text-xs text-neutral-400 uppercase tracking-wider">This week</p>
           </div>
           <p className="text-neutral-300 leading-relaxed">
-            Developer productivity analytics hits $1M ARR pre-launch with Navigara. Open-source core banking emerges with Lerian backed by the investor who funded Facebook Series A. Cross-border treasury grows with EFEX and PayPal Ventures + Zelle founder backing. By the time this is on a job board, someone has already emailed the founder. Be that person.
+            Stablecoin payments infrastructure goes Series A with alfred ($15M, F-Prime + Brevan Howard Digital) targeting the $600B Asia-LatAm corridor. Efficiency-first AI research emerges from Prague with BottleCap AI ($7.5M, 20VC + AI founder all-star angel list). LatAm RegTech consolidates with Snap Compliance ($2M) as regulatory pressure intensifies across the region. By the time this is on a job board, someone has already emailed the founder. Be that person.
           </p>
         </div>
 
         <div className="flex items-center gap-3 mb-6">
           <img src={cdn("/logo.webp")} alt="" className="w-4 h-4" />
-          <p className="text-xs font-medium text-white/70 uppercase tracking-widest">This week's companies</p>
+          <p className="text-xs font-medium text-white/70 uppercase tracking-widest">This week&apos;s companies</p>
         </div>
 
         <div className="space-y-6 mb-12">
@@ -1125,17 +1130,17 @@ export default function DropPage() {
               <div className="space-y-6 select-none pointer-events-none" style={{ filter: "blur(6px)" }} aria-hidden="true">
                 <div className="border-b border-neutral-100 pb-6">
                   <div className="flex items-center gap-2 mb-2">
-                    <p className="font-medium text-neutral-900">LatAm Fintech Infrastructure</p>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-rose-100 text-rose-600">Hot</span>
-                  </div>
-                  <p className="text-sm text-neutral-600 leading-relaxed">Three of five companies this week are building financial infrastructure for Latin America...</p>
-                </div>
-                <div className="border-b border-neutral-100 pb-6">
-                  <div className="flex items-center gap-2 mb-2">
-                    <p className="font-medium text-neutral-900">Stablecoin Payments</p>
+                    <p className="font-medium text-neutral-900">Stablecoin Payments Infrastructure</p>
                     <span className="text-xs px-2 py-0.5 rounded-full bg-rose-100 text-rose-600">Hot</span>
                   </div>
                   <p className="text-sm text-neutral-600 leading-relaxed">Institutional conviction that stablecoins are becoming mainstream payment rails...</p>
+                </div>
+                <div className="border-b border-neutral-100 pb-6">
+                  <div className="flex items-center gap-2 mb-2">
+                    <p className="font-medium text-neutral-900">Efficiency-First AI Research</p>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-600">Emerging</span>
+                  </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">The future isn&apos;t scaling compute infinitely - it&apos;s reasoning better per unit of compute...</p>
                 </div>
               </div>
               <div className="absolute inset-0 flex items-center justify-center">
@@ -1200,18 +1205,18 @@ export default function DropPage() {
                   </thead>
                   <tbody>
                     <tr className="border-b border-neutral-100">
-                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">AI / ML Engineer</td>
-                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Seed</td>
-                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$140K-$200K</td>
-                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.3%-1.0%</td>
-                      <td className="py-3 text-neutral-500 text-xs">Navigara, Jelou territory</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Payments Infrastructure Engineer</td>
+                      <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Series A</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$150K-$220K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.15%-0.5%</td>
+                      <td className="py-3 text-neutral-500 text-xs">alfred - Solana SDK, Circle APIs</td>
                     </tr>
                     <tr className="border-b border-neutral-100">
-                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Backend Engineer (Go)</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">Developer Relations</td>
                       <td className="py-3 pr-6 text-neutral-500 whitespace-nowrap">Seed</td>
-                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$150K-$220K</td>
-                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.2%-0.8%</td>
-                      <td className="py-3 text-neutral-500 text-xs">Lerian Midaz - Go required</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">$130K-$180K</td>
+                      <td className="py-3 pr-6 text-neutral-900 whitespace-nowrap">0.15%-0.4%</td>
+                      <td className="py-3 text-neutral-500 text-xs">BottleCap AI - Technical writing</td>
                     </tr>
                   </tbody>
                 </table>
