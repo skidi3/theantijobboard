@@ -16,9 +16,10 @@ interface UserData {
 
 // Premium drops (paid content) - deep dives on funded startups
 const fundedDrops = [
-  { id: "drop-003", date: "Feb 25", title: "3 Startups · Scorecards · Playbooks", type: "wednesday" as "wednesday" | "sunday" },
-  { id: "drop-002", date: "Feb 24", title: "3 Startups · $16M+ Raised · Scorecards", type: "sunday" as "wednesday" | "sunday" },
-  { id: "drop-001", date: "Feb 18", title: "12 Startups · Scorecards · Playbooks", type: "wednesday" as "wednesday" | "sunday" },
+  { id: "drop-004", date: "Feb 26", title: "3 Startups · $21M+ · AI Memory + Voice + Quantum", day: "Thu" },
+  { id: "drop-003", date: "Feb 25", title: "3 Startups · $24M+ · Stablecoins + AI + RegTech", day: "Wed" },
+  { id: "drop-002", date: "Feb 24", title: "3 Startups · $16M+ · DevProd + Banking + Treasury", day: "Tue" },
+  { id: "drop-001", date: "Feb 18", title: "12 Startups · $2.1B+ · Voice AI + Chips + More", day: "Wed" },
 ];
 
 // Live feed - refreshes weekly
@@ -201,12 +202,7 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                           </svg>
                         )}
-                        {drop.type === "sunday" && (
-                          <span className="text-[10px] uppercase tracking-wider text-neutral-400">Sun</span>
-                        )}
-                        {drop.type === "wednesday" && (
-                          <span className="text-[10px] uppercase tracking-wider text-neutral-400">Wed</span>
-                        )}
+                          <span className="text-[10px] uppercase tracking-wider text-neutral-400">{drop.day}</span>
                       </span>
                     </span>
                     <span className="text-xs text-neutral-400 mt-0.5 block truncate">{drop.title}</span>
