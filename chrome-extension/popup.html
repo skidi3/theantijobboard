@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { width: 320px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fafafa; }
+    .header { background: #171717; color: white; padding: 16px; display: flex; align-items: center; gap: 10px; }
+    .header h1 { font-size: 14px; font-weight: 600; }
+    .content { padding: 16px; }
+    .candidate-select { width: 100%; padding: 10px 12px; border: 1px solid #e5e5e5; border-radius: 8px; font-size: 14px; margin-bottom: 12px; background: white; cursor: pointer; }
+    .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 8px; transition: all 0.2s; }
+    .btn-primary { background: #f43f5e; color: white; }
+    .btn-primary:hover { background: #e11d48; }
+    .btn-secondary { background: #e5e5e5; color: #171717; }
+    .btn-secondary:hover { background: #d4d4d4; }
+    .btn-small { padding: 8px 12px; font-size: 12px; width: auto; }
+    .divider { height: 1px; background: #e5e5e5; margin: 16px 0; }
+    .status { font-size: 12px; color: #737373; text-align: center; padding: 8px; background: #f5f5f5; border-radius: 6px; margin-top: 8px; }
+    .status.success { background: #dcfce7; color: #166534; }
+    .status.error { background: #fee2e2; color: #991b1b; }
+    .tabs { display: flex; border-bottom: 1px solid #e5e5e5; margin-bottom: 16px; }
+    .tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; cursor: pointer; border-bottom: 2px solid transparent; color: #737373; }
+    .tab.active { color: #f43f5e; border-bottom-color: #f43f5e; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 11px; color: #737373; text-transform: uppercase; margin-bottom: 4px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 13px; }
+    .form-group textarea { min-height: 60px; resize: vertical; }
+    .candidate-list { max-height: 200px; overflow-y: auto; }
+    .candidate-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: white; border: 1px solid #e5e5e5; border-radius: 8px; margin-bottom: 8px; }
+    .candidate-item .name { font-size: 13px; font-weight: 500; }
+    .candidate-item .email { font-size: 11px; color: #737373; }
+    .candidate-actions { display: flex; gap: 4px; }
+    .icon-btn { width: 28px; height: 28px; border: none; background: #f5f5f5; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .icon-btn:hover { background: #e5e5e5; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <h1>Anti Job Board - Auto Fill</h1>
+  </div>
+
+  <div class="content">
+    <div class="tabs">
+      <div class="tab active" data-tab="fill">Fill Form</div>
+      <div class="tab" data-tab="manage">Manage</div>
+    </div>
+
+    <!-- Fill Tab -->
+    <div class="tab-content active" id="tab-fill">
+      <select class="candidate-select" id="candidateSelect">
+        <option value="">Select a candidate...</option>
+      </select>
+
+      <button class="btn btn-primary" id="fillBtn">Auto-Fill This Page</button>
+      <button class="btn btn-secondary" id="fillNameEmail">Fill Name & Email Only</button>
+
+      <div class="status" id="status" style="display: none;"></div>
+    </div>
+
+    <!-- Manage Tab -->
+    <div class="tab-content" id="tab-manage">
+      <div class="candidate-list" id="candidateList"></div>
+      <button class="btn btn-secondary" id="addCandidate">+ Add Candidate</button>
+    </div>
+  </div>
+
+  <!-- Edit Modal (hidden by default) -->
+  <div id="editModal" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: white; overflow-y: auto;">
+    <div class="header">
+      <h1 id="modalTitle">Edit Candidate</h1>
+    </div>
+    <div class="content">
+      <input type="hidden" id="editId">
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="editName" placeholder="John Doe">
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" id="editEmail" placeholder="john@example.com">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" id="editPhone" placeholder="+1 234 567 8900">
+      </div>
+      <div class="form-group">
+        <label>LinkedIn URL</label>
+        <input type="url" id="editLinkedin" placeholder="https://linkedin.com/in/johndoe">
+      </div>
+      <div class="form-group">
+        <label>GitHub URL</label>
+        <input type="url" id="editGithub" placeholder="https://github.com/johndoe">
+      </div>
+      <div class="form-group">
+        <label>Portfolio URL</label>
+        <input type="url" id="editPortfolio" placeholder="https://johndoe.com">
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" id="editLocation" placeholder="San Francisco, CA">
+      </div>
+      <div class="form-group">
+        <label>Current Title</label>
+        <input type="text" id="editTitle" placeholder="Senior Software Engineer">
+      </div>
+      <div class="form-group">
+        <label>Current Company</label>
+        <input type="text" id="editCompany" placeholder="Acme Inc">
+      </div>
+      <div class="form-group">
+        <label>Years of Experience</label>
+        <input type="text" id="editYears" placeholder="5">
+      </div>
+      <div class="form-group">
+        <label>Skills (comma separated)</label>
+        <textarea id="editSkills" placeholder="JavaScript, React, Node.js, Python"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Summary / Cover Letter Intro</label>
+        <textarea id="editSummary" placeholder="Experienced engineer with..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Resume URL (Google Drive, Dropbox link)</label>
+        <input type="url" id="editResume" placeholder="https://drive.google.com/...">
+      </div>
+
+      <button class="btn btn-primary" id="saveCandidate">Save Candidate</button>
+      <button class="btn btn-secondary" id="cancelEdit">Cancel</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
