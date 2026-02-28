@@ -560,6 +560,13 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
           )}
         </div>
 
+        {startup.signal && canSeeIntel && (
+          <div className="mb-6">
+            <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-2">Hiring Signal</p>
+            <p className="text-neutral-600 leading-relaxed text-sm">{startup.signal}</p>
+          </div>
+        )}
+
         {canSeeIntel ? (
           <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-dashed border-neutral-200">
             <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
@@ -657,12 +664,6 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
           </div>
         )}
 
-        {startup.signal && canSeeIntel && (
-          <div className="flex items-start gap-3 mb-6">
-            <img src={cdn("/logo.webp")} alt="" className="w-4 h-4 mt-0.5" />
-            <p className="text-sm text-neutral-600">{startup.signal}</p>
-          </div>
-        )}
 
       </div>
     </div>
@@ -799,7 +800,14 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
             )}
           </motion.div>
 
-          <motion.div {...stagger(8)} className="mb-10">
+          {startup.signal && canSeeIntel && (
+            <motion.div {...stagger(8)} className="mb-10">
+              <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">Hiring Signal</p>
+              <p className="text-neutral-700 leading-[1.8] text-[16px]">{startup.signal}</p>
+            </motion.div>
+          )}
+
+          <motion.div {...stagger(9)} className="mb-10">
             {canSeeIntel ? (
               <div className="bg-neutral-50 rounded-xl p-5 border border-dashed border-neutral-200">
                 <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
