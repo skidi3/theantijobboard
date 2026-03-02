@@ -113,7 +113,7 @@ export default function DropsPage() {
             <img src={cdn("/logo.webp")} alt="" className="w-6 h-6" />
             <span className="text-sm text-neutral-500">Premium Drop</span>
             <div className="flex items-center gap-2 ml-auto">
-              <span className="text-xs font-medium text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">Fri</span>
+              <span className="text-xs font-medium text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">Sat</span>
               <span className="text-xs text-neutral-400">Feb 28</span>
               {!isPaid && (
                 <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,9 +122,9 @@ export default function DropsPage() {
               )}
             </div>
           </div>
-          <h3 className="relative z-10 font-serif text-3xl sm:text-4xl text-neutral-900 mb-3">4 Startups · $26M+ Raised · Scorecards · Playbooks</h3>
+          <h3 className="relative z-10 font-serif text-3xl sm:text-4xl text-neutral-900 mb-3">3 Startups · $16M+ Raised · Scorecards · Playbooks</h3>
           <p className="relative z-10 text-neutral-500 mb-6 max-w-2xl">
-            AI credit analysts for banks, DeFi trading terminals, Vercel for AI agents, and AI investment advisory. Fresh raises with founder intel and outreach playbooks.
+            AI credit analysts for banks, DeFi trading terminals, and AI-powered payments reconciliation. Fresh raises with founder intel and outreach playbooks.
           </p>
           <div className="relative z-10 flex flex-wrap gap-3 mb-6">
             <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Hiring Signals</span>

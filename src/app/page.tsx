@@ -101,7 +101,7 @@ const jsonLd = {
             "@type": "Offer",
             name: "The Concierge",
             description:
-              "Full service: role matching, intro writing, founder outreach, resume review by real recruiters, weekly text check-ins",
+              "Full service: we apply to 10 roles specific to your profile every weekday, role matching, intro writing, founder outreach, resume review by real recruiters, weekly text check-ins",
             price: "199",
             priceCurrency: "USD",
             priceSpecification: {

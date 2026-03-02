@@ -211,7 +211,7 @@ export function Pricing() {
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The Concierge</h3>
                 <p className="text-neutral-500 mb-4 max-w-lg">
-                  We do everything. We call startups to confirm they're hiring, match roles to your stack, write your intros, pitch you directly to founders. Resume review by real recruiters. Weekly check-ins over text. Full platform access.
+                  We do everything. We apply to 10 roles specific to your profile every weekday. We call startups to confirm they're hiring, match roles to your stack, write your intros, pitch you directly to founders. Resume review by real recruiters. Weekly check-ins over text. Full platform access.
                 </p>
                 <p className="text-sm text-neutral-400">For people who want it done. No time to waste.</p>
               </div>
