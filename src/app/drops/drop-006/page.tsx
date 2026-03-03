@@ -27,23 +27,30 @@ interface Startup {
     initials: string;
     name: string;
     title: string;
-    hook: string;
-    avoid: string;
+    bio: string;
     image?: string;
     linkedin?: string;
   };
   cofounder?: {
     name: string;
     title: string;
+    bio?: string;
     image?: string;
     linkedin?: string;
   };
   thirdFounder?: {
     name: string;
     title: string;
+    bio?: string;
     image?: string;
     linkedin?: string;
   };
+  outreachByRole: {
+    role: string;
+    proofOfWork: string;
+    coldEmailAngle: string;
+  }[];
+  avoid: string;
   signal?: string;
   featured?: boolean;
   videoId?: string;
@@ -74,15 +81,38 @@ const startups: Startup[] = [
       title: "Co-Founder & CEO, Stanford GSB MBA, Botha-Chan Fellow, ex-Nubank, ex-monashees",
       linkedin: "https://www.linkedin.com/in/bruno-koba",
       image: "https://media.licdn.com/dms/image/v2/D5603AQE2CbEXbW0f0w/profile-displayphoto-scale_200_200/B56ZekUb1ZHQAc-/0/1750808510519?e=2147483647&v=beta&t=N5olBxzZJMdsGBU_-G6L51OW6N1cMTDotBX99UL5tQY",
-      hook: "Bruno Koba, Co-Founder & CEO (LinkedIn: linkedin.com/in/bruno-koba) Koba is a Stanford GSB MBA (Class of 2025) and a Botha-Chan Fellow - a program sponsored by Sequoia's Roelof Botha that selects only 30 students. Before Stanford, he was a data scientist at Nubank from 2018 to 2020, building ML models that impacted millions of users, a company he'd dreamed of working at since 2016. He then joined monashees, Brazil's leading VC ($2B+ AUM), as a Senior Associate where he led deal teams for 8 seed/Series A investments, including two companies now valued over $1B (Merama and Clara), and deployed $180M+ across 15+ follow-on rounds. He holds a Bachelor of Engineering from Universidade de São Paulo and Shibaura Institute of Technology in Japan, and is a Brazilian national now based in San Francisco. Bruno is also deeply connected to the LatAm fintech ecosystem - Nubank's CEO David Vélez is also Stanford GSB, and Bruno interviewed Vélez at Stanford. This network runs deep. His communication style is very active on LinkedIn: substantive posts about VC, fintech, and entrepreneurship. He engages thoughtfully with comments, is approachable, but expects substance. He values people who have conviction about a market. Daniel Tulha Hochstetler, Co-Founder & CTO - Hochstetler is an ex-Stripe, Robinhood, and Amazon software engineer who's been building production-ready AI agents and scaling systems for years. At Robinhood, he scaled systems during the meme stock booms and volatile markets, exactly the kind of high-throughput, high-stakes engineering that Astor needs. At Stripe, he worked on core infrastructure. When YC S25 accepted them, he posted on LinkedIn: \"After helping Robinhood scale during some of the wildest markets in history, we're building the AI advisor that every retail investor deserves.\" His communication style is more technically oriented than Bruno's, and he's likely the person evaluating engineering candidates. For Full-Stack Engineer: Your proof of work should be a mini AI investment chat interface. Use the OpenAI or Anthropic API paired with a financial data source (Alpha Vantage, Polygon.io, or Yahoo Finance API) to create a conversational AI that can answer portfolio-related questions. Bonus points if you add voice input/output to match Astor's actual product. The skills that matter: React Native or Flutter for mobile, Next.js for web, API integrations with financial data providers, WebSocket for real-time data, and experience building consumer-facing products at scale. Reach Daniel directly on LinkedIn. Reference his Robinhood experience and lead with your demo: \"Daniel, I've been building consumer fintech products and am obsessed with the problem you're solving - the institutional edge gap. Built a quick demo that shows how I think about conversational AI for portfolio analysis.\" Link to your project. For AI/ML Engineer: Build a simple portfolio analyzer that uses LLMs to generate investment hypotheses based on a user's holdings and market data. Show it can identify correlations, emerging sector trends, or risk factors - use LangChain paired with financial data APIs. The skills to highlight: Python, LLM orchestration (LangChain, LlamaIndex), financial data processing, NLP for earnings calls and SEC filings, experience building AI agents, and recommendation systems. Read up on any research around AI-driven investment analysis, automated hypothesis generation, or personalization in financial services, and reference the gap between institutional and retail research capabilities. Email Bruno (CEO) directly, he was a data scientist at Nubank, so he'll appreciate technical depth. Reference his monashees portfolio work and how AI can democratize the kind of analysis he used to do for billion-dollar investments: \"Bruno - you went from analyzing deals for monashees portfolio companies worth $1B+ to building the tool that gives every retail investor that same lens. I want to help build the AI that makes that real. PFA a portfolio analyzer.\" For Growth / Marketing (Consumer): Write a user acquisition strategy for Astor targeting the \"confident but underserved\" retail investor segment - people who trade regularly but lack research tools. Include channel analysis covering Reddit (r/investing, r/stocks), FinTwit, YouTube finance creators, and podcast sponsorships, then map out a 90-day growth plan post-rebrand. The skills that matter: consumer fintech marketing, paid acquisition (Meta, Google, Reddit), SEO/content marketing, community building, analytics (Mixpanel, Amplitude), and referral program design. Reach Bruno on LinkedIn and reference the rebrand from Gaus to Astor - this shows you've done your homework on the company's evolution. Propose your 90-day growth plan as an attachment: \"Bruno - noticed the rebrand from Gaus to Astor, smart move for consumer positioning. I put together a 90-day acquisition plan targeting the [x]% of investors who don't feel confident. Happy to walk through it.\" For Content / Financial Research Analyst: Write 3 sample investment research briefs (1 page each) in the style an AI advisor should deliver them - clear, jargon-light, actionable, personalized. Pick a trending sector like AI infrastructure, defense tech, or fintech and show how you'd present opportunities and risks to a retail investor. The skills to highlight: financial analysis, equity research, writing for non-expert audiences, familiarity with Bloomberg/FactSet/Koyfin, and an understanding of what retail investors actually care about (not what Wall Street cares about). Email either of them and position yourself at the intersection of content and product: \"Daniel/Bruno, the hardest part of building an AI investment advisor isn't the AI, it's making the output actually useful for someone who isn't a CFA. I've been writing investment research that regular people actually read [link]\"",
-      avoid: "Don't send generic AI enthusiasm. Lead with specific proof of work - a demo, a growth plan, or sample research briefs. Reference the rebrand from Gaus to Astor, the Robinhood scaling experience, or the monashees portfolio work. Show you understand the retail investor pain point.",
+      bio: "Stanford GSB MBA (Class of 2025) and Botha-Chan Fellow - a program sponsored by Sequoia's Roelof Botha that selects only 30 students. Before Stanford, he was a data scientist at Nubank from 2018 to 2020, building ML models that impacted millions of users. He then joined monashees, Brazil's leading VC ($2B+ AUM), as a Senior Associate where he led deal teams for 8 seed/Series A investments, including two companies now valued over $1B (Merama and Clara), and deployed $180M+ across 15+ follow-on rounds. Deeply connected to the LatAm fintech ecosystem - Nubank's CEO David Vélez is also Stanford GSB, and Bruno interviewed Vélez at Stanford. His communication style is very active on LinkedIn: substantive posts about VC, fintech, and entrepreneurship. He engages thoughtfully with comments, is approachable, but expects substance. He values people who have conviction about a market.",
     },
     cofounder: {
       name: "Daniel Tulha Hochstetler",
       title: "Co-Founder & CTO, ex-Stripe, ex-Robinhood, ex-Amazon",
       linkedin: "https://www.linkedin.com/in/daniel-hochstetler/",
       image: "https://media.licdn.com/dms/image/v2/D4E03AQGDQUd7qjSwXw/profile-displayphoto-scale_200_200/B4EZepLuQDHgAY-/0/1750890116713?e=2147483647&v=beta&t=K-Ig1bMNRCcyoQs9YEWxwBeDPgC5WGj_sXoRVkOIQ-Y",
+      bio: "Ex-Stripe, Robinhood, and Amazon software engineer who's been building production-ready AI agents and scaling systems for years. At Robinhood, he scaled systems during the meme stock booms and volatile markets, exactly the kind of high-throughput, high-stakes engineering that Astor needs. At Stripe, he worked on core infrastructure. When YC S25 accepted them, he posted on LinkedIn: \"After helping Robinhood scale during some of the wildest markets in history, we're building the AI advisor that every retail investor deserves.\" His communication style is more technically oriented than Bruno's, and he's likely the person evaluating engineering candidates.",
     },
+    outreachByRole: [
+      {
+        role: "Full-Stack Engineer",
+        proofOfWork: "Build a mini AI investment chat interface. Use the OpenAI or Anthropic API paired with a financial data source (Alpha Vantage, Polygon.io, or Yahoo Finance API) to create a conversational AI that can answer portfolio-related questions. Bonus points if you add voice input/output to match Astor's actual product. Skills that matter: React Native or Flutter for mobile, Next.js for web, API integrations with financial data providers, WebSocket for real-time data, and experience building consumer-facing products at scale. Reach Daniel directly on LinkedIn.",
+        coldEmailAngle: "Daniel, I've been building consumer fintech products and am obsessed with the problem you're solving - the institutional edge gap. Built a quick demo that shows how I think about conversational AI for portfolio analysis. [Link to your project]",
+      },
+      {
+        role: "AI/ML Engineer",
+        proofOfWork: "Build a simple portfolio analyzer that uses LLMs to generate investment hypotheses based on a user's holdings and market data. Show it can identify correlations, emerging sector trends, or risk factors - use LangChain paired with financial data APIs. Skills to highlight: Python, LLM orchestration (LangChain, LlamaIndex), financial data processing, NLP for earnings calls and SEC filings, experience building AI agents, and recommendation systems. Email Bruno (CEO) directly - he was a data scientist at Nubank, so he'll appreciate technical depth.",
+        coldEmailAngle: "Bruno - you went from analyzing deals for monashees portfolio companies worth $1B+ to building the tool that gives every retail investor that same lens. I want to help build the AI that makes that real. PFA a portfolio analyzer.",
+      },
+      {
+        role: "Growth / Marketing (Consumer)",
+        proofOfWork: "Write a user acquisition strategy for Astor targeting the \"confident but underserved\" retail investor segment - people who trade regularly but lack research tools. Include channel analysis covering Reddit (r/investing, r/stocks), FinTwit, YouTube finance creators, and podcast sponsorships, then map out a 90-day growth plan post-rebrand. Skills that matter: consumer fintech marketing, paid acquisition (Meta, Google, Reddit), SEO/content marketing, community building, analytics (Mixpanel, Amplitude), and referral program design. Reach Bruno on LinkedIn.",
+        coldEmailAngle: "Bruno - noticed the rebrand from Gaus to Astor, smart move for consumer positioning. I put together a 90-day acquisition plan targeting the [x]% of investors who don't feel confident. Happy to walk through it.",
+      },
+      {
+        role: "Content / Financial Research Analyst",
+        proofOfWork: "Write 3 sample investment research briefs (1 page each) in the style an AI advisor should deliver them - clear, jargon-light, actionable, personalized. Pick a trending sector like AI infrastructure, defense tech, or fintech and show how you'd present opportunities and risks to a retail investor. Skills to highlight: financial analysis, equity research, writing for non-expert audiences, familiarity with Bloomberg/FactSet/Koyfin, and an understanding of what retail investors actually care about (not what Wall Street cares about).",
+        coldEmailAngle: "Daniel/Bruno, the hardest part of building an AI investment advisor isn't the AI, it's making the output actually useful for someone who isn't a CFA. I've been writing investment research that regular people actually read [link]",
+      },
+    ],
+    avoid: "Don't send generic AI enthusiasm. Lead with specific proof of work - a demo, a growth plan, or sample research briefs. Reference the rebrand from Gaus to Astor, the Robinhood scaling experience, or the monashees portfolio work. Show you understand the retail investor pain point.",
     signal: "Astor AI (YC S25), a lean 5-person fintech squad fresh off Demo Day in late 2025, is screaming \"hiring spree ahead\" via the classic post-YC playbook: snag a $3-6M seed round fast (often from networks like Sequoia's) and explode headcount to 15-20 within 6 months to capitalise on momentum. Plus, their accelerating product traction (e.g., early beta user growth or API integrations hinted in YC updates) is likely fueling burn-rate needs for engineering). CEO Bruno Koba supercharges this - Stanford Botha-Chan Fellow (Roelof Botha's direct Sequoia scout pipeline), ex-Monashees deal lead behind $1B+ exits - while his recent LinkedIn fires up Brex/Nubank scaling tales and VC/founder chats, pure pre-raise signaling for Q1 2026's aggressive growth phase before that seed PR hits (think Monashees or Sequoia announcements greenlighting AI-fintech hires).",
     careersUrl: "",
     featured: false,
@@ -108,21 +138,45 @@ const startups: Startup[] = [
       title: "CEO, USC origin story, quoted in Business Insider",
       linkedin: "https://www.linkedin.com/in/kaaazemian",
       image: "https://media.licdn.com/dms/image/v2/C5603AQF981BlzdlveA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1596156888630?e=2147483647&v=beta&t=HmkVExkC3O9CgK72BUi8KBvAcwdVo9Kqr3zal_x6ccA",
-      hook: "All three founders are in their mid-twenties. They built 222 as a research project out of USC, started hosting backyard dinners in Orange County, got into Y Combinator, raised capital, moved to New York, launched an app, and quietly built something that 77% of Gen Z's stated preferences validate. Keyan Kazemian is the public face - he has 500+ LinkedIn connections, was recently quoted in Business Insider, and frames the company's mission in explicitly societal terms: the social recession, the great filter, the IRL future. Arman Roshannai is the builder - CTO, published ML researcher, and the person who originally designed the compatibility model. Their careers page states the team includes \"published ML researchers dedicated to the difficult task of training a human prediction model.\" That's Arman's world. Danial Hashemi is the operator - COO from day one, Iranian immigrant who has talked about 222 as a genuine response to the problem of social isolation, not just a startup thesis. The team works in-person every day. That is not casual information - it means they are looking for people who want to be in a room, and will notice candidates who understand that. Fun facts and conversation hooks: 222 started with pasta and wine in a backyard in Orange County - reference it specifically, it humanises the origin and shows you've done the reading. The prop newspaper in their SoHo office is called \"The Serendipity Times\" - it's a detail that tells you a lot about how seriously they take brand as identity. Their careers page opens with a quote about the TV era: \"Once Americans got out of the car, they planted themselves in front of the television.\" They are placing 2026 social isolation in a 100-year historical arc. Engage with that framing. Their stated tenet is \"A+ talent only - we do not tolerate mediocrity.\" A generic application will not survive. Proof of work is the only currency. For Machine Learning Engineer: This is the most technically critical hire on the list. 222's entire product is a human compatibility prediction model, it is what they are selling. They need an ML engineer who can work on recommendation systems, compatibility modeling, and labeled behavioral data. Core skills: experience building and shipping production ML systems; familiarity with recommendation engines or social graph modeling; experience working with labeled interaction data; comfort operating in a small team where you are shipping, not just researching. Prior work in consumer social or behavioral prediction is a genuine differentiator. For proof of work, write a brief technical note on how you'd approach the cold-start problem for a new 222 user - no history, no interaction data, only a personality quiz. Email it directly to Arman Roshannai. Your cold email angle: \"Arman - I wrote up how I'd approach the cold-start problem for a new user with no interaction history, just quiz data [attached]. I've built production recommendation systems at [company] and I want to work on the compatibility model. Is there a conversation?\" For iOS Design Engineer / Android Design Engineer: 222's product is entirely consumer-facing and their brand aesthetic is obsessively considered - their careers site uses the word \"craftsmanship\" and their job titles deliberately merge design and engineering. They want people who can do both. Core skills: strong iOS or Android engineering fundamentals; a demonstrable portfolio of shipped consumer apps with a high design bar; comfort with motion, interaction, and product aesthetics beyond standard UI frameworks; experience shipping to a real user base and iterating fast. For proof of work, pull out your phone, open the 222 app, and find one specific interaction or screen that you'd redesign - build it and send it. Your cold email angle: \"Keyan - I redesigned the [specific screen] in 222 because [specific reason]. Here's the prototype [link]. I build for both function and feel and I want to be in SoHo with this team.\" For Head of Brand: 222 is not a tech company that also does marketing. Their brand is the product - the aesthetic, the \"Serendipity Times\" prop newspaper in their office, the careers site that reads like a manifesto, the phrase \"engineering chance.\" The Head of Brand at a 16-person company that has expanded to seven cities and just raised $10.1M is a defining hire. This person will shape what 222 means culturally before the company scales beyond the point where that culture is malleable. Core skills: consumer brand building with a strong aesthetic and cultural sensibility; experience at a company that had a genuine point of view, not just a palette and a logo; ability to think about brand as behaviour, not just identity; comfort being both strategic and hands-on. For proof of work, write a short brand memo that does three things: first, articulate 222's current brand thesis in your own words (what \"engineering chance\" and the Serendipity Times aesthetic are actually signaling to a non-insider); second, map the gap between that thesis and how the outside world is likely perceiving 222 today (press coverage, App Store presence, social content, word-of-mouth); third, propose 2–3 concrete, shippable brand moves for the next 90 days that would make the lived experience of 222 feel as distinctive as the language and visuals (this could be a recurring IRL ritual, a new editorial franchise, or a design system tweak that tightens the story). Your memo should read less like a moodboard and more like a plan: specific, sequenced, and grounded in how real people encounter 222 for the first time. Your cold email angle: \"Keyan - I think 222's product thesis and brand voice are already genuinely distinct. Here's my read on where the gap is between how you talk about what you're building and how the outside world perceives it - and what I'd do about it. I want to be the person who closes that gap.\" For Member Experience Lead: 222's product is not just the app. It's the dinner, the venue, the follow-up text, the date reservation. Someone has to own the actual human experience end-to-end - and in seven cities, that operation is not trivial. Core skills: experience managing real-world consumer experiences at scale; obsessive attention to quality and detail; ability to work across operations, logistics, and community; comfort with ambiguity and small-team autonomy. This is not a community manager role. This is the person who ensures the physical product is as good as the digital one. For proof of work, design a lightweight \"gold standard\" playbook for one 222 night in a new city: from the moment someone takes the quiz to the moment they leave the venue (and get their follow-up text). Break it into stages (onboarding, pre-event communication, arrival, dinner, post-dinner, follow-up) and spell out what \"great\" looks like at each step: timing, tone, contingencies, and how you'd handle edge cases (no-shows, late arrivals, guests who feel out of place) without breaking the magic. Where relevant, include an example run-of-show and one or two operational dashboards or metrics you'd track week over week to know if the in-person experience is matching the quality of the matches. The goal is to show that you can think like an operator, a host, and a systems designer at the same time. Your cold email angle: \"Danial - your product lives or dies on the quality of the actual experience, not just the match. I've managed [events / experiences] at [company] with [X] attendees across [Y locations] and I know what operational excellence looks like at the moment of human contact. I want that role.\"",
-      avoid: "A generic application will not survive. Proof of work is the only currency. Contact: Keyan Kazemian, CEO - LinkedIn: linkedin.com/in/kaaazemian | Arman Roshannai, CTO - LinkedIn available. Email pattern likely: keyan@222.place or first name at 222.place. Best approach: a direct email with something attached - a redesign, a technical brief, a brand analysis - that shows you have used the product, understood the thesis, and done the work before asking for the conversation.",
+      bio: "The public face of 222. Has 500+ LinkedIn connections, was recently quoted in Business Insider, and frames the company's mission in explicitly societal terms: the social recession, the great filter, the IRL future. All three founders are in their mid-twenties. They built 222 as a research project out of USC, started hosting backyard dinners in Orange County, got into Y Combinator, raised capital, moved to New York, launched an app. Fun facts: 222 started with pasta and wine in a backyard in Orange County - reference it specifically. The prop newspaper in their SoHo office is called \"The Serendipity Times.\" Their careers page opens with a quote about the TV era. Their stated tenet is \"A+ talent only - we do not tolerate mediocrity.\"",
     },
     cofounder: {
       name: "Arman Roshannai",
       title: "CTO, published ML researcher, designed the compatibility model",
       linkedin: "https://www.linkedin.com/in/arman-roshannai/",
       image: "https://media.licdn.com/dms/image/v2/D5603AQFmp7OVgMrRcA/profile-displayphoto-scale_200_200/B56ZtMd4bYJsAY-/0/1766514460792?e=2147483647&v=beta&t=FT_XySbebrI7nmlVdRbpS4YQR3g1wd2M7kIqNn9_W6o",
+      bio: "The builder - CTO, published ML researcher, and the person who originally designed the compatibility model. Their careers page states the team includes \"published ML researchers dedicated to the difficult task of training a human prediction model.\" That's Arman's world. The team works in-person every day in SoHo - they're looking for people who want to be in a room.",
     },
     thirdFounder: {
       name: "Danial Hashemi",
       title: "COO, Iranian immigrant, operations from day one",
       linkedin: "https://www.linkedin.com/in/danialhashemi/",
       image: "https://media.licdn.com/dms/image/v2/C4D03AQFynxuy8MfNzg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1582072424206?e=2147483647&v=beta&t=aKuxN5KU3dnMQCGKFt_VaJnHGKTIiDXUTlGJdEvOkTQ",
+      bio: "The operator - COO from day one, Iranian immigrant who has talked about 222 as a genuine response to the problem of social isolation, not just a startup thesis. He owns the actual human experience end-to-end across seven cities.",
     },
+    outreachByRole: [
+      {
+        role: "Machine Learning Engineer",
+        proofOfWork: "This is the most technically critical hire. 222's entire product is a human compatibility prediction model. Write a brief technical note on how you'd approach the cold-start problem for a new 222 user - no history, no interaction data, only a personality quiz. Core skills: experience building and shipping production ML systems; familiarity with recommendation engines or social graph modeling; experience working with labeled interaction data; comfort operating in a small team where you are shipping, not just researching. Email it directly to Arman Roshannai.",
+        coldEmailAngle: "Arman - I wrote up how I'd approach the cold-start problem for a new user with no interaction history, just quiz data [attached]. I've built production recommendation systems at [company] and I want to work on the compatibility model. Is there a conversation?",
+      },
+      {
+        role: "iOS/Android Design Engineer",
+        proofOfWork: "222's product is entirely consumer-facing and their brand aesthetic is obsessively considered - their careers site uses the word \"craftsmanship\" and their job titles deliberately merge design and engineering. They want people who can do both. Core skills: strong iOS or Android engineering fundamentals; a demonstrable portfolio of shipped consumer apps with a high design bar; comfort with motion, interaction, and product aesthetics beyond standard UI frameworks. Pull out your phone, open the 222 app, find one specific interaction or screen that you'd redesign - build it and send it to Keyan.",
+        coldEmailAngle: "Keyan - I redesigned the [specific screen] in 222 because [specific reason]. Here's the prototype [link]. I build for both function and feel and I want to be in SoHo with this team.",
+      },
+      {
+        role: "Head of Brand",
+        proofOfWork: "222 is not a tech company that also does marketing. Their brand is the product - the aesthetic, the \"Serendipity Times\" prop newspaper, the careers site that reads like a manifesto, the phrase \"engineering chance.\" Write a short brand memo: first, articulate 222's current brand thesis in your own words; second, map the gap between that thesis and how the outside world is likely perceiving 222 today; third, propose 2–3 concrete, shippable brand moves for the next 90 days. Send to Keyan.",
+        coldEmailAngle: "Keyan - I think 222's product thesis and brand voice are already genuinely distinct. Here's my read on where the gap is between how you talk about what you're building and how the outside world perceives it - and what I'd do about it. I want to be the person who closes that gap.",
+      },
+      {
+        role: "Member Experience Lead",
+        proofOfWork: "222's product is not just the app. It's the dinner, the venue, the follow-up text, the date reservation. Design a lightweight \"gold standard\" playbook for one 222 night in a new city: from the moment someone takes the quiz to the moment they leave the venue. Break it into stages (onboarding, pre-event communication, arrival, dinner, post-dinner, follow-up) and spell out what \"great\" looks like at each step. Include edge case handling (no-shows, late arrivals, guests who feel out of place). Send to Danial.",
+        coldEmailAngle: "Danial - your product lives or dies on the quality of the actual experience, not just the match. I've managed [events / experiences] at [company] with [X] attendees across [Y locations] and I know what operational excellence looks like at the moment of human contact. I want that role.",
+      },
+    ],
+    avoid: "A generic application will not survive. Proof of work is the only currency. Email pattern likely: keyan@222.place or first name at 222.place. Best approach: a direct email with something attached - a redesign, a technical brief, a brand analysis - that shows you have used the product, understood the thesis, and done the work before asking for the conversation.",
     signal: "\"We have 7 open roles. 222 is comprised of engineers, ML researchers, designers, operators, & artists. We work in person every day at our office in the heart of SoHo in New York City.\" Seven open roles. Sixteen people. In-person only. In SoHo. The roles are specific, the team is small, and almost nobody is applying through the right channel.",
     careersUrl: "https://careers.222.place",
     featured: true,
@@ -148,9 +202,21 @@ const startups: Startup[] = [
       title: "CEO and Co-Founder",
       linkedin: "https://www.linkedin.com/in/deyan/",
       image: "https://media.licdn.com/dms/image/v2/C5103AQEnbmFK47OwSw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1516327445157?e=2147483647&v=beta&t=IvHEHlIN9eUG2eGeozjeYgnHsEjMgM7xZo1VAlCMjhM",
-      hook: "Vitanov is the public face of Jest. He is building something analogous to what Dror Berman at Innovation Endeavors described as \"a new distribution surface\", the VC framing is deliberately parallel to how App Store distribution was described in 2008. The WeChat Mini Program parallel is mentioned in press coverage and should be referenced, it shows you understand why China's version worked and what the Western equivalent requires. For Platform/Backend Engineer: Jest needs engineers who understand messaging infrastructure, RCS protocol integration, and lightweight game distribution at scale. Core skills: backend systems experience; ideally some familiarity with RCS, A2P messaging, or real-time lightweight application delivery; experience scaling a marketplace or distribution platform. For proof of work, build a minimal RCS message simulator: write a Python or Node script that constructs a valid RCS message payload, embeds a lightweight interactive element (a button, a game state update, a score), and logs the round-trip delivery simulation. Post it on GitHub with a README that explains the A2P messaging architecture and where RCS differs from SMS at the protocol level. Bonus points: include a section on how you'd handle delivery receipts at scale across 14 country markets with different carrier support tiers. Your cold email angle: \"Deyan, I've been building [messaging/distribution/gaming] infrastructure at [company] and RCS adoption has been on my radar since iOS 18. Here's my read on the technical challenge at the distribution layer [two sentences]. I want to help Jest build it.\" For Studio Partnerships / Developer Relations: Jest's success depends entirely on the quality and volume of games on the platform. That means someone needs to go out and convince game studios, from small indie shops to mid-tier publishers, that messaging is a real distribution channel worth building for. Core skills: developer relations or business development experience in gaming; relationships inside the mobile gaming ecosystem; ability to explain a new distribution paradigm to product-minded founders. For proof of work, write a one-page cold pitch deck slide, a single PDF or Notion page, addressed to a mid-tier mobile game studio (pick a real one: Kwalee, Tilting Point, Jam City) making the case for why they should build a messaging-native version of one of their existing titles. Be specific: what mechanic translates, what the retention math looks like, and why the 90/10 revenue split changes the acquisition economics. This is the exact document you would send on day one. Attach it to your cold email. Your cold email angle: \"Deyan, I've spent [X years] working with mobile game studios and I've watched acquisition costs destroy margins for the last decade. Jest is the first genuinely new pitch I've heard that changes the math. I've mapped 20 studios I'd call on day one. Can we talk?\"",
-      avoid: "Contact: Deyan Vitanov - likely findable on LinkedIn. Email pattern likely: deyan@jest.com or deyan@about.jest.com. The fund just launched two days ago. Cold outreach now is competing against essentially nobody.",
+      bio: "Vitanov is the public face of Jest. He is building something analogous to what Dror Berman at Innovation Endeavors described as \"a new distribution surface\", the VC framing is deliberately parallel to how App Store distribution was described in 2008. The WeChat Mini Program parallel is mentioned in press coverage and should be referenced, it shows you understand why China's version worked and what the Western equivalent requires. Contact: Deyan Vitanov - likely findable on LinkedIn. Email pattern likely: deyan@jest.com or deyan@about.jest.com. The fund just launched two days ago. Cold outreach now is competing against essentially nobody.",
     },
+    outreachByRole: [
+      {
+        role: "Platform/Backend Engineer",
+        proofOfWork: "Jest needs engineers who understand messaging infrastructure, RCS protocol integration, and lightweight game distribution at scale. Core skills: backend systems experience; ideally some familiarity with RCS, A2P messaging, or real-time lightweight application delivery; experience scaling a marketplace or distribution platform. For proof of work, build a minimal RCS message simulator: write a Python or Node script that constructs a valid RCS message payload, embeds a lightweight interactive element (a button, a game state update, a score), and logs the round-trip delivery simulation. Post it on GitHub with a README that explains the A2P messaging architecture and where RCS differs from SMS at the protocol level. Bonus points: include a section on how you'd handle delivery receipts at scale across 14 country markets with different carrier support tiers.",
+        coldEmailAngle: "Deyan, I've been building [messaging/distribution/gaming] infrastructure at [company] and RCS adoption has been on my radar since iOS 18. Here's my read on the technical challenge at the distribution layer [two sentences]. I want to help Jest build it.",
+      },
+      {
+        role: "Studio Partnerships / Developer Relations",
+        proofOfWork: "Jest's success depends entirely on the quality and volume of games on the platform. That means someone needs to go out and convince game studios, from small indie shops to mid-tier publishers, that messaging is a real distribution channel worth building for. Core skills: developer relations or business development experience in gaming; relationships inside the mobile gaming ecosystem; ability to explain a new distribution paradigm to product-minded founders. For proof of work, write a one-page cold pitch deck slide, a single PDF or Notion page, addressed to a mid-tier mobile game studio (pick a real one: Kwalee, Tilting Point, Jam City) making the case for why they should build a messaging-native version of one of their existing titles. Be specific: what mechanic translates, what the retention math looks like, and why the 90/10 revenue split changes the acquisition economics. This is the exact document you would send on day one. Attach it to your cold email.",
+        coldEmailAngle: "Deyan, I've spent [X years] working with mobile game studios and I've watched acquisition costs destroy margins for the last decade. Jest is the first genuinely new pitch I've heard that changes the math. I've mapped 20 studios I'd call on day one. Can we talk?",
+      },
+    ],
+    avoid: "Don't send generic \"I love gaming\" messages. Lead with proof of work - an RCS simulator or a studio pitch deck. Reference the WeChat Mini Program parallel and why the Western equivalent requires different infrastructure. The fund just launched two days ago, timing matters.",
     signal: "Founded in 2025. Seed round was announced two days ago. Plans to expand to 14 countries in five months (evident in the growth role posting on their website) and will go toward scaling the platform and onboarding the first group of gaming studios. They have to hire immediately. There is no other interpretation.",
     careersUrl: "",
     featured: false,
@@ -576,56 +642,99 @@ function StartupCard({ startup, index, plan, onFocus }: { startup: Startup; inde
 
         {canSeeIntel ? (
           <div className="bg-neutral-50 rounded-xl p-4 mb-6 border border-dashed border-neutral-200">
-            <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
-            <div className="flex flex-wrap gap-4 mb-3">
-              <div className="flex items-center gap-3">
-                {startup.founder.image ? (
-                  <img src={startup.founder.image} alt={startup.founder.name} className="w-10 h-10 rounded-full object-cover" />
-                ) : (
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                    <span className="text-neutral-900 font-semibold text-sm">{startup.founder.initials}</span>
+            <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-4">How to reach out</p>
+
+            {/* Founder Bios */}
+            <div className="space-y-4 mb-5">
+              {/* Main Founder */}
+              <div className="bg-white rounded-lg p-4 border border-neutral-200">
+                <div className="flex items-start gap-3 mb-2">
+                  {startup.founder.image ? (
+                    <img src={startup.founder.image} alt={startup.founder.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center shrink-0">
+                      <span className="text-neutral-900 font-semibold text-sm">{startup.founder.initials}</span>
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-medium text-neutral-900">{startup.founder.name}</p>
+                    <p className="text-xs text-neutral-500">{startup.founder.title}</p>
                   </div>
-                )}
-                <div>
-                  <p className="font-medium text-neutral-900">{startup.founder.name}</p>
-                  <p className="text-xs text-neutral-500">{startup.founder.title}</p>
+                  {startup.founder.linkedin && (
+                    <a href={startup.founder.linkedin} target="_blank" rel="noopener noreferrer" className="ml-auto text-neutral-400 hover:text-neutral-600 transition-colors">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                  )}
                 </div>
+                <p className="text-sm text-neutral-600 leading-relaxed">{startup.founder.bio}</p>
               </div>
-              {startup.cofounder && (
-                <div className="flex items-center gap-3">
-                  {startup.cofounder.image ? (
-                    <img src={startup.cofounder.image} alt={startup.cofounder.name} className="w-10 h-10 rounded-full object-cover" />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                      <span className="text-neutral-900 font-semibold text-sm">{startup.cofounder.name.split(" ").map(n => n[0]).join("")}</span>
+
+              {/* Co-founder */}
+              {startup.cofounder && startup.cofounder.bio && (
+                <div className="bg-white rounded-lg p-4 border border-neutral-200">
+                  <div className="flex items-start gap-3 mb-2">
+                    {startup.cofounder.image ? (
+                      <img src={startup.cofounder.image} alt={startup.cofounder.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center shrink-0">
+                        <span className="text-neutral-900 font-semibold text-sm">{startup.cofounder.name.split(" ").map(n => n[0]).join("")}</span>
+                      </div>
+                    )}
+                    <div>
+                      <p className="font-medium text-neutral-900">{startup.cofounder.name}</p>
+                      <p className="text-xs text-neutral-500">{startup.cofounder.title}</p>
                     </div>
-                  )}
-                  <div>
-                    <p className="font-medium text-neutral-900">{startup.cofounder.name}</p>
-                    <p className="text-xs text-neutral-500">{startup.cofounder.title}</p>
+                    {startup.cofounder.linkedin && (
+                      <a href={startup.cofounder.linkedin} target="_blank" rel="noopener noreferrer" className="ml-auto text-neutral-400 hover:text-neutral-600 transition-colors">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
                   </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">{startup.cofounder.bio}</p>
                 </div>
               )}
-              {startup.thirdFounder && (
-                <div className="flex items-center gap-3">
-                  {startup.thirdFounder.image ? (
-                    <img src={startup.thirdFounder.image} alt={startup.thirdFounder.name} className="w-10 h-10 rounded-full object-cover" />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                      <span className="text-neutral-900 font-semibold text-sm">{startup.thirdFounder.name.split(" ").map(n => n[0]).join("")}</span>
+
+              {/* Third Founder */}
+              {startup.thirdFounder && startup.thirdFounder.bio && (
+                <div className="bg-white rounded-lg p-4 border border-neutral-200">
+                  <div className="flex items-start gap-3 mb-2">
+                    {startup.thirdFounder.image ? (
+                      <img src={startup.thirdFounder.image} alt={startup.thirdFounder.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center shrink-0">
+                        <span className="text-neutral-900 font-semibold text-sm">{startup.thirdFounder.name.split(" ").map(n => n[0]).join("")}</span>
+                      </div>
+                    )}
+                    <div>
+                      <p className="font-medium text-neutral-900">{startup.thirdFounder.name}</p>
+                      <p className="text-xs text-neutral-500">{startup.thirdFounder.title}</p>
                     </div>
-                  )}
-                  <div>
-                    <p className="font-medium text-neutral-900">{startup.thirdFounder.name}</p>
-                    <p className="text-xs text-neutral-500">{startup.thirdFounder.title}</p>
+                    {startup.thirdFounder.linkedin && (
+                      <a href={startup.thirdFounder.linkedin} target="_blank" rel="noopener noreferrer" className="ml-auto text-neutral-400 hover:text-neutral-600 transition-colors">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
                   </div>
+                  <p className="text-sm text-neutral-600 leading-relaxed">{startup.thirdFounder.bio}</p>
                 </div>
               )}
             </div>
-            <div className="mb-3">
-              <FormattedHook text={startup.founder.hook} />
+
+            {/* Role-specific Outreach */}
+            <div className="space-y-4 mb-4">
+              {startup.outreachByRole.map((roleOutreach, i) => (
+                <div key={i} className="space-y-2">
+                  <p className="text-sm font-semibold text-neutral-800">For {roleOutreach.role}:</p>
+                  <p className="text-sm text-neutral-600 leading-relaxed">{roleOutreach.proofOfWork}</p>
+                  <div className="bg-white rounded-lg p-3 border border-neutral-200">
+                    <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
+                    <p className="text-sm text-neutral-700 italic">&quot;{roleOutreach.coldEmailAngle}&quot;</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> {startup.founder.avoid}</p>
+
+            <p className="text-sm text-neutral-500"><span className="font-medium">Avoid:</span> {startup.avoid}</p>
           </div>
         ) : (
           <div className="relative rounded-xl overflow-hidden mb-6">
@@ -832,56 +941,99 @@ function FocusOverlay({ startup, index, plan, onClose }: { startup: Startup; ind
           <motion.div {...stagger(9)} className="mb-10">
             {canSeeIntel ? (
               <div className="bg-neutral-50 rounded-xl p-5 border border-dashed border-neutral-200">
-                <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-3">How to reach out</p>
-                <div className="flex flex-wrap gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    {startup.founder.image ? (
-                      <img src={startup.founder.image} alt={startup.founder.name} className="w-10 h-10 rounded-full object-cover" />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                        <span className="text-neutral-900 font-semibold text-sm">{startup.founder.initials}</span>
-                      </div>
-                    )}
-                    <div>
-                      <p className="font-medium text-neutral-900">{startup.founder.name}</p>
-                      <p className="text-xs text-neutral-500">{startup.founder.title}</p>
-                    </div>
-                  </div>
-                  {startup.cofounder && (
-                    <div className="flex items-center gap-3">
-                      {startup.cofounder.image ? (
-                        <img src={startup.cofounder.image} alt={startup.cofounder.name} className="w-10 h-10 rounded-full object-cover" />
+                <p className="text-xs text-rose-500 uppercase tracking-wider font-medium mb-4">How to reach out</p>
+
+                {/* Founder Bios */}
+                <div className="space-y-4 mb-5">
+                  {/* Main Founder */}
+                  <div className="bg-white rounded-lg p-4 border border-neutral-200">
+                    <div className="flex items-start gap-3 mb-2">
+                      {startup.founder.image ? (
+                        <img src={startup.founder.image} alt={startup.founder.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                          <span className="text-neutral-900 font-semibold text-sm">{startup.cofounder.name.split(" ").map(n => n[0]).join("")}</span>
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center shrink-0">
+                          <span className="text-neutral-900 font-semibold text-sm">{startup.founder.initials}</span>
                         </div>
                       )}
                       <div>
-                        <p className="font-medium text-neutral-900">{startup.cofounder.name}</p>
-                        <p className="text-xs text-neutral-500">{startup.cofounder.title}</p>
+                        <p className="font-medium text-neutral-900">{startup.founder.name}</p>
+                        <p className="text-xs text-neutral-500">{startup.founder.title}</p>
                       </div>
+                      {startup.founder.linkedin && (
+                        <a href={startup.founder.linkedin} target="_blank" rel="noopener noreferrer" className="ml-auto text-neutral-400 hover:text-neutral-600 transition-colors">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-sm text-neutral-600 leading-relaxed">{startup.founder.bio}</p>
+                  </div>
+
+                  {/* Co-founder */}
+                  {startup.cofounder && startup.cofounder.bio && (
+                    <div className="bg-white rounded-lg p-4 border border-neutral-200">
+                      <div className="flex items-start gap-3 mb-2">
+                        {startup.cofounder.image ? (
+                          <img src={startup.cofounder.image} alt={startup.cofounder.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center shrink-0">
+                            <span className="text-neutral-900 font-semibold text-sm">{startup.cofounder.name.split(" ").map(n => n[0]).join("")}</span>
+                          </div>
+                        )}
+                        <div>
+                          <p className="font-medium text-neutral-900">{startup.cofounder.name}</p>
+                          <p className="text-xs text-neutral-500">{startup.cofounder.title}</p>
+                        </div>
+                        {startup.cofounder.linkedin && (
+                          <a href={startup.cofounder.linkedin} target="_blank" rel="noopener noreferrer" className="ml-auto text-neutral-400 hover:text-neutral-600 transition-colors">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          </a>
+                        )}
+                      </div>
+                      <p className="text-sm text-neutral-600 leading-relaxed">{startup.cofounder.bio}</p>
                     </div>
                   )}
-                  {startup.thirdFounder && (
-                    <div className="flex items-center gap-3">
-                      {startup.thirdFounder.image ? (
-                        <img src={startup.thirdFounder.image} alt={startup.thirdFounder.name} className="w-10 h-10 rounded-full object-cover" />
-                      ) : (
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center">
-                          <span className="text-neutral-900 font-semibold text-sm">{startup.thirdFounder.name.split(" ").map(n => n[0]).join("")}</span>
+
+                  {/* Third Founder */}
+                  {startup.thirdFounder && startup.thirdFounder.bio && (
+                    <div className="bg-white rounded-lg p-4 border border-neutral-200">
+                      <div className="flex items-start gap-3 mb-2">
+                        {startup.thirdFounder.image ? (
+                          <img src={startup.thirdFounder.image} alt={startup.thirdFounder.name} className="w-10 h-10 rounded-full object-cover shrink-0" />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-rose-200 to-rose-400 flex items-center justify-center shrink-0">
+                            <span className="text-neutral-900 font-semibold text-sm">{startup.thirdFounder.name.split(" ").map(n => n[0]).join("")}</span>
+                          </div>
+                        )}
+                        <div>
+                          <p className="font-medium text-neutral-900">{startup.thirdFounder.name}</p>
+                          <p className="text-xs text-neutral-500">{startup.thirdFounder.title}</p>
                         </div>
-                      )}
-                      <div>
-                        <p className="font-medium text-neutral-900">{startup.thirdFounder.name}</p>
-                        <p className="text-xs text-neutral-500">{startup.thirdFounder.title}</p>
+                        {startup.thirdFounder.linkedin && (
+                          <a href={startup.thirdFounder.linkedin} target="_blank" rel="noopener noreferrer" className="ml-auto text-neutral-400 hover:text-neutral-600 transition-colors">
+                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          </a>
+                        )}
                       </div>
+                      <p className="text-sm text-neutral-600 leading-relaxed">{startup.thirdFounder.bio}</p>
                     </div>
                   )}
                 </div>
-                <div className="mb-4">
-                <FormattedHook text={startup.founder.hook} />
-              </div>
-                <p className="text-neutral-500 leading-[1.8] text-[15px]"><span className="font-medium text-neutral-700">Avoid:</span> {startup.founder.avoid}</p>
+
+                {/* Role-specific Outreach */}
+                <div className="space-y-4 mb-4">
+                  {startup.outreachByRole.map((roleOutreach, i) => (
+                    <div key={i} className="space-y-2">
+                      <p className="text-sm font-semibold text-neutral-800">For {roleOutreach.role}:</p>
+                      <p className="text-sm text-neutral-600 leading-relaxed">{roleOutreach.proofOfWork}</p>
+                      <div className="bg-white rounded-lg p-3 border border-neutral-200">
+                        <p className="text-xs text-rose-500 font-medium mb-1">Cold email angle</p>
+                        <p className="text-sm text-neutral-700 italic">&quot;{roleOutreach.coldEmailAngle}&quot;</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-neutral-500 leading-[1.8] text-[15px]"><span className="font-medium text-neutral-700">Avoid:</span> {startup.avoid}</p>
               </div>
             ) : (
               <div className="relative rounded-xl overflow-hidden">
