@@ -206,7 +206,10 @@ export function Pricing() {
           </div>
 
           {/* The Concierge */}
-          <div className="bg-white border border-neutral-200 rounded-2xl p-6 md:p-8">
+          <div className="relative bg-white border border-neutral-200 rounded-2xl p-6 md:p-8">
+            <span className="absolute top-0 right-8 -translate-y-1/2 bg-neutral-900 text-white text-sm px-4 py-1.5 rounded-full z-10">
+              Limited slots
+            </span>
             <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
               <div className="flex-1">
                 <h3 className="font-serif text-2xl md:text-3xl text-neutral-900 mb-3">The Concierge</h3>
@@ -214,18 +217,22 @@ export function Pricing() {
                   We do everything. We apply to 10 roles specific to your profile every weekday. We call startups to confirm they're hiring, match roles to your stack, write your intros, pitch you directly to founders. Resume review by real recruiters. Weekly check-ins over text. Full platform access.
                 </p>
                 <p className="text-sm text-neutral-400">For people who want it done. No time to waste.</p>
+                <p className="text-sm text-rose-500 mt-3 font-medium">We're at capacity. DM us on X to join the waitlist.</p>
               </div>
               <div className="flex items-end gap-6 lg:flex-col lg:items-end lg:gap-4">
                 <div>
                   <span className="font-serif text-4xl md:text-5xl text-neutral-900">$199</span>
                   <span className="text-neutral-400">/month</span>
                 </div>
-                <button
-                  onClick={() => handlePlanClick("concierge")}
-                  className="text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
+                <a
+                  href="https://x.com/theantijobboard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-neutral-900 border-b border-neutral-900 pb-0.5 hover:text-neutral-600 hover:border-neutral-600 transition-colors"
                 >
-                  Apply
-                </button>
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  DM us on X
+                </a>
               </div>
             </div>
           </div>
