@@ -16,6 +16,7 @@ interface UserData {
 
 // Premium drops (paid content) - deep dives on funded startups
 const fundedDrops = [
+  { id: "drop-006", date: "Mar 2", title: "3 Startups · $17.6M+ · AI Investment + IRL Social + RCS Gaming", day: "Mon" },
   { id: "drop-005", date: "Feb 28", title: "3 Startups · $16M+ · AI Banking + DeFi + Payments", day: "Sat" },
   { id: "drop-004", date: "Feb 26", title: "3 Startups · $21M+ · AI Memory + Voice + Quantum", day: "Thu" },
   { id: "drop-003", date: "Feb 25", title: "3 Startups · $24M+ · Stablecoins + AI + RegTech", day: "Wed" },
