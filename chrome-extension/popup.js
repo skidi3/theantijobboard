@@ -1,5 +1,10 @@
+// Config - these would ideally be in a secure config
+const SUPABASE_URL = 'https://bdnijxdksyegvqhttdhx.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkbmlqeGRrc3llZ3ZxaHR0ZGh4Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MTQwMDc2NSwiZXhwIjoyMDg2OTc2NzY1fQ.WmSOt5HHF_Tc7GhEUHPIgtkxnBc86tgkcqRV-ORlHno';
+
 // Candidate storage
 let candidates = [];
+let currentSource = 'twitter';
 
 // Load candidates from storage
 async function loadCandidates() {
@@ -54,8 +59,8 @@ function renderCandidateList() {
 }
 
 // Show status message
-function showStatus(message, type = 'info') {
-  const status = document.getElementById('status');
+function showStatus(elementId, message, type = 'info') {
+  const status = document.getElementById(elementId);
   status.textContent = message;
   status.className = 'status ' + type;
   status.style.display = 'block';
@@ -72,11 +77,20 @@ document.querySelectorAll('.tab').forEach(tab => {
   });
 });
 
+// Source toggle (Twitter/LinkedIn)
+document.querySelectorAll('.source-toggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.source-toggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSource = btn.dataset.source;
+  });
+});
+
 // Fill form button
 document.getElementById('fillBtn').addEventListener('click', async () => {
   const select = document.getElementById('candidateSelect');
   if (!select.value) {
-    showStatus('Please select a candidate first', 'error');
+    showStatus('status', 'Please select a candidate first', 'error');
     return;
   }
 
@@ -90,9 +104,9 @@ document.getElementById('fillBtn').addEventListener('click', async () => {
     args: [candidate, false]
   }, (results) => {
     if (chrome.runtime.lastError) {
-      showStatus('Error: ' + chrome.runtime.lastError.message, 'error');
+      showStatus('status', 'Error: ' + chrome.runtime.lastError.message, 'error');
     } else if (results && results[0]) {
-      showStatus(`Filled ${results[0].result} fields!`, 'success');
+      showStatus('status', `Filled ${results[0].result} fields!`, 'success');
     }
   });
 });
@@ -101,7 +115,7 @@ document.getElementById('fillBtn').addEventListener('click', async () => {
 document.getElementById('fillNameEmail').addEventListener('click', async () => {
   const select = document.getElementById('candidateSelect');
   if (!select.value) {
-    showStatus('Please select a candidate first', 'error');
+    showStatus('status', 'Please select a candidate first', 'error');
     return;
   }
 
@@ -115,9 +129,9 @@ document.getElementById('fillNameEmail').addEventListener('click', async () => {
     args: [candidate, true]
   }, (results) => {
     if (chrome.runtime.lastError) {
-      showStatus('Error: ' + chrome.runtime.lastError.message, 'error');
+      showStatus('status', 'Error: ' + chrome.runtime.lastError.message, 'error');
     } else if (results && results[0]) {
-      showStatus(`Filled ${results[0].result} fields!`, 'success');
+      showStatus('status', `Filled ${results[0].result} fields!`, 'success');
     }
   });
 });
@@ -234,6 +248,217 @@ function fillForm(candidate, nameEmailOnly) {
     return '';
   }
 }
+
+// ==================== CAPTURE ROLE FUNCTIONALITY ====================
+
+// Extract info from post text using simple parsing (no API needed)
+function extractInfoFromText(text, url) {
+  const result = {
+    company: '',
+    roles: '',
+    category: 'tech',
+    why_included: ''
+  };
+
+  // Try to extract company name from URL or text
+  // From Twitter: look for @mentions or "at [Company]" patterns
+  // From LinkedIn: company is often mentioned
+
+  const companyPatterns = [
+    /(?:at|@|join(?:ing)?)\s+([A-Z][A-Za-z0-9]+(?:\s+[A-Z][A-Za-z0-9]+)?)/i,
+    /([A-Z][A-Za-z0-9]+(?:\s+[A-Z][A-Za-z0-9]+)?)\s+is\s+hiring/i,
+    /hiring\s+(?:at|for)\s+([A-Z][A-Za-z0-9]+)/i,
+    /([A-Z][a-z]+(?:[A-Z][a-z]+)+)/  // CamelCase company names
+  ];
+
+  for (const pattern of companyPatterns) {
+    const match = text.match(pattern);
+    if (match && match[1]) {
+      result.company = match[1].trim();
+      break;
+    }
+  }
+
+  // Extract from URL if twitter
+  if (!result.company && url) {
+    const twitterMatch = url.match(/twitter\.com\/([^\/]+)|x\.com\/([^\/]+)/);
+    if (twitterMatch) {
+      result.company = twitterMatch[1] || twitterMatch[2];
+    }
+  }
+
+  // Extract roles - look for common job titles
+  const roleKeywords = [
+    'engineer', 'developer', 'designer', 'manager', 'lead', 'director',
+    'analyst', 'scientist', 'architect', 'devops', 'sre', 'frontend',
+    'backend', 'fullstack', 'full-stack', 'mobile', 'ios', 'android',
+    'product', 'data', 'ml', 'ai', 'machine learning', 'software',
+    'senior', 'staff', 'principal', 'head of', 'vp', 'cto', 'ceo'
+  ];
+
+  const rolePattern = new RegExp(
+    `((?:${roleKeywords.join('|')})(?:\\s+(?:${roleKeywords.join('|')}))*)`,
+    'gi'
+  );
+
+  const roles = [];
+  let match;
+  while ((match = rolePattern.exec(text)) !== null) {
+    const role = match[1].trim();
+    if (role.length > 3 && !roles.includes(role)) {
+      roles.push(role);
+    }
+  }
+  result.roles = roles.slice(0, 3).join(', ');
+
+  // Determine category
+  const textLower = text.toLowerCase();
+  if (textLower.includes('design') || textLower.includes('ux') || textLower.includes('ui')) {
+    result.category = 'design';
+  } else if (textLower.includes('product manager') || textLower.includes('pm role')) {
+    result.category = 'product';
+  } else if (textLower.includes('marketing') || textLower.includes('growth')) {
+    result.category = 'marketing';
+  } else if (textLower.includes('sales') || textLower.includes('account exec')) {
+    result.category = 'sales';
+  } else if (textLower.includes('operations') || textLower.includes('ops')) {
+    result.category = 'ops';
+  }
+
+  // Generate why_included
+  const reasons = [];
+  if (textLower.includes('funded') || textLower.includes('raised') || textLower.includes('series')) {
+    reasons.push('Recently funded');
+  }
+  if (textLower.includes('yc') || textLower.includes('y combinator')) {
+    reasons.push('YC-backed');
+  }
+  if (textLower.includes('remote')) {
+    reasons.push('Remote friendly');
+  }
+  if (textLower.includes('urgent') || textLower.includes('asap') || textLower.includes('immediately')) {
+    reasons.push('Urgent hire');
+  }
+  if (reasons.length === 0) {
+    reasons.push('Active hiring post');
+  }
+  result.why_included = reasons.join(', ');
+
+  return result;
+}
+
+// Extract button click
+document.getElementById('extractBtn').addEventListener('click', async () => {
+  const url = document.getElementById('captureUrl').value.trim();
+  const text = document.getElementById('captureText').value.trim();
+
+  if (!text) {
+    showStatus('captureStatus', 'Please paste the post text', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('extractBtn');
+  const btnText = document.getElementById('extractBtnText');
+  btn.disabled = true;
+  btnText.textContent = 'Extracting...';
+
+  try {
+    const extracted = extractInfoFromText(text, url);
+
+    // Populate the form
+    document.getElementById('extractedCompany').value = extracted.company;
+    document.getElementById('extractedRoles').value = extracted.roles;
+    document.getElementById('extractedCategory').value = extracted.category;
+    document.getElementById('extractedWhy').value = extracted.why_included;
+
+    // Show the preview
+    document.getElementById('extractedPreview').style.display = 'block';
+
+    showStatus('captureStatus', 'Info extracted! Review and submit.', 'success');
+  } catch (error) {
+    showStatus('captureStatus', 'Error extracting: ' + error.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btnText.textContent = 'Extract Info';
+  }
+});
+
+// Submit to database
+document.getElementById('submitToDb').addEventListener('click', async () => {
+  const url = document.getElementById('captureUrl').value.trim();
+  const company = document.getElementById('extractedCompany').value.trim();
+  const roles = document.getElementById('extractedRoles').value.trim();
+  const category = document.getElementById('extractedCategory').value;
+  const why_included = document.getElementById('extractedWhy').value.trim();
+  const expiresDays = parseInt(document.getElementById('extractedExpires').value);
+
+  if (!company || !roles) {
+    showStatus('captureStatus', 'Company and roles are required', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('submitToDb');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  try {
+    // Calculate expires_at
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + expiresDays);
+
+    const payload = {
+      tweet_url: url || null,
+      company,
+      roles,
+      category,
+      why_included,
+      expires_at: expiresAt.toISOString(),
+      is_active: true
+    };
+
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/hiring_tweets`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
+    showStatus('captureStatus', 'Added to database!', 'success');
+
+    // Clear form
+    clearCaptureForm();
+  } catch (error) {
+    showStatus('captureStatus', 'Error: ' + error.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Submit to Database';
+  }
+});
+
+// Clear capture form
+function clearCaptureForm() {
+  document.getElementById('captureUrl').value = '';
+  document.getElementById('captureText').value = '';
+  document.getElementById('extractedCompany').value = '';
+  document.getElementById('extractedRoles').value = '';
+  document.getElementById('extractedCategory').value = 'tech';
+  document.getElementById('extractedWhy').value = '';
+  document.getElementById('extractedExpires').value = '7';
+  document.getElementById('extractedPreview').style.display = 'none';
+}
+
+document.getElementById('clearCapture').addEventListener('click', clearCaptureForm);
+
+// ==================== CANDIDATE MANAGEMENT ====================
 
 // Add candidate
 document.getElementById('addCandidate').addEventListener('click', () => {

@@ -352,16 +352,45 @@ export default function SevenDayListPage() {
                 <table className="w-full text-sm min-w-[900px]">
                 <thead>
                   <tr className="border-b border-neutral-100 bg-neutral-50">
-                    <th className="text-left py-3 pl-0 pr-4 font-medium text-neutral-500 whitespace-nowrap">#</th>
+                    <th className="text-left py-3 pl-4 pr-4 font-medium text-neutral-500 whitespace-nowrap">Index</th>
                     <th className="text-left py-3 px-4 font-medium text-neutral-500 whitespace-nowrap">Company</th>
                     <th className="text-left py-3 px-4 font-medium text-neutral-500 whitespace-nowrap">Role(s)</th>
                     <th className="text-left py-3 px-4 font-medium text-neutral-500 whitespace-nowrap">Funding</th>
                     <th className="text-left py-3 px-4 font-medium text-neutral-500 whitespace-nowrap">Location</th>
                     <th className="text-left py-3 px-4 font-medium text-neutral-500 whitespace-nowrap">Source</th>
-                    <th className="text-left py-3 pl-4 pr-0 font-medium text-neutral-500 whitespace-nowrap">Link</th>
+                    <th className="text-left py-3 pl-4 pr-4 font-medium text-neutral-500 whitespace-nowrap">Link</th>
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Featured: The Anti Job Board */}
+                  <tr className="border-b border-neutral-100 bg-white">
+                    <td className="py-3 pl-4 pr-4 whitespace-nowrap"><span className="text-rose-500 font-bold">✱</span></td>
+                    <td className="py-3 px-4 whitespace-nowrap">
+                      <span className="font-medium text-rose-500">The Anti Job Board</span>
+                    </td>
+                    <td className="py-3 px-4 text-neutral-600 whitespace-nowrap">Intern (multiple hats)</td>
+                    <td className="py-3 px-4 whitespace-nowrap">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-rose-50 text-rose-700">
+                        Bootstrapped
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-neutral-500 whitespace-nowrap">Remote</td>
+                    <td className="py-3 px-4 whitespace-nowrap">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-neutral-100 text-neutral-600">
+                        Us
+                      </span>
+                    </td>
+                    <td className="py-3 pl-4 pr-4 whitespace-nowrap">
+                      <a
+                        href="https://x.com/theantijobboard"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-rose-500 hover:text-rose-600 font-medium"
+                      >
+                        DM us →
+                      </a>
+                    </td>
+                  </tr>
                   {jobs.map((job, index) => (
                     <tr
                       key={job.id}
@@ -369,7 +398,7 @@ export default function SevenDayListPage() {
                         index % 2 === 0 ? "bg-white" : "bg-neutral-50/50"
                       }`}
                     >
-                      <td className="py-3 pl-0 pr-4 text-neutral-400 whitespace-nowrap">{job.rank}</td>
+                      <td className="py-3 pl-4 pr-4 text-neutral-400 whitespace-nowrap">{job.rank}</td>
                       <td className="py-3 px-4 font-medium text-neutral-900 whitespace-nowrap">{job.company}</td>
                       <td className="py-3 px-4 text-neutral-600 whitespace-nowrap">{job.roles}</td>
                       <td className="py-3 px-4 text-neutral-600 whitespace-nowrap">
@@ -383,7 +412,7 @@ export default function SevenDayListPage() {
                           {job.source}
                         </span>
                       </td>
-                      <td className="py-3 pl-4 pr-0 whitespace-nowrap">
+                      <td className="py-3 pl-4 pr-4 whitespace-nowrap">
                         <a
                           href={job.careers_link}
                           target="_blank"

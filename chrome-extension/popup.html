@@ -3,7 +3,7 @@
 <head>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { width: 320px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fafafa; }
+    body { width: 360px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fafafa; }
     .header { background: #171717; color: white; padding: 16px; display: flex; align-items: center; gap: 10px; }
     .header h1 { font-size: 14px; font-weight: 600; }
     .content { padding: 16px; }
@@ -14,18 +14,19 @@
     .btn-secondary { background: #e5e5e5; color: #171717; }
     .btn-secondary:hover { background: #d4d4d4; }
     .btn-small { padding: 8px 12px; font-size: 12px; width: auto; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .divider { height: 1px; background: #e5e5e5; margin: 16px 0; }
     .status { font-size: 12px; color: #737373; text-align: center; padding: 8px; background: #f5f5f5; border-radius: 6px; margin-top: 8px; }
     .status.success { background: #dcfce7; color: #166534; }
     .status.error { background: #fee2e2; color: #991b1b; }
     .tabs { display: flex; border-bottom: 1px solid #e5e5e5; margin-bottom: 16px; }
-    .tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; cursor: pointer; border-bottom: 2px solid transparent; color: #737373; }
+    .tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; cursor: pointer; border-bottom: 2px solid transparent; color: #737373; }
     .tab.active { color: #f43f5e; border-bottom-color: #f43f5e; }
     .tab-content { display: none; }
     .tab-content.active { display: block; }
     .form-group { margin-bottom: 12px; }
     .form-group label { display: block; font-size: 11px; color: #737373; text-transform: uppercase; margin-bottom: 4px; }
-    .form-group input, .form-group textarea { width: 100%; padding: 8px 10px; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 13px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px 10px; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 13px; }
     .form-group textarea { min-height: 60px; resize: vertical; }
     .candidate-list { max-height: 200px; overflow-y: auto; }
     .candidate-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: white; border: 1px solid #e5e5e5; border-radius: 8px; margin-bottom: 8px; }
@@ -34,17 +35,30 @@
     .candidate-actions { display: flex; gap: 4px; }
     .icon-btn { width: 28px; height: 28px; border: none; background: #f5f5f5; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
     .icon-btn:hover { background: #e5e5e5; }
+    .extracted-preview { background: #f5f5f5; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+    .extracted-preview h4 { font-size: 12px; color: #737373; margin-bottom: 8px; text-transform: uppercase; }
+    .extracted-field { margin-bottom: 8px; }
+    .extracted-field label { font-size: 10px; color: #a3a3a3; text-transform: uppercase; }
+    .extracted-field p { font-size: 13px; color: #171717; }
+    .loading { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 20px; color: #737373; font-size: 13px; }
+    .spinner { width: 16px; height: 16px; border: 2px solid #e5e5e5; border-top-color: #f43f5e; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .source-toggle { display: flex; gap: 8px; margin-bottom: 12px; }
+    .source-toggle button { flex: 1; padding: 8px; border: 1px solid #e5e5e5; background: white; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
+    .source-toggle button.active { background: #171717; color: white; border-color: #171717; }
+    .source-toggle button:hover:not(.active) { background: #f5f5f5; }
   </style>
 </head>
 <body>
   <div class="header">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    <h1>Anti Job Board - Auto Fill</h1>
+    <h1>Anti Job Board</h1>
   </div>
 
   <div class="content">
     <div class="tabs">
       <div class="tab active" data-tab="fill">Fill Form</div>
+      <div class="tab" data-tab="capture">Capture Role</div>
       <div class="tab" data-tab="manage">Manage</div>
     </div>
 
@@ -58,6 +72,78 @@
       <button class="btn btn-secondary" id="fillNameEmail">Fill Name & Email Only</button>
 
       <div class="status" id="status" style="display: none;"></div>
+    </div>
+
+    <!-- Capture Tab -->
+    <div class="tab-content" id="tab-capture">
+      <div class="source-toggle">
+        <button class="active" data-source="twitter">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter/X
+        </button>
+        <button data-source="linkedin">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label>Post URL</label>
+        <input type="url" id="captureUrl" placeholder="https://x.com/... or https://linkedin.com/...">
+      </div>
+
+      <div class="form-group">
+        <label>Post Text (paste the content)</label>
+        <textarea id="captureText" placeholder="Paste the tweet or LinkedIn post text here..." style="min-height: 100px;"></textarea>
+      </div>
+
+      <button class="btn btn-primary" id="extractBtn">
+        <span id="extractBtnText">Extract Info</span>
+      </button>
+
+      <!-- Extracted Preview -->
+      <div id="extractedPreview" style="display: none;">
+        <div class="extracted-preview">
+          <h4>Extracted Info</h4>
+          <div class="extracted-field">
+            <label>Company</label>
+            <input type="text" id="extractedCompany" class="form-group">
+          </div>
+          <div class="extracted-field">
+            <label>Roles</label>
+            <input type="text" id="extractedRoles" class="form-group">
+          </div>
+          <div class="extracted-field">
+            <label>Category</label>
+            <select id="extractedCategory" class="form-group">
+              <option value="tech">Tech</option>
+              <option value="design">Design</option>
+              <option value="product">Product</option>
+              <option value="marketing">Marketing</option>
+              <option value="sales">Sales</option>
+              <option value="ops">Operations</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="extracted-field">
+            <label>Why Include</label>
+            <input type="text" id="extractedWhy" class="form-group">
+          </div>
+          <div class="extracted-field">
+            <label>Expires In (days)</label>
+            <select id="extractedExpires" class="form-group">
+              <option value="3">3 days</option>
+              <option value="7" selected>7 days</option>
+              <option value="14">14 days</option>
+              <option value="30">30 days</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="submitToDb">Submit to Database</button>
+        <button class="btn btn-secondary" id="clearCapture">Clear</button>
+      </div>
+
+      <div class="status" id="captureStatus" style="display: none;"></div>
     </div>
 
     <!-- Manage Tab -->
