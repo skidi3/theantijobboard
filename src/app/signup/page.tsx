@@ -5,6 +5,29 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { cdn } from "@/lib/cdn";
+import disposableDomains from "disposable-email-domains";
+
+// 100k+ disposable email domains from the library + custom blocked domains
+const DISPOSABLE_EMAIL_DOMAINS = new Set([
+  ...disposableDomains,
+  "dollicons.com", // attacker domain
+  "keecs.com", // disposable
+]);
+
+// Additional check: block domains that look suspicious
+const SUSPICIOUS_PATTERNS = [
+  /^\d+mail\.com$/,      // 10minutemail style
+  /^temp.*\.com$/,       // temp-anything
+  /^fake.*\.com$/,       // fake-anything
+  /^trash.*\.com$/,      // trash-anything
+  /^throw.*\.com$/,      // throwaway style
+  /^disposable.*\.com$/, // disposable-anything
+];
+
+function isDisposableEmail(domain: string): boolean {
+  if (DISPOSABLE_EMAIL_DOMAINS.has(domain)) return true;
+  return SUSPICIOUS_PATTERNS.some(pattern => pattern.test(domain));
+}
 
 function SignupContent() {
   const searchParams = useSearchParams();
@@ -25,6 +48,14 @@ function SignupContent() {
 
     if (password.length < 8) {
       setError("Password must be at least 8 characters");
+      setLoading(false);
+      return;
+    }
+
+    // Check for disposable email domains
+    const emailDomain = email.split("@")[1]?.toLowerCase();
+    if (emailDomain && isDisposableEmail(emailDomain)) {
+      setError("Please use a valid email address. Disposable emails are not allowed.");
       setLoading(false);
       return;
     }
