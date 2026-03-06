@@ -221,7 +221,7 @@ export function Pricing() {
               </div>
               <div className="flex items-end gap-6 lg:flex-col lg:items-end lg:gap-4">
                 <div>
-                  <span className="font-serif text-4xl md:text-5xl text-neutral-900">$199</span>
+                  <span className="font-serif text-4xl md:text-5xl text-neutral-900">$299</span>
                   <span className="text-neutral-400">/month</span>
                 </div>
                 <button
