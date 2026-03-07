@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { cdn } from "@/lib/cdn";
+import { getSafeRedirectUrl } from "@/lib/safeRedirect";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,8 @@ function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/drops";
+  const redirectParam = searchParams.get("redirect");
+  const safeRedirect = getSafeRedirectUrl(redirectParam, "/drops");
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ function LoginForm() {
       return;
     }
 
-    window.location.href = redirect;
+    window.location.href = safeRedirect;
   };
 
   return (

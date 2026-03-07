@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { cdn } from "@/lib/cdn";
+import { getSafeRedirectUrl } from "@/lib/safeRedirect";
 import disposableDomains from "disposable-email-domains";
 
 // 100k+ disposable email domains from the library + custom blocked domains
@@ -31,7 +32,8 @@ function isDisposableEmail(domain: string): boolean {
 
 function SignupContent() {
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  const redirectParam = searchParams.get("redirect");
+  const safeRedirect = getSafeRedirectUrl(redirectParam, "/drops");
   const prefillEmail = searchParams.get("email") || "";
 
   const [email, setEmail] = useState(prefillEmail);
@@ -63,8 +65,8 @@ function SignupContent() {
     const supabase = createClient();
 
     let callbackUrl = `${window.location.origin}/auth/callback`;
-    if (redirect) {
-      callbackUrl += `?next=${encodeURIComponent(redirect)}`;
+    if (safeRedirect !== "/drops") {
+      callbackUrl += `?next=${encodeURIComponent(safeRedirect)}`;
     }
 
     const { data, error } = await supabase.auth.signUp({
@@ -81,12 +83,9 @@ function SignupContent() {
       return;
     }
 
-    if (data.user && data.user.identities && data.user.identities.length === 0) {
-      setError("An account with this email already exists. Please sign in instead.");
-      setLoading(false);
-      return;
-    }
-
+    // Always show success to prevent email enumeration
+    // If account exists (identities.length === 0), user will get an email
+    // saying they already have an account
     setSubmittedEmail(email);
     setSuccess(true);
     setLoading(false);
