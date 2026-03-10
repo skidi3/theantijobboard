@@ -3,218 +3,1285 @@
 <head>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { width: 360px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fafafa; }
-    .header { background: #171717; color: white; padding: 16px; display: flex; align-items: center; gap: 10px; }
-    .header h1 { font-size: 14px; font-weight: 600; }
-    .content { padding: 16px; }
-    .candidate-select { width: 100%; padding: 10px 12px; border: 1px solid #e5e5e5; border-radius: 8px; font-size: 14px; margin-bottom: 12px; background: white; cursor: pointer; }
-    .btn { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 8px; transition: all 0.2s; }
-    .btn-primary { background: #f43f5e; color: white; }
-    .btn-primary:hover { background: #e11d48; }
-    .btn-secondary { background: #e5e5e5; color: #171717; }
-    .btn-secondary:hover { background: #d4d4d4; }
-    .btn-small { padding: 8px 12px; font-size: 12px; width: auto; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-    .divider { height: 1px; background: #e5e5e5; margin: 16px 0; }
-    .status { font-size: 12px; color: #737373; text-align: center; padding: 8px; background: #f5f5f5; border-radius: 6px; margin-top: 8px; }
-    .status.success { background: #dcfce7; color: #166534; }
-    .status.error { background: #fee2e2; color: #991b1b; }
-    .tabs { display: flex; border-bottom: 1px solid #e5e5e5; margin-bottom: 16px; }
-    .tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; cursor: pointer; border-bottom: 2px solid transparent; color: #737373; }
-    .tab.active { color: #f43f5e; border-bottom-color: #f43f5e; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display: block; font-size: 11px; color: #737373; text-transform: uppercase; margin-bottom: 4px; }
-    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 8px 10px; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 13px; }
-    .form-group textarea { min-height: 60px; resize: vertical; }
-    .candidate-list { max-height: 200px; overflow-y: auto; }
-    .candidate-item { display: flex; align-items: center; justify-content: space-between; padding: 10px; background: white; border: 1px solid #e5e5e5; border-radius: 8px; margin-bottom: 8px; }
-    .candidate-item .name { font-size: 13px; font-weight: 500; }
-    .candidate-item .email { font-size: 11px; color: #737373; }
-    .candidate-actions { display: flex; gap: 4px; }
-    .icon-btn { width: 28px; height: 28px; border: none; background: #f5f5f5; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .icon-btn:hover { background: #e5e5e5; }
-    .extracted-preview { background: #f5f5f5; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-    .extracted-preview h4 { font-size: 12px; color: #737373; margin-bottom: 8px; text-transform: uppercase; }
-    .extracted-field { margin-bottom: 8px; }
-    .extracted-field label { font-size: 10px; color: #a3a3a3; text-transform: uppercase; }
-    .extracted-field p { font-size: 13px; color: #171717; }
-    .loading { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 20px; color: #737373; font-size: 13px; }
-    .spinner { width: 16px; height: 16px; border: 2px solid #e5e5e5; border-top-color: #f43f5e; border-radius: 50%; animation: spin 0.8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .source-toggle { display: flex; gap: 8px; margin-bottom: 12px; }
-    .source-toggle button { flex: 1; padding: 8px; border: 1px solid #e5e5e5; background: white; border-radius: 6px; font-size: 12px; cursor: pointer; transition: all 0.2s; }
-    .source-toggle button.active { background: #171717; color: white; border-color: #171717; }
-    .source-toggle button:hover:not(.active) { background: #f5f5f5; }
+
+    :root {
+      --bg-primary: #fafafa;
+      --bg-white: #ffffff;
+      --bg-dark: #171717;
+      --text-primary: #171717;
+      --text-secondary: #525252;
+      --text-muted: #737373;
+      --text-light: #a3a3a3;
+      --border: #e5e5e5;
+      --border-light: #f5f5f5;
+      --rose-50: #fff1f2;
+      --rose-100: #ffe4e6;
+      --rose-200: #fecdd3;
+      --rose-300: #fda4af;
+      --rose-400: #fb7185;
+      --rose-500: #f43f5e;
+      --rose-600: #e11d48;
+      --green-50: #dcfce7;
+      --green-600: #16a34a;
+      --red-50: #fef2f2;
+      --red-600: #dc2626;
+      --amber-50: #fffbeb;
+      --amber-600: #d97706;
+    }
+
+    body {
+      width: 400px;
+      max-height: 600px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 14px;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+
+    .font-serif { font-family: Georgia, 'Times New Roman', serif; }
+
+    /* Header */
+    .header {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .header-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .settings-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--bg-primary);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .settings-btn:hover {
+      background: var(--border);
+    }
+
+    .settings-btn svg {
+      color: var(--text-muted);
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+    }
+
+    .nav-tab {
+      flex: 1;
+      padding: 14px 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .nav-tab:hover {
+      color: var(--text-secondary);
+    }
+
+    .nav-tab.active {
+      color: var(--rose-500);
+      border-bottom-color: var(--rose-500);
+    }
+
+    /* Main Content */
+    .main-content {
+      height: calc(600px - 130px);
+      overflow-y: auto;
+    }
+
+    .tab-panel {
+      display: none;
+      padding: 20px;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Candidate Selector */
+    .candidate-selector {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .selector-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .candidate-dropdown {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-white);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: all 0.2s;
+    }
+
+    .candidate-dropdown:hover {
+      border-color: var(--text-muted);
+    }
+
+    .candidate-dropdown:focus {
+      outline: none;
+      border-color: var(--rose-400);
+      box-shadow: 0 0 0 3px var(--rose-100);
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--bg-dark);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #262626;
+      transform: translateY(-1px);
+    }
+
+    .btn-rose {
+      background: linear-gradient(135deg, var(--rose-400) 0%, var(--rose-500) 100%);
+      color: white;
+    }
+
+    .btn-rose:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--rose-500) 0%, var(--rose-600) 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--bg-white);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--bg-primary);
+      border-color: var(--text-muted);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      padding: 10px 16px;
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+      color: var(--text-primary);
+      background: var(--bg-primary);
+    }
+
+    .btn-small {
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+
+    /* Status Messages */
+    .status-message {
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-top: 16px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .status-message.show {
+      display: flex;
+    }
+
+    .status-message.success {
+      background: var(--green-50);
+      color: var(--green-600);
+    }
+
+    .status-message.error {
+      background: var(--red-50);
+      color: var(--red-600);
+    }
+
+    .status-message.warning {
+      background: var(--amber-50);
+      color: var(--amber-600);
+    }
+
+    .status-message.info {
+      background: var(--rose-50);
+      color: var(--rose-600);
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .form-label .required {
+      color: var(--rose-500);
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-white);
+      transition: all 0.2s;
+    }
+
+    .form-input:hover,
+    .form-textarea:hover,
+    .form-select:hover {
+      border-color: var(--text-muted);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: var(--rose-400);
+      box-shadow: 0 0 0 3px var(--rose-100);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-light);
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    .form-hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Candidate Cards */
+    .candidates-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .candidate-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.2s;
+    }
+
+    .candidate-card:hover {
+      border-color: var(--text-muted);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .candidate-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--rose-200) 0%, var(--rose-400) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .candidate-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .candidate-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .candidate-email {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .candidate-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: var(--bg-primary);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--border);
+    }
+
+    .icon-btn svg {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+    }
+
+    .icon-btn.danger:hover {
+      background: var(--red-50);
+    }
+
+    .icon-btn.danger:hover svg {
+      color: var(--red-600);
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .empty-state-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      background: var(--rose-50);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-state-icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--rose-400);
+    }
+
+    .empty-state-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .empty-state-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-white);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: var(--bg-primary);
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+      background: var(--border);
+    }
+
+    .modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .modal-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-footer .btn {
+      flex: 1;
+    }
+
+    /* Detected Questions Panel */
+    .questions-panel {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .questions-header {
+      padding: 14px 16px;
+      background: var(--bg-primary);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .questions-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .questions-count {
+      font-size: 11px;
+      color: var(--text-muted);
+      background: var(--bg-white);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .questions-list {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .question-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .question-item:last-child {
+      border-bottom: none;
+    }
+
+    .question-status {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .question-status.filled {
+      background: var(--green-50);
+      color: var(--green-600);
+    }
+
+    .question-status.pending {
+      background: var(--amber-50);
+      color: var(--amber-600);
+    }
+
+    .question-status.generating {
+      background: var(--rose-50);
+      color: var(--rose-500);
+    }
+
+    .question-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .question-label {
+      font-size: 13px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .question-type {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Settings Panel */
+    .settings-section {
+      margin-bottom: 24px;
+    }
+
+    .settings-section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .settings-card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .api-key-input {
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 13px;
+    }
+
+    .api-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .api-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .api-status-dot.connected {
+      background: var(--green-600);
+    }
+
+    .api-status-dot.disconnected {
+      background: var(--text-light);
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* Loading Spinner */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--rose-500);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .spinner-small {
+      width: 14px;
+      height: 14px;
+      border-width: 1.5px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .badge-rose {
+      background: var(--rose-100);
+      color: var(--rose-600);
+    }
+
+    .badge-dark {
+      background: var(--bg-dark);
+      color: white;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-light);
+    }
+
+    /* Missing Info Prompt */
+    .missing-info-prompt {
+      background: var(--amber-50);
+      border: 1px dashed var(--amber-600);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .missing-info-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--amber-600);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .missing-info-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    /* Section Heading */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Knowledge Base */
+    .knowledge-base-card {
+      background: linear-gradient(135deg, var(--rose-50) 0%, var(--bg-white) 100%);
+      border: 1px solid var(--rose-200);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .knowledge-base-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .knowledge-base-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--rose-100);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .knowledge-base-icon svg {
+      width: 18px;
+      height: 18px;
+      color: var(--rose-500);
+    }
+
+    .knowledge-base-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .knowledge-base-subtitle {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Manual Question Section */
+    .manual-question-section {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border);
+    }
+
+    #generatedAnswer {
+      background: var(--bg-primary);
+      font-size: 13px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <div class="header">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    <h1>Anti Job Board</h1>
+    <div class="header-left">
+      <img src="https://theantijobboard.b-cdn.net/logo.webp" alt="Logo" class="header-logo">
+      <div>
+        <div class="header-title">The Anti Job Board</div>
+        <div class="header-subtitle">Smart Auto-Fill</div>
+      </div>
+    </div>
+    <button class="settings-btn" id="openSettings" title="Settings">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
   </div>
 
-  <div class="content">
-    <div class="tabs">
-      <div class="tab active" data-tab="fill">Fill Form</div>
-      <div class="tab" data-tab="capture">Capture Role</div>
-      <div class="tab" data-tab="manage">Manage</div>
-    </div>
+  <!-- Navigation Tabs -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="fill">Smart Fill</button>
+    <button class="nav-tab" data-tab="capture">Capture</button>
+    <button class="nav-tab" data-tab="candidates">Candidates</button>
+  </div>
 
-    <!-- Fill Tab -->
-    <div class="tab-content active" id="tab-fill">
-      <select class="candidate-select" id="candidateSelect">
-        <option value="">Select a candidate...</option>
-      </select>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Smart Fill Tab -->
+    <div class="tab-panel active" id="tab-fill">
+      <div class="candidate-selector">
+        <div class="selector-label">Select Candidate</div>
+        <select class="candidate-dropdown" id="candidateSelect">
+          <option value="">Choose a profile...</option>
+        </select>
+      </div>
 
-      <button class="btn btn-primary" id="fillBtn">Auto-Fill This Page</button>
-      <button class="btn btn-secondary" id="fillNameEmail">Fill Name & Email Only</button>
+      <div class="action-buttons">
+        <button class="btn btn-rose" id="smartFillBtn" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+          Smart Fill with AI
+        </button>
+        <button class="btn btn-secondary" id="quickFillBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          Quick Fill (Basic Info)
+        </button>
+      </div>
 
-      <div class="status" id="status" style="display: none;"></div>
+      <div class="status-message" id="fillStatus"></div>
+
+      <!-- Detected Questions Panel -->
+      <div class="questions-panel" id="questionsPanel" style="display: none;">
+        <div class="questions-header">
+          <span class="questions-title">Detected Fields</span>
+          <span class="questions-count" id="questionsCount">0 fields</span>
+        </div>
+        <div class="questions-list" id="questionsList"></div>
+      </div>
+
+      <!-- Missing Info Prompt -->
+      <div class="missing-info-prompt" id="missingInfoPrompt" style="display: none;">
+        <div class="missing-info-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>
+          </svg>
+          Additional Info Needed
+        </div>
+        <div class="missing-info-text" id="missingInfoText"></div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <textarea class="form-textarea" id="missingInfoInput" placeholder="Paste the required information here..."></textarea>
+        </div>
+        <button class="btn btn-primary btn-small" id="submitMissingInfo">Continue Filling</button>
+      </div>
+
+      <!-- Manual Question Section -->
+      <div class="manual-question-section">
+        <div class="section-heading" style="margin-top: 24px;">
+          <span class="section-title">Ask a Question</span>
+        </div>
+        <div class="form-group">
+          <textarea class="form-textarea" id="manualQuestion" placeholder="Paste any application question here...
+
+Example:
+• Why do you want to work at [Company]?
+• Describe a challenging project you led
+• What's your expected salary?" style="min-height: 80px;"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-input" id="jobContext" placeholder="Job context (optional): e.g., Senior Engineer at Stripe, remote">
+        </div>
+        <button class="btn btn-primary" id="generateAnswerBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+          Generate Answer
+        </button>
+
+        <!-- Generated Answer -->
+        <div id="generatedAnswerContainer" style="display: none; margin-top: 16px;">
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <label class="form-label" style="margin: 0;">Generated Answer</label>
+              <button class="btn btn-ghost btn-small" id="copyAnswerBtn" style="padding: 6px 12px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                Copy
+              </button>
+            </div>
+            <textarea class="form-textarea" id="generatedAnswer" style="min-height: 120px;" readonly></textarea>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Capture Tab -->
-    <div class="tab-content" id="tab-capture">
-      <div class="source-toggle">
-        <button class="active" data-source="twitter">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Twitter/X
-        </button>
-        <button data-source="linkedin">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </button>
+    <div class="tab-panel" id="tab-capture">
+      <div class="form-group">
+        <label class="form-label">Post URL</label>
+        <input type="url" class="form-input" id="captureUrl" placeholder="https://x.com/... or https://linkedin.com/...">
       </div>
 
       <div class="form-group">
-        <label>Post URL</label>
-        <input type="url" id="captureUrl" placeholder="https://x.com/... or https://linkedin.com/...">
-      </div>
-
-      <div class="form-group">
-        <label>Post Text (paste the content)</label>
-        <textarea id="captureText" placeholder="Paste the tweet or LinkedIn post text here..." style="min-height: 100px;"></textarea>
+        <label class="form-label">Post Content</label>
+        <textarea class="form-textarea" id="captureText" placeholder="Paste the hiring post content here..."></textarea>
       </div>
 
       <button class="btn btn-primary" id="extractBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
         <span id="extractBtnText">Extract Info</span>
       </button>
 
       <!-- Extracted Preview -->
-      <div id="extractedPreview" style="display: none;">
-        <div class="extracted-preview">
-          <h4>Extracted Info</h4>
-          <div class="extracted-field">
-            <label>Company</label>
-            <input type="text" id="extractedCompany" class="form-group">
-          </div>
-          <div class="extracted-field">
-            <label>Roles</label>
-            <input type="text" id="extractedRoles" class="form-group">
-          </div>
-          <div class="extracted-field">
-            <label>Category</label>
-            <select id="extractedCategory" class="form-group">
-              <option value="tech">Tech</option>
-              <option value="design">Design</option>
-              <option value="product">Product</option>
-              <option value="marketing">Marketing</option>
-              <option value="sales">Sales</option>
-              <option value="ops">Operations</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="extracted-field">
-            <label>Why Include</label>
-            <input type="text" id="extractedWhy" class="form-group">
-          </div>
-          <div class="extracted-field">
-            <label>Expires In (days)</label>
-            <select id="extractedExpires" class="form-group">
-              <option value="3">3 days</option>
-              <option value="7" selected>7 days</option>
-              <option value="14">14 days</option>
-              <option value="30">30 days</option>
-            </select>
-          </div>
+      <div id="extractedPreview" style="display: none; margin-top: 16px;">
+        <div class="section-heading">
+          <span class="section-title">Extracted Information</span>
         </div>
-        <button class="btn btn-primary" id="submitToDb">Submit to Database</button>
-        <button class="btn btn-secondary" id="clearCapture">Clear</button>
+
+        <div class="form-group">
+          <label class="form-label">Company</label>
+          <input type="text" class="form-input" id="extractedCompany">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Roles</label>
+          <input type="text" class="form-input" id="extractedRoles">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="extractedCategory">
+            <option value="tech">Tech</option>
+            <option value="design">Design</option>
+            <option value="product">Product</option>
+            <option value="marketing">Marketing</option>
+            <option value="sales">Sales</option>
+            <option value="ops">Operations</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Why Include</label>
+          <input type="text" class="form-input" id="extractedWhy">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Expires In</label>
+          <select class="form-select" id="extractedExpires">
+            <option value="3">3 days</option>
+            <option value="7" selected>7 days</option>
+            <option value="14">14 days</option>
+            <option value="30">30 days</option>
+          </select>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn btn-rose" id="submitToDb">Add to Database</button>
+          <button class="btn btn-ghost" id="clearCapture">Clear</button>
+        </div>
       </div>
 
-      <div class="status" id="captureStatus" style="display: none;"></div>
+      <div class="status-message" id="captureStatus"></div>
     </div>
 
-    <!-- Manage Tab -->
-    <div class="tab-content" id="tab-manage">
-      <div class="candidate-list" id="candidateList"></div>
-      <button class="btn btn-secondary" id="addCandidate">+ Add Candidate</button>
+    <!-- Candidates Tab -->
+    <div class="tab-panel" id="tab-candidates">
+      <div class="section-heading">
+        <span class="section-title">Candidate Profiles</span>
+        <button class="btn btn-primary btn-small" id="addCandidate">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14"/><path d="M5 12h14"/>
+          </svg>
+          Add
+        </button>
+      </div>
+
+      <div class="candidates-grid" id="candidateList">
+        <!-- Candidates will be rendered here -->
+      </div>
     </div>
   </div>
 
-  <!-- Edit Modal (hidden by default) -->
-  <div id="editModal" style="display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: white; overflow-y: auto;">
-    <div class="header">
-      <h1 id="modalTitle">Edit Candidate</h1>
-    </div>
-    <div class="content">
-      <input type="hidden" id="editId">
-      <div class="form-group">
-        <label>Full Name *</label>
-        <input type="text" id="editName" placeholder="John Doe">
+  <!-- Settings Modal -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Settings</span>
+        <button class="modal-close" id="closeSettings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18"/><path d="M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
-      <div class="form-group">
-        <label>Email *</label>
-        <input type="email" id="editEmail" placeholder="john@example.com">
-      </div>
-      <div class="form-group">
-        <label>Phone</label>
-        <input type="tel" id="editPhone" placeholder="+1 234 567 8900">
-      </div>
-      <div class="form-group">
-        <label>LinkedIn URL</label>
-        <input type="url" id="editLinkedin" placeholder="https://linkedin.com/in/johndoe">
-      </div>
-      <div class="form-group">
-        <label>GitHub URL</label>
-        <input type="url" id="editGithub" placeholder="https://github.com/johndoe">
-      </div>
-      <div class="form-group">
-        <label>Portfolio URL</label>
-        <input type="url" id="editPortfolio" placeholder="https://johndoe.com">
-      </div>
-      <div class="form-group">
-        <label>Location</label>
-        <input type="text" id="editLocation" placeholder="San Francisco, CA">
-      </div>
-      <div class="form-group">
-        <label>Current Title</label>
-        <input type="text" id="editTitle" placeholder="Senior Software Engineer">
-      </div>
-      <div class="form-group">
-        <label>Current Company</label>
-        <input type="text" id="editCompany" placeholder="Acme Inc">
-      </div>
-      <div class="form-group">
-        <label>Years of Experience</label>
-        <input type="text" id="editYears" placeholder="5">
-      </div>
-      <div class="form-group">
-        <label>Skills (comma separated)</label>
-        <textarea id="editSkills" placeholder="JavaScript, React, Node.js, Python"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Summary / Cover Letter Intro</label>
-        <textarea id="editSummary" placeholder="Experienced engineer with..."></textarea>
-      </div>
-      <div class="form-group">
-        <label>Resume URL (Google Drive, Dropbox link)</label>
-        <input type="url" id="editResume" placeholder="https://drive.google.com/...">
-      </div>
+      <div class="modal-body">
+        <div class="settings-section">
+          <div class="settings-section-title">OpenAI API</div>
+          <div class="settings-card">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">API Key</label>
+              <input type="password" class="form-input api-key-input" id="openaiKey" placeholder="sk-...">
+              <div class="form-hint">Your API key is stored locally and never sent to our servers.</div>
+            </div>
+            <div class="api-status" id="apiStatus">
+              <span class="api-status-dot disconnected"></span>
+              <span>Not configured</span>
+            </div>
+          </div>
+        </div>
 
-      <button class="btn btn-primary" id="saveCandidate">Save Candidate</button>
-      <button class="btn btn-secondary" id="cancelEdit">Cancel</button>
+        <div class="settings-section">
+          <div class="settings-section-title">AI Model</div>
+          <div class="settings-card">
+            <div class="form-group" style="margin-bottom: 0;">
+              <select class="form-select" id="aiModel">
+                <option value="gpt-4o-mini">GPT-4o Mini (Fast & Cheap)</option>
+                <option value="gpt-4o">GPT-4o (Best Quality)</option>
+                <option value="gpt-4-turbo">GPT-4 Turbo</option>
+              </select>
+              <div class="form-hint">GPT-4o Mini recommended for most use cases (~$0.001 per question).</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-section">
+          <div class="settings-section-title">Response Caching</div>
+          <div class="settings-card">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div>
+                <div style="font-size: 13px; font-weight: 500;">Cache AI Responses</div>
+                <div style="font-size: 11px; color: var(--text-muted);">Reuse answers for similar questions</div>
+              </div>
+              <label style="position: relative; display: inline-block; width: 44px; height: 24px;">
+                <input type="checkbox" id="enableCache" checked style="opacity: 0; width: 0; height: 0;">
+                <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); transition: 0.3s; border-radius: 24px;"></span>
+              </label>
+            </div>
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border);">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 12px; color: var(--text-muted);"><span id="cacheCount">0</span> cached responses</span>
+                <button class="btn btn-ghost btn-small" id="clearCache" style="padding: 6px 12px;">Clear Cache</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Candidate Modal -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title" id="editModalTitle">Add Candidate</span>
+        <button class="modal-close" id="closeEditModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18"/><path d="M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editId">
+
+        <!-- Basic Info -->
+        <div class="section-heading">
+          <span class="section-title">Basic Information</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Full Name <span class="required">*</span></label>
+          <input type="text" class="form-input" id="editName" placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email <span class="required">*</span></label>
+          <input type="email" class="form-input" id="editEmail" placeholder="john@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input type="tel" class="form-input" id="editPhone" placeholder="+1 234 567 8900">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Location</label>
+          <input type="text" class="form-input" id="editLocation" placeholder="San Francisco, CA">
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Professional Info -->
+        <div class="section-heading">
+          <span class="section-title">Professional Details</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Current Title</label>
+          <input type="text" class="form-input" id="editTitle" placeholder="Senior Software Engineer">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Current Company</label>
+          <input type="text" class="form-input" id="editCompany" placeholder="Acme Inc">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Years of Experience</label>
+          <input type="text" class="form-input" id="editYears" placeholder="5">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Skills</label>
+          <textarea class="form-textarea" id="editSkills" placeholder="JavaScript, React, Node.js, Python, AWS..." style="min-height: 60px;"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Links -->
+        <div class="section-heading">
+          <span class="section-title">Links & Resume</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">LinkedIn URL</label>
+          <input type="url" class="form-input" id="editLinkedin" placeholder="https://linkedin.com/in/johndoe">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">GitHub URL</label>
+          <input type="url" class="form-input" id="editGithub" placeholder="https://github.com/johndoe">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Portfolio URL</label>
+          <input type="url" class="form-input" id="editPortfolio" placeholder="https://johndoe.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Resume URL</label>
+          <input type="url" class="form-input" id="editResume" placeholder="https://drive.google.com/...">
+          <div class="form-hint">Google Drive, Dropbox, or direct link to PDF</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Knowledge Base -->
+        <div class="knowledge-base-card">
+          <div class="knowledge-base-header">
+            <div class="knowledge-base-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="knowledge-base-title">AI Knowledge Base</div>
+              <div class="knowledge-base-subtitle">Used for generating smart answers</div>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 0;">
+            <textarea class="form-textarea" id="editKnowledge" placeholder="Paste everything about this candidate here:
+
+• Work experience details
+• Key achievements & metrics
+• Notable projects
+• Education background
+• Career goals & motivations
+• Strengths & unique qualities
+• Why they want to work at startups
+• Anything else relevant..." style="min-height: 180px;"></textarea>
+            <div class="form-hint">The more context you provide, the better the AI-generated answers will be.</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Default Summary -->
+        <div class="section-heading">
+          <span class="section-title">Default Cover Letter Intro</span>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <textarea class="form-textarea" id="editSummary" placeholder="A brief intro paragraph that can be used as a starting point for cover letters..." style="min-height: 80px;"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="cancelEdit">Cancel</button>
+        <button class="btn btn-rose" id="saveCandidate">Save Candidate</button>
+      </div>
     </div>
   </div>
 
