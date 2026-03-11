@@ -24,6 +24,9 @@ export function Footer() {
             <a href="#how" className="hover:text-neutral-900 transition-colors duration-300">
               How it works
             </a>
+            <a href="/get-discovered" className="hover:text-neutral-900 transition-colors duration-300">
+              For Talent
+            </a>
           </div>
         </div>
 

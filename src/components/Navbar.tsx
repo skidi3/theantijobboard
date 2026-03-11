@@ -55,9 +55,15 @@ export function Navbar() {
         >
           Pricing
         </a>
+        <Link
+          href="/get-discovered"
+          className="hidden md:block text-base text-neutral-900 hover:text-neutral-600 transition-colors"
+        >
+          For Talent
+        </Link>
         <a
           href="#faq"
-          className="hidden md:block text-base text-neutral-900 hover:text-neutral-600 transition-colors"
+          className="hidden lg:block text-base text-neutral-900 hover:text-neutral-600 transition-colors"
         >
           FAQ
         </a>

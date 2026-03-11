@@ -475,6 +475,57 @@ function setupToggleSwitches() {
 }
 
 // ==================== SMART FILL FUNCTIONALITY ====================
+
+// Retry scanner with delay for lazy-loaded forms
+async function scanWithRetry(tabId, maxRetries = 3, delayMs = 1000) {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    // Inject scanner into main page
+    const mainResults = await chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      func: scanFormFields
+    });
+
+    let fields = mainResults?.[0]?.result || [];
+
+    // Also try to scan all frames
+    try {
+      const frameResults = await chrome.scripting.executeScript({
+        target: { tabId: tabId, allFrames: true },
+        func: scanFormFields
+      });
+
+      // Merge results from all frames
+      if (frameResults && frameResults.length > 1) {
+        frameResults.forEach((result, idx) => {
+          if (idx > 0 && result.result && result.result.length > 0) {
+            // Mark fields with their frame index
+            const frameFields = result.result.map(f => ({
+              ...f,
+              frameIndex: idx,
+              iframeIndex: idx
+            }));
+            fields = fields.concat(frameFields);
+          }
+        });
+      }
+    } catch (e) {
+      // Some frames might be inaccessible (cross-origin)
+      console.log('Could not scan some frames:', e.message);
+    }
+
+    if (fields.length > 0) {
+      return fields;
+    }
+
+    // Wait before retrying
+    if (attempt < maxRetries - 1) {
+      await new Promise(resolve => setTimeout(resolve, delayMs));
+    }
+  }
+
+  return [];
+}
+
 async function handleSmartFill() {
   const select = document.getElementById('candidateSelect');
   if (!select.value) {
@@ -497,21 +548,12 @@ async function handleSmartFill() {
     // Get the current tab
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    // Inject the scanner and get form fields
-    const results = await chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      func: scanFormFields
-    });
-
-    if (!results || !results[0]) {
-      throw new Error('Could not scan the page');
-    }
-
-    const fields = results[0].result;
+    // Scan with retry for lazy-loaded forms
+    const fields = await scanWithRetry(tab.id, 3, 1000);
     detectedQuestions = fields;
 
     if (fields.length === 0) {
-      showStatus('fillStatus', 'No form fields detected on this page', 'warning');
+      showStatus('fillStatus', 'No form fields detected. Try scrolling to load the form, then retry.', 'warning');
       return;
     }
 
@@ -534,15 +576,30 @@ async function handleSmartFill() {
         }
 
         // Fill the field with type info (ensure all args are serializable)
-        const result = await chrome.scripting.executeScript({
-          target: { tabId: tab.id },
-          func: fillSingleField,
-          args: [field.selector, answer, field.fieldType || 'text', field.radioGroup || null]
-        });
+        try {
+          const result = await chrome.scripting.executeScript({
+            target: { tabId: tab.id, allFrames: true },
+            func: fillSingleField,
+            args: [
+              field.selector,
+              answer,
+              field.fieldType || 'text',
+              field.radioGroup || null,
+              field.iframeIndex !== undefined ? field.iframeIndex : null,
+              field.shadowHost || null
+            ]
+          });
 
-        if (result && result[0] && result[0].result) {
-          filled++;
-          updateQuestionStatus(field.selector, 'filled');
+          // Check if any frame successfully filled the field
+          const success = result && result.some(r => r.result === true);
+          if (success) {
+            filled++;
+            updateQuestionStatus(field.selector, 'filled');
+          } else {
+            console.log('Failed to fill:', field.label, field.selector);
+          }
+        } catch (fillError) {
+          console.error('Error filling field:', field.label, fillError);
         }
       }
     }
@@ -1108,9 +1165,7 @@ function handleMissingInfoSubmit() {
 // ==================== FORM SCANNING FUNCTION (INJECTED) ====================
 function scanFormFields() {
   const fields = [];
-
-  // Scan ALL form elements
-  const inputs = document.querySelectorAll('input, textarea, select');
+  const processedElements = new Set();
 
   // Common patterns for different field types
   const basicPatterns = {
@@ -1151,43 +1206,53 @@ function scanFormFields() {
     /additional|anything.?else|other.?info/i
   ];
 
-  inputs.forEach((input, index) => {
-    // Skip hidden and submit/button
-    if (['hidden', 'submit', 'button', 'image', 'reset'].includes(input.type)) return;
-
-    // Get all identifying info
-    const name = (input.name || '').toLowerCase();
-    const id = (input.id || '').toLowerCase();
-    const placeholder = (input.placeholder || '');
-    const ariaLabel = (input.getAttribute('aria-label') || '');
-
-    // Get label text
+  // Helper: Get label text for an element
+  function getLabelText(input, doc) {
     let labelText = '';
+
+    // Method 1: label[for="id"]
     if (input.id) {
-      const label = document.querySelector(`label[for="${input.id}"]`);
+      const label = doc.querySelector(`label[for="${CSS.escape(input.id)}"]`);
       if (label) labelText = label.textContent.trim();
     }
+
+    // Method 2: Parent label
     if (!labelText) {
       const parentLabel = input.closest('label');
       if (parentLabel) labelText = parentLabel.textContent.trim();
     }
+
+    // Method 3: aria-labelledby
     if (!labelText) {
       const labelledBy = input.getAttribute('aria-labelledby');
       if (labelledBy) {
-        const labelEl = document.getElementById(labelledBy);
+        const labelEl = doc.getElementById(labelledBy);
         if (labelEl) labelText = labelEl.textContent.trim();
       }
     }
+
+    // Method 4: aria-label
     if (!labelText) {
-      const parent = input.parentElement;
-      if (parent) {
-        const prev = input.previousElementSibling;
-        if (prev && ['LABEL', 'SPAN', 'DIV', 'P'].includes(prev.tagName)) {
-          labelText = prev.textContent.trim();
-        }
+      labelText = input.getAttribute('aria-label') || '';
+    }
+
+    // Method 5: Previous sibling
+    if (!labelText) {
+      const prev = input.previousElementSibling;
+      if (prev && ['LABEL', 'SPAN', 'DIV', 'P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(prev.tagName)) {
+        labelText = prev.textContent.trim();
       }
     }
-    // Also check for legend in fieldset (common for radio groups)
+
+    // Method 6: Parent's previous sibling (common in form layouts)
+    if (!labelText && input.parentElement) {
+      const parentPrev = input.parentElement.previousElementSibling;
+      if (parentPrev && ['LABEL', 'SPAN', 'DIV', 'P'].includes(parentPrev.tagName)) {
+        labelText = parentPrev.textContent.trim();
+      }
+    }
+
+    // Method 7: Fieldset legend
     if (!labelText) {
       const fieldset = input.closest('fieldset');
       if (fieldset) {
@@ -1196,16 +1261,79 @@ function scanFormFields() {
       }
     }
 
+    // Method 8: data-label, data-name attributes
+    if (!labelText) {
+      labelText = input.getAttribute('data-label') || input.getAttribute('data-name') || '';
+    }
+
+    // Method 9: Look for nearby text in parent container
+    if (!labelText) {
+      const container = input.closest('[class*="field"], [class*="form-group"], [class*="input"], [class*="question"]');
+      if (container) {
+        const textEl = container.querySelector('label, [class*="label"], [class*="title"], [class*="question"]');
+        if (textEl && textEl !== input) {
+          labelText = textEl.textContent.trim();
+        }
+      }
+    }
+
+    return labelText;
+  }
+
+  // Helper: Generate unique selector for element
+  function generateSelector(input, index, doc) {
+    if (input.id) {
+      return { selector: `#${CSS.escape(input.id)}`, isIframe: false };
+    }
+    if (input.name) {
+      return { selector: `[name="${CSS.escape(input.name)}"]`, isIframe: false };
+    }
+    // Use data attributes if available
+    if (input.getAttribute('data-testid')) {
+      return { selector: `[data-testid="${CSS.escape(input.getAttribute('data-testid'))}"]`, isIframe: false };
+    }
+    if (input.getAttribute('data-qa')) {
+      return { selector: `[data-qa="${CSS.escape(input.getAttribute('data-qa'))}"]`, isIframe: false };
+    }
+    // Fallback to index-based
+    return { selector: `${input.tagName.toLowerCase()}:nth-of-type(${index + 1})`, isIframe: false };
+  }
+
+  // Helper: Process a single input element
+  function processInput(input, index, doc, iframeIndex = null) {
+    // Create unique key to avoid duplicates
+    const uniqueKey = `${iframeIndex || 'main'}-${input.id || input.name || index}`;
+    if (processedElements.has(uniqueKey)) return null;
+    processedElements.add(uniqueKey);
+
+    // Skip hidden and submit/button
+    const inputType = input.type || 'text';
+    if (['hidden', 'submit', 'button', 'image', 'reset'].includes(inputType)) return null;
+
+    // Get all identifying info
+    const name = (input.name || '').toLowerCase();
+    const id = (input.id || '').toLowerCase();
+    const placeholder = (input.placeholder || '');
+    const ariaLabel = (input.getAttribute('aria-label') || '');
+    const labelText = getLabelText(input, doc);
+
     const identifiers = [name, id, placeholder.toLowerCase(), labelText.toLowerCase(), ariaLabel.toLowerCase()].join(' ');
 
     // Determine field type
     let fieldType = 'text';
-    let inputType = input.type || 'text';
 
     if (input.tagName === 'SELECT') {
       fieldType = input.multiple ? 'multiselect' : 'select';
     } else if (input.tagName === 'TEXTAREA') {
       fieldType = 'textarea';
+    } else if (input.getAttribute('contenteditable') === 'true') {
+      fieldType = 'contenteditable';
+    } else if (input.getAttribute('role') === 'textbox') {
+      fieldType = 'aria-textbox';
+    } else if (input.getAttribute('role') === 'combobox') {
+      fieldType = 'aria-combobox';
+    } else if (input.getAttribute('role') === 'listbox') {
+      fieldType = 'aria-listbox';
     } else if (inputType === 'checkbox') {
       fieldType = 'checkbox';
     } else if (inputType === 'radio') {
@@ -1225,14 +1353,29 @@ function scanFormFields() {
       }));
     }
 
+    // For custom dropdowns, look for options in nearby elements
+    if ((fieldType === 'aria-combobox' || fieldType === 'aria-listbox') && options.length === 0) {
+      const listboxId = input.getAttribute('aria-controls') || input.getAttribute('aria-owns');
+      if (listboxId) {
+        const listbox = doc.getElementById(listboxId);
+        if (listbox) {
+          const opts = listbox.querySelectorAll('[role="option"], li, [class*="option"]');
+          options = Array.from(opts).map(opt => ({
+            value: opt.getAttribute('data-value') || opt.textContent.trim(),
+            text: opt.textContent.trim()
+          }));
+        }
+      }
+    }
+
     // For radio buttons, get all options in the group
     let radioOptions = [];
     if (inputType === 'radio' && input.name) {
-      const radios = document.querySelectorAll(`input[type="radio"][name="${input.name}"]`);
+      const radios = doc.querySelectorAll(`input[type="radio"][name="${CSS.escape(input.name)}"]`);
       radioOptions = Array.from(radios).map(r => {
         let radioLabel = '';
         if (r.id) {
-          const lbl = document.querySelector(`label[for="${r.id}"]`);
+          const lbl = doc.querySelector(`label[for="${CSS.escape(r.id)}"]`);
           if (lbl) radioLabel = lbl.textContent.trim();
         }
         if (!radioLabel) {
@@ -1257,7 +1400,7 @@ function scanFormFields() {
       }
     }
 
-    if (fieldType === 'textarea') {
+    if (fieldType === 'textarea' || fieldType === 'contenteditable') {
       requiresAI = true;
     } else {
       for (const pattern of aiPatterns) {
@@ -1268,34 +1411,25 @@ function scanFormFields() {
       }
     }
 
-    // Skip if already filled (for text inputs)
+    // Skip if already filled
     if (['text', 'email', 'tel', 'url', 'textarea'].includes(fieldType)) {
-      if (input.value && input.value.trim()) return;
+      if (input.value && input.value.trim()) return null;
     }
-
-    // Skip if checkbox already checked
-    if (fieldType === 'checkbox' && input.checked) return;
-
-    // Skip if select already has non-default value
-    if (fieldType === 'select' && input.selectedIndex > 0) return;
+    if (fieldType === 'contenteditable' || fieldType === 'aria-textbox') {
+      if (input.textContent && input.textContent.trim()) return null;
+    }
+    if (fieldType === 'checkbox' && input.checked) return null;
+    if (fieldType === 'select' && input.selectedIndex > 0) return null;
 
     // For radio buttons, only add one entry per group
     if (fieldType === 'radio') {
       const groupName = input.name;
-      if (fields.some(f => f.radioGroup === groupName)) return;
+      if (fields.some(f => f.radioGroup === groupName && f.iframeIndex === iframeIndex)) return null;
     }
 
-    // Generate selector
-    let selector = '';
-    if (input.id) {
-      selector = `#${CSS.escape(input.id)}`;
-    } else if (input.name) {
-      selector = `[name="${CSS.escape(input.name)}"]`;
-    } else {
-      selector = `${input.tagName.toLowerCase()}:nth-of-type(${index + 1})`;
-    }
+    const { selector } = generateSelector(input, index, doc);
 
-    fields.push({
+    return {
       selector,
       label: labelText || placeholder || ariaLabel || name || 'Unknown field',
       fieldType,
@@ -1307,18 +1441,176 @@ function scanFormFields() {
       options: options.length > 0 ? options : undefined,
       radioOptions: radioOptions.length > 0 ? radioOptions : undefined,
       radioGroup: fieldType === 'radio' ? input.name : undefined,
-      accept: fieldType === 'file' ? input.accept : undefined
+      accept: fieldType === 'file' ? input.accept : undefined,
+      iframeIndex: iframeIndex
+    };
+  }
+
+  // Scan a document (main or iframe)
+  function scanDocument(doc, iframeIndex = null) {
+    // Standard form elements
+    const standardInputs = doc.querySelectorAll('input, textarea, select');
+    standardInputs.forEach((input, index) => {
+      const field = processInput(input, index, doc, iframeIndex);
+      if (field) fields.push(field);
     });
+
+    // Contenteditable elements
+    const editables = doc.querySelectorAll('[contenteditable="true"]');
+    editables.forEach((el, index) => {
+      const field = processInput(el, index + 1000, doc, iframeIndex);
+      if (field) fields.push(field);
+    });
+
+    // ARIA textboxes (common in React/custom components)
+    const ariaTextboxes = doc.querySelectorAll('[role="textbox"]');
+    ariaTextboxes.forEach((el, index) => {
+      const field = processInput(el, index + 2000, doc, iframeIndex);
+      if (field) fields.push(field);
+    });
+
+    // ARIA comboboxes (custom dropdowns)
+    const ariaComboboxes = doc.querySelectorAll('[role="combobox"]');
+    ariaComboboxes.forEach((el, index) => {
+      const field = processInput(el, index + 3000, doc, iframeIndex);
+      if (field) fields.push(field);
+    });
+
+    // Scan shadow DOM
+    const allElements = doc.querySelectorAll('*');
+    allElements.forEach((el) => {
+      if (el.shadowRoot) {
+        const shadowInputs = el.shadowRoot.querySelectorAll('input, textarea, select, [contenteditable="true"], [role="textbox"]');
+        shadowInputs.forEach((input, index) => {
+          const field = processInput(input, index + 4000, el.shadowRoot, iframeIndex);
+          if (field) {
+            field.shadowHost = generateSelector(el, 0, doc).selector;
+            fields.push(field);
+          }
+        });
+      }
+    });
+  }
+
+  // Scan main document
+  scanDocument(document, null);
+
+  // Scan iframes
+  const iframes = document.querySelectorAll('iframe');
+  iframes.forEach((iframe, iframeIdx) => {
+    try {
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (iframeDoc) {
+        scanDocument(iframeDoc, iframeIdx);
+      }
+    } catch (e) {
+      // Cross-origin iframe - can't access
+      console.log('Cannot access iframe (cross-origin):', iframe.src);
+    }
   });
 
-  return fields;
+  // De-duplicate: If we have both aria-combobox and text input for same label, keep only combobox
+  const deduped = [];
+  const comboboxLabels = new Set();
+
+  // First pass: collect all aria-combobox labels
+  fields.forEach(f => {
+    if (f.fieldType === 'aria-combobox' || f.fieldType === 'aria-listbox') {
+      comboboxLabels.add(f.label.toLowerCase().replace(/\*/g, '').trim());
+    }
+  });
+
+  // Second pass: skip text inputs that duplicate comboboxes
+  fields.forEach(f => {
+    const normalizedLabel = f.label.toLowerCase().replace(/\*/g, '').trim();
+
+    // Skip text inputs that have a corresponding combobox
+    if (f.fieldType === 'text' && comboboxLabels.has(normalizedLabel)) {
+      return;
+    }
+
+    // Skip "Select..." placeholder fields
+    if (f.label === 'Select...' || f.label === 'Search') {
+      return;
+    }
+
+    // Skip recaptcha
+    if (f.selector.includes('recaptcha') || f.label.toLowerCase().includes('recaptcha')) {
+      return;
+    }
+
+    deduped.push(f);
+  });
+
+  return deduped;
 }
 
-// Fill a single field (injected) - handles all field types
-function fillSingleField(selector, value, fieldType, radioGroup) {
+// Fill a single field (injected) - handles all field types including React
+function fillSingleField(selector, value, fieldType, radioGroup, iframeIndex, shadowHost) {
   try {
-    const element = document.querySelector(selector);
-    if (!element) return false;
+    let doc = document;
+
+    // If filling in iframe
+    if (iframeIndex !== null && iframeIndex !== undefined) {
+      const iframes = document.querySelectorAll('iframe');
+      if (iframes[iframeIndex]) {
+        try {
+          doc = iframes[iframeIndex].contentDocument || iframes[iframeIndex].contentWindow?.document;
+          if (!doc) return false;
+        } catch (e) {
+          console.log('Cannot access iframe:', e);
+          return false;
+        }
+      }
+    }
+
+    let element = doc.querySelector(selector);
+
+    // If in shadow DOM
+    if (!element && shadowHost) {
+      const host = doc.querySelector(shadowHost);
+      if (host && host.shadowRoot) {
+        element = host.shadowRoot.querySelector(selector);
+      }
+    }
+
+    if (!element) {
+      console.log('Element not found:', selector);
+      return false;
+    }
+
+    // Helper: Trigger React-compatible events
+    function triggerReactEvents(el, newValue) {
+      // For React 15+
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
+      const nativeTextareaValueSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value')?.set;
+
+      if (el.tagName === 'INPUT' && nativeInputValueSetter) {
+        nativeInputValueSetter.call(el, newValue);
+      } else if (el.tagName === 'TEXTAREA' && nativeTextareaValueSetter) {
+        nativeTextareaValueSetter.call(el, newValue);
+      } else {
+        el.value = newValue;
+      }
+
+      // Dispatch events in the order React expects
+      el.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+
+      // Also try InputEvent for newer React versions
+      try {
+        el.dispatchEvent(new InputEvent('input', {
+          bubbles: true,
+          cancelable: true,
+          inputType: 'insertText',
+          data: newValue
+        }));
+      } catch (e) {}
+
+      // Focus and blur for validation triggers
+      el.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
+      el.dispatchEvent(new FocusEvent('blur', { bubbles: true }));
+    }
 
     switch (fieldType) {
       case 'text':
@@ -1327,14 +1619,111 @@ function fillSingleField(selector, value, fieldType, radioGroup) {
       case 'url':
       case 'number':
       case 'textarea':
-        element.value = value;
+        // Focus first (important for some frameworks)
+        element.focus();
+
+        // Clear existing value
+        element.value = '';
+
+        // Use React-compatible method
+        triggerReactEvents(element, value);
+        return true;
+
+      case 'contenteditable':
+      case 'aria-textbox':
+        element.focus();
+        element.textContent = value;
+        // Also set innerHTML for rich text editors
+        if (element.innerHTML !== undefined) {
+          element.innerHTML = value;
+        }
         element.dispatchEvent(new Event('input', { bubbles: true }));
         element.dispatchEvent(new Event('change', { bubbles: true }));
         element.dispatchEvent(new Event('blur', { bubbles: true }));
         return true;
 
+      case 'aria-combobox':
+      case 'aria-listbox':
+        // Custom dropdown - need to open, type, and select
+        element.focus();
+        element.click();
+
+        // Find the actual input inside or nearby the combobox
+        let comboInput = element.querySelector('input') || element;
+        if (element.tagName !== 'INPUT') {
+          // Look for input in parent or siblings
+          const parent = element.closest('[class*="select"], [class*="dropdown"], [class*="combobox"]');
+          if (parent) {
+            comboInput = parent.querySelector('input') || element;
+          }
+        }
+
+        // Type the value to filter (if it's an input)
+        if (comboInput.tagName === 'INPUT' || comboInput.getAttribute('contenteditable')) {
+          comboInput.focus();
+          if (comboInput.tagName === 'INPUT') {
+            comboInput.value = value;
+            comboInput.dispatchEvent(new Event('input', { bubbles: true }));
+          } else {
+            comboInput.textContent = value;
+          }
+        }
+
+        // Look for the listbox/options - try multiple strategies
+        const listboxId = element.getAttribute('aria-controls') || element.getAttribute('aria-owns');
+        let listbox = listboxId ? doc.getElementById(listboxId) : null;
+
+        if (!listbox) {
+          // Strategy 2: Look for nearby visible dropdown
+          listbox = doc.querySelector('[role="listbox"]:not([hidden]), [class*="dropdown"]:not([hidden]), [class*="options"]:not([hidden]), [class*="menu"]:not([hidden]), [class*="select__menu"], [class*="listbox"]');
+        }
+
+        if (!listbox) {
+          // Strategy 3: Look in parent container
+          const container = element.closest('[class*="select"], [class*="dropdown"], [class*="field"]');
+          if (container) {
+            listbox = container.querySelector('[role="listbox"], [class*="options"], [class*="menu"], ul, [class*="list"]');
+          }
+        }
+
+        if (listbox) {
+          const options = listbox.querySelectorAll('[role="option"], li, [class*="option"]:not([class*="options"])');
+          const valueLower = value.toLowerCase();
+
+          for (const opt of options) {
+            const optText = opt.textContent.toLowerCase().trim();
+            // Match: exact, contains, or value contains option
+            if (optText === valueLower || optText.includes(valueLower) || valueLower.includes(optText)) {
+              opt.scrollIntoView({ block: 'nearest' });
+              opt.click();
+
+              // Also dispatch events on the original element
+              element.dispatchEvent(new Event('change', { bubbles: true }));
+              return true;
+            }
+          }
+
+          // If no match found by text, try matching by data attributes
+          for (const opt of options) {
+            const dataValue = (opt.getAttribute('data-value') || opt.getAttribute('value') || '').toLowerCase();
+            if (dataValue === valueLower || dataValue.includes(valueLower)) {
+              opt.click();
+              element.dispatchEvent(new Event('change', { bubbles: true }));
+              return true;
+            }
+          }
+        }
+
+        // Fallback: If there's a hidden input nearby, set its value directly
+        const hiddenInput = element.parentElement?.querySelector('input[type="hidden"], input:not([type])');
+        if (hiddenInput) {
+          hiddenInput.value = value;
+          hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        return true;
+
       case 'select':
-        // Try to find matching option by value or text
         const options = Array.from(element.options);
         let matched = false;
 
@@ -1378,7 +1767,6 @@ function fillSingleField(selector, value, fieldType, radioGroup) {
         return matched;
 
       case 'multiselect':
-        // For multi-select, value should be comma-separated
         const valuesToSelect = value.split(',').map(v => v.trim().toLowerCase());
         const multiOptions = Array.from(element.options);
 
@@ -1394,22 +1782,18 @@ function fillSingleField(selector, value, fieldType, radioGroup) {
         return true;
 
       case 'checkbox':
-        // value should be boolean or 'true'/'false' or 'yes'/'no'
         const shouldCheck = value === true || value === 'true' || value === 'yes' || value === '1';
         if (element.checked !== shouldCheck) {
-          element.checked = shouldCheck;
-          element.dispatchEvent(new Event('change', { bubbles: true }));
-          element.dispatchEvent(new Event('click', { bubbles: true }));
+          element.click(); // Use click for better React compatibility
         }
         return true;
 
       case 'radio':
-        // Find the radio button with matching value in the group
         if (radioGroup) {
-          const radios = document.querySelectorAll(`input[type="radio"][name="${radioGroup}"]`);
+          const radios = doc.querySelectorAll(`input[type="radio"][name="${CSS.escape(radioGroup)}"]`);
           for (const radio of radios) {
             const radioLabel = radio.closest('label')?.textContent?.toLowerCase() || '';
-            const labelFor = document.querySelector(`label[for="${radio.id}"]`)?.textContent?.toLowerCase() || '';
+            const labelFor = doc.querySelector(`label[for="${CSS.escape(radio.id)}"]`)?.textContent?.toLowerCase() || '';
             const radioValue = radio.value.toLowerCase();
             const searchValue = value.toLowerCase();
 
@@ -1417,9 +1801,7 @@ function fillSingleField(selector, value, fieldType, radioGroup) {
                 radioLabel.includes(searchValue) ||
                 labelFor.includes(searchValue) ||
                 searchValue.includes(radioValue)) {
-              radio.checked = true;
-              radio.dispatchEvent(new Event('change', { bubbles: true }));
-              radio.dispatchEvent(new Event('click', { bubbles: true }));
+              radio.click(); // Use click for better compatibility
               return true;
             }
           }
@@ -1427,17 +1809,15 @@ function fillSingleField(selector, value, fieldType, radioGroup) {
         return false;
 
       case 'file':
-        // Can't programmatically set file input for security reasons
-        // But we can highlight it for manual action
         element.style.outline = '3px solid #f43f5e';
         element.style.outlineOffset = '2px';
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         console.log('File upload required:', selector, '- Please upload manually');
         return false;
 
       default:
-        element.value = value;
-        element.dispatchEvent(new Event('input', { bubbles: true }));
-        element.dispatchEvent(new Event('change', { bubbles: true }));
+        element.focus();
+        triggerReactEvents(element, value);
         return true;
     }
   } catch (e) {

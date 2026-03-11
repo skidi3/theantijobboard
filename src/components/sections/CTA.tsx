@@ -3,6 +3,7 @@
 import { Button } from "../Button";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { cdn } from "@/lib/cdn";
+import Link from "next/link";
 
 export function CTA() {
   const { ref, isVisible } = useScrollReveal(0.3);
@@ -29,12 +30,18 @@ export function CTA() {
           Get the jobs before everyone else.
         </p>
 
-        <div className="mt-10">
+        <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
           <a href="#pricing">
             <Button variant="primary" size="lg">
               Get early access
             </Button>
           </a>
+          <Link
+            href="/get-discovered"
+            className="text-neutral-600 hover:text-neutral-900 transition-colors text-sm font-medium"
+          >
+            or join the talent pool →
+          </Link>
         </div>
       </div>
     </section>

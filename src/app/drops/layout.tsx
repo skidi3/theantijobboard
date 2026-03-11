@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { cdn } from "@/lib/cdn";
 import { ManageSubscriptionModal } from "@/components/ManageSubscriptionModal";
+import { isAdminEmail } from "@/lib/admin";
 
 type Plan = "free" | "list" | "edge" | "concierge";
 
@@ -107,6 +108,9 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
         });
       }
       setLoading(false);
+
+      // Track activity for talent profile (fire and forget)
+      fetch("/api/talent/activity", { method: "POST" }).catch(() => {});
     };
 
     getUser();
@@ -167,11 +171,11 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full w-72 bg-white border-r border-neutral-200 z-50 transform transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 left-0 h-screen w-72 bg-white border-r border-neutral-200 z-50 transform transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-screen overflow-hidden">
           {/* Logo */}
           <div className="p-6 border-b border-neutral-100">
             <Link href="/" className="flex items-center gap-3">
@@ -181,44 +185,31 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 p-4 overflow-y-auto">
-            {/* Funded Drops - deep dives */}
-            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 px-2">Funded Drops</p>
-            <div className="space-y-1">
-              {fundedDrops.map((drop) => {
-                const isActive = pathname === `/drops/${drop.id}`;
-                const isPaid = user.plan === "list" || user.plan === "edge" || user.plan === "concierge";
-                return (
-                  <Link
-                    key={drop.id}
-                    href={`/drops/${drop.id}`}
-                    onClick={() => setSidebarOpen(false)}
-                    className={`block px-3 py-2.5 rounded-xl text-sm transition-colors ${
-                      isActive
-                        ? "bg-rose-50 text-rose-600 font-medium"
-                        : "text-neutral-600 hover:bg-neutral-50"
-                    }`}
-                  >
-                    <span className="flex items-center justify-between">
-                      <span className="font-medium">{drop.date}</span>
-                      <span className="flex items-center gap-1.5">
-                        {!isPaid && (
-                          <svg className="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                          </svg>
-                        )}
-                          <span className="text-[10px] uppercase tracking-wider text-neutral-400">{drop.day}</span>
-                      </span>
-                    </span>
-                    <span className="text-xs text-neutral-400 mt-0.5 block truncate">{drop.title}</span>
-                  </Link>
-                );
-              })}
+          <nav className="flex-1 p-4 overflow-hidden flex flex-col min-h-0">
+            {/* Get Discovered - FIRST - Available to ALL users */}
+            <div className="flex-shrink-0 mb-4">
+              <Link
+                href="/drops/get-discovered"
+                onClick={() => setSidebarOpen(false)}
+                className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                  pathname === "/drops/get-discovered"
+                    ? "bg-rose-50 text-rose-600 font-medium"
+                    : "text-neutral-600 hover:bg-neutral-50"
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  <span className="font-medium text-xs">Get Discovered</span>
+                </span>
+                <span className="text-[10px] text-neutral-400 mt-0.5 block">Upload your profile for startups</span>
+              </Link>
             </div>
 
-            {/* Live Feed */}
-            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 mt-6 px-2">Live Feed</p>
-            <div className="space-y-1">
+            {/* Live Feed - fixed */}
+            <div className="flex-shrink-0 mb-3">
+              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-2 px-2">Live Feed</p>
               {liveFeed.map((item) => {
                 const isActive = pathname === `/drops/${item.id}`;
                 const isPaid = user.plan === "list" || user.plan === "edge" || user.plan === "concierge";
@@ -227,21 +218,21 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
                     key={item.id}
                     href={`/drops/${item.id}`}
                     onClick={() => setSidebarOpen(false)}
-                    className={`block px-3 py-2.5 rounded-xl text-sm transition-colors ${
+                    className={`block px-3 py-2 rounded-xl text-sm transition-colors ${
                       isActive
                         ? "bg-rose-50 text-rose-600 font-medium"
                         : "text-neutral-600 hover:bg-neutral-50"
                     }`}
                   >
                     <span className="flex items-center justify-between">
-                      <span className="font-medium">{item.title}</span>
+                      <span className="font-medium text-xs">{item.title}</span>
                       {!isPaid && (
-                        <svg className="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                         </svg>
                       )}
                     </span>
-                    <span className="text-xs text-neutral-400 mt-0.5 flex items-center gap-1.5">
+                    <span className="text-[10px] text-neutral-400 flex items-center gap-1">
                       <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse" />
                       {item.subtitle}
                     </span>
@@ -250,41 +241,84 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
               })}
             </div>
 
-            {/* Free Resources */}
-            <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 mt-6 px-2">Free Resources</p>
-            <div className="space-y-1">
-              {freeDrops.map((drop) => {
-                const isActive = pathname === `/drops/${drop.id}`;
-                return (
-                  <Link
-                    key={drop.id}
-                    href={`/drops/${drop.id}`}
-                    onClick={() => setSidebarOpen(false)}
-                    className={`block px-3 py-2.5 rounded-xl text-sm transition-colors ${
-                      isActive
-                        ? "bg-rose-50 text-rose-600 font-medium"
-                        : "text-neutral-600 hover:bg-neutral-50"
-                    }`}
-                  >
-                    <span className="text-xs block truncate">{drop.title}</span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            {/* Plan Benefits */}
-            <div className="mt-8">
-              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-3 px-2">Your Plan Includes</p>
-              <div className="space-y-2 px-2">
-                {plan.benefits.map((benefit, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-neutral-600">
-                    <svg className="w-4 h-4 text-rose-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {benefit}
-                  </div>
-                ))}
+            {/* Scrollable section for drops */}
+            <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+              {/* Funded Drops */}
+              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-2 px-2 sticky top-0 bg-white py-1">Funded Drops</p>
+              <div className="space-y-0.5">
+                {fundedDrops.map((drop) => {
+                  const isActive = pathname === `/drops/${drop.id}`;
+                  const isPaid = user.plan === "list" || user.plan === "edge" || user.plan === "concierge";
+                  return (
+                    <Link
+                      key={drop.id}
+                      href={`/drops/${drop.id}`}
+                      onClick={() => setSidebarOpen(false)}
+                      className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                        isActive
+                          ? "bg-rose-50 text-rose-600 font-medium"
+                          : "text-neutral-600 hover:bg-neutral-50"
+                      }`}
+                    >
+                      <span className="flex items-center justify-between">
+                        <span className="font-medium text-xs">{drop.date}</span>
+                        <span className="flex items-center gap-1">
+                          {!isPaid && (
+                            <svg className="w-3 h-3 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                          )}
+                          <span className="text-[9px] uppercase text-neutral-400">{drop.day}</span>
+                        </span>
+                      </span>
+                      <span className="text-[10px] text-neutral-400 mt-0.5 block truncate">{drop.title}</span>
+                    </Link>
+                  );
+                })}
               </div>
+
+              {/* Free Resources */}
+              <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-2 mt-4 px-2">Free Resources</p>
+              <div className="space-y-0.5">
+                {freeDrops.map((drop) => {
+                  const isActive = pathname === `/drops/${drop.id}`;
+                  return (
+                    <Link
+                      key={drop.id}
+                      href={`/drops/${drop.id}`}
+                      onClick={() => setSidebarOpen(false)}
+                      className={`block px-3 py-1.5 rounded-lg text-sm transition-colors ${
+                        isActive
+                          ? "bg-rose-50 text-rose-600 font-medium"
+                          : "text-neutral-600 hover:bg-neutral-50"
+                      }`}
+                    >
+                      <span className="text-[10px] block truncate">{drop.title}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Admin Section */}
+              {isAdminEmail(user.email) && (
+                <>
+                  <p className="text-[10px] uppercase tracking-wider text-neutral-400 mb-2 mt-4 px-2">Admin</p>
+                  <div className="space-y-1">
+                    <Link
+                      href="/drops/talent"
+                      onClick={() => setSidebarOpen(false)}
+                      className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                        pathname === "/drops/talent"
+                          ? "bg-rose-50 text-rose-600 font-medium"
+                          : "text-neutral-600 hover:bg-neutral-50"
+                      }`}
+                    >
+                      <span className="font-medium text-xs">View Talent Pool</span>
+                      <span className="text-[10px] text-neutral-400 mt-0.5 block">Manage uploaded profiles</span>
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           </nav>
 
@@ -346,7 +380,7 @@ export default function DropsLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content */}
-      <main className="lg:ml-72 min-h-screen pt-16 lg:pt-0">
+      <main className="lg:ml-72 h-screen pt-16 lg:pt-0 overflow-y-auto">
         {children}
       </main>
 
