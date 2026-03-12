@@ -444,12 +444,12 @@ export default function GetDiscoveredPage() {
             )}
           </div>
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-neutral-900 mb-4">
-            {isUpdate ? "update your story" : "tell us your story"}
+            {isUpdate ? "update your story" : "get discovered"}
           </h1>
           <p className="text-base sm:text-lg text-neutral-500 leading-relaxed">
             {isUpdate
               ? "keep your profile fresh. the more we know, the better we can match you."
-              : "we don't just match keywords. we read your story, understand what you've built, and connect you with founders who need exactly what you bring. this isn't a job application — it's an introduction."}
+              : "skip the application black hole. we connect you directly with founders hiring now."}
           </p>
         </div>
 
