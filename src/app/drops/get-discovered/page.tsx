@@ -396,18 +396,18 @@ export default function GetDiscoveredPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            <span className="text-sm">Back to drops</span>
+            <span className="text-sm">back to drops</span>
           </Link>
 
           <div className="bg-white/95 backdrop-blur rounded-2xl p-8 md:p-12 text-center">
             <img src={cdn("/logo.webp")} alt="" className="w-16 h-16 mx-auto mb-6" />
-            <h1 className="font-serif text-3xl text-neutral-900 mb-4">you're in</h1>
-            <p className="text-neutral-600 leading-relaxed max-w-md mx-auto">
-              we'll review your profile and reach out when there's a match. no spam, no ghost jobs, just real opportunities from our network.
+            <h1 className="font-serif text-4xl text-neutral-900 mb-4">we've got your story</h1>
+            <p className="text-neutral-500 leading-relaxed max-w-md mx-auto">
+              we actually read these. when we find a founder who needs exactly what you bring, we'll make the intro. no mass emails, no spray-and-pray. just real conversations with people who get it.
             </p>
             <Link
               href="/drops"
-              className="inline-block mt-8 px-6 py-3 bg-neutral-900 text-white rounded-xl hover:bg-neutral-800 transition-colors"
+              className="inline-block mt-8 px-8 py-4 bg-rose-500 text-white rounded-xl hover:bg-rose-600 transition-colors font-medium"
             >
               back to dashboard
             </Link>
@@ -430,26 +430,26 @@ export default function GetDiscoveredPage() {
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
-          <span className="text-sm">Back to drops</span>
+          <span className="text-sm">back to drops</span>
         </Link>
 
         <div className="bg-white/95 backdrop-blur rounded-2xl p-5 sm:p-8 md:p-10 mb-8">
           <div className="flex items-center justify-between gap-2.5 mb-6">
             <div className="flex items-center gap-2.5">
               <img src={cdn("/logo.webp")} alt="" className="w-7 h-7 sm:w-8 sm:h-8" />
-              <span className="font-serif text-base sm:text-lg text-neutral-900">The Anti Job Board</span>
+              <span className="font-serif text-base sm:text-lg text-neutral-900">the anti job board</span>
             </div>
             {isUpdate && (
-              <span className="text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full">Editing Profile</span>
+              <span className="text-xs bg-rose-100 text-rose-600 px-2 py-1 rounded-full">editing profile</span>
             )}
           </div>
-          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl text-neutral-900 mb-2">
-            {isUpdate ? "Update your profile" : "Get discovered by startups"}
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-neutral-900 mb-4">
+            {isUpdate ? "update your story" : "tell us your story"}
           </h1>
-          <p className="text-sm sm:text-base text-neutral-500">
+          <p className="text-base sm:text-lg text-neutral-500 leading-relaxed">
             {isUpdate
-              ? "Keep your profile up to date for the best matches."
-              : "Companies from our network hire directly from this pool. Skip the 500-applicant pile."}
+              ? "keep your profile fresh. the more we know, the better we can match you."
+              : "we don't just match keywords. we read your story, understand what you've built, and connect you with founders who need exactly what you bring. this isn't a job application — it's an introduction."}
           </p>
         </div>
 
@@ -459,16 +459,16 @@ export default function GetDiscoveredPage() {
 
           {/* Resume Upload - First and prominent */}
           <div className="bg-neutral-50 rounded-2xl p-6 border-2 border-dashed border-neutral-200">
-            <h2 className="font-serif text-xl text-neutral-900 mb-2">Your Resume *</h2>
-            <p className="text-sm text-neutral-500 mb-4">Upload and we'll auto-fill your details.</p>
+            <h2 className="font-serif text-2xl text-neutral-900 mb-2">start with your resume *</h2>
+            <p className="text-sm text-neutral-400 mb-4">we'll pull the basics. then you tell us what it doesn't show.</p>
             <div
               onClick={() => !isParsing && fileInputRef.current?.click()}
               className={`rounded-xl p-6 text-center transition-all ${
                 isParsing
-                  ? "bg-neutral-800 text-white cursor-wait"
+                  ? "bg-rose-400 text-white cursor-wait"
                   : file
-                  ? "bg-neutral-900 text-white cursor-pointer"
-                  : "bg-white border border-neutral-200 hover:border-neutral-400 cursor-pointer"
+                  ? "bg-rose-500 text-white cursor-pointer"
+                  : "bg-white border border-neutral-200 hover:border-rose-300 cursor-pointer"
               }`}
             >
               <input
@@ -506,7 +506,7 @@ export default function GetDiscoveredPage() {
               ) : existingResumeUrl ? (
                 <div className="flex flex-col items-center gap-2">
                   <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="font-medium text-neutral-700">resume uploaded</span>
@@ -517,7 +517,7 @@ export default function GetDiscoveredPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={(e) => e.stopPropagation()}
-                      className="text-blue-600 hover:underline"
+                      className="text-rose-600 hover:underline"
                     >
                       view resume
                     </a>
@@ -531,7 +531,7 @@ export default function GetDiscoveredPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
                   <p className="text-neutral-600">
-                    <span className="font-medium text-neutral-900">Click to upload</span> PDF
+                    <span className="font-medium text-neutral-900">click to upload</span> pdf
                   </p>
                 </>
               )}
@@ -543,11 +543,11 @@ export default function GetDiscoveredPage() {
 
           {/* Contact Info */}
           <div>
-            <h2 className="font-serif text-xl text-neutral-900 mb-4">Contact Info</h2>
+            <h2 className="font-serif text-2xl text-neutral-900 mb-6">the basics</h2>
 
             {/* Profile Photo */}
             <div className="mb-6">
-              <label className="block text-sm font-medium text-neutral-700 mb-2">profile photo <span className="text-neutral-400 font-normal">(optional)</span></label>
+              <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-2">put a face to the name <span className="normal-case">(optional)</span></label>
               <div className="flex items-center gap-4">
                 <div
                   onClick={() => photoInputRef.current?.click()}
@@ -571,7 +571,7 @@ export default function GetDiscoveredPage() {
                   )}
                 </div>
                 <div className="text-sm text-neutral-500">
-                  <p>square image works best</p>
+                  <p>founders like to know who they're meeting</p>
                   <p className="text-xs text-neutral-400">max 5MB · jpg, png, webp</p>
                   {photoError && (
                     <p className="text-red-600 mt-1">{photoError}</p>
@@ -582,73 +582,73 @@ export default function GetDiscoveredPage() {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">full name *</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">full name *</label>
                 <input
                   type="text"
                   name="name"
                   required
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-                  placeholder="Jane Smith"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  placeholder="jane smith"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Email *</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">email *</label>
                 <input
                   type="email"
                   name="email"
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="jane@example.com"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Phone</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">phone</label>
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="+1 (555) 000-0000"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">LinkedIn *</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">linkedin *</label>
                 <input
                   type="url"
                   name="linkedin_url"
                   required
                   value={formData.linkedin_url}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="linkedin.com/in/janesmith"
                 />
               </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4 mt-4">
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">GitHub</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">github</label>
                 <input
                   type="url"
                   name="github_url"
                   value={formData.github_url}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="github.com/janesmith"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Portfolio / Website</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">portfolio / website</label>
                 <input
                   type="url"
                   name="portfolio_url"
                   value={formData.portfolio_url}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="janesmith.com"
                 />
               </div>
@@ -657,33 +657,33 @@ export default function GetDiscoveredPage() {
 
           {/* Location & Work Authorization */}
           <div>
-            <h2 className="font-serif text-xl text-neutral-900 mb-4">Location & Work Authorization</h2>
+            <h2 className="font-serif text-2xl text-neutral-900 mb-6">where in the world</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Where are you based?</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">where are you based?</label>
                 <input
                   type="text"
                   name="current_location"
                   value={formData.current_location}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-                  placeholder="San Francisco, CA"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  placeholder="san francisco, ca"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Open to relocate to?</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">open to relocate to?</label>
                 <input
                   type="text"
                   name="preferred_locations"
                   value={formData.preferred_locations}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
-                  placeholder="NYC, Austin, or Remote"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  placeholder="nyc, austin, or remote"
                 />
               </div>
             </div>
             <div className="mt-4">
-              <label className="block text-sm font-medium text-neutral-700 mb-2">Work authorization (US)</label>
+              <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-2">work authorization (us)</label>
               <div className="flex flex-wrap gap-2">
                 {WORK_AUTH_OPTIONS.map((opt) => (
                   <button
@@ -692,7 +692,7 @@ export default function GetDiscoveredPage() {
                     onClick={() => setFormData(prev => ({ ...prev, work_authorization: opt.value }))}
                     className={`px-4 py-2 rounded-full text-sm transition-all ${
                       formData.work_authorization === opt.value
-                        ? "bg-neutral-900 text-white"
+                        ? "bg-rose-500 text-white"
                         : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
                     }`}
                   >
@@ -705,10 +705,10 @@ export default function GetDiscoveredPage() {
 
           {/* What You're Looking For */}
           <div>
-            <h2 className="font-serif text-xl text-neutral-900 mb-4">What You're Looking For</h2>
+            <h2 className="font-serif text-2xl text-neutral-900 mb-6">what gets you excited</h2>
 
             <div className="mb-5">
-              <label className="block text-sm font-medium text-neutral-700 mb-2">role type *</label>
+              <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-2">what roles are you drawn to? *</label>
 
               {/* Selected roles */}
               {formData.looking_for.length > 0 && (
@@ -716,7 +716,7 @@ export default function GetDiscoveredPage() {
                   {formData.looking_for.map((role) => (
                     <span
                       key={role}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-900 text-white rounded-full text-sm"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-500 text-white rounded-full text-sm"
                     >
                       {role}
                       <button
@@ -741,7 +741,7 @@ export default function GetDiscoveredPage() {
                   onChange={(e) => setRoleSearch(e.target.value)}
                   onFocus={() => setRoleDropdownOpen(true)}
                   placeholder="search roles or type to add custom..."
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                 />
 
                 {/* Dropdown */}
@@ -761,7 +761,7 @@ export default function GetDiscoveredPage() {
                           >
                             <span>{role}</span>
                             {isSelected && (
-                              <svg className="w-4 h-4 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                               </svg>
                             )}
@@ -789,7 +789,7 @@ export default function GetDiscoveredPage() {
             </div>
 
             <div className="mb-5">
-              <label className="block text-sm font-medium text-neutral-700 mb-2">Work preference</label>
+              <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-2">how do you do your best work?</label>
               <div className="flex flex-wrap gap-2">
                 {REMOTE_OPTIONS.map((opt) => (
                   <button
@@ -798,7 +798,7 @@ export default function GetDiscoveredPage() {
                     onClick={() => setFormData(prev => ({ ...prev, remote_preference: opt.value }))}
                     className={`px-4 py-2 rounded-full text-sm transition-all ${
                       formData.remote_preference === opt.value
-                        ? "bg-neutral-900 text-white"
+                        ? "bg-rose-500 text-white"
                         : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
                     }`}
                   >
@@ -810,24 +810,24 @@ export default function GetDiscoveredPage() {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Minimum salary (USD)</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">won't go below (usd)</label>
                 <input
                   type="text"
                   name="salary_min"
                   value={formData.salary_min}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="$150,000"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">Target salary (USD)</label>
+                <label className="block text-xs uppercase tracking-wide text-neutral-400 mb-1.5">would be happy with (usd)</label>
                 <input
                   type="text"
                   name="salary_max"
                   value={formData.salary_max}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
                   placeholder="$180,000"
                 />
               </div>
@@ -836,7 +836,7 @@ export default function GetDiscoveredPage() {
 
           {/* Availability */}
           <div>
-            <h2 className="font-serif text-xl text-neutral-900 mb-4">Availability</h2>
+            <h2 className="font-serif text-2xl text-neutral-900 mb-4">when can you start?</h2>
             <div className="flex flex-wrap gap-2">
               {NOTICE_OPTIONS.map((opt) => (
                 <button
@@ -845,7 +845,7 @@ export default function GetDiscoveredPage() {
                   onClick={() => setFormData(prev => ({ ...prev, notice_period: opt.value }))}
                   className={`px-4 py-2 rounded-full text-sm transition-all ${
                     formData.notice_period === opt.value
-                      ? "bg-neutral-900 text-white"
+                      ? "bg-rose-500 text-white"
                       : "bg-neutral-100 text-neutral-700 hover:bg-neutral-200"
                   }`}
                 >
@@ -855,50 +855,53 @@ export default function GetDiscoveredPage() {
             </div>
           </div>
 
-          {/* Context */}
-          <div>
-            <h2 className="font-serif text-xl text-neutral-900 mb-4">a bit more context</h2>
-            <div className="space-y-4">
+          {/* Context - THE IMPORTANT PART */}
+          <div className="bg-rose-50 rounded-2xl p-6 sm:p-8 border border-rose-100">
+            <h2 className="font-serif text-2xl sm:text-3xl text-neutral-900 mb-2">now, the real stuff</h2>
+            <p className="text-sm text-neutral-500 mb-8">this is what actually gets you hired. resumes show where you've been. this shows who you are.</p>
+            <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">
-                  what's your ideal next role? <span className="text-neutral-400 font-normal">(optional)</span>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  what does your dream role actually look like?
                 </label>
+                <p className="text-xs text-neutral-400 mb-2">not the job title. the actual day-to-day. what makes you lose track of time?</p>
                 <textarea
                   name="ideal_role"
                   value={formData.ideal_role}
                   onChange={handleInputChange}
-                  rows={2}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent resize-none"
-                  placeholder="e.g., early-stage startup, product-focused team, ownership over a feature area..."
+                  rows={3}
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent resize-none bg-white"
+                  placeholder="e.g., i want to own a product end-to-end. small team where i can ship fast, talk to users, and see my work matter. i don't want to be a cog writing tickets someone else defined..."
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">
-                  why are you looking? <span className="text-neutral-400 font-normal">(optional)</span>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  what's pushing you to look right now?
                 </label>
+                <p className="text-xs text-neutral-400 mb-2">be honest. we use this to find you the right fit, not to judge.</p>
                 <textarea
                   name="why_looking"
                   value={formData.why_looking}
                   onChange={handleInputChange}
-                  rows={2}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent resize-none"
-                  placeholder="e.g., looking for more ownership, want to join a smaller team, relocating..."
+                  rows={3}
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent resize-none bg-white"
+                  placeholder="e.g., my current company just got acquired and the culture is dead. i'm 3 years in and realize i've been optimizing for prestige not growth. honestly just bored and want to build something that matters..."
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-1.5">
-                  tell us everything <span className="text-neutral-400 font-normal">(optional but highly encouraged)</span>
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
+                  what's the stuff that doesn't fit on a resume?
                 </label>
-                <p className="text-xs text-neutral-500 mb-2">
-                  dump everything here. side projects, achievements, hackathon wins, open source contributions, that one thing you built that no one knows about. we read every word (yes, ai helps but humans review too). this is your chance to stand out from the crowd.
+                <p className="text-xs text-neutral-400 mb-2">
+                  the side project that got users. the thing you built for fun. the rabbit hole you went down. the problem you solved that nobody asked you to. this is often the most interesting part of someone's profile.
                 </p>
                 <textarea
                   name="additional_context"
                   value={formData.additional_context}
                   onChange={handleInputChange}
                   rows={6}
-                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent resize-y"
-                  placeholder="e.g., built a saas that got 1k users in a month, contributed to react, won eth denver hackathon, have a newsletter with 5k subs, reverse engineered spotify's algorithm for fun, mass state robotics champion, got my startup to $10k mrr before pivoting..."
+                  className="w-full px-4 py-3 border border-neutral-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent resize-y bg-white"
+                  placeholder="e.g., i built a chrome extension that 2k people use daily. i reversed engineered how figma does multiplayer and wrote a blog post that hit hn front page. i'm a mass state robotics champion. i started a newsletter about developer tools that has 5k subscribers. i got my side project to $10k mrr before deciding i'd rather join a team than go solo..."
                 />
               </div>
             </div>
@@ -916,7 +919,7 @@ export default function GetDiscoveredPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 bg-neutral-900 text-white font-medium rounded-xl hover:bg-neutral-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 bg-rose-500 text-white font-medium rounded-xl hover:bg-rose-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-2">
@@ -924,16 +927,16 @@ export default function GetDiscoveredPage() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                   </svg>
-                  Submitting...
+                  submitting...
                 </span>
               ) : isUpdate ? (
-                "Update profile"
+                "update my story"
               ) : (
-                "Join the talent pool"
+                "submit my story"
               )}
             </button>
-            <p className="mt-4 text-center text-sm text-neutral-500">
-              We'll only share your info when there's a mutual fit. No spam.
+            <p className="mt-4 text-center text-sm text-neutral-400">
+              your info stays private until we find a mutual fit. then we make the intro.
             </p>
           </div>
         </form>

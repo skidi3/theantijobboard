@@ -98,6 +98,47 @@ export default function DropsPage() {
           </div>
         )}
 
+        {/* Get Discovered Card - Featured */}
+        <Link
+          href="/drops/get-discovered"
+          className="group relative block bg-white border-2 border-rose-400 rounded-2xl p-6 md:p-8 mb-8 hover:border-rose-500 transition-colors shadow-lg shadow-rose-100"
+        >
+          {/* Featured badge */}
+          <span className="absolute -top-3 -right-3 z-20 bg-rose-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+            New
+          </span>
+          <DotDistortion
+            dotColor="rgba(251, 113, 133, 0.6)"
+            dotSize={1}
+            dotSpacing={14}
+            distortionStrength={20}
+            distortionRadius={100}
+          />
+          <div className="relative z-10 flex items-center gap-2 mb-6">
+            <img src={cdn("/logo.webp")} alt="" className="w-6 h-6" />
+            <span className="text-sm text-neutral-500">For Candidates</span>
+            <span className="flex items-center gap-1.5 text-xs text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full ml-auto">
+              <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse" />
+              Warm Intros
+            </span>
+          </div>
+          <h2 className="relative z-10 font-serif text-3xl sm:text-4xl text-neutral-900 mb-3">Get Discovered by Startups</h2>
+          <p className="relative z-10 text-neutral-500 mb-6 max-w-2xl">
+            Upload your profile once. We'll send warm intros to founders when there's a match. No applications, no ghosting, just direct connections.
+          </p>
+          <div className="relative z-10 flex flex-wrap gap-3 mb-6">
+            <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Warm Founder Intros</span>
+            <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">No Spam</span>
+            <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Real Opportunities</span>
+          </div>
+          <div className="relative z-10 flex items-center gap-2 text-neutral-900 group-hover:gap-3 transition-all">
+            <span>Upload your profile</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+        </Link>
+
         {/* Disposable Job Board Card */}
         <Link
           href="/drops/jobs"

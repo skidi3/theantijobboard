@@ -29,6 +29,9 @@ CREATE TABLE IF NOT EXISTS talent_profiles (
   resume_url TEXT, -- URL to file in Supabase Storage
   resume_text TEXT, -- Extracted text from PDF for search
 
+  -- Profile photo
+  photo_url TEXT, -- URL to photo in Supabase Storage
+
   -- AI-generated summary
   ai_summary TEXT,
   ai_tags TEXT[], -- AI-extracted tags for matching
@@ -42,6 +45,7 @@ CREATE TABLE IF NOT EXISTS talent_profiles (
   notice_period TEXT, -- 'immediate', '2_weeks', '1_month', '2_months', 'exploring'
   why_looking TEXT, -- Free text context
   ideal_role TEXT, -- Free text about ideal role
+  additional_context TEXT, -- "tell us everything" free text dump
 
   -- Status
   status TEXT DEFAULT 'active' CHECK (status IN ('active', 'placed', 'paused', 'archived')),
@@ -53,7 +57,8 @@ CREATE TABLE IF NOT EXISTS talent_profiles (
   -- Internal notes (for admin)
   admin_notes TEXT,
   quality_score INTEGER, -- 1-10 rating by admin
-  last_contacted_at TIMESTAMPTZ
+  last_contacted_at TIMESTAMPTZ,
+  last_active_at TIMESTAMPTZ -- Last time user visited drops pages
 );
 
 -- Create index for search

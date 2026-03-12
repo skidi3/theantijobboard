@@ -294,7 +294,6 @@ export async function POST(request: NextRequest) {
           looking_for,
           remote_preference: remote_preference || "flexible",
           salary_range: salary_range || null,
-          // New fields
           preferred_locations: preferred_locations || null,
           work_authorization: work_authorization || null,
           notice_period: notice_period || null,
@@ -304,6 +303,7 @@ export async function POST(request: NextRequest) {
           status: "active",
           source: "organic",
           user_id: user.id,
+          last_active_at: new Date().toISOString(),
         },
         {
           onConflict: "email",
