@@ -137,7 +137,7 @@ export default function DropsPage() {
         {/* Latest Drop */}
         <p className="text-sm text-white/80 uppercase tracking-wider mb-4">Latest Drop</p>
         <Link
-          href="/drops/drop-009"
+          href="/drops/drop-010"
           className="group relative block bg-white border border-neutral-200 rounded-2xl p-6 md:p-8 mb-8 hover:border-neutral-300 transition-colors"
         >
           {/* New Badge */}
@@ -155,8 +155,8 @@ export default function DropsPage() {
             <img src={cdn("/logo.webp")} alt="" className="w-6 h-6" />
             <span className="text-sm text-neutral-500">Premium Drop</span>
             <div className="flex items-center gap-2 ml-auto">
-              <span className="text-xs font-medium text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">Tue</span>
-              <span className="text-xs text-neutral-400">Mar 10</span>
+              <span className="text-xs font-medium text-rose-500 bg-rose-50 px-2.5 py-1 rounded-full">Thu</span>
+              <span className="text-xs text-neutral-400">Mar 12</span>
               {!isPaid && (
                 <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -164,9 +164,9 @@ export default function DropsPage() {
               )}
             </div>
           </div>
-          <h3 className="relative z-10 font-serif text-3xl sm:text-4xl text-neutral-900 mb-3">3 Startups · $34.5M Raised · Scorecards · Playbooks</h3>
+          <h3 className="relative z-10 font-serif text-3xl sm:text-4xl text-neutral-900 mb-3">3 Startups · $14M+ Raised · Scorecards · Playbooks</h3>
           <p className="relative z-10 text-neutral-500 mb-6 max-w-2xl">
-            Autonomous AI execution layer, full-stack onchain financial marketplace, and AI-powered CPG operations. Fresh raises with founder intel and outreach playbooks.
+            AI agent email infrastructure, stablecoin prime brokerage, and AI-native ATS. Fresh raises with founder intel and outreach playbooks.
           </p>
           <div className="relative z-10 flex flex-wrap gap-3 mb-6">
             <span className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1.5 rounded-full">Hiring Signals</span>
