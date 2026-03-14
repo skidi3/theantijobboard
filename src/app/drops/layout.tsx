@@ -17,8 +17,9 @@ interface UserData {
 
 // Premium drops (paid content) - deep dives on funded startups
 const fundedDrops = [
+  { id: "drop-011", date: "Mar 14", title: "3 Startups · $8.8M+ · Context Intelligence + AI Support Agency + Video Editing Agent", day: "Sat" },
   { id: "drop-010", date: "Mar 12", title: "3 Startups · $14M+ · AI Agent Infra + Stablecoin Prime Broker + AI-Native ATS", day: "Thu" },
-  { id: "drop-009", date: "Mar 10", title: "3 Startups · $34.5M · Screen-Level AI + DeFi + CPG Operations", day: "Tue" },
+  { id: "drop-009", date: "Mar 10", title: "3 Startups · $34.5M · Screen-Level AI + DeFi + CPG Operations", day: "Mon" },
   { id: "drop-008", date: "Mar 6", title: "3 Startups · $25M · AI Verification + Semantic Engineering + Travel AI", day: "Fri" },
   { id: "drop-007", date: "Mar 4", title: "3 Startups · $19.8M · DeFi Banking + AI Agents + Workflow", day: "Wed" },
   { id: "drop-006", date: "Mar 2", title: "3 Startups · $17.6M+ · AI Investment + IRL Social + RCS Gaming", day: "Mon" },
